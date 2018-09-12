@@ -1,0 +1,24 @@
+.home {
+    margin: 0;
+    flex: 0 0;
+    font-size: 1.5em;
+    height: 100%;
+}
+
+
+.link {
+    display: flex;
+    align-items: center;
+    color: brown;
+    &:visited {
+        color: brown;
+    }
+    text-decoration: none;
+
+    img {
+        height: $site-header-height;
+        border: 1px solid black;
+        min-width: 3em;
+        margin-right: 0.5em;
+    }
+}

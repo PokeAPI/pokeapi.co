@@ -1,0 +1,8 @@
+@import "sizes.scss";
+
+.content {
+    max-width: $page-max-width;
+	margin: 0 auto;
+	background-color: white;
+	padding: 1em;
+}

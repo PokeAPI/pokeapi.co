@@ -9,6 +9,7 @@ const style = {
     padding: '0.2rem 0.2rem 0.1rem 0.4rem',
     fontSize: '0.9rem',
     borderRadius: '0.25rem 0 0 0',
+    opacity: 0.9,
 };
 
 export default class ViewportSizeHint extends React.Component {

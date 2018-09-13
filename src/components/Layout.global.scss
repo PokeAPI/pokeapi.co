@@ -36,14 +36,14 @@ body,
 body {
     font-family: 'Lato', sans-serif;
     line-height: 1.35;
-    background-color: #f7f7f7;
+    background-color: #fafafa;
     color: #263238;
     margin: 0;
 }
 
 a {
     text-decoration: none;
-    color: #1c88cc;
+    color: $link-color;
     &:hover {
         text-decoration: underline;
     }

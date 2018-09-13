@@ -1,7 +1,8 @@
 module.exports = {
     siteMetadata: {
-        title: 'Pokéapi',
-        url: 'https://pokeapi.co',
+        title: 'PokéAPI',
+        baseUrl: 'https://pokeapi.co',
+        baseApiUrl: 'https://pokeapi.co/api/',
     },
     plugins: [
         'gatsby-plugin-react-helmet',

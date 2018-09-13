@@ -1,7 +1,7 @@
 @import 'colors.scss';
 @import 'sizes.scss';
 
-// This depends on the length of the word "Pokéapi"
+// This depends on the length of the items in the header
 $mobile-breakpoint: 30rem;
 
 .header {
@@ -14,6 +14,9 @@ $mobile-breakpoint: 30rem;
 
     @media (max-width: $mobile-breakpoint) {
         height: auto;
+    }
+    @media (max-height: 25rem) {
+        position: static;
     }
 }
 

@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "classnames": "^2.2.6",
+        "cross-fetch": "^2.2.2",
         "gatsby": "next",
         "gatsby-plugin-manifest": "next",
         "gatsby-plugin-offline": "next",
@@ -18,9 +19,12 @@
         "gatsby-plugin-sass": "next",
         "node-sass": "^4.9.3",
         "postcss-scss": "^2.0.0",
+        "prop-types": "^15.6.2",
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
-        "react-helmet": "^5.2.0"
+        "react-helmet": "^5.2.0",
+        "react-syntax-highlighter": "^8.0.1",
+        "whatwg-fetch": "^3.0.0"
     },
     "repository": {
         "type": "git",

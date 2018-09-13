@@ -1,0 +1,33 @@
+.container {
+    display: grid;
+    grid-gap: 1.5em;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 2em 0;
+}
+
+.cell {
+    display: flex;
+    flex-direction: column;
+}
+.cell_title {
+    font-size: 1.25rem;
+    font-weight: normal;
+    margin: 0.5em 0;
+    text-align: center;
+}
+.cell_container {
+    border: 1px solid #ccc;
+    border-top-width: 2px;
+    background: #f5f5f5;
+    flex: 1;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+    line-height: 1.75;
+
+    & > :first-child {
+        margin-top: 0;
+    }
+    & > :last-child {
+        margin-bottom: 0;
+    }
+}

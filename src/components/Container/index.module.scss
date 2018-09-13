@@ -1,8 +1,11 @@
 @import "sizes.scss";
 
-.content {
+.container {
     max-width: $page-max-width;
 	margin: 0 auto;
 	background-color: white;
 	padding: 1em;
+}
+.narrow {
+	padding: 1em 9.5em;
 }

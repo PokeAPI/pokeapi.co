@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 
-import Header from './LayoutHeader';
-import Content from './LayoutContent';
-import Footer from './LayoutFooter';
+import SiteHeader from './LayoutHeader';
+import SiteFooter from './LayoutFooter';
 import TitleAndMetaTags from './TitleAndMetaTags';
 import 'Layout.global.scss';
-// import ViewportSizeHint from './ViewportSizeHint';
+import ViewportSizeHint from './ViewportSizeHint';
 
 const Layout = ({children, location}) => (
     <StaticQuery
@@ -17,7 +16,7 @@ const Layout = ({children, location}) => (
                 site {
                     siteMetadata {
                         title
-                        url
+                        baseUrl
                     }
                 }
             }
@@ -33,16 +32,15 @@ const Layout = ({children, location}) => (
                 </Helmet>
                 <TitleAndMetaTags
                     title={data.site.siteMetadata.title}
-                    url={data.site.siteMetadata.url}
+                    url={data.site.siteMetadata.baseUrl}
                 />
-                <Header
+                <SiteHeader
                     siteTitle={data.site.siteMetadata.title}
                     location={location}
                 />
-                <Content>{children}</Content>
-                {/* <ViewportSizeHint /> */}
-
-                <Footer />
+                <main className="site-content">{children}</main>
+                <SiteFooter />
+                <ViewportSizeHint />
             </React.Fragment>
         )}
     />
@@ -50,6 +48,7 @@ const Layout = ({children, location}) => (
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
+    location: PropTypes.object.isRequired,
 };
 
 export default Layout;

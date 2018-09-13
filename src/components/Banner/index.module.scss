@@ -1,0 +1,35 @@
+@import "sizes.scss";
+
+$banner-color: #263238;
+
+.banner {
+	color: white;
+	background-color: desaturate($banner-color, 20%);
+}
+
+.container{
+    padding: 2em;
+    background-color: $banner-color;
+    text-align: center;
+    max-width: $page-max-width;
+    margin: 0 auto;
+    min-height: 12.5em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+        margin: 0.1em;
+        font-size: 2.3em;
+    }
+    h2 {
+        margin: 0.1em;
+        font-size: 1.75em;
+        font-weight: normal;
+    }
+    p {
+        font-size: 1.2em;
+        margin: 0.1em;
+    }
+}

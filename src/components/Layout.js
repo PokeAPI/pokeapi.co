@@ -6,8 +6,8 @@ import SiteHeader from './LayoutHeader';
 import SiteFooter from './LayoutFooter';
 import TitleAndMetaTags from './TitleAndMetaTags';
 
-import 'sanitize.css';
-import 'Layout.global.scss';
+import './sanitize.css';
+import './Layout.global.scss';
 
 const Layout = ({children, location}) => (
     <React.Fragment>

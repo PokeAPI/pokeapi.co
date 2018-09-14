@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import 'sanitize.css';
 
 import SiteHeader from './LayoutHeader';
 import SiteFooter from './LayoutFooter';
 import TitleAndMetaTags from './TitleAndMetaTags';
 
-import './sanitize.css';
 import './Layout.global.scss';
 
 const Layout = ({children, location}) => (

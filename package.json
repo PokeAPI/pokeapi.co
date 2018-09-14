@@ -14,24 +14,21 @@
         "gatsby": "next",
         "gatsby-plugin-manifest": "next",
         "gatsby-plugin-offline": "next",
-        "gatsby-plugin-react-css-modules": "^1.0.15",
         "gatsby-plugin-react-helmet": "next",
         "gatsby-plugin-sass": "next",
         "node-sass": "^4.9.3",
-        "postcss-scss": "^2.0.0",
         "prop-types": "^15.6.2",
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-helmet": "^5.2.0",
         "react-syntax-highlighter": "^8.0.1",
-        "whatwg-fetch": "^3.0.0"
+        "sanitize.css": "^7.0.3"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/pokeapi/pokeapi-co-website"
     },
     "devDependencies": {
-        "babel-plugin-react-css-modules": "^3.4.2",
         "prettier": "^1.14.2"
     }
 }

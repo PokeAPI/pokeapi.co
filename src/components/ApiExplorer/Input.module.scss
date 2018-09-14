@@ -1,10 +1,10 @@
-$mobile-breakpoint: 30rem;
+$mobile-breakpoint: 30em;
 
 .container {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     @media (max-width: $mobile-breakpoint) {
-        flex-wrap: wrap;
         font-size: 0.9em;
     }
 }
@@ -30,6 +30,7 @@ $mobile-breakpoint: 30rem;
     padding: 0.35em 0.5em;
     border: 1px solid #ccc;
     min-width: 8em;
+    -webkit-tap-highlight-color: transparent;
     &:focus {
         border: 1px solid #66afe9;
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
@@ -45,6 +46,7 @@ $button-color: #1b95e0;
     padding: 0.35em 0.75em;
     font-size: 1em;
     display: block;
+    min-width: max-content;
 
     &:hover {
         background-color: darken($button-color, 3%);

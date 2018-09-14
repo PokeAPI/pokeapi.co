@@ -4,9 +4,9 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import styles from './index.module.scss';
 
-export default ({children, small}) => (
+export default ({children, small, language = 'json'}) => (
     <SyntaxHighlighter
-        language="json"
+        language={language}
         className={classNames({
             [styles.codebox]: true,
             [styles.small]: small,

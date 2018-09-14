@@ -2,7 +2,7 @@
 @import 'sizes.scss';
 
 // This depends on the length of the items in the header
-$mobile-breakpoint: 30rem;
+$mobile-breakpoint: 35em;
 
 .header {
     background-color: $brand-color;
@@ -28,13 +28,10 @@ $mobile-breakpoint: 30rem;
     justify-content: space-between;
     align-items: stretch;
 
-    @media (max-width: $mobile-breakpoint) {
-        // display: block;
-    }
-
     .homelink {
         margin: 0;
         flex: 0 0;
+        min-width: max-content;
         font-size: 1.5em;
         height: 100%;
         font-weight: normal;
@@ -48,39 +45,46 @@ $mobile-breakpoint: 30rem;
                 color: #f3f3f3;
             }
 
+            .title {
+                margin: 0 0.5em;
+            }
             img {
                 height: $site-header-height;
                 border: 1px solid black;
                 min-width: 3em;
-                margin-right: 0.5em;
             }
             @media (max-width: $mobile-breakpoint) {
+                // Visually hidden
                 .title {
                     position: absolute;
                     opacity: 0;
                     top: -9999px;
                     left: -9999px;
                 }
-                img {
-                    margin-right: 0;
-                }
             }
         }
     }
 
     .nav {
-        justify-content: flex-end;
         display: flex;
-        height: 100%;
+
+        // Align nav contents to the end of the nav. Similar to
+        // 'justify-content: flex-end', while still allowing horizontal scrolling.
+        &::before {
+            content: '';
+            flex: 1;
+        }
+
+        overflow-x: auto;
+        height: $site-header-height;
         padding: 0;
         margin: 0;
         list-style: none;
         color: white;
-        height: $site-header-height;
-        overflow-x: auto;
 
         @media (max-width: $mobile-breakpoint) {
-            flex: 1;
+            flex: 1 1;
+            min-width: 5em;
             mask-image: linear-gradient(
                 to right,
                 transparent,

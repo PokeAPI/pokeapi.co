@@ -7,6 +7,8 @@
     text-decoration: none;
     color: inherit;
     padding: 0 1em;
+    min-width: max-content;
+
     &:visited {
         color: inherit;
     }

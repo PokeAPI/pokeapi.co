@@ -3,24 +3,11 @@ import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 
 import styles from './index.module.scss';
-import hintStyles from './Hint.module.scss';
 
 import Input from './Input';
-import CodeBox from '../CodeBox';
+import CodeBox from 'components/CodeBox';
+import LinkButton from 'components/LinkButton';
 import bulbasaur from './bulbasaur.json';
-
-class Hint extends React.Component {
-    handleClick = () => {
-        this.props.applyHint(this.props.value);
-    };
-    render() {
-        return (
-            <button className={hintStyles.hint} onClick={this.handleClick}>
-                {this.props.value}
-            </button>
-        );
-    }
-}
 
 export default class ApiExplorer extends React.Component {
     static propTypes = {
@@ -73,8 +60,10 @@ export default class ApiExplorer extends React.Component {
             });
     };
     applyHint = value => {
-        this.setState({resourceUrl: value});
-        this.fetchResource(value);
+        return () => {
+            this.setState({resourceUrl: value});
+            this.fetchResource(value);
+        };
     };
     render() {
         const {
@@ -96,6 +85,10 @@ export default class ApiExplorer extends React.Component {
             message = `Resource for ${resourceData.name}`;
         }
 
+        const Hint = ({value}) => (
+            <LinkButton onClick={this.applyHint(value)}>{value}</LinkButton>
+        );
+
         return (
             <div>
                 <h2 className={styles.tryit}>Try it now!</h2>
@@ -104,14 +97,12 @@ export default class ApiExplorer extends React.Component {
                     urlPrefix={this.props.baseApiUrl}
                     onSubmit={value => this.fetchResource(value)}
                 />
-                <p>
-                    Need a hint? Try{' '}
-                    <Hint value="pokemon/1" applyHint={this.applyHint} />,{' '}
-                    <Hint value="pokemon/ditto" applyHint={this.applyHint} /> ,{' '}
-                    <Hint value="type/3" applyHint={this.applyHint} /> or{' '}
-                    <Hint value="ability/4" applyHint={this.applyHint} />.
+                <p className={styles.hint_sentence}>
+                    Need a hint? Try <Hint value="pokemon/1" />,{' '}
+                    <Hint value="pokemon/ditto" /> , <Hint value="type/3" /> or{' '}
+                    <Hint value="ability/4" />.
                 </p>
-                <h2>{message}</h2>
+                <h2 className={styles.message}>{message}</h2>
                 <CodeBox small>{JSON.stringify(resourceData, null, 2)}</CodeBox>
             </div>
         );

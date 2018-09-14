@@ -7,7 +7,7 @@ import HeaderLink from './HeaderLink';
 import styles from './index.module.scss';
 import logo from './../../images/placeholder.png';
 
-const Header = ({location}) => (
+export default ({location}) => (
     <header
         className={classNames({
             'site-header': true,
@@ -41,5 +41,3 @@ const Header = ({location}) => (
         </div>
     </header>
 );
-
-export default Header;

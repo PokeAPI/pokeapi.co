@@ -1,5 +1,10 @@
 import React from 'react';
 
+/*
+   A small, fixed panel in the bottom-right corner of the viewport that displays
+   the current size of the viewport in ems. Helpful when writing CSS styles.
+*/
+
 const style = {
     position: 'fixed',
     right: 0,
@@ -13,23 +18,26 @@ const style = {
 };
 
 export default class ViewportSizeHint extends React.Component {
-    state = {
-        w: document.documentElement.clientWidth,
-        h: document.documentElement.clientHeight,
-    };
+    state = {w: 0, h: 0};
     componentDidMount() {
         window.addEventListener('resize', this.handleResize, false);
+        this.setState({
+            w: window.document.documentElement.clientWidth,
+            h: window.document.documentElement.clientHeight,
+        });
     }
     handleResize = () => {
         this.setState({
-            w: document.documentElement.clientWidth,
-            h: document.documentElement.clientHeight,
+            w: window.document.documentElement.clientWidth,
+            h: window.document.documentElement.clientHeight,
         });
     };
     render() {
         return (
             <div style={style}>
-                {this.state.w / 16}em x {this.state.h / 16}em
+                {this.state.w / 16}
+                em x {this.state.h / 16}
+                em
             </div>
         );
     }

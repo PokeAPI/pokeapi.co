@@ -1,0 +1,21 @@
+[build]
+  publish = "public"
+  command = "gatsby build"
+
+[[redirects]]
+  from = "/about/"
+  to = "/about.html"
+
+[[redirects]]
+  from = "/docsv2/"
+  to = "/docs/v2.html"
+
+[[redirects]]
+  from = "/docsv1/"
+  to = "/docs/v1.html"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https:/pokeapi.co/api/:splat"
+  status = 200
+  force = true

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from 'components/Layout';
-import TitleAndMetaTags from 'components/TitleAndMetaTags';
-import Container from 'components/Container';
+import Layout from '../components/Layout';
+import TitleAndMetaTags from '../components/TitleAndMetaTags';
+import Container from '../components/Container';
 
 export default ({location}) => (
     <Layout location={location}>

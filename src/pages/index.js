@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import Layout from 'components/Layout';
-import Banner from 'components/Banner';
-import CallToAction from 'components/CallToAction';
-import Container from 'components/Container';
-import ApiExplorer from 'components/ApiExplorer';
+import Layout from '../components/Layout';
+import Banner from '../components/Banner';
+import CallToAction from '../components/CallToAction';
+import Container from '../components/Container';
+import ApiExplorer from '../components/ApiExplorer';
 import {Cell, CellContainer} from 'components/Cell';
 
 import styles from './index.module.scss';

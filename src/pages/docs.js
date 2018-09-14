@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import Layout from 'components/Layout';
-import Container from 'components/Container';
+import Layout from '../components/Layout';
+import Container from '../components/Container';
 
 export default ({location}) => (
     <Layout location={location}>

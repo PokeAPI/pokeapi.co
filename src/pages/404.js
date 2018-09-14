@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from 'components/Layout';
-import Container from 'components/Container';
-import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import Layout from '../components/Layout';
+import Container from '../components/Container';
+import TitleAndMetaTags from '../components/TitleAndMetaTags';
 
 const PageNotFound = ({location}) => (
     <Layout location={location}>

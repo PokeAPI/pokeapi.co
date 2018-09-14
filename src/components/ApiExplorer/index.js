@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 
-import styles from './index.module.scss';
+import CodeBox from '../CodeBox';
+import LinkButton from '../LinkButton';
 
 import Input from './Input';
-import CodeBox from 'components/CodeBox';
-import LinkButton from 'components/LinkButton';
 import bulbasaur from './bulbasaur.json';
+import styles from './index.module.scss';
 
 export default class ApiExplorer extends React.Component {
     static propTypes = {

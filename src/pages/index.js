@@ -31,7 +31,7 @@ export default ({location}) => (
             </p>
         </CallToAction>
         <Container isNarrow>
-            <ApiExplorer baseApiUrl="https://pokeapi-prod.netlify.com/api/v2/" />
+            <ApiExplorer baseApiUrl="https://pokeapi.co/api/v2/" />
             <CellContainer>
                 <Cell title="What is this?">
                     <p>

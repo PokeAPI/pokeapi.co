@@ -4,7 +4,7 @@
     max-width: $page-max-width;
     margin: 0 auto;
     background-color: white;
-    padding: 1em;
+	padding: 1em 1em 2em 1em;
 
     // Make it look like .container stretches the full height of the page
 	// for when there's less than one page of content:
@@ -24,7 +24,6 @@
 }
 
 .narrow {
-	// padding: 1em 9.5em;
 	max-width: 55rem;
 	margin: 0 auto;
 }

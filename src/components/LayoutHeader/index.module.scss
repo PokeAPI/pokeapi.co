@@ -11,6 +11,7 @@ $mobile-breakpoint: 35em;
     z-index: 100;
     top: 0;
     height: $site-header-height;
+    user-select: none;
 
     @media (max-width: $mobile-breakpoint) {
         height: auto;

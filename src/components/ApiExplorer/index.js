@@ -90,7 +90,7 @@ export default class ApiExplorer extends React.Component {
         );
 
         return (
-            <div>
+            <div className={styles.container}>
                 <h2 className={styles.tryit}>Try it now!</h2>
                 <Input
                     defaultValue={resourceUrl}

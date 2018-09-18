@@ -3,7 +3,7 @@ import marky from 'marky-markdown';
 import classNames from 'classnames';
 
 import alerts from '../../../alerts.json';
-import styles from 'index.module.scss';
+import styles from './index.module.scss';
 
 const Alert = ({message, important}) => (
     <div

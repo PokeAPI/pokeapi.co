@@ -1,5 +1,5 @@
 import React from 'react';
-import marky from 'marky-markdown';
+import marked from 'marked';
 import classNames from 'classnames';
 
 import alerts from '../../../alerts.json';
@@ -15,7 +15,7 @@ const Alert = ({message, important}) => (
         <div
             className={styles.container}
             dangerouslySetInnerHTML={{
-                __html: marky(message, {sanitize: true}),
+                __html: marked(message),
             }}
         />
     </div>

@@ -1,0 +1,14 @@
+[
+    {
+        "message": "**Developer Notice:** Custom alerts can be set in the `alerts.json` file. You can use Markdown too, like _this_, **this**, or [this](https://pokeapi.co).",
+        "active": true
+    },
+    {
+        "important": true,
+        "message": "**Important:** Support for PokéAPI version 1 will end on 15 October 2018. If you're still using it, please switch to v2. [Read more...](/docs/v1.html)"
+    },
+    {
+        "active": false,
+        "message": "Alerts marked as inactive will not be shown."
+    }
+]

@@ -1,0 +1,39 @@
+@import 'sizes.scss';
+@import 'colors.scss';
+
+.alert {
+    color: $brand-color-darkest;
+    &:not(.important) {
+        background: desaturate(lighten($brand-color, 30%), 60%);
+        .container {
+            background: lighten($brand-color, 35%);
+        }
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.important {
+    position: sticky;
+    top: $site-header-height;
+    z-index: 99;
+
+    @media (max-height: $short-height) {
+        top: 0;
+    }
+
+    .container {
+        background: lighten($brand-color, 30%);
+        border: 1px solid $brand-color-darkest;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.container {
+    max-width: $page-max-width;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.75em 1em;
+}

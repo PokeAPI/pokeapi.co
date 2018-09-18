@@ -16,7 +16,7 @@ $mobile-breakpoint: 35em;
     @media (max-width: $mobile-breakpoint) {
         height: auto;
     }
-    @media (max-height: 25rem) {
+    @media (max-height: $short-height) {
         position: static;
     }
 }

@@ -7,12 +7,13 @@ import CallToAction from '../components/CallToAction';
 import Container from '../components/Container';
 import ApiExplorer from '../components/ApiExplorer';
 import {Cell, CellContainer} from '../components/Cell';
+import Alerts from '../components/Alerts';
 
 import styles from './index.module.scss';
 import netlifyLogo from '../images/netlify-logo.svg';
 
 export default ({location}) => (
-    <Layout location={location}>
+    <Layout location={location} noAlerts>
         <Banner>
             <h1>PokéAPI</h1>
             <h2>The RESTful Pokémon API</h2>
@@ -20,6 +21,7 @@ export default ({location}) => (
                 Over <strong>431,313,100</strong> API calls received!
             </p>
         </Banner>
+        <Alerts />
         <CallToAction>
             <p>
                 All the Pokémon data you'll ever need in one place,

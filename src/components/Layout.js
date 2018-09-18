@@ -6,10 +6,11 @@ import 'sanitize.css';
 import SiteHeader from './LayoutHeader';
 import SiteFooter from './LayoutFooter';
 import TitleAndMetaTags from './TitleAndMetaTags';
+import Alerts from './Alerts';
 
 import './Layout.global.scss';
 
-const Layout = ({children, location}) => (
+const Layout = ({children, location, noAlerts}) => (
     <React.Fragment>
         <Helmet>
             <html lang="en" />
@@ -20,6 +21,7 @@ const Layout = ({children, location}) => (
         </Helmet>
         <TitleAndMetaTags title="PokéAPI" />
         <SiteHeader siteTitle="PokéAPI" location={location} />
+        {!noAlerts && <Alerts />}
         <main className="site-content">{children}</main>
         <SiteFooter />
     </React.Fragment>

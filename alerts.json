@@ -11,5 +11,10 @@
     {
         "active": false,
         "message": "Alerts marked as inactive will not be shown."
+    },
+    {
+        "active": true,
+        "important": true,
+        "message": "**Outage Alert:** Named endpoints for PokéAPI v2 are currently out of service. We are investigating. [Read more...](https://github.com/PokeAPI/pokeapi/issues/369)"
     }
 ]

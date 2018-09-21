@@ -44,7 +44,6 @@ class TOC extends React.Component {
         const topOffset = header ? header.offsetHeight : 0;
 
         for (let i = 0; i < entries.length; i++) {
-
             const entry = entries[entries.length - i - 1]; // bottom to top
             if (entry.separator) {
                 continue;

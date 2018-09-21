@@ -1,0 +1,334 @@
+[
+    {
+        "name": "Languages",
+        "description": "Languages for translations of API resource information.",
+        "exampleRequest": "/v2/language/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "ja",
+            "official": true,
+            "iso639": "ja",
+            "iso3166": "jp",
+            "names": [{
+                "name": "Japanese",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "Language",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "official",
+                        "description": "Whether or not the games are published in this language.",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "iso639",
+                        "description": "The two-letter code of the country where this language is spoken. Note that it is not unique.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "iso3166",
+                        "description": "The two-letter code of the language. Note that it is not unique.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this resource listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "Name"
+                         }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Common Models",
+        "responseModels": [
+            {
+                "name": "APIResource",
+                "fields": [
+                    {
+                        "name": "url",
+                        "description": "The URL of the referenced resource.",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "name": "Description",
+                "fields": [
+                    {
+                        "name": "description",
+                        "description": "The localized description for an API resource in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this name is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "Effect",
+                "fields": [
+                    {
+                        "name": "effect",
+                        "description": "The localized effect text for an API resource in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this effect is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "Encounter",
+                "fields": [
+                    {
+                        "name": "min_level",
+                        "description": "The lowest level the Pokémon could be encountered at.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "max_level",
+                        "description": "The highest level the Pokémon could be encountered at.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "condition_values",
+                        "description": "A list of condition values that must be in effect for this encounter to occur.",
+                        "type": {
+                             "type": "list",
+                             "of": {
+                                 "type": "NamedAPIResource",
+                                 "of": "EncounterConditionValue"
+                             }
+                         }
+                    },
+                    {
+                        "name": "chance",
+                        "description": "Percent chance that this encounter will occur.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "method",
+                        "description": "The method by which this encounter happens.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "EncounterMethod"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "FlavorText",
+                "fields": [
+                    {
+                        "name": "flavor_text",
+                        "description": "The localized flavor text for an API resource in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this name is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "GenerationGameIndex",
+                "fields": [
+                    {
+                        "name": "game_index",
+                        "description": "The internal id of an API resource within game data.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "generation",
+                        "description": "The generation relevent to this game index.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Generation"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "MachineVersionDetail",
+                "fields": [
+                    {
+                        "name": "machine",
+                        "description": "The machine that teaches a move from an item.",
+                        "type": {
+                             "type": "APIResource ",
+                             "of": "Machine"
+                         }
+                    },
+                    {
+                        "name": "version_group",
+                        "description": "The version group of this specific machine.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "VersionGroup"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "Name",
+                "fields": [
+                    {
+                        "name": "name",
+                        "description": "The localized name for an API resource in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this name is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "NamedAPIResource",
+                "fields": [
+                    {
+                        "name": "name",
+                        "description": "The name of the referenced resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "url",
+                        "description": "The URL of the referenced resource.",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "name": "VerboseEffect",
+                "fields": [
+                    {
+                        "name": "effect",
+                        "description": "The localized effect text for an API resource in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "short_effect",
+                        "description": "The localized effect text in brief.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this effect is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "VersionEncounterDetail",
+                "fields": [
+                    {
+                        "name": "version",
+                        "description": "The game version this encounter happens in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Version"
+                         }
+                    },
+                    {
+                        "name": "max_chance",
+                        "description": "The total percentage of all encounter potential.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "encounter_details",
+                        "description": "A list of encounters and their specifics.",
+                        "type": {
+                             "type": "list",
+                             "of": "Encounter"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "VersionGameIndex",
+                "fields": [
+                    {
+                        "name": "game_index",
+                        "description": "The internal id of an API resource within game data.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "version",
+                        "description": "The version relevent to this game index.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Version"
+                         }
+                    }
+                ]
+            },
+            {
+                "name": "VersionGroupFlavorText",
+                "fields": [
+                    {
+                        "name": "text",
+                        "description": "The localized name for an API resource in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this name is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    },
+                    {
+                        "name": "version_group",
+                        "description": "version.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "The version group which uses this flavor text"
+                         }
+                    }
+                ]
+            }
+        ]
+    }
+]

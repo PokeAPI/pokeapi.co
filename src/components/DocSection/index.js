@@ -49,13 +49,20 @@ const DocSection = ({
                 }}
             />
         )}
-        <p className={styles.resource_url}>GET {baseUrl + exampleRequest}</p>
-        <CodeBox language="json" small title="Example Response">
-            {JSON.stringify(exampleResponse, null, 2).replace(
-                /\$BASE_URL/g,
-                rootUrl + baseUrl
-            )}
-        </CodeBox>
+        {exampleRequest && (
+            <p className={styles.resource_url}>
+                GET {baseUrl + exampleRequest}
+            </p>
+        )}
+        {exampleResponse && (
+            <CodeBox language="json" small title="Example Response">
+                {JSON.stringify(exampleResponse, null, 2).replace(
+                    /\$BASE_URL/g,
+                    rootUrl + baseUrl
+                )}
+            </CodeBox>
+        )}
+
         {responseModels.map(model => (
             <Fragment key={model.name}>
                 <h4 className={styles.model_name} id={makeId(model.name)}>
@@ -99,8 +106,8 @@ DocSection.propTypes = {
     rootUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
-    exampleRequest: PropTypes.string.isRequired,
-    exampleResponse: PropTypes.object.isRequired,
+    exampleRequest: PropTypes.string,
+    exampleResponse: PropTypes.object,
     responseModels: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,

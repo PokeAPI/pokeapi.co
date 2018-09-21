@@ -1,0 +1,197 @@
+[
+    {
+        "name": "Contest Types",
+        "description": "Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Contest_condition) for greater detail.",
+        "exampleRequest": "/v2/contest-type/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "cool",
+            "berry_flavor": {
+                "name": "spicy",
+                "url": "$BASE_URL/v2/berry-flavor/1/"
+            },
+            "names": [{
+                "name": "Cool",
+                "color": "Red",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "ContestType",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "berry_flavor",
+                        "description": "The berry flavor that correlates with this contest type.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "BerryFlavor"
+                        }
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this contest type listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "ContestName"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "ContestName",
+                "fields": [
+                    {
+                        "name": "name",
+                        "description": "The name for this contest.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "color",
+                        "description": "The color associated with this contest's name.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language that this name is in.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Language"
+                         }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Contest Effects",
+        "description": "Contest effects refer to the effects of moves when used in contests.",
+        "exampleRequest": "/v2/contest-effect/{id}",
+        "exampleResponse": {
+            "id": 1,
+            "appeal": 4,
+            "jam": 0,
+            "effect_entries": [{
+                "effect": "Gives a high number of appeal points wth no other effects.",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "flavor_text_entries": [{
+                "flavor_text": "A highly appealing move.",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "ContestEffect",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "appeal",
+                        "description": "The base number of hearts the user of this move gets.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "jam",
+                        "description": "The base number of hearts the user's opponent loses.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "effect_entries",
+                        "description": "The result of this contest effect listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "Effect"
+                         }
+                    },
+                    {
+                        "name": "flavor_text_entries",
+                        "description": "The flavor text of this contest effect listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "FlavorText"
+                         }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Super Contest Effects",
+        "description": "Super contest effects refer to the effects of moves when used in super contests.",
+        "exampleRequest": "/v2/super-contest-effect/{id}",
+        "exampleResponse": {
+            "id": 1,
+            "appeal": 2,
+            "flavor_text_entries": [{
+                "flavor_text": "Enables the user to perform first in the next turn.",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "moves": [{
+                "name": "agility",
+                "url": "$BASE_URL/v2/move/97/"
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "SuperContestEffect",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "appeal",
+                        "description": "The level of appeal this super contest effect has.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "flavor_text_entries",
+                        "description": "The flavor text of this super contest effect listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "FlavorText"
+                         }
+                    },
+                    {
+                        "name": "moves",
+                        "description": "A list of moves that have the effect when used in super contests.",
+                        "type": {
+                             "type": "list",
+                             "of": {
+                                 "type": "NamedAPIResource",
+                                 "of": "Move"
+                             }
+                         }
+                    }
+                ]
+            }
+        ]
+    }
+]

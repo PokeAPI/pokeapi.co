@@ -38,6 +38,7 @@ $mobile-breakpoint: 35em;
         font-weight: normal;
 
         .link {
+            height: 100%;
             display: flex;
             align-items: center;
             color: #f3f3f3;
@@ -47,7 +48,7 @@ $mobile-breakpoint: 35em;
             }
 
             .title {
-                margin: 0 0.5em;
+                // margin: 0 0.5em;
             }
             img {
                 height: $site-header-height;

@@ -4,10 +4,10 @@
         "exampleRequest": "/v2/{endpoint}",
         "exampleResponse": {
             "count": 365,
-            "next": "http://pokeapi.co/api/v2/evolution-chain/?limit=20&offset=20",
+            "next": "$BASE_URL/v2/evolution-chain/?limit=20&offset=20",
             "previous": null,
             "results": [{
-                "url": "http://pokeapi.co/api/v2/evolution-chain/1/"
+                "url": "$BASE_URL/v2/evolution-chain/1/"
             }]
         },
         "responseModels": [
@@ -46,11 +46,11 @@
         "exampleRequest": "/v2/{endpoint}",
         "exampleResponse": {
             "count": 248,
-            "next": "http://pokeapi.co/api/v2/ability/?limit=20&offset=20",
+            "next": "$BASE_URL/v2/ability/?limit=20&offset=20",
             "previous": null,
             "results": [{
                 "name": "stench",
-                "url": "http://pokeapi.co/api/v2/ability/1/"
+                "url": "$BASE_URL/v2/ability/1/"
             }]
         },
         "responseModels": [

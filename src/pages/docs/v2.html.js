@@ -7,7 +7,7 @@ import DocSection from '../../components/DocSection';
 import TableOfContents from '../../components/TableOfContents';
 import makeId from '../../utils/makeId';
 
-import docs, {resourceLists} from '../../docs';
+import docs, {resourceLists, utility} from '../../docs';
 
 let toc = docs.map(doc => {
     return {
@@ -28,8 +28,10 @@ toc = [
     {name: 'Wrapper Libraries', url: '#wrap'},
     {separator: true, name: '', url: ''},
     {name: 'Resource Lists', url: '#resource-lists'},
-    {separator: true, name: '', url: ''},
+    {separator: true, name: '', url: 'y'},
     ...toc,
+    {separator: true, name: '', url: 'z'},
+    {name: 'Utility', url: '#utility-section'},
 ];
 
 export default ({location}) => (
@@ -175,6 +177,18 @@ export default ({location}) => (
                     ))}
                 </Fragment>
             ))}
+
+            <h2 id="utility-section">Utility</h2>
+            {utility.map(utilityResource => (
+                <DocSection
+                    key={utilityResource.name}
+                    rootUrl="https://pokeapi.co"
+                    baseUrl="/api"
+                    {...utilityResource}
+                />
+            ))}
+
+
         </DocsContainer>
     </Layout>
 );

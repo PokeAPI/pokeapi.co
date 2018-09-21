@@ -1,0 +1,164 @@
+[
+    {
+        "name": "Encounter Methods",
+        "description": "Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Wild_Pok%C3%A9mon) for greater detail.",
+        "exampleRequest": "/v2/encounter-method/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "walk",
+            "order": 1,
+            "names": [{
+                "name": "Walking in tall grass or a cave",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "EncounterMethod",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "order",
+                        "description": "A good value for sorting.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this resource listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "Name"
+                         }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Encounter Conditions",
+        "description": "Conditions which affect what pokemon might appear in the wild, e.g., day or night.",
+        "exampleRequest": "/v2/encounter-condition/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "swarm",
+            "values": [{
+                "name": "swarm-yes",
+                "url": "$BASE_URL/v2/encounter-condition-value/1/"
+            }, {
+                "name": "swarm-no",
+                "url": "$BASE_URL/v2/encounter-condition-value/2/"
+            }],
+            "names": [{
+                "name": "Schwarm",
+                "language": {
+                    "name": "de",
+                    "url": "$BASE_URL/v2/language/6/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "EncounterCondition",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this resource listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "Name"
+                         }
+                    },
+                    {
+                        "name": "values",
+                        "description": "A list of possible values for this encounter condition.",
+                        "type": {
+                             "type": "list",
+                             "of": {
+                                 "type": "NamedAPIResource",
+                                 "of": "EncounterConditionValue"
+                             }
+                         }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Encounter Condition Values",
+        "description": "Encounter condition values are the various states that an encounter condition can have, i.e., time of day can be either day or night.",
+        "exampleRequest": "/v2/encounter-condition-value/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "swarm-yes",
+            "condition": {
+                "name": "swarm",
+                "url": "$BASE_URL/v2/encounter-condition/1/"
+            },
+            "names": [{
+                "name": "WÃ¤hrend eines Schwarms",
+                "language": {
+                    "name": "de",
+                    "url": "$BASE_URL/v2/language/6/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "EncounterConditionValue",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "condition",
+                        "description": "The condition this encounter condition value pertains to.",
+                        "type": {
+                             "type": "list",
+                             "of": {
+                                 "type": "NamedAPIResource",
+                                 "of": "EncounterCondition"
+                             }
+                         }
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this resource listed in different languages.",
+                        "type": {
+                             "type": "list",
+                             "of": "Name"
+                         }
+                    }
+                ]
+            }
+        ]
+    }
+]

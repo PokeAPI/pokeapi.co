@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import HeaderLink from './HeaderLink';
 
 import styles from './index.module.scss';
-import logo from './../../images/placeholder.png';
+import logo from './../../images/logo.png';
 
 const LayoutHeader = ({location}) => (
     <header
@@ -18,7 +18,7 @@ const LayoutHeader = ({location}) => (
             <h1 className={styles.homelink}>
                 <Link to="/" className={styles.link}>
                     <img src={logo} alt="" className={styles.logo} />
-                    <span className={styles.title}>PokéAPI</span>
+                    {/*<span className={styles.title}>PokéAPI</span>*/}
                 </Link>
             </h1>
             <nav className={styles.nav}>

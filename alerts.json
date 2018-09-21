@@ -1,5 +1,6 @@
 [
     {
+        "active": false,
         "message": "**Developer Notice:** Custom alerts can be set in the `alerts.json` file. You can use Markdown too, like _this_, **this**, or [this](/)."
     },
     {

@@ -5,7 +5,7 @@ import marked from 'marked';
 import CodeBox from '../CodeBox';
 import makeId from '../../utils/makeId';
 
-import styles from 'index.module.scss';
+import styles from './index.module.scss';
 
 const Type = ({type}) => {
     if (type === 'string' || type === 'integer') {

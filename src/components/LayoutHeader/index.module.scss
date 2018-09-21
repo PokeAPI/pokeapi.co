@@ -51,8 +51,9 @@ $mobile-breakpoint: 35em;
             }
             img {
                 height: $site-header-height;
-                border: 1px solid black;
+                /*border: 1px solid black;*/
                 min-width: 3em;
+                padding: 2px;
             }
             @media (max-width: $mobile-breakpoint) {
                 // Visually hidden

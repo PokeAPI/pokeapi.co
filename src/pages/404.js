@@ -17,4 +17,5 @@ const PageNotFound = ({location}) => (
         </Container>
     </Layout>
 );
+
 export default PageNotFound;

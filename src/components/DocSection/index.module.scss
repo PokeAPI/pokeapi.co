@@ -1,0 +1,34 @@
+.resource_url {
+    font-size: 1.25em;
+    margin: 0.25em 0;
+}
+
+.table {
+    width: 100%;
+    font-size: 0.9em;
+
+    th, td {
+        padding: 0.25em 0.5em;
+        text-align: left;
+    }
+}
+
+.name_column {
+    width: 8.75em;
+    max-width: 8.75em;
+}
+.type_column {
+    width: 11em;
+    max-width: 11em;
+}
+
+.section_name {
+    font-weight: bold;
+    font-size: 1.25em;
+    margin: 1em 0 0;
+}
+.model_name {
+    font-weight: normal;
+    font-size: 1.15em;
+    margin: 1em 0 0.25em;
+}

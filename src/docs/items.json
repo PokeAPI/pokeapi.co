@@ -1,0 +1,483 @@
+[
+    {
+        "name": "Item",
+        "description": "An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.",
+        "exampleRequest": "/v2/item{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "master-ball",
+            "cost": 0,
+            "fling_power": 10,
+            "fling_effect": {
+                "name":"flinch",
+                "url":"$BASE_URL/v2/item-fling-effect/7/"
+            },
+            "attributes": [{
+                "name": "holdable",
+                "url": "$BASE_URL/v2/item-attribute/5/"
+            }],
+            "category": {
+                "name": "standard-balls",
+                "url": "$BASE_URL/v2/item-category/34/"
+            },
+            "effect_entries": [{
+                "effect": "Used in battle\n:   [Catches]{mechanic:catch} a wild Pokémon without fail.\n\n    If used in a trainer battle, nothing happens and the ball is lost.",
+                "short_effect": "Catches a wild Pokémon every time.",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "flavor_text_entries": [{
+                "text": "The best Poké Ball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail.",
+                "version_group": {
+                    "name": "x-y",
+                    "url": "$BASE_URL/v2/version-group/15/"
+                },
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "game_indices": [{
+                "game_index": 1,
+                "generation": {
+                    "name": "generation-vi",
+                    "url": "$BASE_URL/v2/generation/6/"
+                }
+            }],
+            "names": [{
+                "name": "Master Ball",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "sprites": {
+                "default": "http://pokeapi.co/media/sprites/items/master-ball.png"
+            },
+            "held_by_pokemon": [{
+                "pokemon": {
+                    "name": "chansey",
+                    "url": "$BASE_URL/v2/pokemon/113/"
+                },
+                "version_details": [{
+                    "rarity": 50,
+                    "version": {
+                        "name": "soulsilver",
+                        "url": "$BASE_URL/v2/version/16/"
+                    }
+                }]
+            }],
+            "baby_trigger_for": {
+                "url":"$BASE_URL/v2/evolution-chain/1/"
+            }
+        },
+        "responseModels": [
+            {
+                "name": "Item",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cost",
+                        "description": "The price of this item in stores.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "fling_power",
+                        "description": "The power of the move Fling when used with this item.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "fling_effect",
+                        "description": "The effect of the move Fling when used with this item.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "ItemFlingEffect"
+                        }
+                    },
+                    {
+                        "name": "attributes",
+                        "description": "A list of attributes this item has.",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "ItemAttribute"
+                            }
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "description": "The category of items this item falls into.",
+                        "type": "ItemCategory"
+                    },
+                    {
+                        "name": "effect_entries",
+                        "description": "The effect of this ability listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "VerboseEffect"
+                        }
+                    },
+                    {
+                        "name": "flavor_text_entries",
+                        "description": "The flavor text of this ability listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "VersionGroupFlavorText"
+                        }
+                    },
+                    {
+                        "name": "game_indices",
+                        "description": "A list of game indices relevent to this item by generation.",
+                        "type": {
+                            "type": "list",
+                            "of": "GenerationGameIndex"
+                        }
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this item listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Name"
+                        }
+                    },
+                    {
+                        "name": "sprites",
+                        "description": "A set of sprites used to depict this item in the game.",
+                        "type": "ItemSprites"
+                    },
+                    {
+                        "name": "held_by_pokemon",
+                        "description": "A list of Pokémon that might be found in the wild holding this item.",
+                        "type": {
+                            "type": "list",
+                            "of": "ItemHolderPokemon"
+                        }
+                    },
+                    {
+                        "name": "baby_trigger_for",
+                        "description": "An evolution chain this item requires to produce a bay during mating.",
+                        "type": {
+                            "type": "APIResource",
+                            "of": "EvolutionChain"
+                        }
+                    },
+                    {
+                        "name": "machines",
+                        "description": "A list of the machines related to this item.",
+                        "type": {
+                            "type": "list",
+                            "of": "MachineVersionDetail"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "ItemSprites",
+                "fields": [
+                    {
+                        "name": "default",
+                        "description": "The default depiction of this item.",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "name": "ItemHolderPokemon",
+                "fields": [
+                    {
+                        "name": "pokemon",
+                        "description": "The Pokémon that holds this item.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "version_details",
+                        "description": "The details for the version that this item is held in by the Pokémon.",
+                        "type": {
+                            "type": "list",
+                            "of": "ItemHolderPokemonVersionDetail"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "ItemHolderPokemonVersionDetail",
+                "fields": [
+                    {
+                        "name": "rarity",
+                        "description": "How often this Pokémon holds this item in this version.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "description": "The version that this item is held in by the Pokémon.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Version"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Item Attributes",
+        "description": "Item attributes define particular aspects of items, e.g. \"usable in battle\" or \"consumable\".",
+        "exampleRequest": "/v2/item-attribute/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "countable",
+            "descriptions": [{
+                "description": "Has a count in the bag",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "items": [{
+                "name": "master-ball",
+                "url": "$BASE_URL/v2/item/1/"
+            }],
+            "names": [{
+                "name": "Countable",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "ItemAttribute",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "items",
+                        "description": "A list of items that have this attribute.",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Item"
+                            }
+                        }
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this item attribute listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Name"
+                        }
+                    },
+                    {
+                        "name": "descriptions",
+                        "description": "The description of this item attribute listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Description"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Item Categories",
+        "description": "Item categories determine where items will be placed in the players bag.",
+        "exampleRequest": "/v2/item-category/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "stat-boosts",
+            "items": [{
+                "name": "guard-spec",
+                "url": "$BASE_URL/v2/item/55/"
+            }],
+            "names": [{
+                "name": "Stat boosts",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "pocket": {
+                "name": "battle",
+                "url": "$BASE_URL/v2/item-pocket/7/"
+            }
+        },
+        "responseModels": [
+            {
+                "name": "ItemCategory",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "items",
+                        "description": "A list of items that are a part of this category.",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Item"
+                            }
+                        }
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this item category listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Name"
+                        }
+                    },
+                    {
+                        "name": "pocket",
+                        "description": "The pocket items in this category would be put in.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "ItemPocket"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Item Fling Effects",
+        "description": "The various effects of the move \"Fling\" when used with different items.",
+        "exampleRequest": "/v2/item-fling-effect/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "badly-poison",
+            "effect_entries": [{
+                "effect": "Badly poisons the target.",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }],
+            "items": [{
+                "name": "toxic-orb",
+                "url": "$BASE_URL/v2/item/249/"
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "ItemFlingEffect",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "effect_entries",
+                        "description": "The result of this fling effect listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Effect"
+                        }
+                    },
+                    {
+                        "name": "items",
+                        "description": "A list of items that have this fling effect.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Item"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Item Pockets",
+        "description": "Pockets within the players bag used for storing items by category.",
+        "exampleRequest": "/v2/item-pocket/{id or name}",
+        "exampleResponse": {
+            "id": 1,
+            "name": "misc",
+            "categories": [{
+                "name": "collectibles",
+                "url": "$BASE_URL/v2/item-category/9/"
+            }],
+            "names": [{
+                "name": "Items",
+                "language": {
+                    "name": "en",
+                    "url": "$BASE_URL/v2/language/9/"
+                }
+            }]
+        },
+        "responseModels": [
+            {
+                "name": "ItemPocket",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "categories",
+                        "description": "A list of item categories that are relevant to this item pocket.",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "ItemCategory"
+                            }
+                        }
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this resource listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Name"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

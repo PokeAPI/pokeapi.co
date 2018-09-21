@@ -37,7 +37,7 @@ body,
 body {
     font-family: 'Lato', sans-serif;
     line-height: 1.35;
-    background-color: #fafafa;
+    background-color: #f9f9f9;
     color: #263238;
     margin: 0;
 }
@@ -50,11 +50,22 @@ a {
     }
 }
 
-// Create an invisible pseudo element above every target element with an id to push it
-// below the sticky header when the browser navigates to it
+// Push the target element (element with id matching URL hash) below the fixed header
 :target[id]:before {
     content: '';
     display: block;
-    height: $site-header-height;
-    margin: -$site-header-height 0 0;
+    height: $site-header-height * 1.5;
+    margin: -$site-header-height * 1.5 0 0;
+}
+
+table {
+	max-width: 100%;
+}
+th, td {
+	border: 1px solid #CCC;
+	padding: 0.5em;
+}
+
+h2 {
+    border-bottom: 1px solid $border-color;
 }

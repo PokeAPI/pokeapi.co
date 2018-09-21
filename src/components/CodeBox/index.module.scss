@@ -1,5 +1,9 @@
 @import "colors.scss";
 
+.container {
+    margin: 0.75em 0;
+}
+
 .codebox {
     display: block;
     font-size: 0.8em;
@@ -9,6 +13,8 @@
     border: 1px solid $border-color;
     border-top-width: 2px;
     font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+    padding: 0.5em;
+    margin: 0;
 
     @media (max-width: 30rem) {
         font-size: 0.7em;
@@ -18,4 +24,14 @@
 .small {
     max-height: 23rem;
     overflow-y: auto;
+}
+
+.title {
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: normal;
+    background: $border-color;
+    padding: 0.25em 0.5em calc(0.25em - 2px);
+    // border-radius: 0.25em 0.25em 0 0;
+    margin: 0;
 }

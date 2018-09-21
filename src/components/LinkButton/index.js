@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './index.module.scss';
 
-export default ({className, ...props}) => (
+const LinkButton = ({className, ...props}) => (
     <button
         className={classNames({
             [styles.linkbutton]: true,
@@ -12,3 +12,5 @@ export default ({className, ...props}) => (
         {...props}
     />
 );
+
+export default LinkButton;

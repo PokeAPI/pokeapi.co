@@ -9,6 +9,9 @@
             background: lighten($brand-color, 35%);
         }
     }
+    &:not(.important) + &:not(.important) .container {
+        margin-top: 2px;
+    }
 
     p {
         margin: 0;

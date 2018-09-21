@@ -7,7 +7,7 @@ import HeaderLink from './HeaderLink';
 import styles from './index.module.scss';
 import logo from './../../images/placeholder.png';
 
-export default ({location}) => (
+const LayoutHeader = ({location}) => (
     <header
         className={classNames({
             'site-header': true,
@@ -18,7 +18,7 @@ export default ({location}) => (
             <h1 className={styles.homelink}>
                 <Link to="/" className={styles.link}>
                     <img src={logo} alt="" className={styles.logo} />
-                    <span className={styles.title}>Pokéapi</span>
+                    <span className={styles.title}>PokéAPI</span>
                 </Link>
             </h1>
             <nav className={styles.nav}>
@@ -41,3 +41,5 @@ export default ({location}) => (
         </div>
     </header>
 );
+
+export default LayoutHeader;

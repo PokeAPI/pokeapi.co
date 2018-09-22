@@ -12,6 +12,7 @@
         "classnames": "^2.2.6",
         "cross-fetch": "^2.2.2",
         "gatsby": "next",
+        "gatsby-plugin-google-analytics": "^2.0.6",
         "gatsby-plugin-manifest": "next",
         "gatsby-plugin-offline": "next",
         "gatsby-plugin-react-helmet": "next",

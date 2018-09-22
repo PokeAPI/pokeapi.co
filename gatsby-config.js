@@ -8,6 +8,15 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: 'UA-53299289-1',
+                head: false,
+                anonymize: true,
+                respectDNT: true,
+            },
+        },
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: 'PokéAPI',

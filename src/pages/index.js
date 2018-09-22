@@ -11,6 +11,13 @@ import Alerts from '../components/Alerts';
 
 import styles from './index.module.scss';
 import netlifyLogo from '../images/netlify-logo.svg';
+import digitaloceanLogo from '../images/digitalocean-logo.png';
+
+const provider = {
+    website: 'https://digitalocean.com',
+    name: 'DigitalOcean',
+    logo: digitaloceanLogo
+}
 
 export default ({location}) => (
     <Layout location={location} noAlerts>
@@ -56,10 +63,10 @@ export default ({location}) => (
                         never require any extensive setup process to consume.
                     </p>
                 </Cell>
-                <Cell title="Hosted by Netlify">
+                <Cell title={`Hosted by ${provider.name}`}>
                     <div className={styles.hostedby}>
-                        <a href="https://netlify.com">
-                            <img src={netlifyLogo} alt="Netlify" />
+                        <a href={provider.website}>
+                            <img src={provider.logo} alt={provider.name} />
                         </a>
                     </div>
                 </Cell>

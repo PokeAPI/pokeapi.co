@@ -15,6 +15,6 @@
     {
         "active": true,
         "important": true,
-        "message": "**Outage Alert:** Named endpoints and `offset`/`limit` pagination for PokéAPI v2 are currently broken. We are investigating. [Read more...](https://github.com/PokeAPI/pokeapi/issues/369)"
+        "message": "**Outage Alert:** Pagination with `offset`/`limit` for PokéAPI v2 is temporarily broken. [Read more...](https://github.com/PokeAPI/pokeapi/issues/372)"
     }
 ]

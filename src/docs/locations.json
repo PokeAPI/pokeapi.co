@@ -2,7 +2,7 @@
     {
         "name": "Locations",
         "description": "Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.",
-        "exampleRequest": "/v2/location/{id}",
+        "exampleRequest": "/v2/location/{id}/",
         "exampleResponse": {
             "id": 1,
             "name": "canalave-city",
@@ -85,7 +85,7 @@
     {
         "name": "Location Areas",
         "description": "Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.",
-        "exampleRequest": "/v2/location-area/{id}",
+        "exampleRequest": "/v2/location-area/{id}/",
         "exampleResponse": {
             "id": 1,
             "name": "canalave-city-area",
@@ -256,7 +256,7 @@
     {
         "name": "Pal Park Areas",
         "description": "Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to [Pal Park](https://bulbapedia.bulbagarden.net/wiki/Pal_Park).",
-        "exampleRequest": "/v2/pal-park-area/{id or name}",
+        "exampleRequest": "/v2/pal-park-area/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "forest",
@@ -336,7 +336,7 @@
     {
         "name": "Regions",
         "description": "A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.",
-        "exampleRequest": "/v2/region/{id or name}",
+        "exampleRequest": "/v2/region/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "kanto",

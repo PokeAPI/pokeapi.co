@@ -1,7 +1,7 @@
 [
     {
         "name": "Un-named API Resource Lists",
-        "exampleRequest": "/v2/{endpoint}",
+        "exampleRequest": "/v2/{endpoint}/",
         "exampleResponse": {
             "count": 365,
             "next": "$BASE_URL/v2/evolution-chain/?limit=20&offset=20",
@@ -43,7 +43,7 @@
     },
     {
         "name": "Named API Resource Lists",
-        "exampleRequest": "/v2/{endpoint}",
+        "exampleRequest": "/v2/{endpoint}/",
         "exampleResponse": {
             "count": 248,
             "next": "$BASE_URL/v2/ability/?limit=20&offset=20",

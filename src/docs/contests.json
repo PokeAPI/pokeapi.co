@@ -2,7 +2,7 @@
     {
         "name": "Contest Types",
         "description": "Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Contest_condition) for greater detail.",
-        "exampleRequest": "/v2/contest-type/{id or name}",
+        "exampleRequest": "/v2/contest-type/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "cool",
@@ -79,7 +79,7 @@
     {
         "name": "Contest Effects",
         "description": "Contest effects refer to the effects of moves when used in contests.",
-        "exampleRequest": "/v2/contest-effect/{id}",
+        "exampleRequest": "/v2/contest-effect/{id}/",
         "exampleResponse": {
             "id": 1,
             "appeal": 4,
@@ -141,7 +141,7 @@
     {
         "name": "Super Contest Effects",
         "description": "Super contest effects refer to the effects of moves when used in super contests.",
-        "exampleRequest": "/v2/super-contest-effect/{id}",
+        "exampleRequest": "/v2/super-contest-effect/{id}/",
         "exampleResponse": {
             "id": 1,
             "appeal": 2,

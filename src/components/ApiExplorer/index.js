@@ -14,7 +14,7 @@ export default class ApiExplorer extends React.Component {
         baseApiUrl: PropTypes.string.isRequired,
     };
     state = {
-        resourceUrl: 'pokemon/1',
+        resourceUrl: 'pokemon/1/',
         resourceData: bulbasaur,
         notFound: false,
         error: null,
@@ -98,9 +98,9 @@ export default class ApiExplorer extends React.Component {
                     onSubmit={value => this.fetchResource(value)}
                 />
                 <p className={styles.hint_sentence}>
-                    Need a hint? Try <Hint value="pokemon/1" />,{' '}
-                    <Hint value="pokemon/ditto" /> , <Hint value="type/3" /> or{' '}
-                    <Hint value="ability/4" />.
+                    Need a hint? Try <Hint value="pokemon/1/" />,{' '}
+                    <Hint value="pokemon/ditto/" /> , <Hint value="type/3/" /> or{' '}
+                    <Hint value="ability/4/" />.
                 </p>
                 <h2 className={styles.message}>{message}</h2>
                 <CodeBox small>{JSON.stringify(resourceData, null, 2)}</CodeBox>

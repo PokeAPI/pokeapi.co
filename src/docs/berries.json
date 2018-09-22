@@ -2,7 +2,7 @@
     {
         "name": "Berries",
         "description": "Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Berry) for greater detail.",
-        "exampleRequest": "/v2/berry/{id or name}",
+        "exampleRequest": "/v2/berry/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "cheri",
@@ -132,7 +132,7 @@
     },
     {
         "name": "Berry Firmnesses",
-        "exampleRequest": "/v2/berry-firmness/{id or name}",
+        "exampleRequest": "/v2/berry-firmness/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "very-soft",
@@ -188,7 +188,7 @@
     {
         "name": "Berry Flavors",
         "description": "Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their [nature](#natures). Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Flavor) for greater detail.",
-        "exampleRequest": "/v2/berry-flavor/{id or name}",
+        "exampleRequest": "/v2/berry-flavor/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "spicy",

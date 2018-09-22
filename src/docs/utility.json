@@ -2,7 +2,7 @@
     {
         "name": "Languages",
         "description": "Languages for translations of API resource information.",
-        "exampleRequest": "/v2/language/{id or name}",
+        "exampleRequest": "/v2/language/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "ja",

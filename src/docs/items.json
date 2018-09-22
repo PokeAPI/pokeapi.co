@@ -2,7 +2,7 @@
     {
         "name": "Item",
         "description": "An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.",
-        "exampleRequest": "/v2/item{id or name}",
+        "exampleRequest": "/v2/item{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "master-ball",
@@ -235,7 +235,7 @@
     {
         "name": "Item Attributes",
         "description": "Item attributes define particular aspects of items, e.g. \"usable in battle\" or \"consumable\".",
-        "exampleRequest": "/v2/item-attribute/{id or name}",
+        "exampleRequest": "/v2/item-attribute/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "countable",
@@ -306,7 +306,7 @@
     {
         "name": "Item Categories",
         "description": "Item categories determine where items will be placed in the players bag.",
-        "exampleRequest": "/v2/item-category/{id or name}",
+        "exampleRequest": "/v2/item-category/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "stat-boosts",
@@ -374,7 +374,7 @@
     {
         "name": "Item Fling Effects",
         "description": "The various effects of the move \"Fling\" when used with different items.",
-        "exampleRequest": "/v2/item-fling-effect/{id or name}",
+        "exampleRequest": "/v2/item-fling-effect/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "badly-poison",
@@ -427,7 +427,7 @@
     {
         "name": "Item Pockets",
         "description": "Pockets within the players bag used for storing items by category.",
-        "exampleRequest": "/v2/item-pocket/{id or name}",
+        "exampleRequest": "/v2/item-pocket/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "misc",

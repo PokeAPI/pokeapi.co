@@ -2,7 +2,7 @@
     {
         "name": "Abilities",
         "description": "Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have multiple possible abilities but can have only one ability at a time. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Ability) for greater detail.",
-        "exampleRequest": "/v2/ability/{id or name}",
+        "exampleRequest": "/v2/ability/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "stench",
@@ -203,7 +203,7 @@
     {
         "name": "Characteristics",
         "description": "Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Characteristic) for greater detail.",
-        "exampleRequest": "/v2/characteristic/{id}",
+        "exampleRequest": "/v2/characteristic/{id}/",
         "exampleResponse": {
             "id": 1,
             "gene_modulo": 0,
@@ -249,7 +249,7 @@
     {
         "name": "Egg Groups",
         "description": "Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Egg_Group) for greater detail.",
-        "exampleRequest": "/v2/egg-group/{id or name}",
+        "exampleRequest": "/v2/egg-group/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "monster",
@@ -305,7 +305,7 @@
     {
         "name": "Genders",
         "description": "Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Gender) for greater detail.",
-        "exampleRequest": "/v2/gender/{id or name}",
+        "exampleRequest": "/v2/gender/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "female",
@@ -379,7 +379,7 @@
     {
         "name": "Growth Rates",
         "description": "Growth rates are the speed with which Pokémon gain levels through experience. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Experience) for greater detail.",
-        "exampleRequest": "/v2/growth-rate/{id or name}",
+        "exampleRequest": "/v2/growth-rate/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "slow",
@@ -468,7 +468,7 @@
     {
         "name": "Natures",
         "description": "Natures influence how a Pokémon's stats grow. See [(http://bulbapedia.bulbagarden.net/wiki/Nature) for greater detail.",
-        "exampleRequest": "/v2/nature/{id or name}",
+        "exampleRequest": "/v2/nature/{id or name}/",
         "exampleResponse": {
             "id": 2,
             "name": "bold",
@@ -629,7 +629,7 @@
     {
         "name": "Pokeathlon Stats",
         "description": "Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon) for greater detail.",
-        "exampleRequest": "/v2/pokeathlon-stat/{id or name}",
+        "exampleRequest": "/v2/pokeathlon-stat/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "speed",
@@ -730,7 +730,7 @@
     {
         "name": "Pokemon",
         "description": "Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_(species)) for greater detail.",
-        "exampleRequest": "/v2/pokemon/{id or name}",
+        "exampleRequest": "/v2/pokemon/{id or name}/",
         "exampleResponse": {
             "id": 12,
             "name": "butterfree",
@@ -1183,7 +1183,7 @@
     {
         "name": "Pokémon Colors",
         "description": "Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.",
-        "exampleRequest": "/v2/pokemon-color/{id or name}",
+        "exampleRequest": "/v2/pokemon-color/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "black",
@@ -1239,7 +1239,7 @@
     {
         "name": "Pokémon Forms",
         "description": "Some Pokémon have the ability to take on different forms. At times, these differences are purely cosmetic and have no bearing on the difference in the Pokémon's stats from another; however, several Pokémon differ in stats (other than HP), type, and Ability depending on their form.",
-        "exampleRequest": "/v2/pokemon-form/{id or name}",
+        "exampleRequest": "/v2/pokemon-form/{id or name}/",
         "exampleResponse": {
             "id": 413,
             "name": "wormadam-plant",
@@ -1377,7 +1377,7 @@
     {
         "name": "Pokémon Habitats",
         "description": "Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.",
-        "exampleRequest": "/v2/pokemon-habitat/{id or name}",
+        "exampleRequest": "/v2/pokemon-habitat/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "cave",
@@ -1437,7 +1437,7 @@
     {
         "name": "Pokémon Shapes",
         "description": "Shapes used for sorting Pokémon in a Pokédex.",
-        "exampleRequest": "/v2/pokemon-shape/{id or name}",
+        "exampleRequest": "/v2/pokemon-shape/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "ball",
@@ -1529,7 +1529,7 @@
     {
         "name": "Pokémon Species",
         "description": "A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.",
-        "exampleRequest": "/v2/pokemon-species/{id or name}",
+        "exampleRequest": "/v2/pokemon-species/{id or name}/",
         "exampleResponse": {
             "id": 413,
             "name": "wormadam",
@@ -1878,7 +1878,7 @@
     {
         "name": "Stats",
         "description": "Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.",
-        "exampleRequest": "/v2/stat/{id or name}",
+        "exampleRequest": "/v2/stat/{id or name}/",
         "exampleResponse": {
             "id": 2,
             "name": "attack",
@@ -2056,7 +2056,7 @@
     {
         "name": "Types",
         "description": "Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.",
-        "exampleRequest": "/v2/type/{id or name}",
+        "exampleRequest": "/v2/type/{id or name}/",
         "exampleResponse": {
             "id": 5,
             "name": "ground",

@@ -2,7 +2,7 @@
     {
         "name": "Moves",
         "description": "Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.",
-        "exampleRequest": "/v2/move/{id or name}",
+        "exampleRequest": "/v2/move/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "pound",
@@ -476,7 +476,7 @@
     {
         "name": "Move Ailments",
         "description": "Move Ailments are status conditions caused by moves used during battle. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/http://bulbapedia.bulbagarden.net/wiki/Status_condition) for greater detail.",
-        "exampleRequest": "/v2/move-ailment/{id or name}",
+        "exampleRequest": "/v2/move-ailment/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "paralysis",
@@ -532,7 +532,7 @@
     {
         "name": "Move Battle Styles",
         "description": "Styles of moves when used in the Battle Palace. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_III)) for greater detail.",
-        "exampleRequest": "/v2/move-battle-style/{id or name}",
+        "exampleRequest": "/v2/move-battle-style/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "attack",
@@ -573,7 +573,7 @@
     {
         "name": "Move Categories",
         "description": "Very general categories that loosely group move effects.",
-        "exampleRequest": "/v2/move-category/{id or name}",
+        "exampleRequest": "/v2/move-category/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "ailment",
@@ -629,7 +629,7 @@
     {
         "name": "Move Damage Classes",
         "description": "Damage classes moves can have, e.g. physical, special, or non-damaging.",
-        "exampleRequest": "/v2/move-damage-class/{id or name}",
+        "exampleRequest": "/v2/move-damage-class/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "status",
@@ -693,7 +693,7 @@
     {
         "name": "Move Learn Methods",
         "description": "Methods by which Pokémon can learn moves.",
-        "exampleRequest": "/v2/move-learn-method/{id or name}",
+        "exampleRequest": "/v2/move-learn-method/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "level-up",
@@ -764,7 +764,7 @@
     {
         "name": "Move Targets",
         "description": "Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.",
-        "exampleRequest": "/v2/move-target/{id or name}",
+        "exampleRequest": "/v2/move-target/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "specific-move",

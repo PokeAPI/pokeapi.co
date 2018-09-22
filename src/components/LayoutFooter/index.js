@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import {Link} from 'gatsby';
 
 import styles from './index.module.scss';
 
@@ -11,17 +12,18 @@ const Footer = () => (
         })}
     >
         <div className={styles.container}>
-            <div>
-                <p>
-                    © 2013–2018{' '}
-                    <a href="http://phalt.co/?ref=pokeapi">Paul Hallet</a> and{' '}
-                    <a href="https://github.com/PokeAPI/pokeapi/graphs/contributors">
-                        PokéAPI contributors
-                    </a>
-                    . Pokémon and Pokémon character names are trademarks of
-                    Nintendo.
-                </p>
-            </div>
+            <p>
+                © 2013–2018{' '}
+                <a href="http://phalt.co/?ref=pokeapi">Paul Hallet</a> and{' '}
+                <a href="https://github.com/PokeAPI/pokeapi/graphs/contributors">
+                    PokéAPI contributors
+                </a>
+                . Pokémon and Pokémon character names are trademarks of
+                Nintendo.
+            </p>
+            <p>
+                <Link to="/status">Status Page</Link>
+            </p>
         </div>
     </header>
 );

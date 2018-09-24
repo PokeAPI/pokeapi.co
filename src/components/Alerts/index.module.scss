@@ -18,26 +18,20 @@
             flex: 1;
             text-align: center;
 
-            p,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
+            p, h1, h2, h3, h4, h5, h6 {
                 margin: 0;
                 font-size: 1em;
             }
         }
 
-        .pin_button {
+        .dismiss_button {
             border: 1px solid transparent;
             border-color: none;
             background: none;
             color: inherit;
-            padding: 0.3em;
-            height: 1.4em;
-            width: 1.4em;
+            padding: 0.4em;
+            height: 1.5em;
+            width: 1.5em;
 
             display: flex;
             align-items: center;
@@ -58,27 +52,20 @@
     }
 
     &.is_important {
-        .container {
-            background: lighten($brand-color, 30%);
-            margin-top: 0;
-        }
-    }
-
-    &.is_pinned {
         position: sticky;
         top: $site-header-height;
+        z-index: 99;
+        background: none;
 
         @media (max-height: $short-height) {
             top: 0;
         }
 
-        z-index: 99;
-        background: none;
-
         .container {
+            background: lighten($brand-color, 30%);
             box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-            // box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
             outline: 1px solid $brand-color-darkest;
+            margin-top: 0;
         }
     }
 }

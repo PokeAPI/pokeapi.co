@@ -13,10 +13,12 @@
         "cross-fetch": "^2.2.2",
         "gatsby": "next",
         "gatsby-plugin-google-analytics": "^2.0.6",
-        "gatsby-plugin-manifest": "next",
+        "gatsby-plugin-manifest": "^2.0.2-rc.1",
         "gatsby-plugin-offline": "next",
         "gatsby-plugin-react-helmet": "next",
+        "gatsby-plugin-react-svg": "^2.0.0-beta1",
         "gatsby-plugin-sass": "next",
+        "hash-sum": "^1.0.2",
         "marked": "^0.5.0",
         "node-sass": "^4.9.3",
         "prop-types": "^15.6.2",
@@ -24,7 +26,8 @@
         "react-dom": "^16.4.2",
         "react-helmet": "^5.2.0",
         "react-syntax-highlighter": "^8.0.1",
-        "sanitize.css": "^7.0.3"
+        "sanitize.css": "^7.0.3",
+        "universal-cookie": "^3.0.4"
     },
     "repository": {
         "type": "git",

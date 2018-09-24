@@ -16,6 +16,7 @@ module.exports = {
                 respectDNT: true,
             },
         },
+        'gatsby-plugin-react-svg',
         {
             resolve: `gatsby-plugin-manifest`,
             options: {

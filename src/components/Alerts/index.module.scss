@@ -3,40 +3,82 @@
 
 .alert {
     color: $brand-color-darkest;
-    &:not(.important) {
-        background: desaturate(lighten($brand-color, 30%), 60%);
-        .container {
-            background: lighten($brand-color, 35%);
+    background: desaturate(lighten($brand-color, 30%), 60%);
+
+    .container {
+        background: lighten($brand-color, 35%);
+        max-width: $page-max-width;
+        margin: 0 auto;
+        padding: 0.75em 1em;
+
+        display: flex;
+        align-items: center;
+
+        .message {
+            flex: 1;
+            text-align: center;
+
+            p,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin: 0;
+                font-size: 1em;
+            }
+        }
+
+        .pin_button {
+            border: 1px solid transparent;
+            border-color: none;
+            background: none;
+            color: inherit;
+            padding: 0.3em;
+            height: 1.4em;
+            width: 1.4em;
+
+            display: flex;
+            align-items: center;
+
+            &::-moz-focus-inner {
+                border: none;
+                padding: 0;
+            }
+            .image {
+                width: 100%;
+                height: auto;
+            }
         }
     }
-    &:not(.important) + &:not(.important) .container {
+
+    & + & .container {
         margin-top: 2px;
     }
 
-    p {
-        margin: 0;
-    }
-}
-
-.important {
-    position: sticky;
-    top: $site-header-height;
-    z-index: 99;
-
-    @media (max-height: $short-height) {
-        top: 0;
+    &.is_important {
+        .container {
+            background: lighten($brand-color, 30%);
+            margin-top: 0;
+        }
     }
 
-    .container {
-        background: lighten($brand-color, 30%);
-        border: 1px solid $brand-color-darkest;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    }
-}
+    &.is_pinned {
+        position: sticky;
+        top: $site-header-height;
 
-.container {
-    max-width: $page-max-width;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0.75em 1em;
+        @media (max-height: $short-height) {
+            top: 0;
+        }
+
+        z-index: 99;
+        background: none;
+
+        .container {
+            box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+            // box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+            outline: 1px solid $brand-color-darkest;
+        }
+    }
 }

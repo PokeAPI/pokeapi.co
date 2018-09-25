@@ -26,8 +26,7 @@
         "react-dom": "^16.4.2",
         "react-helmet": "^5.2.0",
         "react-syntax-highlighter": "^8.0.1",
-        "sanitize.css": "^7.0.3",
-        "universal-cookie": "^3.0.4"
+        "sanitize.css": "^7.0.3"
     },
     "repository": {
         "type": "git",

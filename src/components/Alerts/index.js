@@ -1,31 +1,19 @@
 import React from 'react';
 import marked from 'marked';
 import classNames from 'classnames';
-import Cookies from 'universal-cookie';
 import hashSum from 'hash-sum';
 
 import alerts from '../../../alerts.json';
 import styles from './index.module.scss';
 import XSvg from '../../images/ex.svg';
 
-const cookies = new Cookies();
-
 class Alert extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            mounted: false,
-            dismissed: false,
-        };
-    }
+    state = {dismissed: false};
     componentDidMount() {
-        this.setState({
-            mounted: true,
-            dismissed: cookies.get(this.props.id),
-        });
+        this.setState({dismissed: localStorage.getItem(this.props.id)});
     }
     dismiss = () => {
-        cookies.set(this.props.id, '1', {path: '/'});
+        localStorage.setItem(this.props.id, '1');
         this.setState({dismissed: true});
     };
     render() {
@@ -35,7 +23,9 @@ class Alert extends React.Component {
             <div
                 className={classNames({
                     [styles.alert]: true,
-                    [styles.is_important]: this.props.important,
+                    [styles.level_important]: this.props.level === 'important',
+                    [styles.level_success]: this.props.level === 'success',
+                    [styles.level_info]: this.props.level === 'info',
                 })}
             >
                 <div className={styles.container}>
@@ -45,16 +35,14 @@ class Alert extends React.Component {
                             __html: this.props.htmlMessage,
                         }}
                     />
-                    {this.state.mounted && (
-                        <button
-                            title="Dismiss"
-                            className={styles.dismiss_button}
-                            onClick={this.dismiss}
-                        >
-                            <span hidden>Dismiss</span>
-                            <XSvg className={styles.image} aria-hidden />
-                        </button>
-                    )}
+                    <button
+                        title="Dismiss"
+                        className={styles.dismiss_button}
+                        onClick={this.dismiss}
+                    >
+                        <span hidden>Dismiss</span>
+                        <XSvg className={styles.image} aria-hidden />
+                    </button>
                 </div>
             </div>
         );
@@ -68,7 +56,7 @@ const Alerts = () => {
             <Alert
                 key={alert.message}
                 htmlMessage={marked(alert.message)}
-                important={alert.important}
+                level={alert.level || 'info'}
                 id={hashSum(alert)}
             />
         ));

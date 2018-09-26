@@ -8,9 +8,9 @@ import styles from './index.module.scss';
 import XSvg from '../../images/ex.svg';
 
 class Alert extends React.Component {
-    state = {dismissed: false};
+    state = {dismissed: true};
     componentDidMount() {
-        this.setState({dismissed: localStorage.getItem(this.props.id)});
+        this.setState({dismissed: !!localStorage.getItem(this.props.id)});
     }
     dismiss = () => {
         localStorage.setItem(this.props.id, '1');

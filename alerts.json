@@ -1,20 +1,21 @@
 [
     {
         "active": false,
-        "message": "**Developer Notice:** Custom alerts can be set in the `alerts.json` file. You can use Markdown too, like _this_, **this**, or [this](/)."
+        "message": "",
+        "comment1": "Inactive alerts will not be shown.",
+        "comment2": "You can use markdown, like _this_, **this**, or [this](https://pokeapi.co).",
+        "comment3": "Possible levels are 'info', 'important' and 'success'. The default is 'info'."
     },
     {
-        "active": true,
-        "important": false,
-        "message": "**Important:** Support for PokéAPI version 1 will end on 15 October 2018. If you're still using it, please switch to v2. [Read more...](/docs/v1.html)"
+        "message": "**Notice:** Support for PokéAPI version 1 will end on 15 October 2018. If you're still using it, please switch to v2. [Read more...](/docs/v1.html)"
+    },
+    {
+        "level": "important",
+        "message": "**Outage Alert:** Pagination with `offset`/`limit` for PokéAPI v2 is temporarily broken. [Read more...](https://github.com/PokeAPI/pokeapi/issues/372)"
     },
     {
         "active": false,
-        "message": "Alerts marked as inactive will not be shown."
-    },
-    {
-        "active": true,
-        "important": true,
-        "message": "**Outage Alert:** Pagination with `offset`/`limit` for PokéAPI v2 is temporarily broken. [Read more...](https://github.com/PokeAPI/pokeapi/issues/372)"
+        "level": "success",
+        "message": "**Notice:** PokéAPI v2 is back up and the migration to static hosting is complete. It is now much faster and more reliable."
     }
 ]

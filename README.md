@@ -8,7 +8,7 @@ This repository contains the source code and documentation for [pokeapi.co](poke
 
 ### Prerequisities
 - Git
-- [Node](https://nodejs.org/en/): 8.4.0 or greater
+- [Node](https://nodejs.org/en/): 10.11.0 or greater
 - A fork of the repo (for any contributions)
 - A clone of the [pokeapi.co repo](https://github.com/pokeapi/pokeapi.co) on your local machine
 

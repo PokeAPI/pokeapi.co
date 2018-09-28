@@ -8,6 +8,9 @@
         "build": "gatsby build",
         "serve": "gatsby serve"
     },
+    "engines": {
+        "node": ">=10.11.0"
+    },
     "dependencies": {
         "classnames": "^2.2.6",
         "cross-fetch": "^2.2.2",

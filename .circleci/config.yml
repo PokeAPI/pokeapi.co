@@ -18,7 +18,7 @@ workflows:
 
   commit:
     jobs:
-      - build-and-test-and-deploy
+      - build-and-test-and-deploy:
           filters:
             branches:
               only: master

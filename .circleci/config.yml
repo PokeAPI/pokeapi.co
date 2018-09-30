@@ -1,40 +1,24 @@
 version: 2
 
 defaults: &defaults
-  working_directory: /tmp
   docker:
     - image: circleci/node:10.11.0
 
 jobs:
-  deploy:
-    <<: *defaults
-    steps:
-    - attach_workspace:
-        at: /tmp
-    - checkout
-    - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
-
-  build-and-test:
+  build-and-test-and-deploy:
     <<: *defaults
     steps:
     - checkout
     - run: npm install
     - run: npm run build
-    - persist_to_workspace:
-        root: .
-        paths:
-          - public
-          - node_modules
+    - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
 
 workflows:
   version: 2
 
   commit:
     jobs:
-    - build-and-test
-    - deploy:
-        requires:
-        - build-and-test
+    - build-and-test-and-deploy
           # filters:
           #   branches:
           #     only: master

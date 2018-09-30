@@ -21,10 +21,10 @@ jobs:
     - run: npm install
     - run: npm run build
     - persist_to_workspace:
-      root: .
-      paths:
-        - public
-        - node_modules
+        root: .
+        paths:
+          - public
+          - node_modules
 
 workflows:
   version: 2

@@ -14,7 +14,7 @@ jobs:
     - checkout
     - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
 
-  tebuild-and-testst:
+  build-and-test:
     <<: *defaults
     steps:
     - checkout

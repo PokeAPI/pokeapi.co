@@ -7,18 +7,14 @@ jobs:
     steps:
     - checkout
     - run: npm run build
-    - run: 
-      name: Deploy Master to Firebase
-      command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
+    - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
 
   test:
     docker:
     - image: circleci/node:10.11.0
     steps:
     - checkout
-    - run:
-      name: Install Dependencies
-      command: npm install
+    - run: npm install
     - run: npm run build
     # TODO: write some real tests instead of checking if the building process succeeds
 

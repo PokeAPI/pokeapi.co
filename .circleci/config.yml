@@ -7,7 +7,7 @@ defaults: &defaults
 
 jobs:
   deploy:
-    <<:
+    <<: *defaults
     steps:
     - attach_workspace:
         at: /tmp
@@ -15,7 +15,7 @@ jobs:
     - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
 
   tebuild-and-testst:
-    <<:
+    <<: *defaults
     steps:
     - checkout
     - run: npm install

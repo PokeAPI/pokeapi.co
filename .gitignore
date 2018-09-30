@@ -62,3 +62,4 @@ public
 yarn-error.log
 
 .vscode
+.firebase/

@@ -1,11 +1,3 @@
-import React from 'react';
-
-import styles from './index.module.scss';
-
-const Banner = ({children}) => (
-    <div className={styles.banner}>
-        <div className={styles.container}>{children}</div>
-    </div>
-);
+import Banner from './Banner';
 
 export default Banner;

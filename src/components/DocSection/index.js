@@ -4,19 +4,20 @@ import marked from 'marked';
 
 import CodeBox from '../CodeBox';
 import makeId from '../../utils/makeId';
-
+import addWordBreaks from '../../utils/addWordBreaks';
 import styles from './index.module.scss';
 
+const scalarTypes = ['string', 'integer', 'boolean'];
+
 const Type = ({type}) => {
-    if (type === 'string' || type === 'integer') {
+    if (scalarTypes.includes(type)) {
         return type;
     }
     if (typeof type === 'object') {
         if (type.type === 'list') {
             return (
                 <Fragment>
-                    list&nbsp;
-                    <Type type={type.of} />
+                    list <Type type={type.of} />
                 </Fragment>
             );
         }
@@ -26,7 +27,7 @@ const Type = ({type}) => {
             </Fragment>
         );
     }
-    return <a href={'#' + makeId(type)}>{type}</a>;
+    return <a href={'#' + makeId(type)}>{addWordBreaks(type)}</a>;
 };
 
 const DocSection = ({
@@ -79,8 +80,12 @@ const DocSection = ({
                     <tbody>
                         {model.fields.map(field => (
                             <tr key={field.name}>
-                                <td>{field.name}</td>
-                                <td>{field.description}</td>
+                                <td>{addWordBreaks(field.name)}</td>
+                                <td
+                                    dangerouslySetInnerHTML={{
+                                        __html: marked(field.description),
+                                    }}
+                                />
                                 <td>
                                     <Type type={field.type} />
                                 </td>

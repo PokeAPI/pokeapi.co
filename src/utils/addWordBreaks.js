@@ -1,7 +1,7 @@
 import React from 'react';
 
 function isUpperCase(str) {
-    return str && str == str.toUpperCase() && str != str.toLowerCase();
+    return str && str === str.toUpperCase() && str !== str.toLowerCase();
 }
 
 export default function addWordBreaks(str) {

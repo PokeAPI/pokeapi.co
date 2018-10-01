@@ -80,64 +80,66 @@ export default ({location}) => (
             <h2 id="slack">Slack</h2>
             <p>
                 Have questions? Ideas? Notice something amiss here in the docs?
-                Hit us up on Slack. Sign up right here then visit our slack
-                team. We encourage you to come here before opening a ticket on
-                github, so we can keep our issues nice and organized. There are
-                also a solid group of people using the API who may already have
-                answers or plans from experience.
+                Hit us up on Slack. Sign up right{' '}
+                <a href="https://pokeapi-slack-invite.herokuapp.com/">here</a> then visit
+                our <a href="https://pokeapi.slack.com">Slack</a> team. We encourage you to
+                come here before opening a ticket on GitHub, so we can keep our
+                issues nice and organized. There are also a solid group of
+                people using the API who may already have answers or plans from
+                experience.
             </p>
 
             <h2 id="wrap">Wrapper Libraries</h2>
             <ul>
                 <li>
-                    <b>Node Server-side with auto caching</b> –{' '}
+                    <strong>Node Server-side with auto caching</strong>:{' '}
                     <a href="https://github.com/PokeAPI/pokedex-promise-v2">
                         Pokedex Promise v2
                     </a>{' '}
                     by Thomas Asadurian and Alessandro Pezzé
                 </li>
                 <li>
-                    <b>Browser-side with auto caching</b> –{' '}
+                    <strong>Browser-side with auto c    aching</strong>:{' '}
                     <a href="https://github.com/PokeAPI/pokeapi-js-wrapper">
                         pokeapi-js-wrapper
                     </a>{' '}
                     by Alessandro Pezzé
                 </li>
                 <li>
-                    <b>Python with auto caching</b> –{' '}
+                    <strong>Python with auto caching</strong>:{' '}
                     <a href="https://github.com/GregHilmes/pokebase">
                         PokeBase
                     </a>{' '}
                     by Greg Hilmes
                 </li>
                 <li>
-                    <b>Kotlin (and Java)</b> –{' '}
+                    <strong>Kotlin (and Java)</strong>:{' '}
                     <a href="https://github.com/PokeAPI/pokekotlin">
                         PokeKotlin
                     </a>{' '}
                     by sargunster
                 </li>
                 <li>
-                    <b>.NET (C#, VB, etc)</b> –{' '}
+                    <strong>.NET (C#, VB, etc)</strong>:{' '}
                     <a href="https://gitlab.com/PoroCYon/PokeApi.NET">
                         PokeApi.NET
                     </a>{' '}
                     by PoroCYon
                 </li>
                 <li>
-                    <b>Swift</b> –{' '}
+                    <strong>Swift</strong>:{' '}
                     <a href="https://github.com/ContinuousLearning/PokemonKit">
                         PokemonKit
                     </a>{' '}
                     by darkcl
                 </li>
                 <li>
-                    <b>PHP</b> –{' '}
+                    <strong>PHP</strong>:{' '}
                     <a href="https://github.com/danrovito/pokephp">PokePHP</a>{' '}
                     by Dan Rovito
                 </li>
                 <li>
-                    <b>PHP</b> –{' '}
+                    <strong>PHP</strong>:{' '}
                     <a href="https://github.com/lmerotta/phpokeapi">
                         PHPokéAPI
                     </a>{' '}

@@ -1,0 +1,24 @@
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:10.11.0
+
+jobs:
+  build-and-test-and-deploy:
+    <<: *defaults
+    steps:
+    - checkout
+    - run: npm install
+    - run: npm run build
+    - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
+
+workflows:
+  version: 2
+
+  commit:
+    jobs:
+      - build-and-test-and-deploy:
+          filters:
+            branches:
+              only: master

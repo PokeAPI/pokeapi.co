@@ -36,6 +36,7 @@
         "url": "https://github.com/pokeapi/pokeapi-co-website"
     },
     "devDependencies": {
+        "firebase-tools": "^4.2.1",
         "prettier": "^1.14.2"
     }
 }

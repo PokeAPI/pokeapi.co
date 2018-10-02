@@ -188,7 +188,7 @@
                         "name": "effect_changes",
                         "description": "The list of previous effects this move has had across version groups of the games.",
                         "type": {
-                            "type": "list  ",
+                            "type": "list",
                             "of": "AbilityEffectChange"
                         }
                     },

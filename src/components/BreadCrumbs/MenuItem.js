@@ -7,6 +7,9 @@ export default class MenuItem extends React.Component {
     focus = () => {
         this.domNode.focus();
     };
+    blur = () => {
+        this.domNode.blur();
+    };
     handleKeyDown = event => {
         if (event.key === 'Enter' || event.key === 'Space') {
             this.domNode.click();
@@ -27,6 +30,8 @@ export default class MenuItem extends React.Component {
                     onClick={done}
                     onKeyDown={this.handleKeyDown}
                     href={'#' + sectionId}
+                    onMouseEnter={this.focus}
+                    onMouseLeave={this.blur}
                 >
                     {name || id}
                 </a>

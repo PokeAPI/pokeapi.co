@@ -28,6 +28,7 @@
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-helmet": "^5.2.0",
+        "react-json-view": "^1.19.1",
         "react-syntax-highlighter": "^8.0.1",
         "sanitize.css": "^7.0.3"
     },

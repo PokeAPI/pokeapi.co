@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import ReactJson from 'react-json-view';
 
 import styles from './index.module.scss';
 
@@ -18,6 +19,7 @@ const CodeBox = ({children, small, language = 'json', title}) => (
         >
             {children}
         </SyntaxHighlighter>
+        <ReactJson src={JSON.parse(children)} collapsed={1} />
     </div>
 );
 

@@ -865,7 +865,7 @@
                     },
                     {
                         "name": "height",
-                        "description": "The height of this Pokémon (decimetre).",
+                        "description": "The height of this Pokémon in decimetres.",
                         "type": "integer"
                     },
                     {
@@ -880,7 +880,7 @@
                     },
                     {
                         "name": "weight",
-                        "description": "The weight of this Pokémon (hectogram).",
+                        "description": "The weight of this Pokémon in hectograms.",
                         "type": "integer"
                     },
                     {

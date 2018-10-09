@@ -9,7 +9,7 @@
     font-size: 0.8em;
     line-height: 1.4;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: #f0f0f0;
     border: 1px solid $border-color;
     border-top-width: 2px;
     font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
@@ -26,6 +26,16 @@
     overflow-y: auto;
 }
 
+.json :global .node-ellipsis {
+    // Want to modify the value of the original lib.
+    // https://github.com/mac-s-g/react-json-view/blob/master/src/js/themes/styleConstants.js#L14
+    font-size: 0.8em !important;
+}
+
+.header {
+    display: flex;
+}
+
 .title {
     display: inline-block;
     font-size: 0.9em;
@@ -34,4 +44,40 @@
     padding: 0.25em 0.5em calc(0.25em - 2px);
     // border-radius: 0.25em 0.25em 0 0;
     margin: 0;
+}
+
+.tablist {
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-left: auto;
+}
+
+.tab {
+    color: $link-color;
+    cursor: pointer;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: $border-color;
+    margin-left: 5px;
+    font-size: 0.8em;
+    padding: 3px 10px;
+
+    &[aria-selected="true"] {
+        background: rgba(28, 136, 204, 0.1);
+    }
+}
+
+// Resolves the problem of Re-rendering cost. (Using the `forceRenderTabPanel` option in react-tabs)
+:global .react-tabs__tab-panel {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+}
+:global .react-tabs__tab-panel--selected {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
 }

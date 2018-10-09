@@ -10,7 +10,6 @@ import {Cell, CellContainer} from '../components/Cell';
 import Alerts from '../components/Alerts';
 
 import styles from './index.module.scss';
-import netlifyLogo from '../images/netlify-logo.svg';
 import digitaloceanLogo from '../images/digitalocean-logo.png';
 
 const provider = {

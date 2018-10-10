@@ -14,17 +14,14 @@ class CodeBox extends React.Component {
         const checked = e.target.checked;
         this.setState({ viewRaw: checked });
     }
-    rawRender(children, language = 'json', small) {
-        return (
-            <SyntaxHighlighter language={language}>
-                {children}
-            </SyntaxHighlighter>
-        )
-    }
-    explorerRender(children) {
-        return (
-            <pre>
-                <code>
+    renderRaw = (children, language = 'json', small) => (
+        <SyntaxHighlighter language={language}>
+            {children}
+        </SyntaxHighlighter>
+    )
+    renderExplorer = children => (
+        <pre>
+            <code>
                 <ReactJson
                     src={JSON.parse(children)}
                     name={false}
@@ -33,10 +30,9 @@ class CodeBox extends React.Component {
                     displayObjectSize={false}
                     style={{ fontFamily: 'inherit' }}
                 />
-                </code>
-            </pre>
-        )
-    }
+            </code>
+        </pre>
+    )
     render() {
         const { children, small, language, title } = this.props;
         return (
@@ -55,9 +51,9 @@ class CodeBox extends React.Component {
                     [styles.small]: small,
                 })}>
                     {this.state.viewRaw ? (
-                        this.rawRender(children, language, small)
+                        this.renderRaw(children, language, small)
                         ) : (
-                        this.explorerRender(children)
+                        this.renderExplorer(children)
                     )}
                 </div>
             </div>

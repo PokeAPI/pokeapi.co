@@ -25,9 +25,14 @@ class CodeBox extends React.Component {
         return (
             <pre>
                 <code>
-                    <ReactJson src={JSON.parse(children)} collapsed={1} style={{
-                        fontFamily: 'inherit',
-                    }} />
+                <ReactJson
+                    src={JSON.parse(children)}
+                    name={false}
+                    enableClipboard={false}
+                    displayDataTypes={false}
+                    displayObjectSize={false}
+                    style={{ fontFamily: 'inherit' }}
+                />
                 </code>
             </pre>
         )

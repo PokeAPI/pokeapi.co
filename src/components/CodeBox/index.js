@@ -46,7 +46,7 @@ class CodeBox extends React.Component {
                         <h4 className={styles.title}>{title}</h4>
                     )}
                     <label className={styles.checkbox}>
-                        <input type="checkbox" value={this.state.viewRaw} onChange={this.viewRaw} />
+                        <input type="checkbox" checked={this.state.viewRaw} onChange={this.viewRaw} />
                         View raw data
                     </label>
                 </div>

@@ -6,9 +6,9 @@ import JSONTree from 'react-json-tree';
 import styles from './index.module.scss';
 
 class CodeBox extends React.Component {
-    state = { viewRaw: true };
+    state = { viewRaw: true, isNoscript: true };
     componentDidMount() {
-        this.setState({ viewRaw: false });
+        this.setState({ viewRaw: false, isNoscript: false });
     }
     viewRaw = e => {
         const checked = e.target.checked;
@@ -39,6 +39,12 @@ class CodeBox extends React.Component {
             </code>
         </pre>
     )
+    renderSwitch = () => (
+        <label className={styles.checkbox}>
+            <input type="checkbox" checked={this.state.viewRaw} onChange={this.viewRaw} />
+            View raw data
+        </label>
+    )
     render() {
         const { children, small, language, title } = this.props;
         return (
@@ -47,10 +53,7 @@ class CodeBox extends React.Component {
                     {title && (
                         <h4 className={styles.title}>{title}</h4>
                     )}
-                    <label className={styles.checkbox}>
-                        <input type="checkbox" checked={this.state.viewRaw} onChange={this.viewRaw} />
-                        View raw data
-                    </label>
+                    {!this.state.isNoscript && this.renderSwitch()}
                 </div>
                 <div className={classNames({
                     [styles.codebox]: true,

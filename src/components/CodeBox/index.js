@@ -6,9 +6,13 @@ import ReactJson from 'react-json-view';
 import styles from './index.module.scss';
 
 class CodeBox extends React.Component {
-    state = { loaded: false };
+    state = { viewRaw: true };
     componentDidMount() {
-        this.setState({ loaded: !this.state.loaded });
+        this.setState({ viewRaw: false });
+    }
+    viewRaw = e => {
+        const checked = e.target.checked;
+        this.setState({ viewRaw: checked });
     }
     rawRender(children, language = 'json', small) {
         return (
@@ -30,10 +34,14 @@ class CodeBox extends React.Component {
         const { children, small, language, title } = this.props;
         return (
             <div className={styles.container}>
+                <label>
+                    <input type="checkbox" value={this.state.viewRaw} onChange={this.viewRaw} />
+                    View raw data
+                </label>
                 {title && (
                     <h4 className={styles.title}>{title}</h4>
                 )}
-                {this.state.loaded ? this.explorerRender(children) : this.rawRender(children, language, small)}
+                {this.state.viewRaw ? this.rawRender(children, language, small) : this.explorerRender(children)}
             </div>
         )
     }

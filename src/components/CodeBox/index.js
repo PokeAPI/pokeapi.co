@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import ReactJson from 'react-json-view';
+import JSONTree from 'react-json-tree';
 
 import styles from './index.module.scss';
 
@@ -22,13 +22,19 @@ class CodeBox extends React.Component {
     renderExplorer = children => (
         <pre>
             <code>
-                <ReactJson
-                    src={JSON.parse(children)}
-                    name={false}
-                    enableClipboard={false}
-                    displayDataTypes={false}
-                    displayObjectSize={false}
-                    style={{ fontFamily: 'inherit' }}
+                <JSONTree
+                    data={JSON.parse(children)}
+                    keyPath={[]}
+                    invertTheme={false}
+                    theme={{
+                        base00: 'transparent',
+                        base03: '#aaa',
+                        base08: '#78a960',
+                        base09: '#800',
+                        base0B: '#800',
+                        base0D: '#444',
+                    }}
+                    shouldExpandNode={() => true}
                 />
             </code>
         </pre>

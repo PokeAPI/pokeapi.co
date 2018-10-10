@@ -1,3 +1,4 @@
+import resourceLists from './resource-lists.json';
 import berries from './berries.json';
 import contests from './contests.json';
 import encounters from './encounters.json';
@@ -8,10 +9,16 @@ import locations from './locations.json';
 import machines from './machines.json';
 import moves from './moves.json';
 import pokemon from './pokemon.json';
-import resourceLists from './resource-lists.json';
 import utility from './utility.json';
 
 export default [
+    {
+        name: 'Resource Lists',
+        resources: resourceLists,
+    },
+    {
+        separator: true,
+    },
     {
         name: 'Berries',
         resources: berries,
@@ -52,6 +59,11 @@ export default [
         name: 'Pokemon',
         resources: pokemon,
     },
+    {
+        separator: true,
+    },
+    {
+        name: 'Utility',
+        resources: utility,
+    },
 ];
-
-export {resourceLists, utility};

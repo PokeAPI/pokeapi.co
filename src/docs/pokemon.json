@@ -467,7 +467,7 @@
     },
     {
         "name": "Natures",
-        "description": "Natures influence how a Pokémon's stats grow. See [(http://bulbapedia.bulbagarden.net/wiki/Nature) for greater detail.",
+        "description": "Natures influence how a Pokémon's stats grow. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Nature) for greater detail.",
         "exampleRequest": "/v2/nature/{id or name}/",
         "exampleResponse": {
             "id": 2,
@@ -1764,7 +1764,7 @@
                     },
                     {
                         "name": "flavor_text_entries",
-                        "description": "flavor_text_entries.",
+                        "description": "A list of flavor text entries for this Pokémon species.",
                         "type": {
                              "type": "list",
                              "of": "FlavorText"

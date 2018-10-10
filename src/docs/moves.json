@@ -180,7 +180,7 @@
                         "name": "effect_entries",
                         "description": "The effect of this move listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "VerboseEffect"
                         }
                     },
@@ -188,7 +188,7 @@
                         "name": "effect_changes",
                         "description": "The list of previous effects this move has had across version groups of the games.",
                         "type": {
-                            "type": "list  ",
+                            "type": "list",
                             "of": "AbilityEffectChange"
                         }
                     },
@@ -196,7 +196,7 @@
                         "name": "flavor_text_entries",
                         "description": "The flavor text of this move listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "MoveFlavorText"
                         }
                     },
@@ -212,7 +212,7 @@
                         "name": "machines",
                         "description": "A list of the machines that teach this move.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "MachineVersionDetail"
                         }
                     },
@@ -225,7 +225,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     },
@@ -233,7 +233,7 @@
                         "name": "past_values",
                         "description": "A list of move resource value changes across version groups of the game.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "PastMoveStatValues"
                         }
                     },
@@ -241,7 +241,7 @@
                         "name": "stat_changes",
                         "description": "A list of stats this moves effects and how much it effects them.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "MoveStatChange"
                         }
                     },
@@ -293,7 +293,7 @@
                         "name": "use_before",
                         "description": "A list of moves to use before this move.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "NamedAPIResource"
                         }
                     },
@@ -301,7 +301,7 @@
                         "name": "use_after",
                         "description": "A list of moves to use after this move.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "NamedAPIResource"
                         }
                     }
@@ -449,7 +449,7 @@
                         "name": "effect_entries",
                         "description": "The effect of this move listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "VerboseEffect"
                         }
                     },
@@ -510,7 +510,7 @@
                         "name": "moves",
                         "description": "A list of moves that cause this ailment.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "Move"
@@ -521,7 +521,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     }
@@ -562,7 +562,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     }
@@ -607,7 +607,7 @@
                         "name": "moves",
                         "description": "A list of moves that fall into this category.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "Move"
@@ -618,7 +618,7 @@
                         "name": "descriptions",
                         "description": "The description of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Description"
                         }
                     }
@@ -663,7 +663,7 @@
                         "name": "descriptions",
                         "description": "The description of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Description"
                         }
                     },
@@ -671,7 +671,7 @@
                         "name": "moves",
                         "description": "A list of moves that fall into this damage class.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "Move"
@@ -682,7 +682,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     }
@@ -734,7 +734,7 @@
                         "name": "descriptions",
                         "description": "The description of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Description"
                         }
                     },
@@ -742,7 +742,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     },
@@ -750,7 +750,7 @@
                         "name": "version_groups",
                         "description": "A list of version groups where moves can be learned through this method.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "VersionGroup"
@@ -805,7 +805,7 @@
                         "name": "descriptions",
                         "description": "The description of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Description"
                         }
                     },
@@ -813,7 +813,7 @@
                         "name": "moves",
                         "description": "A list of moves that that are directed at this target.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "Move"
@@ -824,7 +824,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     }

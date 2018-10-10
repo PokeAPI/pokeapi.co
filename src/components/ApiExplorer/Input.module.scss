@@ -1,3 +1,5 @@
+@import 'colors.scss';
+
 $mobile-breakpoint: 30em;
 
 .container {
@@ -20,8 +22,8 @@ $mobile-breakpoint: 30em;
     z-index: 2;
     font-size: 1em;
     // @media (max-width: $mobile-breakpoint) {
-        // flex: 1;
-        // min-width: 100%;
+    // flex: 1;
+    // min-width: 100%;
     // }
 }
 .input {
@@ -39,7 +41,6 @@ $mobile-breakpoint: 30em;
     }
 }
 
-$button-color: #1b95e0;
 .button {
     background-color: $button-color;
     color: white;

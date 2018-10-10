@@ -1,0 +1,28 @@
+@import 'colors.scss';
+
+.toc {
+    padding: 0;
+    margin: 0;
+}
+.entry {
+    font-weight: normal;
+    padding: 0 0.5rem;
+
+    &.separator {
+        height: 1px;
+        width: 50%;
+        background-color: $border-color;
+        margin: 0.5em;
+    }
+
+    &.active > a {
+        margin-left: -0.4em;
+        padding: 1px 0.35em 1px calc(0.4em - 2px);
+        border-left: 2px solid $link-color;
+        background: transparentize($link-color, 0.9);
+    }
+
+    & > .toc {
+        padding-left: 0.5em;
+    }
+}

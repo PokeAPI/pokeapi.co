@@ -16,32 +16,45 @@ class CodeBox extends React.Component {
     }
     rawRender(children, language = 'json', small) {
         return (
-            <SyntaxHighlighter
-                language={language}
-                className={classNames({
-                    [styles.codebox]: true,
-                    [styles.small]: small,
-                })}
-            >
+            <SyntaxHighlighter language={language}>
                 {children}
             </SyntaxHighlighter>
         )
     }
     explorerRender(children) {
-        return <ReactJson src={JSON.parse(children)} collapsed={1} />
+        return (
+            <pre>
+                <code>
+                    <ReactJson src={JSON.parse(children)} collapsed={1} style={{
+                        fontFamily: 'inherit',
+                    }} />
+                </code>
+            </pre>
+        )
     }
     render() {
         const { children, small, language, title } = this.props;
         return (
             <div className={styles.container}>
-                <label>
-                    <input type="checkbox" value={this.state.viewRaw} onChange={this.viewRaw} />
-                    View raw data
-                </label>
-                {title && (
-                    <h4 className={styles.title}>{title}</h4>
-                )}
-                {this.state.viewRaw ? this.rawRender(children, language, small) : this.explorerRender(children)}
+                <div className={styles.header}>
+                    {title && (
+                        <h4 className={styles.title}>{title}</h4>
+                    )}
+                    <label className={styles.checkbox}>
+                        <input type="checkbox" value={this.state.viewRaw} onChange={this.viewRaw} />
+                        View raw data
+                    </label>
+                </div>
+                <div className={classNames({
+                    [styles.codebox]: true,
+                    [styles.small]: small,
+                })}>
+                    {this.state.viewRaw ? (
+                        this.rawRender(children, language, small)
+                        ) : (
+                        this.explorerRender(children)
+                    )}
+                </div>
             </div>
         )
     }

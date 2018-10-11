@@ -2,9 +2,8 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 
-import CodeBox from '../CodeBox';
+import JsonViewer from '../JsonViewer';
 import makeId from '../../utils/makeId';
-
 import styles from './DocSection.module.scss';
 
 const scalarTypes = ['string', 'integer', 'boolean'];
@@ -56,12 +55,14 @@ const DocSection = ({
             </p>
         )}
         {exampleResponse && (
-            <CodeBox language="json" small title="Example Response">
-                {JSON.stringify(exampleResponse, null, 2).replace(
-                    /\$BASE_URL/g,
-                    rootUrl + baseUrl
+            <JsonViewer
+                data={JSON.parse(
+                    JSON.stringify(exampleResponse, null, 2).replace(
+                        /\$BASE_URL/g,
+                        rootUrl + baseUrl
+                    )
                 )}
-            </CodeBox>
+            />
         )}
 
         {responseModels.map(model => (

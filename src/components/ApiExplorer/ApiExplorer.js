@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import fetch from 'cross-fetch';
-
-import CodeBox from '../CodeBox';
+import JsonViewer from '../JsonViewer';
 import LinkButton from '../LinkButton';
 
 import Input from './Input';
@@ -103,7 +101,8 @@ export default class ApiExplorer extends React.Component {
                     <Hint value="ability/4/" />.
                 </p>
                 <h2 className={styles.message}>{message}</h2>
-                <CodeBox small>{JSON.stringify(resourceData, null, 2)}</CodeBox>
+
+                <JsonViewer data={resourceData} />
             </div>
         );
     }

@@ -7,7 +7,7 @@
         "comment3": "Possible levels are 'info', 'important' and 'success'. The default is 'info'."
     },
     {
-        "message": "**Notice:** Support for PokéAPI version 1 will end on 15 October 2018. If you're still using it, please switch to v2. [Read more...](/docs/v1.html)"
+        "message": "**Notice:** Support for PokéAPI version 1 ended on 15 October 2018. [Read more...](/docs/v1.html)"
     },
     {
         "level": "important",

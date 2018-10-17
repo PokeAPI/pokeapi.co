@@ -321,10 +321,10 @@
                     },
                     {
                         "name": "version_group",
-                        "description": "version.",
+                        "description": "The version group which uses this flavor text.",
                         "type": {
                              "type": "NamedAPIResource",
-                             "of": "The version group which uses this flavor text"
+                             "of": "VersionGroup"
                          }
                     }
                 ]

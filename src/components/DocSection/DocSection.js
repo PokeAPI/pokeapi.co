@@ -7,16 +7,17 @@ import makeId from '../../utils/makeId';
 
 import styles from './DocSection.module.scss';
 
+const scalarTypes = ['string', 'integer', 'boolean'];
+
 const Type = ({type}) => {
-    if (type === 'string' || type === 'integer') {
+    if (scalarTypes.includes(type)) {
         return type;
     }
     if (typeof type === 'object') {
         if (type.type === 'list') {
             return (
                 <Fragment>
-                    list&nbsp;
-                    <Type type={type.of} />
+                    list <Type type={type.of} />
                 </Fragment>
             );
         }

@@ -55,7 +55,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     },
@@ -63,7 +63,7 @@
                         "name": "game_indices",
                         "description": "A list of game indices relevent to this location by generation.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "GenerationGameIndex"
                         }
                     },
@@ -71,7 +71,7 @@
                         "name": "areas",
                         "description": "Areas that can be found within this location.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "LocationArea"
@@ -161,7 +161,7 @@
                         "name": "encounter_method_rates",
                         "description": "A list of methods in which Pokémon may be encountered in this area and how likely the method will occur depending on the version of the game.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "EncounterMethodRate"
                         }
                     },
@@ -177,7 +177,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     },
@@ -185,7 +185,7 @@
                         "name": "pokemon_encounters",
                         "description": "A list of Pokémon that can be encountered in this area along with version specific details about the encounter.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "PokemonEncounter"
                         }
                     }
@@ -206,7 +206,7 @@
                         "name": "version_details",
                         "description": "The chance of the encounter to occur on a version of the game.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "EncounterVersionDetails"
                         }
                     }
@@ -245,7 +245,7 @@
                         "name": "version_details",
                         "description": "A list of versions and encounters with Pokémon that might happen in the referenced location area.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "VersionEncounterDetail"
                         }
                     }
@@ -294,7 +294,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     },
@@ -302,7 +302,7 @@
                         "name": "pokemon_encounters",
                         "description": "A list of Pokémon encountered in thi pal park area along with details.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "PalParkEncounterSpecies"
                         }
                     }
@@ -377,7 +377,7 @@
                         "name": "locations",
                         "description": "A list of locations that can be found in this region.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "Location"
@@ -393,7 +393,7 @@
                         "name": "names",
                         "description": "The name of this resource listed in different languages.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": "Name"
                         }
                     },
@@ -409,7 +409,7 @@
                         "name": "pokedexes",
                         "description": "A list of pokédexes that catalogue Pokémon in this region.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "Pokedex"
@@ -420,7 +420,7 @@
                         "name": "version_groups",
                         "description": "A list of version groups where this region can be visited.",
                         "type": {
-                            "type": "list ",
+                            "type": "list",
                             "of": {
                                 "type": "NamedAPIResource",
                                 "of": "VersionGroup"

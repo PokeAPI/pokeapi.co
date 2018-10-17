@@ -1,6 +1,6 @@
 [
     {
-        "name": "Un-named API Resource Lists",
+        "name": "Un-named",
         "exampleRequest": "/v2/{endpoint}/",
         "exampleResponse": {
             "count": 365,
@@ -42,7 +42,7 @@
         ]
     },
     {
-        "name": "Named API Resource Lists",
+        "name": "Named",
         "exampleRequest": "/v2/{endpoint}/",
         "exampleResponse": {
             "count": 248,
@@ -55,7 +55,7 @@
         },
         "responseModels": [
             {
-                "name": "APIResourceList",
+                "name": "NamedAPIResourceList",
                 "fields": [
                     {
                         "name": "count",

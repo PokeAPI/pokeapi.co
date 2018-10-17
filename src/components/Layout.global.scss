@@ -8,7 +8,6 @@ html {
     * {
         box-sizing: inherit;
     }
-    cursor: auto;
 }
 
 /* Sticky footer (see https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/)
@@ -68,4 +67,13 @@ th, td {
 
 h2 {
     border-bottom: 1px solid $border-color;
+}
+
+// Reset sanitize.css's weird design choices regarding cursors
+html,
+[aria-busy='true'],
+[aria-controls],
+[aria-disabled],
+[disabled] {
+    cursor: auto;
 }

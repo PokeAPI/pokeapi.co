@@ -123,11 +123,12 @@ export default ({location}) => (
                     to the main series of games.
                 </p>
                 <p>
-                    In 2018, Paul decided to hand over the project to the
-                    community. A group of contributors came together and
+                    During summer 2018, Paul decided to hand over the project to
+                    the community. A group of contributors came together and
                     converted the API to serve static JSON files to improve
                     performance and cut down on hosting costs. This website was
-                    also re-built at the same time.
+                    also re-built at the same time. This process was completed
+                    in October 2018.
                 </p>
                 <p>
                     We have a{' '}
@@ -186,7 +187,7 @@ export default ({location}) => (
             </Faq>
             <Faq title="What's the technology stack?">
                 <p>
-                    Up until autumn 2018, the API and website were built
+                    Up until November 2018, the API and website were built
                     together in a single{' '}
                     <a href="https://python.org" target="none">
                         Python
@@ -210,13 +211,15 @@ export default ({location}) => (
                 </p>
 
                 <p>
-                    In autumn 2018, a group of contributors came together and
-                    converted the API to serve static JSON files in a fully
-                    backwards compatible manner. This allowed PokéAPI to move
-                    its hosting to a cheap static server (Netlify!), which
-                    increased performance and stability by a huge margin. At the
-                    same time, support for v1 of the API was dropped and this
-                    website was converted to a static site using{' '}
+                    In October 2018, the API was converted to serve static JSON
+                    files in a fully backwards compatible manner. This allowed
+                    PokéAPI to move its hosting to a cheap static hosting
+                    solution (Firebase Hosting), which increased performance and
+                    stability by a huge margin. At the same time,{' '}
+                    <Link to="/docs/v1.html">
+                        support for version 1 of the API was dropped
+                    </Link>{' '}
+                    and this website was converted to a static site using{' '}
                     <a href="https://www.gatsbyjs.org" target="none">
                         Gatsby
                     </a>{' '}
@@ -229,8 +232,10 @@ export default ({location}) => (
                 </p>
                 <p>
                     The move to static hosting was solved by introducing a build
-                    step before deployment. This build step saves each possible endpoint as a JSON file using{' '}
-                    <a href="https://github.com/PokeAPI/ditto">ditto</a>, and it is these JSON files that are served from Netlify's CDN.
+                    step before deployment. This build step saves each possible
+                    endpoint from the Django project as a JSON file using{' '}
+                    <a href="https://github.com/PokeAPI/ditto">ditto</a>, and it
+                    is these JSON files that are served from Firebase's CDN.
                 </p>
             </Faq>
         </Container>

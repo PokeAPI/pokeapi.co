@@ -11,8 +11,7 @@ jobs:
     - checkout
     - run: npm install
     - run: npm run build
-    # - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN --project=$FIREBASE_PROJECT_ID
-    - run: tar czf static_website.tar.gz public/*
+    - run: tar czf static_website.tar.gz -C public .
     - store_artifacts:
         path: static_website.tar.gz
 

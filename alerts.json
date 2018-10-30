@@ -7,15 +7,7 @@
         "comment3": "Possible levels are 'info', 'important' and 'success'. The default is 'info'."
     },
     {
-        "message": "**Notice:** Support for PokéAPI version 1 ended on 15 October 2018. [Read more...](/docs/v1.html)"
-    },
-    {
-        "level": "important",
-        "message": "**Outage Alert:** Pagination with `offset`/`limit` for PokéAPI v2 is temporarily broken. [Read more...](https://github.com/PokeAPI/pokeapi/issues/372)"
-    },
-    {
-        "active": false,
         "level": "success",
-        "message": "**Notice:** PokéAPI v2 is back up and the migration to static hosting is complete. It is now much faster and more reliable."
+        "message": "**Notice:** PokéAPI v2 is fully back up and the migration to static hosting is complete.\n\nIf there's anything amiss, please [submit an issue on GitHub](https://github.com/PokeAPI/pokeapi/issues)."
     }
 ]

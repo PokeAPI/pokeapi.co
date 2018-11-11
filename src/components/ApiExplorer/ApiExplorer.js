@@ -26,7 +26,7 @@ export default class ApiExplorer extends React.Component {
         });
         fetch(this.props.baseApiUrl + url, {
             mode: 'cors',
-            cache: 'force-cached',
+            cache: 'force-cache',
         })
             .then(res => {
                 if (res.status === 404) {

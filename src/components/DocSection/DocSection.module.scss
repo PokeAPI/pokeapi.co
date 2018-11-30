@@ -5,20 +5,26 @@
 
 .table {
     width: 100%;
+    max-width: 100%;
     font-size: 0.9em;
 
     th, td {
         padding: 0.25em 0.5em;
         text-align: left;
     }
+
+    p, h1, h2, h3 {
+        margin: 0;
+    }
 }
 
 .name_column {
-    width: 8.75em;
     max-width: 8.75em;
 }
+.desc_column {
+    min-width: 50%;
+}
 .type_column {
-    width: 11em;
     max-width: 11em;
 }
 

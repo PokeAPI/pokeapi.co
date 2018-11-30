@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 
+import addWordBreaks from '../../utils/addWordBreaks';
 import JsonViewer from '../JsonViewer';
 import makeId from '../../utils/makeId';
 import styles from './DocSection.module.scss';
@@ -26,7 +27,7 @@ const Type = ({type}) => {
             </Fragment>
         );
     }
-    return <a href={'#' + makeId(type)}>{type}</a>;
+    return <a href={'#' + makeId(type)}>{addWordBreaks(type)}</a>;
 };
 
 const DocSection = ({
@@ -81,8 +82,12 @@ const DocSection = ({
                     <tbody>
                         {model.fields.map(field => (
                             <tr key={field.name}>
-                                <td>{field.name}</td>
-                                <td>{field.description}</td>
+                                <td>{addWordBreaks(field.name)}</td>
+                                <td
+                                    dangerouslySetInnerHTML={{
+                                        __html: marked(field.description),
+                                    }}
+                                />
                                 <td>
                                     <Type type={field.type} />
                                 </td>

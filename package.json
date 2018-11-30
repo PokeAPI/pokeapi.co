@@ -28,6 +28,7 @@
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-helmet": "^5.2.0",
+        "react-html-id": "^0.1.5",
         "react-json-tree": "^0.11.0",
         "react-syntax-highlighter": "^8.0.1",
         "sanitize.css": "^7.0.3"

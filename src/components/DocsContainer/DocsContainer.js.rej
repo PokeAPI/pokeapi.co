@@ -1,9 +1,0 @@
-diff a/src/components/DocsContainer/DocsContainer.js b/src/components/DocsContainer/DocsContainer.js	(rejected hunks)
-@@ -14,6 +14,7 @@
-                 <TableOfContents entries={toc} />
-             </div>
-         </nav>
-+        <div className={styles.content}>{children}</div>
-     </Container>
- );
- 

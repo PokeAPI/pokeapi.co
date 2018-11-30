@@ -1,0 +1,11 @@
+@import 'colors.scss';
+
+.arrow {
+    display: inline-block;
+    margin: 0 0.65em 0 0.75em;
+
+    &::before {
+        content: '▶';
+        color: $button-color;
+    }
+}

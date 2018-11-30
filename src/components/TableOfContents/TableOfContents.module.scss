@@ -1,17 +1,8 @@
-@import 'sizes.scss';
 @import 'colors.scss';
 
-.container {
-    position: sticky;
-    top: $site-header-height;
-    font-size: 0.9em;
-    max-height: calc(100vh - #{$site-header-height});
-    overflow-y: auto;
-    padding: 2em 1em;
-}
 .toc {
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 .entry {
     font-weight: normal;
@@ -19,21 +10,16 @@
 
     &.separator {
         height: 1px;
-		width: 50%;
-		background-color: $border-color;
-		margin: 0.5em;
+        width: 50%;
+        background-color: $border-color;
+        margin: 0.5em;
     }
 
-    &.active {
-        // background-color: transparentize(lighten($link-color, 25%), 0.85);
-
-        & > a {
-            margin-left: -0.4em;
-            padding: 1px 0.35em 1px calc(0.4em - 2px);
-            // padding-left: calc(0.5em - 3px);
-            border-left: 2px solid $link-color;
-            background: transparentize($link-color, 0.9)
-        }
+    &.active > a {
+        margin-left: -0.4em;
+        padding: 1px 0.35em 1px calc(0.4em - 2px);
+        border-left: 2px solid $link-color;
+        background: transparentize($link-color, 0.9);
     }
 
     & > .toc {

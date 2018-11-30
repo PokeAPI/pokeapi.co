@@ -1,10 +1,8 @@
 import React, {Fragment} from 'react';
-// import {Link} from 'gatsby';
 
 import Layout from '../../components/Layout';
 import DocsContainer from '../../components/DocsContainer';
 import DocSection from '../../components/DocSection';
-import TableOfContents from '../../components/TableOfContents';
 import makeId from '../../utils/makeId';
 
 import docs, {resourceLists, utility} from '../../docs';
@@ -12,31 +10,31 @@ import docs, {resourceLists, utility} from '../../docs';
 let toc = docs.map(doc => {
     return {
         name: doc.name,
-        url: '#' + makeId(doc.name) + '-section',
+        id: makeId(doc.name) + '-section',
         children: doc.resources.map(resource => {
             return {
                 name: resource.name,
-                url: '#' + makeId(resource.name),
+                id: makeId(resource.name),
             };
         }),
     };
 });
 toc = [
-    {name: 'Information', url: '#info'},
-    {name: 'Fair Use Policy', url: '#fairuse'},
-    {name: 'Slack', url: '#slack'},
-    {name: 'Wrapper Libraries', url: '#wrap'},
-    {separator: true, name: '', url: ''},
-    {name: 'Resource Lists', url: '#resource-lists'},
-    {separator: true, name: '', url: 'y'},
+    {name: 'Information', id: 'info'},
+    {name: 'Fair Use Policy', id: 'fairuse'},
+    {name: 'Slack', id: 'slack'},
+    {name: 'Wrapper Libraries', id: 'wrap'},
+    {separator: true, name: '', id: ''},
+    {name: 'Resource Lists', id: 'resource-lists'},
+    {separator: true, name: '', id: 'y'},
     ...toc,
-    {separator: true, name: '', url: 'z'},
-    {name: 'Utility', url: '#utility-section'},
+    {separator: true, name: '', id: 'z'},
+    {name: 'Utility', id: 'utility-section'},
 ];
 
 export default ({location}) => (
     <Layout location={location}>
-        <DocsContainer TOC={() => <TableOfContents toc={toc} />}>
+        <DocsContainer toc={toc}>
             <h2 id="info">Information</h2>
             <p>
                 This is a <strong>consumption-only</strong> API—only the HTTP

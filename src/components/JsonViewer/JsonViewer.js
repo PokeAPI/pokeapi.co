@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import JSONTree from 'react-json-tree';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
@@ -23,6 +22,36 @@ export default class JsonViewer extends React.Component {
     handleInput = event => {
         this.setState({viewRaw: event.target.checked});
     };
+    renderStaticView(plainJson) {
+        return (
+            <SyntaxHighlighter
+                language="json"
+                className={styles.code}
+                style={tomorrowStyle}
+            >
+                {plainJson}
+            </SyntaxHighlighter>
+        );
+    }
+    renderDynamicView(data) {
+        return (
+            <JSONTree
+                data={data}
+                hideRoot
+                theme={tomorrowTheme}
+                shouldExpandNode={(keyName, data, level) =>
+                    // Collapse long arrays, large objects (except array items),
+                    // and arrays that are direct children of array items
+                    !(
+                        (Array.isArray(data) && data.length > 3) ||
+                        (!Number.isInteger(keyName[0]) &&
+                            Object.keys(data).length > 3) ||
+                        (Number.isInteger(keyName[1]) && Array.isArray(data))
+                    )
+                }
+            />
+        );
+    }
     render() {
         const {mounted, viewRaw} = this.state;
         const {data = null} = this.props;
@@ -34,47 +63,17 @@ export default class JsonViewer extends React.Component {
 
         return (
             <div className={styles.jsonviewer}>
-                <div
-                    className={classNames({
-                        [styles.hidden]: !viewRaw,
-                        [styles.json]: true,
-                    })}
-                >
-                    <SyntaxHighlighter
-                        language="json"
-                        className={styles.code}
-                        style={tomorrowStyle}
-                    >
-                        {plainJson}
-                    </SyntaxHighlighter>
+                <div className={styles.json}>
+                    {viewRaw
+                        ? this.renderStaticView(plainJson)
+                        : this.renderDynamicView(data)}
                 </div>
-                <div
-                    className={classNames({
-                        [styles.hidden]: viewRaw || !mounted,
-                        [styles.json]: true,
-                    })}
-                >
-                    <JSONTree
-                        data={data}
-                        hideRoot
-                        theme={tomorrowTheme}
-                        shouldExpandNode={(keyName, data, level) =>
-                            // Collapse long arrays, large objects (except array items),
-                            // and arrays that are direct children of array items
-                            !(
-                                (Array.isArray(data) && data.length > 3) ||
-                                (!Number.isInteger(keyName[0]) &&
-                                    Object.keys(data).length > 3) ||
-                                (Number.isInteger(keyName[1]) &&
-                                    Array.isArray(data))
-                            )
-                        }
-                    />
-                </div>
-
-
                 <div className={styles.toolbar}>
-                    <label title={!mounted ? 'Disabled until JavaScript loads' : null}>
+                    <label
+                        title={
+                            !mounted ? 'Disabled until JavaScript loads' : null
+                        }
+                    >
                         <input
                             type="checkbox"
                             checked={this.state.viewRaw}

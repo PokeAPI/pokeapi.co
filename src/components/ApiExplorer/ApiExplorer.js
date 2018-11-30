@@ -4,7 +4,7 @@ import JsonViewer from '../JsonViewer';
 import LinkButton from '../LinkButton';
 
 import Input from './Input';
-import bulbasaur from './bulbasaur.json';
+import ditto from './ditto.json';
 import styles from './ApiExplorer.module.scss';
 
 export default class ApiExplorer extends React.Component {
@@ -12,8 +12,8 @@ export default class ApiExplorer extends React.Component {
         baseApiUrl: PropTypes.string.isRequired,
     };
     state = {
-        resourceUrl: 'pokemon/1/',
-        resourceData: bulbasaur,
+        resourceUrl: 'pokemon/ditto/',
+        resourceData: ditto,
         notFound: false,
         error: null,
         isLoading: false,
@@ -26,7 +26,7 @@ export default class ApiExplorer extends React.Component {
         });
         fetch(this.props.baseApiUrl + url, {
             mode: 'cors',
-            cache: 'force-cached',
+            cache: 'force-cache',
         })
             .then(res => {
                 if (res.status === 404) {
@@ -63,6 +63,9 @@ export default class ApiExplorer extends React.Component {
             this.fetchResource(value);
         };
     };
+    componentDidMount() {
+        this.fetchResource(this.state.resourceUrl);
+    }
     render() {
         const {
             isLoading,
@@ -96,8 +99,8 @@ export default class ApiExplorer extends React.Component {
                     onSubmit={value => this.fetchResource(value)}
                 />
                 <p className={styles.hint_sentence}>
-                    Need a hint? Try <Hint value="pokemon/1/" />,{' '}
-                    <Hint value="pokemon/ditto/" /> , <Hint value="type/3/" /> or{' '}
+                    Need a hint? Try <Hint value="pokemon/ditto/" />,{' '}
+                    <Hint value="pokemon/1/" /> , <Hint value="type/3/" /> or{' '}
                     <Hint value="ability/4/" />.
                 </p>
                 <h2 className={styles.message}>{message}</h2>

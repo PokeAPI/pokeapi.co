@@ -1107,7 +1107,7 @@
                     },
                     {
                         "name": "base_stat",
-                        "description": "The base value of the stst.",
+                        "description": "The base value of the stat.",
                         "type": "integer"
                     }
                 ]

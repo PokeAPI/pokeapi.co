@@ -2,7 +2,7 @@
     {
         "name": "Locations",
         "description": "Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.",
-        "exampleRequest": "/v2/location/{id}/",
+        "exampleRequest": "/v2/location/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "canalave-city",
@@ -85,7 +85,7 @@
     {
         "name": "Location Areas",
         "description": "Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.",
-        "exampleRequest": "/v2/location-area/{id}/",
+        "exampleRequest": "/v2/location-area/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "canalave-city-area",

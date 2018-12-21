@@ -169,8 +169,8 @@
                         "name": "location",
                         "description": "The region this location can be found in.",
                         "type": {
-                            "type": "NamedAPIResource ",
-                            "of": "Region"
+                            "type": "NamedAPIResource",
+                            "of": "Location"
                         }
                     },
                     {

@@ -161,6 +161,14 @@
                              "type": "NamedAPIResource",
                              "of": "Language"
                          }
+                    },
+                    {
+                        "name": "version",
+                        "description": "The game version this flavor text is extracted from.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Version"
+                         }
                     }
                 ]
             },

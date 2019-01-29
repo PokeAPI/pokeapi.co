@@ -106,7 +106,7 @@ export default ({location}) => (
                     weekend project but it quickly became more than a weekend's
                     worth of work. In{' '}
                     <a
-                        href="https://phalt.co/if-you-have-data-they-will-consume-it/"
+                        href="https://phalt.github.io/posts/if-you-have-data-they-will-consume-it/"
                         target="none"
                     >
                         December of 2014

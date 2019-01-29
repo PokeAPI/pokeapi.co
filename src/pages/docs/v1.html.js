@@ -7,15 +7,6 @@ import Container from '../../components/Container';
 export default ({location}) => (
     <Layout location={location}>
         <Container isNarrow>
-            <h1>v1 Docs</h1>
-            <ul>
-                <li>
-                    <Link to="/docs/v1.html">v1</Link>
-                </li>
-                <li>
-                    <Link to="/docs/v2.html">v2</Link>
-                </li>
-            </ul>
             <h2>End of support</h2>
             <p>
                 After careful deliberation, we have decided to end support for
@@ -47,6 +38,10 @@ export default ({location}) => (
                     this GitHub issue
                 </a>
                 .
+            </p>
+            <h2>v2 Docs</h2>
+            <p>
+                Use the up to date <Link to="/docs/v2.html">v2</Link> API instead.
             </p>
         </Container>
     </Layout>

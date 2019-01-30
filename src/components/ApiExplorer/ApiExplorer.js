@@ -20,6 +20,7 @@ export default class ApiExplorer extends React.Component {
     };
     fetchResource = url => {
         this.setState({
+            resourceUrl: url,
             isLoading: true,
             notFound: false,
             error: null,
@@ -39,8 +40,7 @@ export default class ApiExplorer extends React.Component {
                         error: `${res.status} ${res.statusText}`,
                         isLoading: false,
                     });
-                }
-                return res.json();
+                } else res.json();
             })
             .then(data => {
                 this.setState({
@@ -83,7 +83,7 @@ export default class ApiExplorer extends React.Component {
         } else if (isLoading) {
             message = 'Loading...';
         } else {
-            message = `Resource for ${resourceData.name}`;
+            message = `Resource for ${resourceData.name || resourceUrl}`;
         }
 
         const Hint = ({value}) => (

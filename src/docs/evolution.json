@@ -19,7 +19,7 @@
                         "name": "raticate",
                         "url": "$BASE_URL/v2/pokemon-species/20/"
                     },
-                    "evolution_details": {
+                    "evolution_details": [{
                         "item": null,
                         "trigger": {
                             "name": "level-up",
@@ -41,7 +41,7 @@
                         "time_of_day": "",
                         "trade_species": null,
                         "turn_upside_down": false
-                    },
+                    }],
                     "evolves_to": []
                 }]
             }

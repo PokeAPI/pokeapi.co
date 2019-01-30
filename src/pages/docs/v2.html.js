@@ -101,7 +101,7 @@ export default ({location}) => (
                     by Thomas Asadurian and Alessandro Pezzé
                 </li>
                 <li>
-                    <strong>Browser-side with auto c aching</strong>:{' '}
+                    <strong>Browser-side with auto caching</strong>:{' '}
                     <a href="https://github.com/PokeAPI/pokeapi-js-wrapper">
                         pokeapi-js-wrapper
                     </a>{' '}

@@ -143,7 +143,7 @@ export default ({location}) => (
                 </p>
                 <ul>
                     <li>
-                        <a href="https://github.com/eevee" target="none">
+                        <a href="https://github.com/veekun" target="none">
                             Veekun
                         </a>{' '}
                         has a fantastic{' '}

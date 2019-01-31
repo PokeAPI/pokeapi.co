@@ -106,7 +106,7 @@ export default ({location}) => (
                     weekend project but it quickly became more than a weekend's
                     worth of work. In{' '}
                     <a
-                        href="https://phalt.co/if-you-have-data-they-will-consume-it/"
+                        href="https://phalt.github.io/posts/if-you-have-data-they-will-consume-it/"
                         target="none"
                     >
                         December of 2014
@@ -167,7 +167,7 @@ export default ({location}) => (
                         >
                             Bulbapedia
                         </a>{' '}
-                        has a tonne of extra information that proved useful when
+                        has a ton of extra information that proved useful when
                         designing models and documenting resources.
                     </li>
                 </ul>

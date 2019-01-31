@@ -37,21 +37,24 @@ export default ({location}) => (
         <DocsContainer toc={toc}>
             <h2 id="info">Information</h2>
             <p>
-                This is a <strong>consumption-only</strong> API—only the HTTP
+                This is a <strong>consumption-only</strong> API — only the HTTP
                 GET method is available on resources.
             </p>
             <p>
                 No authentication is required to access this API, and all
                 resources are fully open and available. Since the move to static
                 hosting in November 2018, rate limiting has been changed to a
-                fixed limit of 100 API requests per IP address per minute (this
+                fixed limit of
+                <strong>100 API requests per IP address per minute</strong> (this
                 does not include downloading image assets like sprites, which
                 are hosted elsewhere).
             </p>
             <p>
                 If you are going to be regularly using the API, we recommend
                 caching data on your service or deploying your own instance of
-                the API (jump on Slack ↓ for help with this).
+                the API (jump on{' '}
+                <a href="https://pokeapi-slack-invite.herokuapp.com/">Slack</a>{' '}
+                for help with this).
             </p>
 
             <h2 id="fairuse">Fair Use Policy</h2>
@@ -98,18 +101,25 @@ export default ({location}) => (
                     by Thomas Asadurian and Alessandro Pezzé
                 </li>
                 <li>
-                    <strong>Browser-side with auto c aching</strong>:{' '}
+                    <strong>Browser-side with auto caching</strong>:{' '}
                     <a href="https://github.com/PokeAPI/pokeapi-js-wrapper">
                         pokeapi-js-wrapper
                     </a>{' '}
                     by Alessandro Pezzé
                 </li>
                 <li>
-                    <strong>Python with auto caching</strong>:{' '}
+                    <strong>Python 3 with auto caching</strong>:{' '}
                     <a href="https://github.com/GregHilmes/pokebase">
                         PokeBase
                     </a>{' '}
                     by Greg Hilmes
+                </li>
+                <li>
+                    <strong>Python 2/3 with auto caching</strong>:{' '}
+                    <a href="https://github.com/PokeAPI/pokepy">
+                        Pokepy
+                    </a>{' '}
+                    by Paul Hallett
                 </li>
                 <li>
                     <strong>Kotlin (and Java)</strong>:{' '}

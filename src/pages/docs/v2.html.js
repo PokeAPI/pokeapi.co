@@ -7,29 +7,33 @@ import makeId from '../../utils/makeId';
 
 import docs, {resourceLists, utility} from '../../docs';
 
-let toc = docs.map(doc => {
+function convert(doc) {
     return {
         name: doc.name,
-        id: makeId(doc.name) + '-section',
+        id: encodeURIComponent(makeId(doc.name) + '-section'),
         children: doc.resources.map(resource => {
             return {
                 name: resource.name,
-                id: makeId(resource.name),
+                id: encodeURIComponent(makeId(resource.name)),
             };
         }),
     };
-});
-toc = [
+}
+
+const toc = [
     {name: 'Information', id: 'info'},
     {name: 'Fair Use Policy', id: 'fairuse'},
     {name: 'Slack', id: 'slack'},
     {name: 'Wrapper Libraries', id: 'wrap'},
-    {separator: true, name: '', id: ''},
-    {name: 'Resource Lists', id: 'resource-lists'},
+
+    {separator: true, name: '', id: 'x'},
+    convert({name: 'Resource Lists', resources: resourceLists}),
+
     {separator: true, name: '', id: 'y'},
-    ...toc,
+    ...docs.map(convert),
+
     {separator: true, name: '', id: 'z'},
-    {name: 'Utility', id: 'utility-section'},
+    convert({name: 'Utility', resources: utility}),
 ];
 
 export default ({location}) => (
@@ -45,9 +49,9 @@ export default ({location}) => (
                 resources are fully open and available. Since the move to static
                 hosting in November 2018, rate limiting has been changed to a
                 fixed limit of
-                <strong>100 API requests per IP address per minute</strong> (this
-                does not include downloading image assets like sprites, which
-                are hosted elsewhere).
+                <strong>100 API requests per IP address per minute</strong>{' '}
+                (this does not include downloading image assets like sprites,
+                which are hosted elsewhere).
             </p>
             <p>
                 If you are going to be regularly using the API, we recommend
@@ -116,10 +120,8 @@ export default ({location}) => (
                 </li>
                 <li>
                     <strong>Python 2/3 with auto caching</strong>:{' '}
-                    <a href="https://github.com/PokeAPI/pokepy">
-                        Pokepy
-                    </a>{' '}
-                    by Paul Hallett
+                    <a href="https://github.com/PokeAPI/pokepy">Pokepy</a> by
+                    Paul Hallett
                 </li>
                 <li>
                     <strong>Kotlin (and Java)</strong>:{' '}
@@ -156,11 +158,11 @@ export default ({location}) => (
                 </li>
             </ul>
 
-            <h2 id="resource-lists">Resource Lists</h2>
+            <h2 id="resource-lists-section">Resource Lists and Pagination</h2>
             <p>
                 Calling any API endpoint without a resource ID or name will
                 return a paginated list of available resources for that API. By
-                default, a list 'page' will contain up to 20 resources. If you
+                default, a list "page" will contain up to 20 resources. If you
                 would like to change this just add a 'limit' query parameter,
                 e.g. <code>?limit=60</code>. You can use 'offset' to move to the
                 next page, e.g. <code>?limit=60&offset=60</code>.

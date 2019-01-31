@@ -24,7 +24,7 @@ export default ({location}) => (
             <h1>PokéAPI</h1>
             <h2>The RESTful Pokémon API</h2>
             <p>
-                Over <strong>431,313,100</strong> API calls received!
+                Serving over <strong>17,000,000</strong> API calls per month!
             </p>
         </Banner>
         <Alerts />

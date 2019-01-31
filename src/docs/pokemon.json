@@ -1181,7 +1181,7 @@
         ]
     },
     {
-        "name": "Pokémon Colors",
+        "name": "Pokemon Colors",
         "description": "Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.",
         "exampleRequest": "/v2/pokemon-color/{id or name}/",
         "exampleResponse": {
@@ -1237,7 +1237,7 @@
         ]
     },
     {
-        "name": "Pokémon Forms",
+        "name": "Pokemon Forms",
         "description": "Some Pokémon may appear in one of multiple, visually different forms. These differences are purely cosmetic. For variations within a Pokémon species, which do differ in more than just visuals, the 'Pokémon' entity is used to represent such a variety.",
         "exampleRequest": "/v2/pokemon-form/{id or name}/",
         "exampleResponse": {
@@ -1375,7 +1375,7 @@
         ]
     },
     {
-        "name": "Pokémon Habitats",
+        "name": "Pokemon Habitats",
         "description": "Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.",
         "exampleRequest": "/v2/pokemon-habitat/{id or name}/",
         "exampleResponse": {
@@ -1435,7 +1435,7 @@
         ]
     },
     {
-        "name": "Pokémon Shapes",
+        "name": "Pokemon Shapes",
         "description": "Shapes used for sorting Pokémon in a Pokédex.",
         "exampleRequest": "/v2/pokemon-shape/{id or name}/",
         "exampleResponse": {
@@ -1527,7 +1527,7 @@
         ]
     },
     {
-        "name": "Pokémon Species",
+        "name": "Pokemon Species",
         "description": "A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.",
         "exampleRequest": "/v2/pokemon-species/{id or name}/",
         "exampleResponse": {

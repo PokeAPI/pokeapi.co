@@ -40,7 +40,7 @@ export default class ApiExplorer extends React.Component {
                         error: `${res.status} ${res.statusText}`,
                         isLoading: false,
                     });
-                } else res.json();
+                } else return res.json();
             })
             .then(data => {
                 this.setState({
@@ -76,14 +76,17 @@ export default class ApiExplorer extends React.Component {
         } = this.state;
 
         let message;
+
         if (notFound) {
             message = 'Resource not found';
         } else if (error) {
             message = `An error occurred: "${error}"`;
         } else if (isLoading) {
             message = 'Loading...';
-        } else {
+        } else if (resourceData) {
             message = `Resource for ${resourceData.name || resourceUrl}`;
+        } else {
+            message = 'An unknown error occurred';
         }
 
         const Hint = ({value}) => (

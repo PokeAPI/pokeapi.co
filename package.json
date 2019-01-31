@@ -14,7 +14,7 @@
     "dependencies": {
         "classnames": "^2.2.6",
         "cross-fetch": "^2.2.2",
-        "gatsby": "next",
+        "gatsby": "2.0.83",
         "gatsby-plugin-google-analytics": "^2.0.6",
         "gatsby-plugin-manifest": "^2.0.2-rc.1",
         "gatsby-plugin-offline": "next",

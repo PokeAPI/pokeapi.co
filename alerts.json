@@ -8,6 +8,6 @@
     },
     {
         "level": "success",
-        "message": "**Notice:** PokéAPI v2 is fully back up and the migration to static hosting is complete.\n\nIf there's anything amiss, please [submit an issue on GitHub](https://github.com/PokeAPI/pokeapi/issues)."
+        "message": "**New Data:** PokéAPI has been successfully updated with new data, including from Ultra Sun and Ultra Moon."
     }
 ]

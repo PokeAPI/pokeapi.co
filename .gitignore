@@ -63,3 +63,5 @@ yarn-error.log
 
 .vscode
 .firebase/
+
+package-lock.json

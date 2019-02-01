@@ -132,6 +132,7 @@
     },
     {
         "name": "Berry Firmnesses",
+        "description": "Berries can be soft or hard. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Category:Berries_by_firmness) for greater detail.",
         "exampleRequest": "/v2/berry-firmness/{id or name}/",
         "exampleResponse": {
             "id": 1,

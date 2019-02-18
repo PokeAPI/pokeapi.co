@@ -13,7 +13,7 @@ const Footer = () => (
     >
         <div className={styles.container}>
             <p>
-                © 2013–2018{' '}
+                © 2013–2019{' '}
                 <a href="https://phalt.github.io/">Paul Hallet</a> and{' '}
                 <a href="https://github.com/PokeAPI/pokeapi#contributing">
                     PokéAPI contributors

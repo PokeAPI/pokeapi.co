@@ -98,6 +98,13 @@ export default ({location}) => (
             <h2 id="wrap">Wrapper Libraries</h2>
             <ul>
                 <li>
+                    <strong>Golang with auto caching</strong>:{' '}
+                    <a href="https://github.com/FlagBrew/golem">
+                        Golem
+                    </a>
+                    by FlagBrew
+                </li>
+                <li>
                     <strong>Node Server-side with auto caching</strong>:{' '}
                     <a href="https://github.com/PokeAPI/pokedex-promise-v2">
                         Pokedex Promise v2

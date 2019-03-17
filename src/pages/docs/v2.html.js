@@ -101,7 +101,7 @@ export default ({location}) => (
                     <strong>Golang with auto caching</strong>:{' '}
                     <a href="https://github.com/FlagBrew/golem">
                         Golem
-                    </a>
+                    </a>{' '}
                     by FlagBrew
                 </li>
                 <li>

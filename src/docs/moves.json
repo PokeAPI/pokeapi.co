@@ -334,7 +334,7 @@
                 ]
             },
             {
-                "name": "MoveAilment",
+                "name": "MoveMetaData",
                 "fields": [
                     {
                         "name": "ailment",
@@ -647,7 +647,7 @@
         },
         "responseModels": [
             {
-                "name": "ModelName",
+                "name": "MoveDamageClass",
                 "fields": [
                     {
                         "name": "id",

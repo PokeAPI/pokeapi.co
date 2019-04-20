@@ -440,7 +440,7 @@
                     {
                         "name": "accuracy",
                         "description": "The percent value of how likely this move is to be successful.",
-                        "type": "PastMoveStatValues"
+                        "type": "integer"
                     },
                     {
                         "name": "effect_chance",

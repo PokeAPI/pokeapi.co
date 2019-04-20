@@ -294,7 +294,10 @@
                         "description": "A list of moves to use before this move.",
                         "type": {
                             "type": "list",
-                            "of": "NamedAPIResource"
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Move"
+                            }
                         }
                     },
                     {
@@ -302,7 +305,10 @@
                         "description": "A list of moves to use after this move.",
                         "type": {
                             "type": "list",
-                            "of": "NamedAPIResource"
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Move"
+                            }
                         }
                     }
                 ]
@@ -319,16 +325,22 @@
                         "name": "language",
                         "description": "The language this name is in.",
                         "type": {
-                            "type": "NamedAPIResource ",
-                            "of": "Language"
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Move"
+                            }
                         }
                     },
                     {
                         "name": "version_group",
                         "description": "The version group that uses this flavor text.",
                         "type": {
-                            "type": "NamedAPIResource ",
-                            "of": "VersionGroup"
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Move"
+                            }
                         }
                     }
                 ]

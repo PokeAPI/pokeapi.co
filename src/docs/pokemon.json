@@ -99,7 +99,7 @@
                         "description": "The effect of this ability listed in different languages.",
                         "type": {
                              "type": "list",
-                             "of": "names"
+                             "of": "VerboseEffect"
                          }
                     },
                     {

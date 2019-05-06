@@ -61,7 +61,7 @@ const Alerts = () => {
             />
         ));
     }
-    return;
+    return null;
 };
 
 export default Alerts;

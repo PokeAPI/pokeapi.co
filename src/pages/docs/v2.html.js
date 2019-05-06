@@ -156,6 +156,13 @@ export default ({location}) => (
                     </a>{' '}
                     by lmerotta
                 </li>
+                <li>
+                    <strong>Ruby</strong>:{' '}
+                    <a href="https://github.com/rdavid1099/poke-api-v2">
+                        Poke-Api-V2
+                    </a>{' '}
+                    by rdavid1099
+                </li>
             </ul>
 
             <h2 id="resource-lists-section">Resource Lists and Pagination</h2>

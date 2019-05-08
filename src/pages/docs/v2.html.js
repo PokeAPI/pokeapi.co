@@ -66,7 +66,7 @@ export default ({location}) => (
                 PokéAPI is free and open to use. It is also very popular.
                 Because of this, we ask every developer to abide by our fair use
                 policy. People not complying with the fair use policy will have
-                their IP address permenantly banned.
+                their IP address permanently banned.
             </p>
             <p>
                 PokéAPI is primarily an educational tool, and we will not

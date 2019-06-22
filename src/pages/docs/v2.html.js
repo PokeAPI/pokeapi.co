@@ -138,6 +138,13 @@ export default ({location}) => (
                     by PoroCYon
                 </li>
                 <li>
+                    <strong>.NET Standard</strong>
+                    <a href="https://github.com/mtrdp642/PokeApiNet">
+                        PokeApiNet
+                    </a>{' '}
+                    by mtrdp642
+                </li>
+                <li>
                     <strong>Swift</strong>:{' '}
                     <a href="https://github.com/ContinuousLearning/PokemonKit">
                         PokemonKit

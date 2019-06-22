@@ -163,6 +163,13 @@ export default ({location}) => (
                     </a>{' '}
                     by rdavid1099
                 </li>
+                <li>
+                    <strong>Go</strong>:{' '}
+                    <a href="https://github.com/mtslzr/pokeapi-go">
+                        pokeapi-go
+                    </a>{' '}
+                    by mtslzr
+                </li>
             </ul>
 
             <h2 id="resource-lists-section">Resource Lists and Pagination</h2>

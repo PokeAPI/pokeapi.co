@@ -158,7 +158,7 @@ export default ({location}) => (
                             project
                         </a>{' '}
                         containing a ton of csv data. We used this to flesh out
-                        the database that powers Pokeapi.
+                        the database that powers Pokéapi.
                     </li>
                     <li>
                         <a
@@ -214,9 +214,10 @@ export default ({location}) => (
                     In October 2018, the API was converted to serve static JSON
                     files in a fully backwards compatible manner. This allowed
                     PokéAPI to move its hosting to a cheap static hosting
-                    solution (Firebase Hosting), which increased performance and
+                    solution (Firebase Hosting + Cloudflare Caching), which
+                    increased performance and
                     stability by a huge margin. At the same time,{' '}
-                    <Link to="/docs/v1.html">
+                    <Link to="/docs/v1.html">   
                         support for version 1 of the API was dropped
                     </Link>{' '}
                     and this website was converted to a static site using{' '}

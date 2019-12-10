@@ -9,14 +9,6 @@ import ApiExplorer from '../components/ApiExplorer';
 import {Cell, CellContainer} from '../components/Cell';
 import Alerts from '../components/Alerts';
 
-import styles from './index.module.scss';
-import digitaloceanLogo from '../images/digitalocean-logo.png';
-
-const provider = {
-    website: 'https://digitalocean.com',
-    name: 'DigitalOcean',
-    logo: digitaloceanLogo
-}
 
 export default ({location}) => (
     <Layout location={location} noAlerts>
@@ -61,13 +53,6 @@ export default ({location}) => (
                         This API will always be publicly available and will
                         never require any extensive setup process to consume.
                     </p>
-                </Cell>
-                <Cell title={`Hosted by ${provider.name}`}>
-                    <div className={styles.hostedby}>
-                        <a href={provider.website}>
-                            <img src={provider.logo} alt={provider.name} />
-                        </a>
-                    </div>
                 </Cell>
             </CellContainer>
         </Container>

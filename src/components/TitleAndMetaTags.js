@@ -2,7 +2,7 @@ import Helmet from 'react-helmet';
 import React from 'react';
 
 const defaultDescription = 'An open RESTful API for Pokémon data';
-const defaultImageUrl = '/src/images/icon.png';
+const defaultImageUrl = '/src/images/pokeapi_256.png';
 
 const TitleAndMetaTags = ({title, description, url, imageUrl}) => {
     return (

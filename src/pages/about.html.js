@@ -217,7 +217,7 @@ export default ({location}) => (
                     solution (Firebase Hosting + Cloudflare Caching), which
                     increased performance and
                     stability by a huge margin. At the same time,{' '}
-                    <Link to="/docs/v1.html">   
+                    <Link to="/docs/v1.html">
                         support for version 1 of the API was dropped
                     </Link>{' '}
                     and this website was converted to a static site using{' '}

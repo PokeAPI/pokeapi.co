@@ -21,7 +21,7 @@
         "gatsby-plugin-react-svg": "^2.1.2",
         "gatsby-plugin-sass": "^2.1.24",
         "hash-sum": "^1.0.2",
-        "marked": "^0.7.0",
+        "marked": "^0.8.0",
         "node-sass": "^4.13.0",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",

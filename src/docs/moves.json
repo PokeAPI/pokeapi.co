@@ -334,7 +334,7 @@
                         "description": "The version group that uses this flavor text.",
                         "type": {
                             "type": "NamedAPIResource",
-                            "of": "Language"
+                            "of": "VersionGroup"
                         }
                     }
                 ]

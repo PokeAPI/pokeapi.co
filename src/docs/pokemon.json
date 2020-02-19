@@ -1966,8 +1966,11 @@
                         "name": "characteristics",
                         "description": "A list of characteristics that are set on a Pokémon when its highest base stat is this stat.",
                         "type": {
-                            "type": "APIResource",
-                            "of": "Characteristic"
+                            "type": "list",
+                             "of": {
+                                 "type": "APIResource",
+                                 "of": "Characteristic"
+                             }
                         }
                     },
                     {

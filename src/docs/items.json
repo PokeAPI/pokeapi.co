@@ -119,7 +119,10 @@
                     {
                         "name": "category",
                         "description": "The category of items this item falls into.",
-                        "type": "ItemCategory"
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "ItemCategory"
+                        }
                     },
                     {
                         "name": "effect_entries",

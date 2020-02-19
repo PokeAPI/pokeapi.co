@@ -142,11 +142,8 @@
                         "name": "condition",
                         "description": "The condition this encounter condition value pertains to.",
                         "type": {
-                             "type": "list",
-                             "of": {
-                                 "type": "NamedAPIResource",
-                                 "of": "EncounterCondition"
-                             }
+                             "type": "NamedAPIResource",
+                             "of": "EncounterCondition"
                          }
                     },
                     {

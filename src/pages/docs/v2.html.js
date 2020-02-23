@@ -66,7 +66,7 @@ export default ({location}) => (
                 PokéAPI is free and open to use. It is also very popular.
                 Because of this, we ask every developer to abide by our fair use
                 policy. People not complying with the fair use policy will have
-                their IP address permenantly banned.
+                their IP address permanently banned.
             </p>
             <p>
                 PokéAPI is primarily an educational tool, and we will not
@@ -138,6 +138,13 @@ export default ({location}) => (
                     by PoroCYon
                 </li>
                 <li>
+                    <strong>.NET Standard</strong>
+                    <a href="https://github.com/mtrdp642/PokeApiNet">
+                        PokeApiNet
+                    </a>{' '}
+                    by mtrdp642
+                </li>
+                <li>
                     <strong>Swift</strong>:{' '}
                     <a href="https://github.com/ContinuousLearning/PokemonKit">
                         PokemonKit
@@ -162,6 +169,13 @@ export default ({location}) => (
                         Poke-Api-V2
                     </a>{' '}
                     by rdavid1099
+                </li>
+                <li>
+                    <strong>Go</strong>:{' '}
+                    <a href="https://github.com/mtslzr/pokeapi-go">
+                        pokeapi-go
+                    </a>{' '}
+                    by mtslzr
                 </li>
             </ul>
 

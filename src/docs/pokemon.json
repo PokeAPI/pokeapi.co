@@ -1501,7 +1501,10 @@
                         "description": "A list of the Pokémon species that have this shape.",
                         "type": {
                              "type": "list",
-                             "of": "PokemonSpecies"
+                             "of": {
+                                 "type": "NamedAPIResource",
+                                 "of": "PokemonSpecies"
+                             }
                          }
                     }
                 ]
@@ -1963,8 +1966,11 @@
                         "name": "characteristics",
                         "description": "A list of characteristics that are set on a Pokémon when its highest base stat is this stat.",
                         "type": {
-                            "type": "APIResource",
-                            "of": "Characteristic"
+                            "type": "list",
+                             "of": {
+                                 "type": "APIResource",
+                                 "of": "Characteristic"
+                             }
                         }
                     },
                     {

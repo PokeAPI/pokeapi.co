@@ -2,7 +2,7 @@
     {
         "name": "Item",
         "description": "An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.",
-        "exampleRequest": "/v2/item{id or name}/",
+        "exampleRequest": "/v2/item/{id or name}/",
         "exampleResponse": {
             "id": 1,
             "name": "master-ball",
@@ -119,7 +119,10 @@
                     {
                         "name": "category",
                         "description": "The category of items this item falls into.",
-                        "type": "ItemCategory"
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "ItemCategory"
+                        }
                     },
                     {
                         "name": "effect_entries",
@@ -200,7 +203,10 @@
                     {
                         "name": "pokemon",
                         "description": "The Pokémon that holds this item.",
-                        "type": "string"
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Pokemon"
+                        }
                     },
                     {
                         "name": "version_details",
@@ -218,7 +224,7 @@
                     {
                         "name": "rarity",
                         "description": "How often this Pokémon holds this item in this version.",
-                        "type": "string"
+                        "type": "integer"
                     },
                     {
                         "name": "version",
@@ -416,8 +422,11 @@
                         "name": "items",
                         "description": "A list of items that have this fling effect.",
                         "type": {
-                            "type": "NamedAPIResource",
-                            "of": "Item"
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Item"
+                            }
                         }
                     }
                 ]

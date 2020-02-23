@@ -325,22 +325,16 @@
                         "name": "language",
                         "description": "The language this name is in.",
                         "type": {
-                            "type": "list",
-                            "of": {
-                                "type": "NamedAPIResource",
-                                "of": "Move"
-                            }
+                            "type": "NamedAPIResource",
+                            "of": "Language"
                         }
                     },
                     {
                         "name": "version_group",
                         "description": "The version group that uses this flavor text.",
                         "type": {
-                            "type": "list",
-                            "of": {
-                                "type": "NamedAPIResource",
-                                "of": "Move"
-                            }
+                            "type": "NamedAPIResource",
+                            "of": "VersionGroup"
                         }
                     }
                 ]
@@ -361,7 +355,7 @@
                         "description": "The category of move this move falls under, e.g. damage or ailment.",
                         "type": {
                             "type": "NamedAPIResource ",
-                            "of": "Move"
+                            "of": "MoveCategory"
                         }
                     },
                     {

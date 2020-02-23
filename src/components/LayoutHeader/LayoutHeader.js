@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import HeaderLink from './HeaderLink';
 
 import styles from './LayoutHeader.module.scss';
-import logo from './../../images/logo.png';
+const logo = 'https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png';
 
 const LayoutHeader = ({location}) => (
     <header

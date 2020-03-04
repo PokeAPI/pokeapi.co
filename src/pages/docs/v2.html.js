@@ -138,7 +138,7 @@ export default ({location}) => (
                     by PoroCYon
                 </li>
                 <li>
-                    <strong>.NET Standard</strong>
+                    <strong>.NET Standard</strong>:{' '}
                     <a href="https://github.com/mtrdp642/PokeApiNet">
                         PokeApiNet
                     </a>{' '}

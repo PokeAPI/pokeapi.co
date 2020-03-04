@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import {Link} from 'gatsby';
+import {Link} from 'react-router-dom';
 
 import styles from './LayoutFooter.module.scss';
 
 const Footer = () => (
-    <header
+    <footer
         className={classNames({
             'site-footer': true,
             [styles.footer]: true,
@@ -25,7 +25,7 @@ const Footer = () => (
                 <Link to="/status">Status Page</Link>
             </p>
         </div>
-    </header>
+    </footer>
 );
 
 export default Footer;

@@ -8,7 +8,7 @@
     },
     {
         "level": "success",
-        "active": false,
-        "message": "**New Data:** PokéAPI has been successfully updated with new data, including from Ultra Sun and Ultra Moon."
+        "active": true,
+        "message": "**TEST:** This is a test of the websites alert functionality. **Bold**"
     }
 ]

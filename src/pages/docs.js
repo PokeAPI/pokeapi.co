@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import {Link} from 'react-router-dom';
 
-import Layout from '../components/Layout';
-import Container from '../components/Container';
+import Layout, {PageContent} from '../components/Layout';
 
 export default ({location}) => (
     <Layout location={location}>
-        <Container>
+        <PageContent>
             <h1>Docs</h1>
             <ul>
                 <li>
@@ -16,6 +15,6 @@ export default ({location}) => (
                     <Link to="/docs/v2.html">v2</Link>
                 </li>
             </ul>
-        </Container>
+        </PageContent>
     </Layout>
 );

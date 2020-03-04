@@ -41,6 +41,7 @@ export default class Crumb extends React.Component {
         }
     };
     handleClick = event => {
+        // TODO: Fix bug that prevents selecting text on page
         if (
             this.breadcrumbRef.current &&
             !this.breadcrumbRef.current.contains(event.target)

@@ -1,12 +1,15 @@
 import React from 'react';
 import JSONTree from 'react-json-tree';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import tomorrowStyle from 'react-syntax-highlighter/styles/hljs/tomorrow';
+import {Light as SyntaxHighlighter} from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import tomorrowStyle from 'react-syntax-highlighter/dist/esm/styles/hljs/tomorrow';
+
 import tomorrowTheme from './tomorrow.json';
-
 import styles from './JsonViewer.module.scss';
 import '../../utils/text-encoder-polyfill';
+
+SyntaxHighlighter.registerLanguage('javascript', js);
 
 export default class JsonViewer extends React.Component {
     state = {

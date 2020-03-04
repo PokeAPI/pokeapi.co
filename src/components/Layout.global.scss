@@ -1,7 +1,4 @@
-// @import 'normalize.scss';
-
-@import 'colors.scss';
-@import 'sizes.scss';
+@import 'constants.scss';
 
 html {
     box-sizing: border-box;
@@ -14,13 +11,12 @@ html {
 	Make sure the footer never lifts past the bottom of the page.
 */
 html,
-body,
-#___gatsby,
-#___gatsby > div {
-    min-height: 100vh;
+body {
+    height: 100%;
 }
-#___gatsby > div {
+#root {
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
 }
 .site-header,
@@ -58,15 +54,11 @@ a {
 }
 
 table {
-	max-width: 100%;
+    max-width: 100%;
 }
 th, td {
-	border: 1px solid #CCC;
-	padding: 0.5em;
-}
-
-h2 {
-    border-bottom: 1px solid $border-color;
+    border: 1px solid #CCC;
+    padding: 0.5em;
 }
 
 // Reset sanitize.css's weird design choices regarding cursors

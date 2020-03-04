@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import {Link} from 'react-router-dom';
 
-import Layout from '../../components/Layout';
-import Container from '../../components/Container';
+import Layout, {PageContent} from '../../components/Layout';
 
-export default ({location}) => (
-    <Layout location={location}>
-        <Container isNarrow>
+export default () => (
+    <Layout>
+        <PageContent>
             <h2>End of support</h2>
             <p>
                 After careful deliberation, we have decided to end support for
@@ -41,8 +40,9 @@ export default ({location}) => (
             </p>
             <h2>v2 Docs</h2>
             <p>
-                Use the up to date <Link to="/docs/v2.html">v2</Link> API instead.
+                Use the up to date <Link to="/docs/v2.html">v2</Link> API
+                instead.
             </p>
-        </Container>
+        </PageContent>
     </Layout>
 );

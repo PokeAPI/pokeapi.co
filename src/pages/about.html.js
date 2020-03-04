@@ -1,16 +1,23 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import {Link} from 'react-router-dom';
 
-import Layout from '../components/Layout';
+import Layout, {PageContent} from '../components/Layout';
 import TitleAndMetaTags from '../components/TitleAndMetaTags';
-import Container from '../components/Container';
-import Faq from '../components/Faq';
+
+import styles from './about.module.scss';
+
+const Faq = ({title, children}) => (
+    <React.Fragment>
+        <h3 className={styles.faq_title}>{title}</h3>
+        <div className={styles.faq_body}>{children}</div>
+    </React.Fragment>
+);
 
 export default ({location}) => (
     <Layout location={location}>
         <TitleAndMetaTags title="About · PokéAPI" />
 
-        <Container isNarrow>
+        <PageContent>
             <h1>About</h1>
 
             <Faq title="What is this?">
@@ -215,8 +222,8 @@ export default ({location}) => (
                     files in a fully backwards compatible manner. This allowed
                     PokéAPI to move its hosting to a cheap static hosting
                     solution (Firebase Hosting + Cloudflare Caching), which
-                    increased performance and
-                    stability by a huge margin. At the same time,{' '}
+                    increased performance and stability by a huge margin. At the
+                    same time,{' '}
                     <Link to="/docs/v1.html">
                         support for version 1 of the API was dropped
                     </Link>{' '}
@@ -239,6 +246,6 @@ export default ({location}) => (
                     is these JSON files that are served from Firebase's CDN.
                 </p>
             </Faq>
-        </Container>
+        </PageContent>
     </Layout>
 );

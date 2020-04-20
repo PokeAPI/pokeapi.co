@@ -2,13 +2,11 @@
     {
         "active": false,
         "message": "",
-        "comment1": "Inactive alerts will not be shown.",
-        "comment2": "You can use markdown, like _this_, **this**, or [this](https://pokeapi.co).",
-        "comment3": "Possible levels are 'info', 'important' and 'success'. The default is 'info'."
+        "comment": "Inactive alerts will not be shown. You can use markdown, like _this_, **this**, or [this](https://pokeapi.co). Possible levels are 'info', 'important' and 'success'. The default is 'info'. Important alerts are sticky and stay on-screen until dismissed by the user."
     },
     {
-        "level": "success",
+        "level": "info",
         "active": true,
-        "message": "**TEST:** This is a test of the websites alert functionality. **Bold**"
+        "message": "**Note:** Data from last year's Sword and Shield games (generation 8) is **not yet included** in PokéAPI. We rely on an upstream project ([Veekun's pokedex](https://github.com/veekun/pokedex)) for data and they have not yet been able to complete the update due to lack of developer support. When the new data is available, we will import it into the API.\n\n[Read more on GitHub…](https://github.com/PokeAPI/pokeapi/issues/460)"
     }
 ]

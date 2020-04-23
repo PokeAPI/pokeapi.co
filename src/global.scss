@@ -2,8 +2,10 @@
 
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
     * {
         box-sizing: inherit;
+        scroll-behavior: smooth;
     }
 }
 
@@ -19,11 +21,11 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-.site-header,
-.site-footer {
+#site-header,
+#site-footer {
     flex: none;
 }
-.site-content {
+#site-content {
     flex: 1 0 auto;
     width: 100%;
 }
@@ -46,18 +48,19 @@ a {
 }
 
 // Push the target element (element with id matching URL hash) below the fixed header
-:target[id]:before {
-    content: '';
-    display: block;
-    height: $site-header-height * 1.5;
-    margin: -$site-header-height * 1.5 0 0;
-}
+// :target[id]:before {
+//     content: '';
+//     display: block;
+//     height: $site-header-height * 1.5;
+//     margin: -$site-header-height * 1.5 0 0;
+// }
 
 table {
     max-width: 100%;
 }
-th, td {
-    border: 1px solid #CCC;
+th,
+td {
+    border: 1px solid #ccc;
     padding: 0.5em;
 }
 

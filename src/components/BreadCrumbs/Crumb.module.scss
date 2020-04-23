@@ -47,11 +47,6 @@
         // // transition: box-shadow 0.1s, transform 0.1s;
         transform: scale(0.99);
     }
-
-    &:focus {
-        // outline: 1px solid #fff;
-        outline: none;
-    }
 }
 
 .menu {
@@ -88,8 +83,6 @@
     background: lighten($button-color, 30%);
 }
 
-.menuitem.separator {
-    height: 1px;
-    padding: 0;
-    background: black;
+.menuitem.endofsection {
+    border-bottom: 1px solid black;
 }

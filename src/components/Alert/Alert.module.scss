@@ -6,13 +6,14 @@
     padding: 0.75em 1em;
 
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
 
     .message {
         flex: 1;
-        text-align: center;
+        text-align: left;
 
+        // prettier-ignore
         p, h1, h2, h3, h4, h5, h6 {
             margin: 0;
             font-size: 1em;
@@ -24,19 +25,25 @@
         border-color: none;
         background: none;
         color: inherit;
-        padding: 0.4em;
-        height: 1.5em;
-        width: 1.5em;
+        padding: 0 0.5em;
+        // height: 1.5em;
+        // width: 1.5em;
+        border-radius: 0.2em;
 
         display: flex;
         align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
 
         &::-moz-focus-inner {
             border: none;
             padding: 0;
         }
         .image {
-            width: 100%;
+            width: 0.75em;
             height: auto;
         }
     }
@@ -63,7 +70,8 @@
     background: none;
 
     position: sticky;
-    top: $site-header-height;
+    // top: $site-header-height; // Below sticky page header
+    top: 0;
     z-index: 99;
     @media (max-height: $short-height) {
         top: 0;

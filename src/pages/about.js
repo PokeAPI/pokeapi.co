@@ -1,9 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
-import Layout, {PageContent} from '../components/Layout';
-import TitleAndMetaTags from '../components/TitleAndMetaTags';
-
+import Link from '../components/Link';
+import {PlainPage} from '../components/Page';
 import styles from './about.module.scss';
 
 const Faq = ({title, children}) => (
@@ -13,11 +11,9 @@ const Faq = ({title, children}) => (
     </React.Fragment>
 );
 
-export default ({location}) => (
-    <Layout location={location}>
-        <TitleAndMetaTags title="About · PokéAPI" />
-
-        <PageContent>
+export default function About() {
+    return (
+        <PlainPage title="About">
             <h1>About</h1>
 
             <Faq title="What is this?">
@@ -89,7 +85,7 @@ export default ({location}) => (
                 <p>
                     And that's just scratching the surface! To see all the
                     different types of data we have, check out{' '}
-                    <Link to="/docs/v2.html">the docs</Link>.
+                    <Link to="/docs/v2">the docs</Link>.
                 </p>
             </Faq>
             <Faq title="The API is missing stuff!">
@@ -224,7 +220,7 @@ export default ({location}) => (
                     solution (Firebase Hosting + Cloudflare Caching), which
                     increased performance and stability by a huge margin. At the
                     same time,{' '}
-                    <Link to="/docs/v1.html">
+                    <Link to="/docs/v1">
                         support for version 1 of the API was dropped
                     </Link>{' '}
                     and this website was converted to a static site using{' '}
@@ -246,6 +242,6 @@ export default ({location}) => (
                     is these JSON files that are served from Firebase's CDN.
                 </p>
             </Faq>
-        </PageContent>
-    </Layout>
-);
+        </PlainPage>
+    );
+}

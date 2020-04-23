@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import styles from './index.module.scss';
 
-import Layout, {PageContent} from '../components/Layout';
+import Link from '../components/Link';
+import {Page, PlainPageSection} from '../components/Page';
 import ApiExplorer from '../components/ApiExplorer';
 
 export default () => (
-    <Layout>
+    <Page>
         <div className={styles.banner_background}>
             <div className={styles.banner}>
                 <h1>PokéAPI</h1>
@@ -27,12 +27,12 @@ export default () => (
                     easily accessible through a modern RESTful API.
                 </p>
                 <p>
-                    <Link to="/docs/v2.html">Check out the docs!</Link>
+                    <Link to="/docs/v2">Check out the docs!</Link>
                 </p>
             </div>
         </div>
 
-        <PageContent>
+        <PlainPageSection>
             <ApiExplorer baseApiUrl="https://pokeapi.co/api/v2/" />
 
             <div className={styles.faqs}>
@@ -55,8 +55,8 @@ export default () => (
                     <div className={styles.faq_content}>
                         <p>
                             We have awesome{' '}
-                            <Link to="docs/v2.html">documentation</Link> on how
-                            to use this API. It takes minutes to get started.
+                            <Link to="docs/v2">documentation</Link> on how to
+                            use this API. It takes minutes to get started.
                         </p>
                         <p>
                             This API will always be publicly available and will
@@ -66,6 +66,6 @@ export default () => (
                     </div>
                 </div>
             </div>
-        </PageContent>
-    </Layout>
+        </PlainPageSection>
+    </Page>
 );

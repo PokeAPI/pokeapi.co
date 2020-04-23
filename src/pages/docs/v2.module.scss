@@ -19,13 +19,17 @@
 }
 
 .name_column {
-    max-width: 8.75em;
+    width: 10em;
+    min-width: 6em;
+    // max-width: 8.75em;
 }
 .desc_column {
-    min-width: 50%;
+    width: 50%;
 }
 .type_column {
-    max-width: 11em;
+    width: 10em;
+    min-width: 6em;
+    // max-width: 11em;
 }
 
 .section_name {

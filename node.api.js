@@ -5,18 +5,46 @@ import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 // Add support for CSS Modules with Sass
 // CSS modules must use the file extension ".module.scss" or ".module.sass".
 
+export default () => ({
+    webpack: (config, {stage}) => {
+        config.module.rules[0].oneOf.unshift({
+            test: /\.s(a|c)ss$/,
+            use: initLoaders({stage, modules: false}),
+        });
+
+        // CSS modules rule must come first in the array
+        config.module.rules[0].oneOf.unshift({
+            test: /\.module.s(a|c)ss$/,
+            use: initLoaders({stage, modules: true}),
+        });
+
+        if (
+            config.optimization.splitChunks &&
+            config.optimization.splitChunks.cacheGroups.styles
+        ) {
+            config.optimization.splitChunks.cacheGroups.styles.test = /\.(c|sc|sa)ss$/;
+        }
+
+        return config;
+    },
+});
+
 function initLoaders({stage, modules = false}) {
     const cssLoader = {
         loader: 'css-loader',
         options: {
             modules: modules,
+            localIdentName: '[name]__[local]--[hash:base64:5]',
+            exportOnlyLocals: stage === 'node',
             importLoaders: 1,
             sourceMap: false,
         },
     };
     const sassLoader = {
-        loader: 'sass-loader',
-        options: {sassOptions: {includePaths: ['src', 'src/theme']}},
+        loader: require.resolve('sass-loader'),
+        options: {
+            sassOptions: {includePaths: ['src']},
+        },
     };
     const postCssLoader = {
         loader: 'postcss-loader',
@@ -31,6 +59,7 @@ function initLoaders({stage, modules = false}) {
     };
 
     switch (stage) {
+        case 'development':
         case 'dev':
             return [
                 {loader: ExtractCssChunks.loader, options: {hot: true}},
@@ -51,29 +80,3 @@ function initLoaders({stage, modules = false}) {
             ];
     }
 }
-
-export default () => ({
-    webpack: (config, {stage}) => {
-        config.module.rules[0].oneOf = [
-            // CSS modules rule must come first
-            {
-                test: /\.module.s(a|c)ss$/,
-                use: initLoaders({stage, modules: true}),
-            },
-            {
-                test: /\.s(a|c)ss$/,
-                use: initLoaders({stage, modules: false}),
-            },
-            ...config.module.rules[0].oneOf,
-        ];
-
-        if (
-            config.optimization.splitChunks &&
-            config.optimization.splitChunks.cacheGroups.styles
-        ) {
-            config.optimization.splitChunks.cacheGroups.styles.test = /\.(c|sc|sa)ss$/;
-        }
-
-        return config;
-    },
-});

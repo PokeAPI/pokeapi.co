@@ -1,3 +1,1 @@
-import JsonViewer from './JsonViewer';
-
-export default JsonViewer;
+export {default} from './JsonViewer';

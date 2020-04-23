@@ -1,12 +1,12 @@
 @import 'constants.scss';
 
-.page_content {
+.page {
     max-width: $page-max-width;
     margin: 0 auto;
     background-color: white;
     padding: 1em 1em 2em 1em;
 
-    // Make it look like .page_content stretches the full height of the page
+    // Make it look like .page stretches the full height of the page
     // for when there's less than one page of content:
     &::before {
         content: '';

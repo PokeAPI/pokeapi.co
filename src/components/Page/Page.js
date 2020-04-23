@@ -5,9 +5,9 @@ import styles from './Page.module.scss';
 
 export function Page({children, title = null}) {
     // Scroll to top on mount
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     if (title) title = `${title} - PokéAPI`;
     else title = 'PokéAPI';

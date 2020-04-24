@@ -27,6 +27,7 @@ export default {
                 },
             },
         ],
+        ['react-static-plugin-google-tag-manager', {id: 'UA-53299289-1'}],
     ],
     minLoadTime: 200,
 

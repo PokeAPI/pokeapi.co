@@ -45,8 +45,9 @@
         "node-sass": "^4.12.0",
         "postcss-flexbugs-fixes": "^4.1.0",
         "react-static-plugin-favicons": "^2.0.0",
+        "react-static-plugin-google-tag-manager": "^1.2.0",
         "sass-loader": "^7.2.0",
-        "slugify": "^1.4.0",
-        "serve": "^11.1.0"
+        "serve": "^11.1.0",
+        "slugify": "^1.4.0"
     }
 }

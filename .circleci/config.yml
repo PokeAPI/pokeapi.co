@@ -11,7 +11,7 @@ jobs:
     - checkout
     - run: npm install -E
     - run: npm run build
-    - run: tar czf static_website.tar.gz -C public .
+    - run: tar czf static_website.tar.gz -C dist .
     - store_artifacts:
         path: static_website.tar.gz
 

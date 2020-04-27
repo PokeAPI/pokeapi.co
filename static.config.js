@@ -45,7 +45,7 @@ export default {
                 .filter(alert => alert.active !== false)
                 .map(alert => ({
                     htmlMessage: marked(alert.message),
-                    level: alert.level ?? 'info',
+                    level: alert.level || 'info',
                     id: hashSum(alert),
                 })),
         };

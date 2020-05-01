@@ -1,9 +1,9 @@
 version: 2.1
 
 executors:
-  node10:
+  node12:
     docker:
-      - image: circleci/node:10.11.0
+      - image: circleci/node:12.16.3
 
 commands:
   build:
@@ -14,13 +14,13 @@ commands:
 
 jobs:
   build-and-test:
-    executor: node10
+    executor: node12
     steps:
       - checkout
       - build
 
   build-test-and-deploy:
-    executor: node10
+    executor: node12
     steps:
       - checkout
       - build

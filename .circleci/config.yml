@@ -5,12 +5,12 @@ executors:
     docker:
       - image: circleci/node:10.11.0
 
-  commands:
-    build:
-      description: Install dependencies and build the project
-      steps:
-        - run: npm install -E
-        - run: npm run build
+commands:
+  build:
+    description: Install dependencies and build the project
+    steps:
+      - run: npm install -E
+      - run: npm run build
 
 jobs:
   build-and-test:

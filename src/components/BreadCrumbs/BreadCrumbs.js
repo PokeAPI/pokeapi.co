@@ -7,7 +7,7 @@ import styles from './BreadCrumbs.module.scss';
 export default function BreadCrumbs({entries}) {
     const activeEntryId = useActiveAnchor(entries.map(e => e.id));
     const activeEntry =
-        entries.find(entry => entry.id === activeEntryId) ?? entries[0];
+        entries.find(entry => entry.id === activeEntryId) || entries[0];
 
     return (
         <React.Fragment>

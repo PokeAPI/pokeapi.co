@@ -34,7 +34,7 @@ export default function JsonViewer({data}) {
         setViewRaw(false);
     }, []);
 
-    const jsonString = JSON.stringify(data, null, 2) ?? '';
+    const jsonString = JSON.stringify(data, null, 2) || '';
     const jsonSize = new TextEncoder('utf-8').encode(jsonString).length / 1000; // kB
     const jsonLines = (jsonString.match(/\r?\n/g) || '').length + 1;
 

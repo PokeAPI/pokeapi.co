@@ -31,5 +31,5 @@ export default function useActiveAnchor(ids = []) {
         };
     }, [ids]);
 
-    return active ?? ids[0];
+    return active || ids[0];
 }

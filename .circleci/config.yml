@@ -30,7 +30,7 @@ jobs:
       - build
       - run:
           name: Pack the website in a .tar.gz
-          command: tar czf static_website.tar.gz -C public .
+          command: tar czf static_website.tar.gz -C dist .
       - store_artifacts:
           path: static_website.tar.gz
       - run:

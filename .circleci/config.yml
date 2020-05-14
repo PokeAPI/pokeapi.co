@@ -1,30 +1,52 @@
-version: 2
+version: 2.1
 
-defaults: &defaults
-  docker:
-    - image: circleci/node:10.11.0
+executors:
+  node12:
+    docker:
+      - image: circleci/node:12.16.3
+
+commands:
+  build:
+    description: Install dependencies and build the project
+    steps:
+      - run:
+          name: Install exact dependencies
+          command: npm install -E
+      - run:
+          name: Build the website
+          command: npm run build
 
 jobs:
-  build-and-test-and-deploy:
-    <<: *defaults
+  build-and-test:
+    executor: node12
     steps:
-    - checkout
-    - run: npm install -E
-    - run: npm run build
-    - run: tar czf static_website.tar.gz -C dist .
-    - store_artifacts:
-        path: static_website.tar.gz
+      - checkout
+      - build
 
-    # Trigger a new build of the deploy project
-    - run: "curl -X POST --header \"Content-Type: application/json\" https://circleci.com/api/v1.1/project/github/PokeAPI/deploy/build?circle-token=$CIRCLECI_API_TOKEN"
-
+  build-test-and-deploy:
+    executor: node12
+    steps:
+      - checkout
+      - build
+      - run:
+          name: Pack the website in a .tar.gz
+          command: tar czf static_website.tar.gz -C public .
+      - store_artifacts:
+          path: static_website.tar.gz
+      - run:
+          name: Trigger a deploy of the deploy project passing the desired environment/location to deploy to
+          command: 'curl --header "Content-Type: application/json" --data "{\"build_parameters\": {\"deploy_location\": \"$CIRCLE_BRANCH\", \"CIRCLE_JOB\": \"deploy\"}}" --request POST "https://circleci.com/api/v1.1/project/github/PokeAPI/deploy/tree/master?circle-token=$CIRCLECI_API_TOKEN"'
 
 workflows:
   version: 2
-
-  commit:
+  test-and-deploy:
     jobs:
-      - build-and-test-and-deploy:
+      - build-and-test
+      - build-test-and-deploy:
+          requires:
+            - build-and-test
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - staging

@@ -28,22 +28,3 @@ export default function addWordBreaks(str) {
         return char;
     });
 }
-
-export function addWordBreaksHtml(str) {
-    return str
-        .split('')
-        .map((char, i) => {
-            if (char === '_' && i > 0) {
-                return '_<wbr>';
-            }
-            if (
-                i > 0 &&
-                isUpperCase(char) &&
-                (!isUpperCase(str[i + 1]) || !isUpperCase(str[i - 1]))
-            ) {
-                return '<wbr>' + char;
-            }
-            return char;
-        })
-        .join('');
-}

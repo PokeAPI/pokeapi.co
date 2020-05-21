@@ -1,1 +1,3 @@
-export {default} from './DocsContainer';
+import DocsContainer from './DocsContainer';
+
+export default DocsContainer;

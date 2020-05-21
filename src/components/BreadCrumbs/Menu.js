@@ -17,6 +17,7 @@ export default class Menu extends React.Component {
     handleKeyDown = event => {
         const {key} = event;
         if (key === 'ArrowDown') {
+            console.log('down')
             event.preventDefault();
             this.nextItem.focus();
         } else if (key === 'ArrowUp') {
@@ -57,9 +58,6 @@ export default class Menu extends React.Component {
     }
 
     addProps = menuItem => {
-        if (menuItem.type.isSeparator) {
-            return menuItem;
-        }
         const id = this.nextUniqueId();
         return React.cloneElement(menuItem, {
             id: id,

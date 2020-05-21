@@ -1,1 +1,3 @@
-export {default} from './BreadCrumbs';
+import BreadCrumbs from './BreadCrumbs';
+
+export default BreadCrumbs;

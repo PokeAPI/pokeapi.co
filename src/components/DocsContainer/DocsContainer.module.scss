@@ -1,4 +1,4 @@
-@import 'constants.scss';
+@import 'sizes.scss';
 
 .container {
     max-width: $page-max-width;
@@ -14,12 +14,11 @@
 
         position: sticky;
         top: $site-header-height;
-        top: 0;
         @media (max-height: $short-height) {
             top: 0;
         }
 
-        padding: 0 1rem;
+        padding: 2rem;
         font-size: 0.9em;
         background: white;
     }
@@ -36,15 +35,14 @@
 
 .tableofcontents {
     display: block;
-    // max-height: calc(100vh - #{$site-header-height});
-    max-height: 100vh;
+    max-height: calc(100vh - #{$site-header-height});
     overflow-y: auto;
 
     .title {
         border: none;
         font-size: 1.25em;
         font-weight: bold;
-        // margin: 0.5rem 0;
+        margin: 0.5rem 0;
         padding-left: 0.5rem;
     }
 }

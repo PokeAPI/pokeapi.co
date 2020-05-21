@@ -9,10 +9,10 @@ commands:
   build:
     description: Install dependencies and build the project
     steps:
-      - run:
+      - run: 
           name: Install exact dependencies
           command: npm install -E
-      - run:
+      - run: 
           name: Build the website
           command: npm run build
 
@@ -28,9 +28,9 @@ jobs:
     steps:
       - checkout
       - build
-      - run:
+      - run: 
           name: Pack the website in a .tar.gz
-          command: tar czf static_website.tar.gz -C dist .
+          command: tar czf static_website.tar.gz -C public .
       - store_artifacts:
           path: static_website.tar.gz
       - run:

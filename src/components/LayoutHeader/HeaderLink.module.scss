@@ -1,0 +1,24 @@
+@import 'colors.scss';
+
+.link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 0 1em;
+    min-width: max-content;
+
+    &:visited {
+        color: inherit;
+    }
+    &:hover {
+        background: $brand-color-lighter;
+    }
+}
+.link_active {
+    background: $brand-color-darkest;
+    &:hover {
+        background: $brand-color-darker;
+    }
+}

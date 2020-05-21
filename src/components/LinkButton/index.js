@@ -1,1 +1,3 @@
-export {default} from './LinkButton';
+import LinkButton from './LinkButton';
+
+export default LinkButton;

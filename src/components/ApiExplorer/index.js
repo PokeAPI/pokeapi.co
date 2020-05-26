@@ -1,3 +1,1 @@
-import ApiExplorer from './ApiExplorer';
-
-export default ApiExplorer;
+export {default} from './ApiExplorer';

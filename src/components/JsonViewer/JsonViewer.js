@@ -1,89 +1,69 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import JSONTree from 'react-json-tree';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
-import tomorrowStyle from 'react-syntax-highlighter/styles/hljs/tomorrow';
-import tomorrowTheme from './tomorrow.json';
-
+import dynamicTheme from './tomorrow.json';
 import styles from './JsonViewer.module.scss';
 import '../../utils/text-encoder-polyfill';
 
-export default class JsonViewer extends React.Component {
-    state = {
-        mounted: false,
-        viewRaw: true,
-    };
-    componentDidMount() {
-        this.setState({
-            mounted: true,
-            viewRaw: false,
-        });
-    }
-    handleInput = event => {
-        this.setState({viewRaw: event.target.checked});
-    };
-    renderStaticView(plainJson) {
-        return (
-            <SyntaxHighlighter
-                language="json"
-                className={styles.code}
-                style={tomorrowStyle}
-            >
-                {plainJson}
-            </SyntaxHighlighter>
-        );
-    }
-    renderDynamicView(data) {
-        return (
-            <JSONTree
-                data={data}
-                hideRoot
-                theme={tomorrowTheme}
-                shouldExpandNode={(keyName, data, level) =>
-                    // Collapse long arrays, large objects (except array items),
-                    // and arrays that are direct children of array items
-                    !(
-                        (Array.isArray(data) && data.length > 3) ||
-                        (!Number.isInteger(keyName[0]) &&
-                            Object.keys(data).length > 3) ||
-                        (Number.isInteger(keyName[1]) && Array.isArray(data))
-                    )
-                }
-            />
-        );
-    }
-    render() {
-        const {mounted, viewRaw} = this.state;
-        const {data = null} = this.props;
+function DynamicViewer({data}) {
+    return (
+        <JSONTree
+            data={data}
+            hideRoot
+            theme={dynamicTheme}
+            shouldExpandNode={(keyName, data, level) =>
+                // Collapse long arrays, large objects (except array items),
+                // and arrays that are direct children of array items
+                !(
+                    (Array.isArray(data) && data.length > 3) ||
+                    (!Number.isInteger(keyName[0]) &&
+                        Object.keys(data).length > 3) ||
+                    (Number.isInteger(keyName[1]) && Array.isArray(data))
+                )
+            }
+        />
+    );
+}
 
-        const plainJson = JSON.stringify(data, null, 2);
-        const jsonSize =
-            new TextEncoder('utf-8').encode(plainJson).length / 1000; // kB
-        const jsonLines = (plainJson.match(/\r?\n/g) || '').length + 1;
+export default function JsonViewer({data}) {
+    const [isMounted, setIsMounted] = useState(false);
+    const [viewRaw, setViewRaw] = useState(true);
 
-        return (
-            <div className={styles.jsonviewer}>
-                <div className={styles.json}>
-                    {viewRaw
-                        ? this.renderStaticView(plainJson)
-                        : this.renderDynamicView(data)}
-                </div>
-                <div className={styles.toolbar}>
-                    <label
-                        title={
-                            !mounted ? 'Disabled until JavaScript loads' : null
-                        }
-                    >
-                        <input
-                            type="checkbox"
-                            checked={this.state.viewRaw}
-                            disabled={!mounted}
-                            onChange={this.handleInput}
-                        />{' '}
-                        View raw JSON ({jsonSize} kB, {jsonLines} lines)
-                    </label>
-                </div>
+    useEffect(() => {
+        setIsMounted(true);
+        setViewRaw(false);
+    }, []);
+
+    const jsonString = JSON.stringify(data, null, 2) || '';
+    const jsonSize = new TextEncoder('utf-8').encode(jsonString).length / 1000; // kB
+    const jsonLines = (jsonString.match(/\r?\n/g) || '').length + 1;
+
+    return (
+        <div className={styles.jsonviewer}>
+            <div className={styles.json}>
+                {!isMounted || viewRaw ? (
+                    <pre className={styles.code}>
+                        <code>{jsonString}</code>
+                    </pre>
+                ) : (
+                    <DynamicViewer data={data} />
+                )}
             </div>
-        );
-    }
+            <div className={styles.toolbar}>
+                <label
+                    title={
+                        !isMounted ? 'Disabled until JavaScript loads' : null
+                    }
+                >
+                    <input
+                        type="checkbox"
+                        checked={viewRaw}
+                        disabled={!isMounted}
+                        onChange={event => setViewRaw(event.target.checked)}
+                    />{' '}
+                    View raw JSON ({jsonSize} kB, {jsonLines} lines)
+                </label>
+            </div>
+        </div>
+    );
 }

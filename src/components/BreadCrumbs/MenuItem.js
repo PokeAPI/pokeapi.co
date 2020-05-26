@@ -13,12 +13,13 @@ export default class MenuItem extends React.Component {
         }
     };
     render() {
-        const {id, sectionId, name, isActive, done} = this.props;
+        const {id, sectionId, name, isActive, done, endOfSection} = this.props;
         return (
             <li
                 className={classNames({
                     [styles.menuitem]: true,
                     [styles.active]: isActive,
+                    [styles.endofsection]: endOfSection,
                 })}
             >
                 <a
@@ -34,8 +35,3 @@ export default class MenuItem extends React.Component {
         );
     }
 }
-
-export const Separator = () => (
-    <li className={classNames([styles.menuitem, styles.separator])} />
-);
-Separator.isSeparator = true;

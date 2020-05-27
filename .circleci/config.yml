@@ -1,36 +1,46 @@
 version: 2.1
 
 executors:
-  node12:
-    docker:
-      - image: circleci/node:12.16.3
+  linux:
+    machine:
+      image: ubuntu-1604:201903-01
 
 commands:
   build:
     description: Install dependencies and build the project
     steps:
-      - run: 
+      - run:
+          name: Use NVM
+          command: |
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+      - run:
+          name: Use Node 10
+          command: |
+            nvm use v10
+            nvm alias default v10
+      - run:
           name: Install exact dependencies
           command: npm install -E
-      - run: 
+      - run:
           name: Build the website
           command: npm run build
 
 jobs:
   build-and-test:
-    executor: node12
+    executor: linux
     steps:
       - checkout
       - build
 
   build-test-and-deploy:
-    executor: node12
+    executor: linux
     steps:
       - checkout
       - build
-      - run: 
+      - run:
           name: Pack the website in a .tar.gz
-          command: tar czf static_website.tar.gz -C public .
+          command: tar czf static_website.tar.gz -C dist .
       - store_artifacts:
           path: static_website.tar.gz
       - run:

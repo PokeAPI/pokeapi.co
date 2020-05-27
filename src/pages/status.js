@@ -1,27 +1,24 @@
 import React from 'react';
 
-import Layout from '../components/Layout';
-import Container from '../components/Container';
-import TitleAndMetaTags from '../components/TitleAndMetaTags';
+import {PlainPage} from '../components/Page';
 
-const StatusPage = ({location}) => (
-    <Layout location={location}>
-        <Container isNarrow>
-            <TitleAndMetaTags title="PokéAPI · Status Check" />
+export default function StatusPage() {
+    return (
+        <PlainPage title="Status Check">
             <h1>Status Check</h1>
-            <p>Wondering if the API is down? You can check the status using these links:</p>
+            <p>
+                Wondering if the API is down? You can check the status using
+                these links:
+            </p>
+
             <ul>
                 <li>
-                    <a href="https://updown.io/pryw">
-                        Documentation Status
-                    </a>
+                    <a href="https://updown.io/pryw">Documentation Status</a>
                 </li>
                 <li>
                     <a href="https://updown.io/akzp">API Status</a>
                 </li>
             </ul>
-        </Container>
-    </Layout>
-);
-
-export default StatusPage;
+        </PlainPage>
+    );
+}

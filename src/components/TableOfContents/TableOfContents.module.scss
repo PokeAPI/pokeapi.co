@@ -1,4 +1,4 @@
-@import 'colors.scss';
+@import 'constants.scss';
 
 .toc {
     padding: 0;
@@ -8,7 +8,7 @@
     font-weight: normal;
     padding: 0 0.5rem;
 
-    &.separator {
+    &.divider {
         height: 1px;
         width: 50%;
         background-color: $border-color;

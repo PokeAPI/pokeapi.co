@@ -72,3 +72,8 @@ html,
 [disabled] {
     cursor: auto;
 }
+
+// Let input textarea select button elements have the same font of the body element
+input, textarea, select, button {
+    font-family: inherit;
+}

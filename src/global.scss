@@ -34,7 +34,7 @@ body {
 body {
     font-family: 'Lato', sans-serif;
     line-height: 1.35;
-    background-color: #f9f9f9;
+    background-color: #fbfbfb;
     color: #263238;
     margin: 0;
 }
@@ -76,4 +76,45 @@ html,
 // Let input textarea select button elements have the same font of the body element
 input, textarea, select, button {
     font-family: inherit;
+}
+
+:-webkit-scrollbar-track { 
+    background-color:   transparent;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color:   transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color:   #c3c3c3;
+    border-radius:      4px;
+}
+
+a {
+    color: #0074eced;
+}
+
+a:hover {
+    background-color: rgba(187,239,253,0.3);
+    /* border-bottom: 1px solid rgba(0,0,0,0.2); */
+    text-decoration: none;
+}
+
+kbd {
+    display: inline-block;
+    margin: 0 .1em;
+    padding: .1em .6em;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #242729;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #e4e6e8;
+    border: 1px solid #9fa6ad;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px #0c0d0e26,inset 0 1px 0 0 #fff;
+    white-space: nowrap;
+    vertical-align: bottom;
 }

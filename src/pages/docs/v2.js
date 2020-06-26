@@ -115,8 +115,7 @@ export default function Documentation() {
 
                 <p>
                     <strong>Quick tip:</strong> Use your browser's "find on
-                    page" feature to search for specific resource types (Ctrl+F
-                    or Cmd+F).
+                    page" feature to search for specific resource types (<kbd>Ctrl+F</kbd> or <kbd>Cmd+F</kbd>).
                 </p>
 
                 <h2 id="info">Information</h2>
@@ -188,12 +187,10 @@ export default function Documentation() {
                     ))}
                 </ul>
 
-                <hr />
-
                 {docs.map(doc =>
                     doc === null ? null : (
                         <React.Fragment key={doc.name}>
-                            <h2 id={doc.id}>{doc.name}</h2>
+                            <h2 className={styles.title_section_name} id={doc.id}>{doc.name}</h2>
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: doc.htmlDescription,
@@ -250,7 +247,7 @@ function Resource({
                         <tbody>
                             {model.fields.map(field => (
                                 <tr key={field.name}>
-                                    <td>{addWordBreaks(field.name)}</td>
+                                    <td className={styles.type_column_body}>{addWordBreaks(field.name)}</td>
                                     <td
                                         dangerouslySetInnerHTML={{
                                             __html: field.htmlDescription,
@@ -272,19 +269,19 @@ function Resource({
 const scalarTypes = ['string', 'integer', 'boolean'];
 function FieldType({type}) {
     if (scalarTypes.includes(type)) {
-        return type;
+        return (<i>{type}</i>);
     }
     if (typeof type === 'object') {
         if (type.type === 'list') {
             return (
                 <React.Fragment>
-                    list <FieldType type={type.of} />
+                    list <i><FieldType type={type.of} /></i>
                 </React.Fragment>
             );
         }
         return (
             <React.Fragment>
-                <FieldType type={type.type} /> (<FieldType type={type.of} />)
+                <i><FieldType type={type.type} /></i> (<i><FieldType type={type.of} /></i>)
             </React.Fragment>
         );
     }

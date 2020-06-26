@@ -1,3 +1,5 @@
+@import 'constants.scss';
+
 .resource_url {
     font-size: 1.25em;
     margin: 0.25em 0;
@@ -9,8 +11,13 @@
     font-size: 0.9em;
 
     th, td {
-        padding: 0.25em 0.5em;
+        padding: 0.75em 0.5em;
+        padding-left: 0.3em;
+        text-indent: -0.3em;
+        padding-right: 3em;
         text-align: left;
+        vertical-align: text-top;
+        border: 0px;
     }
 
     p, h1, h2, h3 {
@@ -31,6 +38,14 @@
     min-width: 6em;
     // max-width: 11em;
 }
+.type_column_body {
+    font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+}
+
+.title_section_name {
+    border-top: 1px solid $brand-color;
+    padding-top: 2em;
+}
 
 .section_name {
     font-weight: bold;
@@ -38,7 +53,7 @@
     margin: 1em 0 0;
 }
 .model_name {
-    font-weight: normal;
+    font-weight: 600;
     font-size: 1.15em;
     margin: 1em 0 0.25em;
 }

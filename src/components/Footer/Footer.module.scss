@@ -1,9 +1,9 @@
 @import 'constants.scss';
 
 .footer {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid $brand-color;
     padding: 1em;
-    background-color: #f7f7f7;
+    background-color: #fbfbfb;
 }
 
 .container {

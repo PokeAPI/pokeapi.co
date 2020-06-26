@@ -1,15 +1,17 @@
 @import 'constants.scss';
 
 .jsonviewer {
-    border: 1px solid $border-color;
+    border-radius: 5px;
 
     .toolbar {
         padding: 0.25em 0.5em;
-        background: #f5f5f5;
+        background: #fbfbfb;
         font-size: 0.9em;
+        border-top: 1px solid #cccccc;
     }
 
     .json {
+        background-color: #fbfbfb;
         max-height: 32rem;
         height: auto;
         overflow-y: auto;
@@ -27,6 +29,10 @@
             width: max-content;
             line-height: 1.4;
             margin: 0;
+        }
+
+        ul {
+            background-color: #fbfbfb !important; /* HACK: I cannot understand how base16 works in tomorrow.json, it seems a reversed HEX*/
         }
     }
 }

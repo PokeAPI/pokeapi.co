@@ -156,7 +156,6 @@ export default function Documentation() {
                 <p>Rules:</p>
                 <ul>
                     <li>Locally cache resources whenever you request them.</li>
-                    <li>Use the correct user-agent header in API requests.</li>
                     <li>
                         Be nice and friendly to your fellow PokéAPI developers.
                     </li>

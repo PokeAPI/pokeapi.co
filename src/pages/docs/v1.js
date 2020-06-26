@@ -17,7 +17,7 @@ export default () => (
             Although we value backwards compatibility, version 1 was deprecated
             in December 2014, and continuing to support it adds significant
             complexity to the project's aim to move to static hosting.
-            Furthermore, we only receive around 1&nbsp;000 daily API hits for
+            Furthermore, at the present time (15 October 2018) we only receive around 1&nbsp;000 daily API hits for
             version 1, compared to 20&nbsp;000 hits for version 2. Finally,
             unbeknownst to us, some parts of the version 1 API have been broken
             for a significant period of time, but we have received no

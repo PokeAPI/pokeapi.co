@@ -8,7 +8,7 @@ export default function Footer({id}) {
         <footer id={id} className={styles.footer}>
             <div className={styles.container}>
                 <p>
-                    © 2013–2019{' '}
+                    © 2013–{new Date().getFullYear()}{' '}
                     <a href="https://phalt.github.io/">Paul Hallett</a> and{' '}
                     <a href="https://github.com/PokeAPI/pokeapi#contributing">
                         PokéAPI contributors

@@ -127,14 +127,20 @@ export default function About() {
                 </p>
                 <p>
                     During summer 2018, Paul decided to hand over the project to
-                    the community. A group of contributors came together and
-                    converted the API to serve static JSON files to improve
+                    the community. This is where Tim Malone, Mark Tse, Sargun Vohra, Charles Marttinen, Alessandro Pezze, Alberto Oliveira da Silva, Lucio Merotta came together and converted the API to serve static JSON files to improve
                     performance and cut down on hosting costs. This website was
-                    also re-built at the same time. This process was completed
-                    in October 2018.
+                    also re-built by Charles Marttinen at the same time. The whole process was completed in October 2018.
                 </p>
                 <p>
-                    We have a{' '}
+                    After this massive redesign, PokeAPI gained many new consumers due to its new blazing fast performance. To give a quick reference, the loading of the infamous <a href="https://pokeapi.co/api/v2/pokemon/magikarp">Magikarp pokemon resouce</a> passed from seconds to ~80ms. 
+                    
+                    An important milestone for the PokeAPI project happened shortly after, during Summer 2020, when its Github repository hitted <b>2000 stargazers</b> and in a single month the API managed to fulfill <b>100 million calls</b>.
+                </p>
+                <p>
+                    PokeAPI is currently equally owned by <a href="https://github.com/phalt">Paul Hallet</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezze</a>. Alongside them the most active and helpful maintainers are <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
+                </p>
+                <p>
+                    We also have a{' '}
                     <a href="https://github.com/pokeapi">GitHub organisation</a>{' '}
                     of contributors that you are welcome to join!
                 </p>

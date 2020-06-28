@@ -59,12 +59,6 @@ const wrapperLibraries = [
         author: 'kinkofer',
     },
     {
-        description: 'Swift',
-        name: 'PokemonKit',
-        link: 'https://github.com/ContinuousLearning/PokemonKit',
-        author: 'darkcl',
-    },
-    {
         description: 'PHP',
         name: 'PokePHP',
         link: 'https://github.com/danrovito/pokephp',

@@ -54,6 +54,12 @@ const wrapperLibraries = [
     },
     {
         description: 'Swift',
+        name: 'PokemonAPI',
+        link: 'https://github.com/kinkofer/PokemonAPI',
+        author: 'kinkofer',
+    },
+    {
+        description: 'Swift',
         name: 'PokemonKit',
         link: 'https://github.com/ContinuousLearning/PokemonKit',
         author: 'darkcl',

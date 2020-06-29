@@ -121,15 +121,15 @@ export default function About() {
                     to the main series of games.
                 </p>
                 <p>
-                    During summer 2018, Paul decided to hand over the project to the community. This is where Tim Malone, Mark Tse, Sargun Vohra, Charles Marttinen, Alessandro Pezzé, Alberto Oliveira da Silva, Lucio Merotta came together and started planning how to change the infrastructure in order to improve performance and cut down on hosting costs. An important step was to convert the API to serve static JSON files, this was made possible by Sargun and his excellent <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a> tool. The frontend website was also re-built by Charles at the same time. The whole process was completed in October 2018.
+                    During summer 2018, Paul decided to hand over the project to the community. This is where Tim Malone, Mark Tse, Sargun Vohra, Charles Marttinen, Alessandro Pezzé, Alberto Oliveira da Silva, and Lucio Merotta came together and started planning how to change the infrastructure in order to improve performance and cut down on hosting costs. An important step was to convert the API to serve static JSON files, which was made possible by Sargun and his excellent <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a> tool. The frontend website was also re-built by Charles at the same time. The whole process was completed in October 2018.
                 </p>
                 <p>
                     After this massive redesign, PokéAPI gained many new consumers due to its new blazing fast performance. To give a quick reference, the loading of the infamous <a href="https://pokeapi.co/api/v2/pokemon/magikarp">Magikarp pokemon resouce</a> passed from seconds to ~80ms. 
                     
-                    An important milestone for the PokéAPI project happened shortly after, during Summer 2020, when its Github repository hitted <b>2000 stargazers</b> and in a single month the API managed to fulfill <b>100 million calls</b>.
+                    An important milestone for the PokéAPI project happened shortly after in summer 2020, when its GitHub repository reached <strong>2000 stargazers</strong> and in a single month fulfilled <strong>100 million</strong> API calls.
                 </p>
                 <p>
-                    PokéAPI is currently equally owned by <a href="https://github.com/phalt">Paul Hallet</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them the most active and helpful maintainers are <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
+                The current owners of the PokéAPI project are <a href="https://github.com/phalt">Paul Hallet</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them other core maintainers include <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
                 </p>
                 <p>
                     We also have a{' '}
@@ -220,11 +220,11 @@ export default function About() {
                 </p>
                 
                 <p>
-                    The move to static hosting was solved by introducing a build step before deployment performed by <a href="https://circleci.com/">CircleCI</a>, our build system. This build step starts a local Django copy of <a href="https://github.com/PokeAPI/pokeapi">PokeAPI/pokeapi</a> and entirely scrapes it saving each possible endpoint as a JSON file using <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a>. All these JSON files are then uploaded to Firebase and served to the public through a <a href="https://github.com/PokeAPI/deploy">Firebase function</a> actioned by CircleCI.  
+                    The move to static hosting was solved by introducing a build step before deployment performed by <a href="https://circleci.com/">CircleCI</a>, our build system. This build step starts a local Django copy of <a href="https://github.com/PokeAPI/pokeapi">PokeAPI/pokeapi</a> and saves each possible endpoint as a JSON file using <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a>. All these JSON files are then uploaded to Firebase and served to the public through a <a href="https://github.com/PokeAPI/deploy">Firebase function</a> actioned by CircleCI.  
                 </p>
                 
                 <p>
-                    Speaking of the frontend you are currently browsing it is now written using <a href="https://github.com/react-static/react-static">React Static</a> and the code lives in it's own Github project over at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again CircleCI takes care of deploying it on Firebase as static files.
+                This website now uses<a href="https://github.com/react-static/react-static">React Static</a> and the code lives in it's own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
                 </p>
             </Faq>
         </PlainPage>

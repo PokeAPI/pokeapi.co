@@ -1,9 +1,20 @@
 @import 'constants.scss';
 
 .resource_url {
-    font-size: 1.25em;
+    font-size: 1em;
     margin: 0.25em 0;
     font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+}
+
+.resource_url_method {
+    text-transform: uppercase;
+    background-color: #0074eced;
+    color: #fff;
+    border-radius: 3px;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .table {

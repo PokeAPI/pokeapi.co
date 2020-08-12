@@ -228,7 +228,7 @@ function Resource({
                 }}
             />
             {exampleRequest && (
-                <p className={styles.resource_url}>GET {exampleRequest}</p>
+                <p className={styles.resource_url}><span className={styles.resource_url_method}>GET</span> {exampleRequest}</p>
             )}
             {exampleResponse && <JsonViewer data={exampleResponse} />}
             {responseModels.map(model => (

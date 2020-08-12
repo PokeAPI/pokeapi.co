@@ -3,6 +3,7 @@
 .resource_url {
     font-size: 1.25em;
     margin: 0.25em 0;
+    font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
 }
 
 .table {
@@ -23,6 +24,19 @@
     p, h1, h2, h3 {
         margin: 0;
     }
+
+    tbody > tr {
+
+        td:nth-child(2), td:nth-child(3) {
+            color: #24292ea1;
+        }
+    }
+
+    thead {
+        th {
+            font-weight: 400;
+        }
+    }
 }
 
 .name_column {
@@ -40,6 +54,7 @@
 }
 .type_column_body {
     font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+    font-weight: 700;
 }
 
 .title_section_name {
@@ -52,6 +67,13 @@
     font-size: 1.25em;
     margin: 1em 0 0;
 }
+
+.section_type {
+    font-weight: 400;
+    font-size: 20px;
+    color: #24292ea1;
+}
+
 .model_name {
     font-weight: 600;
     font-size: 1.15em;

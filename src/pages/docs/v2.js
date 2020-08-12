@@ -190,7 +190,9 @@ export default function Documentation() {
                 {docs.map(doc =>
                     doc === null ? null : (
                         <React.Fragment key={doc.name}>
-                            <h2 className={styles.title_section_name} id={doc.id}>{doc.name}</h2>
+                            <h2 className={styles.title_section_name} id={doc.id}>
+                                {doc.name} <span className={styles.section_type}>(group)</span>
+                            </h2>
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: doc.htmlDescription,
@@ -218,7 +220,7 @@ function Resource({
     return (
         <React.Fragment key={name}>
             <h3 className={styles.section_name} id={id}>
-                {name}
+                {name} <span className={styles.section_type}>(endpoint)</span>
             </h3>
             <div
                 dangerouslySetInnerHTML={{
@@ -232,7 +234,7 @@ function Resource({
             {responseModels.map(model => (
                 <React.Fragment key={model.name}>
                     <h4 id={model.id} className={styles.model_name}>
-                        {model.name}
+                        {model.name} <span className={styles.section_type}>(type)</span>
                     </h4>
                     <table className={styles.table}>
                         <thead>

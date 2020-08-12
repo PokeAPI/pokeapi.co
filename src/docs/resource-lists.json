@@ -1,47 +1,5 @@
 [
     {
-        "name": "Un-named",
-        "exampleRequest": "/v2/{endpoint}/",
-        "exampleResponse": {
-            "count": 365,
-            "next": "$BASE_URL/v2/evolution-chain/?limit=20&offset=20",
-            "previous": null,
-            "results": [{
-                "url": "$BASE_URL/v2/evolution-chain/1/"
-            }]
-        },
-        "responseModels": [
-            {
-                "name": "APIResourceList",
-                "fields": [
-                    {
-                        "name": "count",
-                        "description": "The total number of resources available from this API.",
-                        "type": "integer"
-                    },
-                    {
-                        "name": "next",
-                        "description": "The URL for the next page in the list.",
-                        "type": "string"
-                    },
-                    {
-                        "name": "previous",
-                        "description": "The URL for the previous page in the list.",
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "results",
-                        "description": "A list of un-named API resources.",
-                        "type": {
-                             "type": "list",
-                             "of": "APIResource"
-                         }
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "name": "Named",
         "exampleRequest": "/v2/{endpoint}/",
         "exampleResponse": {

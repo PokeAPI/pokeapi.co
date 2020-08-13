@@ -32,7 +32,7 @@ export default function Input2({
                 value={value}
                 onChange={event => setValue(event.target.value)}
             />
-            <button className={styles.button}>submit</button>
+            <button className={styles.button}>Submit</button>
         </form>
     );
 }

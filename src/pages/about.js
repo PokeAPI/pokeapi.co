@@ -94,17 +94,12 @@ export default function About() {
                     <a href="https://github.com/PokeAPI/pokeapi/">GitHub</a>.
                 </p>
                 <p>
-                    Have ideas for new features? We're on Slack! Sign up{' '}
-                    <a href="https://pokeapi-slack-invite.herokuapp.com/">
-                        right here
-                    </a>{' '}
-                    then visit our{' '}
-                    <a href="https://pokeapi.slack.com">slack team</a>.
+                    Have ideas for new features? We're on Slack! Sign up <a href="https://pokeapi-slack-invite.herokuapp.com/"> right here </a> then visit our <a href="https://pokeapi.slack.com">slack team</a>.
                 </p>
             </Faq>
             <Faq title="So who built this?">
                 <p>
-                    Pokémon V1 was created by{' '}
+                    PokéAPI V1 was created by{' '}
                     <a href="https://github.com/phalt">Paul Hallett</a> as a
                     weekend project but it quickly became more than a weekend's
                     worth of work. In{' '}
@@ -126,15 +121,18 @@ export default function About() {
                     to the main series of games.
                 </p>
                 <p>
-                    During summer 2018, Paul decided to hand over the project to
-                    the community. A group of contributors came together and
-                    converted the API to serve static JSON files to improve
-                    performance and cut down on hosting costs. This website was
-                    also re-built at the same time. This process was completed
-                    in October 2018.
+                    During summer 2018, Paul decided to hand over the project to the community. This is where Tim Malone, Mark Tse, Sargun Vohra, Charles Marttinen, Alessandro Pezzé, Alberto Oliveira da Silva, and Lucio Merotta came together and started planning how to change the infrastructure in order to improve performance and cut down on hosting costs. An important step was to convert the API to serve static JSON files, which was made possible by Sargun and his excellent <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a> tool. The frontend website was also re-built by Charles at the same time. The whole process was completed in October 2018.
                 </p>
                 <p>
-                    We have a{' '}
+                    After this massive redesign, PokéAPI gained many new consumers due to its new blazing fast performance. To give a quick reference, the loading of the infamous <a href="https://pokeapi.co/api/v2/pokemon/magikarp">Magikarp pokemon resouce</a> passed from seconds to ~80ms. 
+                    
+                    An important milestone for the PokéAPI project happened shortly after in summer 2020, when its GitHub repository reached <strong>2000 stargazers</strong> and in a single month fulfilled <strong>100 million</strong> API calls.
+                </p>
+                <p>
+                The current owners of the PokéAPI project are <a href="https://github.com/phalt">Paul Hallet</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them other core maintainers include <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
+                </p>
+                <p>
+                    We also have a{' '}
                     <a href="https://github.com/pokeapi">GitHub organisation</a>{' '}
                     of contributors that you are welcome to join!
                 </p>
@@ -182,7 +180,7 @@ export default function About() {
                     </li>
                     <li>
                         <a href="https://github.com/Naramsim">
-                            Alessandro Pezze
+                            Alessandro Pezzé
                         </a>
                         , who worked tirelessly to add the Sun/Moon updates.
                     </li>
@@ -210,36 +208,23 @@ export default function About() {
                     >
                         Django REST Framework
                     </a>{' '}
-                    was used to expose the data through a RESTful API.
+                    was used to expose the data through a RESTful API. The entire stack was deployed at <a href="https://www.digitalocean.com/">DigitalOcean</a>, initially paid by Paul and then sponsored directly by DigitalOcean itself.
                 </p>
 
                 <p>
                     In October 2018, the API was converted to serve static JSON
                     files in a fully backwards compatible manner. This allowed
                     PokéAPI to move its hosting to a cheap static hosting
-                    solution (Firebase Hosting + Cloudflare Caching), which
-                    increased performance and stability by a huge margin. At the
-                    same time,{' '}
-                    <Link to="/docs/v1">
-                        support for version 1 of the API was dropped
-                    </Link>{' '}
-                    and this website was converted to a static site using{' '}
-                    <a href="https://www.gatsbyjs.org" target="none">
-                        Gatsby
-                    </a>{' '}
-                    (a static site generator for{' '}
-                    <a href="https://reactjs.org" target="none">
-                        React
-                    </a>
-                    ) and split off into a separate{' '}
-                    <a href="https://github.com/PokeAPI/pokeapi.co">project</a>.
+                    solution (<a href="https://firebase.google.com/">Firebase</a> Hosting + <a href="https://www.cloudflare.com/">Cloudflare</a> Caching), which
+                    increased performance and stability by a huge margin. 
                 </p>
+                
                 <p>
-                    The move to static hosting was solved by introducing a build
-                    step before deployment. This build step saves each possible
-                    endpoint from the Django project as a JSON file using{' '}
-                    <a href="https://github.com/PokeAPI/ditto">ditto</a>, and it
-                    is these JSON files that are served from Firebase's CDN.
+                    The move to static hosting was solved by introducing a build step before deployment performed by <a href="https://circleci.com/">CircleCI</a>, our build system. This build step starts a local Django copy of <a href="https://github.com/PokeAPI/pokeapi">PokeAPI/pokeapi</a> and saves each possible endpoint as a JSON file using <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a>. All these JSON files are then uploaded to Firebase and served to the public through a <a href="https://github.com/PokeAPI/deploy">Firebase function</a> actioned by CircleCI.  
+                </p>
+                
+                <p>
+                This website now uses<a href="https://github.com/react-static/react-static">React Static</a> and the code lives in it's own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
                 </p>
             </Faq>
         </PlainPage>

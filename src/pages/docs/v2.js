@@ -115,8 +115,7 @@ export default function Documentation() {
 
                 <p>
                     <strong>Quick tip:</strong> Use your browser's "find on
-                    page" feature to search for specific resource types (Ctrl+F
-                    or Cmd+F).
+                    page" feature to search for specific resource types (<kbd>Ctrl+F</kbd> or <kbd>Cmd+F</kbd>).
                 </p>
 
                 <h2 id="info">Information</h2>
@@ -156,7 +155,6 @@ export default function Documentation() {
                 <p>Rules:</p>
                 <ul>
                     <li>Locally cache resources whenever you request them.</li>
-                    <li>Use the correct user-agent header in API requests.</li>
                     <li>
                         Be nice and friendly to your fellow PokéAPI developers.
                     </li>
@@ -189,12 +187,12 @@ export default function Documentation() {
                     ))}
                 </ul>
 
-                <hr />
-
                 {docs.map(doc =>
                     doc === null ? null : (
                         <React.Fragment key={doc.name}>
-                            <h2 id={doc.id}>{doc.name}</h2>
+                            <h2 className={styles.title_section_name} id={doc.id}>
+                                {doc.name} <span className={styles.section_type}>(group)</span>
+                            </h2>
                             <div
                                 dangerouslySetInnerHTML={{
                                     __html: doc.htmlDescription,
@@ -222,7 +220,7 @@ function Resource({
     return (
         <React.Fragment key={name}>
             <h3 className={styles.section_name} id={id}>
-                {name}
+                {name} <span className={styles.section_type}>(endpoint)</span>
             </h3>
             <div
                 dangerouslySetInnerHTML={{
@@ -230,13 +228,13 @@ function Resource({
                 }}
             />
             {exampleRequest && (
-                <p className={styles.resource_url}>GET {exampleRequest}</p>
+                <p className={styles.resource_url}><span className={styles.resource_url_method}>GET</span> {exampleRequest}</p>
             )}
             {exampleResponse && <JsonViewer data={exampleResponse} />}
             {responseModels.map(model => (
                 <React.Fragment key={model.name}>
                     <h4 id={model.id} className={styles.model_name}>
-                        {model.name}
+                        {model.name} <span className={styles.section_type}>(type)</span>
                     </h4>
                     <table className={styles.table}>
                         <thead>
@@ -251,7 +249,7 @@ function Resource({
                         <tbody>
                             {model.fields.map(field => (
                                 <tr key={field.name}>
-                                    <td>{addWordBreaks(field.name)}</td>
+                                    <td className={styles.type_column_body}>{addWordBreaks(field.name)}</td>
                                     <td
                                         dangerouslySetInnerHTML={{
                                             __html: field.htmlDescription,
@@ -273,19 +271,19 @@ function Resource({
 const scalarTypes = ['string', 'integer', 'boolean'];
 function FieldType({type}) {
     if (scalarTypes.includes(type)) {
-        return type;
+        return (<i>{type}</i>);
     }
     if (typeof type === 'object') {
         if (type.type === 'list') {
             return (
                 <React.Fragment>
-                    list <FieldType type={type.of} />
+                    list <i><FieldType type={type.of} /></i>
                 </React.Fragment>
             );
         }
         return (
             <React.Fragment>
-                <FieldType type={type.type} /> (<FieldType type={type.of} />)
+                <i><FieldType type={type.type} /></i> (<i><FieldType type={type.of} /></i>)
             </React.Fragment>
         );
     }

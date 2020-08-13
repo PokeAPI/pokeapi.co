@@ -10,10 +10,12 @@ export default () => (
     <Page>
         <div className={styles.banner_background}>
             <div className={styles.banner}>
-                <h1>PokéAPI</h1>
+                <div className={styles.logo_container}>
+                    <img alt="PokéAPI" src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"></img>
+                </div>
                 <h2>The RESTful Pokémon API</h2>
                 <p>
-                    Serving over <strong>54,000,000</strong> API calls each
+                    Serving over <strong>60,000,000</strong> API calls each
                     month!
                 </p>
             </div>

@@ -33,6 +33,14 @@ $banner-color: #263238;
     }
 }
 
+.logo_container{
+    
+    img {
+        width: 257px;
+        height: 103px;
+    }
+}
+
 $cta-color: #ebf5f0;
 .cta_background {
     background-color: desaturate($cta-color, 25%);
@@ -81,9 +89,8 @@ $cta-color: #ebf5f0;
             text-align: center;
         }
         .faq_content {
-            border: 1px solid $border-color;
-            border-top-width: 2px;
-            background: #f5f5f5;
+            border-radius: 10px;
+            background: #f5f5f56e;
             flex: 1;
             padding: 0.75em 1em;
             font-size: 0.9em;

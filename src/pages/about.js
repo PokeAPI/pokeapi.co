@@ -162,14 +162,7 @@ export default function About() {
                         the database that powers Pokéapi.
                     </li>
                     <li>
-                        <a
-                            href="http://bulbapedia.bulbagarden.net/wiki/Main_Page"
-                            target="none"
-                        >
-                            Bulbapedia
-                        </a>{' '}
-                        has a ton of extra information that proved useful when
-                        designing models and documenting resources.
+                        Generation 8 data is currently being added to the API by the PokeAPI community. The data is scraped from <a href="https://bulbapedia.bulbagarden.net/wiki/Generation_VIII">different resources</a> which are considered to be trustful. Keep in mind that this data might be subject to changes and to corrections. If you want to partecipate and help us adding new generation 8 data, read more <a href="https://bulbapedia.bulbagarden.net/wiki/Generation_VIII">here</a>.
                     </li>
                 </ul>
                 <p>We'd also like to thank:</p>

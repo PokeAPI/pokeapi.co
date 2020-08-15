@@ -7,7 +7,7 @@
     {
         "level": "success",
         "active": true,
-        "message": "Data from last year's **Sword and Shield** games (generation 8) is currently **being added** to PokéAPI. While waiting for an upstream project ([Veekun](https://github.com/veekun/pokedex)) for official data we decided to allow our community to bring in new data from various different sources. If you want to partecipate to this update project [read more on GitHub](https://github.com/PokeAPI/pokeapi/issues/520)."
+        "message": "Data from last year's **Sword and Shield** games (generation 8) is currently **being added** to PokéAPI. While waiting for an upstream project ([Veekun](https://github.com/veekun/pokedex)) for verified data we decided to allow our community to bring in new data from various different sources. If you want to participate to this update project [read more on GitHub](https://github.com/PokeAPI/pokeapi/issues/520)."
     },
     {
         "level": "info",

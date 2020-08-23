@@ -921,7 +921,10 @@
                     {
                         "name": "location_area_encounters",
                         "description": "A link to a list of location areas, as well as encounter details pertaining to specific versions.",
-                        "type": "string"
+                        "type": {
+                             "type": "list",
+                             "of": "LocationAreaEncounter"
+                         }
                     },
                     {
                         "name": "moves",

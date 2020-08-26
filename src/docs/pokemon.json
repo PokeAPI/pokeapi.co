@@ -771,32 +771,7 @@
                     }
                 }]
             }],
-            "location_area_encounters": [{
-                "location_area": {
-                    "name": "kanto-route-2-south-towards-viridian-city",
-                    "url": "$BASE_URL/v2/location-area/296/"
-                },
-                "version_details": [{
-                    "max_chance": 10,
-                    "encounter_details": [{
-                        "min_level": 7,
-                        "max_level": 7,
-                        "condition_values": [{
-                            "name": "time-morning",
-                            "url": "$BASE_URL/v2/encounter-condition-value/3/"
-                        }],
-                        "chance": 5,
-                        "method": {
-                            "name": "walk",
-                            "url": "$BASE_URL/v2/encounter-method/1/"
-                        }
-                    }],
-                    "version": {
-                        "name": "heartgold",
-                        "url": "$BASE_URL/v2/version/15/"
-                    }
-                }]
-            }],
+            "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/12/encounters",
             "moves": [{
                 "move": {
                     "name": "flash",
@@ -1156,29 +1131,68 @@
                         "type": "string"
                     }
                 ]
-            },
+            }
+        ]
+    },
+    {
+        "name": "Pokemon Location Areas",
+        "description": "Pokémon Location Areas are ares where Pokémon can be found.",
+        "exampleRequest": "/v2/pokemon/{id or name}/encounters",
+        "exampleResponse": [
             {
-                "name": "LocationAreaEncounter",
-                "fields": [
+                "location_area": {
+                    "name": "kanto-route-2-south-towards-viridian-city",
+                    "url": "$BASE_URL/v2/location-area/296/"
+                },
+                "version_details": [
                     {
-                        "name": "location_area",
-                        "description": "The location area the referenced Pokémon can be encountered in.",
-                        "type": {
-                             "type": "NamedAPIResource",
-                             "of": "LocationArea"
-                         }
-                    },
-                    {
-                        "name": "version_details",
-                        "description": "A list of versions and encounters with the referenced Pokémon that might happen.",
-                        "type": {
-                             "type": "list",
-                             "of": "VersionEncounterDetail"
-                         }
+                        "max_chance": 10,
+                        "encounter_details": [
+                            {
+                                "min_level": 7,
+                                "max_level": 7,
+                                "condition_values": [
+                                    {
+                                        "name": "time-morning",
+                                        "url": "$BASE_URL/v2/encounter-condition-value/3/"
+                                    }
+                                ],
+                                "chance": 5,
+                                "method": {
+                                    "name": "walk",
+                                    "url": "$BASE_URL/v2/encounter-method/1/"
+                                }
+                            }
+                        ],
+                        "version": {
+                            "name": "heartgold",
+                            "url": "$BASE_URL/v2/version/15/"
+                        }
                     }
                 ]
             }
-        ]
+        ],
+        "responseModels": [{
+            "name": "LocationAreaEncounter",
+            "fields": [
+                {
+                    "name": "location_area",
+                    "description": "The location area the referenced Pokémon can be encountered in.",
+                    "type": {
+                        "type": "NamedAPIResource",
+                        "of": "LocationArea"
+                    }
+                },
+                {
+                    "name": "version_details",
+                    "description": "A list of versions and encounters with the referenced Pokémon that might happen.",
+                    "type": {
+                        "type": "list",
+                        "of": "VersionEncounterDetail"
+                    }
+                }
+            ]
+        }]
     },
     {
         "name": "Pokemon Colors",

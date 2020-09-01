@@ -60,6 +60,12 @@ workflows:
               only:
                 - master
                 - staging
+  weekly:
+    jobs:
+      - build-and-test
+      - build-test-and-deploy:
+          requires:
+            - build-and-test
     triggers:
       - schedule:
           cron: "0 0 * * 1"

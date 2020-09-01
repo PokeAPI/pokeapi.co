@@ -60,3 +60,10 @@ workflows:
               only:
                 - master
                 - staging
+    triggers:
+      - schedule:
+          cron: "0 0 * * 1"
+          filters:
+            branches:
+              only:
+                - staging

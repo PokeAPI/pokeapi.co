@@ -801,7 +801,46 @@
                 "front_shiny_female": "http://pokeapi.co/media/sprites/pokemon/shiny/female/12.png",
                 "back_shiny": "http://pokeapi.co/media/sprites/pokemon/back/shiny/12.png",
                 "front_default": "http://pokeapi.co/media/sprites/pokemon/12.png",
-                "front_shiny": "http://pokeapi.co/media/sprites/pokemon/shiny/12.png"
+                "front_shiny": "http://pokeapi.co/media/sprites/pokemon/shiny/12.png",
+                "other": {
+                    "dream_world": {},
+                    "official-artwork": {}
+                },
+                "versions": {
+                    "generation-i": {
+                        "red-blue": {},
+                        "yellow": {}
+                    },
+                    "generation-ii": {
+                        "crystal": {},
+                        "gold": {},
+                        "silver": {}
+                    },
+                    "generation-iii": {
+                        "emerald": {},
+                        "firered-leafgreen": {},
+                        "ruby-sapphire": {}
+                    },
+                    "generation-iv": {
+                        "diamond-pearl": {},
+                        "heartgold-soulsilver": {},
+                        "platinum": {}
+                    },
+                    "generation-v": {
+                        "black-white": {}
+                    },
+                    "generation-vi": {
+                        "omegaruby-alphasapphire": {},
+                        "x-y": {}
+                    },
+                    "generation-vii": {
+                        "icons": {},
+                        "ultra-sun-ultra-moon": {}
+                    },
+                    "generation-viii": {
+                        "icons": {}
+                    }
+                }
             },
             "stats": [{
                 "base_stat": 70,
@@ -908,7 +947,7 @@
                     },
                     {
                         "name": "sprites",
-                        "description": "A set of sprites used to depict this Pokémon in the game.",
+                        "description": "A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at <a href='https://github.com/PokeAPI/sprites#sprites'>PokeAPI/sprites</a>",
                         "type": "PokemonSprites"
                     },
                     {

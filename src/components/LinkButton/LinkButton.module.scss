@@ -10,13 +10,10 @@
     cursor: pointer;
     display: inline;
     font: inherit;
-    height: auto;
     padding: 0;
     perspective-origin: 0 0;
     text-align: start;
-    text-decoration: underline;
     transform-origin: 0 0;
-    width: auto;
     -moz-appearance: none;
 
     /* Chrome ignores auto, so we have to use this hack to set the correct height  */
@@ -41,4 +38,9 @@
             outline-width: 1px;
         }
     }
+}
+
+.linkbutton:hover {
+    text-decoration: underline;
+    background-color: rgba(187, 239, 253, 0.3);
 }

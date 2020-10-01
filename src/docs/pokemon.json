@@ -1594,6 +1594,8 @@
             "capture_rate": 45,
             "base_happiness": 70,
             "is_baby": false,
+            "is_legendary": false,
+            "is_mythical": false,
             "hatch_counter": 15,
             "has_gender_differences": false,
             "forms_switchable": false,
@@ -1710,6 +1712,16 @@
                     {
                         "name": "is_baby",
                         "description": "Whether or not this is a baby Pokémon.",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "is_legendary",
+                        "description": "Whether or not this is a legendary Pokémon.",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "is_mythical",
+                        "description": "Whether or not this is a mythical Pokémon.",
                         "type": "boolean"
                     },
                     {

@@ -21,7 +21,7 @@ commands:
             nvm alias default v10
       - run:
           name: Install exact dependencies
-          command: npm install -E
+          command: npm ci
       - run:
           name: Build the website
           command: npm run build

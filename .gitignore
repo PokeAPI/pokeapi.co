@@ -43,7 +43,6 @@ yarn-error.log
 .vscode
 .firebase/
 
-package-lock.json
 yarn.lock
 
 tmp

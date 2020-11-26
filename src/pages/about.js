@@ -195,7 +195,7 @@ export default function About() {
                     </a>{' '}
                     and paired with a{' '}
                     <a href="https://www.postgresql.org" target="none">
-                        PostgresQL
+                        PostgreSQL
                     </a>{' '}
                     database to store the data.{' '}
                     <a
@@ -220,7 +220,7 @@ export default function About() {
                 </p>
                 
                 <p>
-                This website now uses<a href="https://github.com/react-static/react-static">React Static</a> and the code lives in it's own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
+                This website now uses <a href="https://github.com/react-static/react-static">React Static</a> and the code lives in it's own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
                 </p>
             </Faq>
         </PlainPage>

@@ -73,9 +73,14 @@ export default function Header({id}) {
                         to="/about"
                     />
                     <HeaderLink
-                        isActive={pathname.includes('/docs/')}
-                        title="Documentation"
+                        isActive={pathname.includes('/docs/v2')}
+                        title="API v2"
                         to="/docs/v2"
+                    />
+                    <HeaderLink
+                        isActive={pathname.includes('/docs/graphql')}
+                        title="GraphQL v1beta"
+                        to="/docs/graphql"
                     />
                 </nav>
             </header>

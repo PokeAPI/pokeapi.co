@@ -8,10 +8,13 @@ export default () => (
         <h1>Docs</h1>
         <ul>
             <li>
-                <Link to="/docs/v1">v1</Link>
+                <Link to="/docs/v1">API v1</Link>
             </li>
             <li>
-                <Link to="/docs/v2">v2</Link>
+                <Link to="/docs/v2">API v2</Link>
+            </li>
+            <li>
+                <Link to="/docs/graphql">GraphQL v1beta</Link>
             </li>
         </ul>
     </PlainPage>

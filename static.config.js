@@ -85,6 +85,10 @@ export default {
                 },
             },
             {
+                path: '/docs/graphql',
+                template: 'src/pages/docs/graphql.js',
+            },
+            {
                 path: 'status',
                 template: 'src/pages/status.js',
             },

@@ -6,8 +6,13 @@
     },
     {
         "level": "success",
-        "active": true,
+        "active": false,
         "message": "Data from last year's **Sword and Shield** games (generation 8) is currently **being added** to PokéAPI. While waiting for an upstream project ([Veekun](https://github.com/veekun/pokedex)) for verified data we decided to allow our community to bring in new data from various different sources. If you want to participate to this update project [read more on GitHub](https://github.com/PokeAPI/pokeapi/issues/520)."
+    },
+    {
+        "level": "success",
+        "active": true,
+        "message": "PokeAPI proudly announces Beta support for GraphQL. Access our free console at [beta.pokeapi.co/graphql/console](https://beta.pokeapi.co/graphql/console/) and take a look at the [documentation](/docs/graphql)"
     },
     {
         "level": "info",

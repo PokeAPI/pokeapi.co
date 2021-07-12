@@ -82,6 +82,13 @@ const wrapperLibraries = [
         link: 'https://github.com/mtslzr/pokeapi-go',
         author: 'mtslzr',
     },
+    {
+        description:
+            'Node Server-side/Browser-side with auto caching, built-in typings and log configuration',
+        name: 'Pokenode-ts',
+        link: 'https://github.com/Gabb-c/pokenode-ts',
+        author: 'Gabb-c',
+    },
 ];
 
 export default function Documentation() {
@@ -115,7 +122,8 @@ export default function Documentation() {
 
                 <p>
                     <strong>Quick tip:</strong> Use your browser's "find on
-                    page" feature to search for specific resource types (<kbd>Ctrl+F</kbd> or <kbd>Cmd+F</kbd>).
+                    page" feature to search for specific resource types (
+                    <kbd>Ctrl+F</kbd> or <kbd>Cmd+F</kbd>).
                 </p>
 
                 <h2 id="info">Information</h2>
@@ -190,8 +198,14 @@ export default function Documentation() {
                 {docs.map(doc =>
                     doc === null ? null : (
                         <React.Fragment key={doc.name}>
-                            <h2 className={styles.title_section_name} id={doc.id}>
-                                {doc.name} <span className={styles.section_type}>(group)</span>
+                            <h2
+                                className={styles.title_section_name}
+                                id={doc.id}
+                            >
+                                {doc.name}{' '}
+                                <span className={styles.section_type}>
+                                    (group)
+                                </span>
                             </h2>
                             <div
                                 dangerouslySetInnerHTML={{
@@ -228,13 +242,17 @@ function Resource({
                 }}
             />
             {exampleRequest && (
-                <p className={styles.resource_url}><span className={styles.resource_url_method}>GET</span> {exampleRequest}</p>
+                <p className={styles.resource_url}>
+                    <span className={styles.resource_url_method}>GET</span>{' '}
+                    {exampleRequest}
+                </p>
             )}
             {exampleResponse && <JsonViewer data={exampleResponse} />}
             {responseModels.map(model => (
                 <React.Fragment key={model.name}>
                     <h4 id={model.id} className={styles.model_name}>
-                        {model.name} <span className={styles.section_type}>(type)</span>
+                        {model.name}{' '}
+                        <span className={styles.section_type}>(type)</span>
                     </h4>
                     <table className={styles.table}>
                         <thead>
@@ -249,7 +267,9 @@ function Resource({
                         <tbody>
                             {model.fields.map(field => (
                                 <tr key={field.name}>
-                                    <td className={styles.type_column_body}>{addWordBreaks(field.name)}</td>
+                                    <td className={styles.type_column_body}>
+                                        {addWordBreaks(field.name)}
+                                    </td>
                                     <td
                                         dangerouslySetInnerHTML={{
                                             __html: field.htmlDescription,
@@ -271,19 +291,29 @@ function Resource({
 const scalarTypes = ['string', 'integer', 'boolean'];
 function FieldType({type}) {
     if (scalarTypes.includes(type)) {
-        return (<i>{type}</i>);
+        return <i>{type}</i>;
     }
     if (typeof type === 'object') {
         if (type.type === 'list') {
             return (
                 <React.Fragment>
-                    list <i><FieldType type={type.of} /></i>
+                    list{' '}
+                    <i>
+                        <FieldType type={type.of} />
+                    </i>
                 </React.Fragment>
             );
         }
         return (
             <React.Fragment>
-                <i><FieldType type={type.type} /></i> (<i><FieldType type={type.of} /></i>)
+                <i>
+                    <FieldType type={type.type} />
+                </i>{' '}
+                (
+                <i>
+                    <FieldType type={type.of} />
+                </i>
+                )
             </React.Fragment>
         );
     }

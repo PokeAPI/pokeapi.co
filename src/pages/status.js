@@ -13,10 +13,10 @@ export default function StatusPage() {
 
             <ul>
                 <li>
-                    <a href="https://updown.io/pryw">Documentation Status</a>
+                    <a href="https://updown.io/md8f">Documentation Status</a>
                 </li>
                 <li>
-                    <a href="https://updown.io/akzp">API Status</a>
+                    <a href="https://updown.io/w04a">API Status</a>
                 </li>
             </ul>
         </PlainPage>

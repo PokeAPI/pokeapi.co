@@ -82,6 +82,12 @@ const wrapperLibraries = [
         link: 'https://github.com/mtslzr/pokeapi-go',
         author: 'mtslzr',
     },
+	{
+		description: 'Crystal',
+		name: 'pokeapi',
+		link: 'https://github.com/henrikac/pokeapi',
+		author: 'henrikac',
+	},
 ];
 
 export default function Documentation() {

@@ -87,7 +87,13 @@ const wrapperLibraries = [
 		name: 'pokeapi',
 		link: 'https://github.com/henrikac/pokeapi',
 		author: 'henrikac',
-	},
+    },
+    {
+        description: 'Typescript with auto caching',
+        name: 'Pokenode-ts',
+        link: 'https://github.com/Gabb-c/pokenode-ts',
+        author: 'Gabb-c',
+    },
 ];
 
 export default function Documentation() {

@@ -54,7 +54,7 @@
                 }
             }],
             "sprites": {
-                "default": "http://pokeapi.co/media/sprites/items/master-ball.png"
+                "default": "https://pokeapi.co/media/sprites/items/master-ball.png"
             },
             "held_by_pokemon": [{
                 "pokemon": {

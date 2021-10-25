@@ -771,7 +771,7 @@
                     }
                 }]
             }],
-            "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/12/encounters",
+            "location_area_encounters": "$BASE_URL/v2/pokemon/12/encounters",
             "moves": [{
                 "move": {
                     "name": "flash",
@@ -2161,43 +2161,43 @@
                 {
                     "generation": {
                         "name": "generation-v",
-                        "url": "https://pokeapi.co/api/v2/generation/5/"
+                        "url": "$BASE_URL/v2/generation/5/"
                     },
                     "damage_relations": {
                         "no_damage_to": [
                             {
                                 "name": "normal",
-                                "url": "https://pokeapi.co/api/v2/type/1/"
+                                "url": "$BASE_URL/v2/type/1/"
                             }
                         ],
                         "half_damage_to": [
                             {
                                 "name": "steel",
-                                "url": "https://pokeapi.co/api/v2/type/9/"
+                                "url": "$BASE_URL/v2/type/9/"
                             }
                         ],
                         "double_damage_to": [
                             {
                                 "name": "ghost",
-                                "url": "https://pokeapi.co/api/v2/type/8/"
+                                "url": "$BASE_URL/v2/type/8/"
                             }
                         ],
                         "no_damage_from": [
                             {
                                 "name": "normal",
-                                "url": "https://pokeapi.co/api/v2/type/1/"
+                                "url": "$BASE_URL/v2/type/1/"
                             }
                         ],
                         "half_damage_from": [
                             {
                                 "name": "poison",
-                                "url": "https://pokeapi.co/api/v2/type/4/"
+                                "url": "$BASE_URL/v2/type/4/"
                             }
                         ],
                         "double_damage_from": [
                             {
                                 "name": "ghost",
-                                "url": "https://pokeapi.co/api/v2/type/8/"
+                                "url": "$BASE_URL/v2/type/8/"
                             }
                         ]
                     }

@@ -2157,6 +2157,52 @@
                     "url": "$BASE_URL/v2/type/11/"
                 }]
             },
+            "past_damage_relations": [
+                {
+                    "generation": {
+                        "name": "generation-v",
+                        "url": "https://pokeapi.co/api/v2/generation/5/"
+                    },
+                    "damage_relations": {
+                        "no_damage_to": [
+                            {
+                                "name": "normal",
+                                "url": "https://pokeapi.co/api/v2/type/1/"
+                            }
+                        ],
+                        "half_damage_to": [
+                            {
+                                "name": "steel",
+                                "url": "https://pokeapi.co/api/v2/type/9/"
+                            }
+                        ],
+                        "double_damage_to": [
+                            {
+                                "name": "ghost",
+                                "url": "https://pokeapi.co/api/v2/type/8/"
+                            }
+                        ],
+                        "no_damage_from": [
+                            {
+                                "name": "normal",
+                                "url": "https://pokeapi.co/api/v2/type/1/"
+                            }
+                        ],
+                        "half_damage_from": [
+                            {
+                                "name": "poison",
+                                "url": "https://pokeapi.co/api/v2/type/4/"
+                            }
+                        ],
+                        "double_damage_from": [
+                            {
+                                "name": "ghost",
+                                "url": "https://pokeapi.co/api/v2/type/8/"
+                            }
+                        ]
+                    }
+                }
+            ],
             "game_indices": [{
                 "game_index": 4,
                 "generation": {
@@ -2209,6 +2255,17 @@
                         "name": "damage_relations",
                         "description": "A detail of how effective this type is toward others and vice versa.",
                         "type": "TypeRelations"
+                    },
+                    {
+                        "name": "past_damage_relations",
+                        "description": "A list of details of how effective this type was toward others and vice versa in previous generations",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "TypeRelationsPast",
+                                "of": "Type"
+                            }
+                        }
                     },
                     {
                         "name": "game_indices",
@@ -2349,6 +2406,30 @@
                                  "of": "Type"
                              }
                          }
+                    }
+                ]
+            },
+            {
+                "name": "TypeRelationsPast",
+                "fields": [
+                    {
+                        "name": "generation",
+                        "description": "The last generation in which the referenced type had the listed damage relations",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Generation"
+                        }
+                    },
+                    {
+                        "name": "damage_relations",
+                        "description": "The damage relations the referenced type had up to and including the listed generation",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "TypeRelations",
+                                "of": "Type"
+                            }
+                        }
                     }
                 ]
             }

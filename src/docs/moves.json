@@ -94,7 +94,11 @@
                 "name": "normal",
                 "url": "$BASE_URL/v2/type/1/"
             },
-          "flavor_text_entries": [
+            "learned_by_pokemon": [{
+                "name": "clefairy",
+                "url": "$BASE_URL/v2/pokemon/35/"
+            }],
+            "flavor_text_entries": [
                 {
                     "flavor_text": "Pounds with fore­\nlegs or tail.",
                     "language": {
@@ -190,6 +194,14 @@
                         "type": {
                             "type": "list",
                             "of": "AbilityEffectChange"
+                        }
+                    },
+                    {
+                        "name": "learned_by_pokemon",
+                        "description": "List of Pokemon that can learn the move",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Pokemon"
                         }
                     },
                     {

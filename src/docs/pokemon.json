@@ -1561,7 +1561,7 @@
                          }
                     },
                     {
-                        "name": "type",
+                        "name": "types",
                         "description": "A list of details showing types this Pokémon form has.",
                         "type": {
                              "type": "NamedAPIResource",

@@ -794,14 +794,14 @@
                 "url": "$BASE_URL/v2/pokemon-species/12/"
             },
             "sprites": {
-                "back_female": "http://pokeapi.co/media/sprites/pokemon/back/female/12.png",
-                "back_shiny_female": "http://pokeapi.co/media/sprites/pokemon/back/shiny/female/12.png",
-                "back_default": "http://pokeapi.co/media/sprites/pokemon/back/12.png",
-                "front_female": "http://pokeapi.co/media/sprites/pokemon/female/12.png",
-                "front_shiny_female": "http://pokeapi.co/media/sprites/pokemon/shiny/female/12.png",
-                "back_shiny": "http://pokeapi.co/media/sprites/pokemon/back/shiny/12.png",
-                "front_default": "http://pokeapi.co/media/sprites/pokemon/12.png",
-                "front_shiny": "http://pokeapi.co/media/sprites/pokemon/shiny/12.png",
+                "back_female": "https://pokeapi.co/media/sprites/pokemon/back/female/12.png",
+                "back_shiny_female": "https://pokeapi.co/media/sprites/pokemon/back/shiny/female/12.png",
+                "back_default": "https://pokeapi.co/media/sprites/pokemon/back/12.png",
+                "front_female": "https://pokeapi.co/media/sprites/pokemon/female/12.png",
+                "front_shiny_female": "https://pokeapi.co/media/sprites/pokemon/shiny/female/12.png",
+                "back_shiny": "https://pokeapi.co/media/sprites/pokemon/back/shiny/12.png",
+                "front_default": "https://pokeapi.co/media/sprites/pokemon/12.png",
+                "front_shiny": "https://pokeapi.co/media/sprites/pokemon/shiny/12.png",
                 "other": {
                     "dream_world": {},
                     "official-artwork": {}
@@ -1307,10 +1307,10 @@
                 "url": "$BASE_URL/v2/pokemon/413/"
             },
             "sprites": {
-                "back_default": "http://pokeapi.co/media/sprites/pokemon/back/413.png",
-                "back_shiny": "http://pokeapi.co/media/sprites/pokemon/back/shiny/413.png",
-                "front_default": "http://pokeapi.co/media/sprites/pokemon/413.png",
-                "front_shiny": "http://pokeapi.co/media/sprites/pokemon/shiny/413.png"
+                "back_default": "https://pokeapi.co/media/sprites/pokemon/back/413.png",
+                "back_shiny": "https://pokeapi.co/media/sprites/pokemon/back/shiny/413.png",
+                "front_default": "https://pokeapi.co/media/sprites/pokemon/413.png",
+                "front_shiny": "https://pokeapi.co/media/sprites/pokemon/shiny/413.png"
             },
             "version_group": {
                 "name": "diamond-pearl",

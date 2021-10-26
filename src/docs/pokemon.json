@@ -1157,6 +1157,24 @@
                 ]
             },
             {
+                "name": "PokemonFormType",
+                "fields": [
+                    {
+                        "name": "slot",
+                        "description": "The order the Pokémon's types are listed in.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "type",
+                        "description": "The type the referenced Form has.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "Type"
+                         }
+                    }
+                ]
+            },
+            {
                 "name": "PokemonTypePast",
                 "fields": [
                     {
@@ -1176,7 +1194,7 @@
                         }
                     }
                 ]
-            },
+            },          
             {
                 "name": "PokemonHeldItem",
                 "fields": [
@@ -1454,27 +1472,40 @@
         "description": "Some Pokémon may appear in one of multiple, visually different forms. These differences are purely cosmetic. For variations within a Pokémon species, which do differ in more than just visuals, the 'Pokémon' entity is used to represent such a variety.",
         "exampleRequest": "/v2/pokemon-form/{id or name}/",
         "exampleResponse": {
-            "id": 413,
-            "name": "wormadam-plant",
-            "order": 503,
-            "form_order": 1,
-            "is_default": true,
+            "id": 10041,
+            "name": "arceus-bug",
+            "order": 631,
+            "form_order": 7,
+            "is_default": false,
             "is_battle_only": false,
             "is_mega": false,
-            "form_name": "plant",
+            "form_name": "bug",
             "pokemon": {
-                "name": "wormadam-plant",
-                "url": "$BASE_URL/v2/pokemon/413/"
+                "name": "arceus",
+                "url": "https://pokeapi.co/api/v2/pokemon/493/"
             },
             "sprites": {
-                "back_default": "https://pokeapi.co/media/sprites/pokemon/back/413.png",
-                "back_shiny": "https://pokeapi.co/media/sprites/pokemon/back/shiny/413.png",
-                "front_default": "https://pokeapi.co/media/sprites/pokemon/413.png",
-                "front_shiny": "https://pokeapi.co/media/sprites/pokemon/shiny/413.png"
+                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/493-bug.png",
+                "back_female": null,
+                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/493-bug.png",
+                "back_shiny_female": null,
+                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png",
+                "front_female": null,
+                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/493-bug.png",
+                "front_shiny_female": null
             },
+            "types": [
+                {
+                    "slot": 1,
+                    "type": {
+                        "name": "bug",
+                        "url": "https://pokeapi.co/api/v2/type/7/"
+                    }
+                }
+            ],
             "version_group": {
                 "name": "diamond-pearl",
-                "url": "$BASE_URL/v2/version-group/8/"
+                "url": "https://pokeapi.co/api/v2/version-group/8/"
             }
         },
         "responseModels": [
@@ -1527,6 +1558,14 @@
                         "type": {
                              "type": "NamedAPIResource",
                              "of": "Pokemon"
+                         }
+                    },
+                    {
+                        "name": "type",
+                        "description": "A list of details showing types this Pokémon form has.",
+                        "type": {
+                             "type": "NamedAPIResource",
+                             "of": "PokemonFormType"
                          }
                     },
                     {

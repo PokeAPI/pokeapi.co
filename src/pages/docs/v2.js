@@ -94,6 +94,12 @@ const wrapperLibraries = [
         link: 'https://github.com/Gabb-c/pokenode-ts',
         author: 'Gabb-c',
     },
+    {
+        description: 'Rust with auto caching',
+        name: 'Rustemon',
+        link: 'https://crates.io/crates/rustemon',
+        author: 'mlemesle',
+    },
 ];
 
 export default function Documentation() {

@@ -32,7 +32,7 @@ export default function Documentation() {
                     A free rate-limited endpoint is available at <a href="https://beta.pokeapi.co/graphql/v1beta">beta.pokeapi.co/graphql/v1beta</a>. This endpoint can be subject to changes in future. Only POST requests are allowed.
                 </p>
                 <p>
-                    To ease learning and developing, a <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface is hosted at <a href="https://beta.pokeapi.co/graphql/console">beta.pokeapi.co/graphql/console</a>. This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
+                    To ease learning and developing, a <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface is hosted at <a href="https://beta.pokeapi.co/graphql/console/">beta.pokeapi.co/graphql/console/</a>. This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
                 </p>
 
                 <code className="code"  dangerouslySetInnerHTML={ {__html:`

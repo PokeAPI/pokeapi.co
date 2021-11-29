@@ -2622,13 +2622,7 @@
                     {
                         "name": "damage_relations",
                         "description": "The damage relations the referenced type had up to and including the listed generation",
-                        "type": {
-                            "type": "list",
-                            "of": {
-                                "type": "TypeRelations",
-                                "of": "Type"
-                            }
-                        }
+                        "type": "TypeRelations"
                     }
                 ]
             }

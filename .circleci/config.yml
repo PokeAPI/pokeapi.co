@@ -15,10 +15,10 @@ commands:
             echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
             echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
       - run:
-          name: Use Node 12
+          name: Use Node 10
           command: |
-            nvm use v12
-            nvm alias default v12
+            nvm use v10
+            nvm alias default v10
       - run:
           name: Install exact dependencies
           command: npm ci

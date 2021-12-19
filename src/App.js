@@ -41,6 +41,7 @@ function App() {
                     property="description"
                     content="An open RESTful API for Pokémon data"
                 />
+                <link rel="icon" href="/pokeapi_192_square.png" />
             </Head>
 
             <Header id="site-header" />

@@ -37,7 +37,7 @@ typings/
 .env
 
 .cache/
-public
+dist
 yarn-error.log
 
 .vscode
@@ -47,4 +47,3 @@ yarn.lock
 
 tmp
 artifacts
-dist

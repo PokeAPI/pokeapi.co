@@ -42,9 +42,10 @@
         "hash-sum": "^2.0.0",
         "marked": "^0.8.2",
         "postcss-flexbugs-fixes": "^4.2.1",
+        "react-hot-loader": "^4.12.11",
         "react-static-plugin-google-tag-manager": "^1.2.0",
-        "sass-loader": "^10.2.0",
         "sass": "^1.45.0",
+        "sass-loader": "^10.2.0",
         "serve": "^11.3.2",
         "slugify": "^1.6.4"
     }

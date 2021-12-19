@@ -15,10 +15,10 @@ commands:
             echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
             echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
       - run:
-          name: Use Node 10
+          name: Use Node 16
           command: |
-            nvm use v10
-            nvm alias default v10
+            nvm use v16
+            nvm alias default v16
       - run:
           name: Install exact dependencies
           command: npm ci
@@ -56,9 +56,10 @@ workflows:
           requires:
             - build-and-test
           filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
             branches:
               only:
-                - master
                 - staging
   weekly:
     jobs:

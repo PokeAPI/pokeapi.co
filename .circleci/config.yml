@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs: # declare what orbs we are going to use
+  node: circleci/node@2.0.2
+
 executors:
   linux:
     machine:
@@ -9,16 +12,6 @@ commands:
   build:
     description: Install dependencies and build the project
     steps:
-      - run:
-          name: Use NVM
-          command: |
-            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
-            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
-      - run:
-          name: Use Node 16
-          command: |
-            nvm use 16
-            nvm alias default 16
       - run:
           name: Install exact dependencies
           command: npm ci
@@ -51,8 +44,10 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - build-and-test
+      - build-and-test:
+          version: 16.13.1
       - build-test-and-deploy:
+          version: 16.13.1
           requires:
             - build-and-test
           filters:

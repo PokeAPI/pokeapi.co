@@ -56,10 +56,9 @@ workflows:
           requires:
             - build-and-test
           filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
             branches:
               only:
+                - master
                 - staging
   weekly:
     jobs:

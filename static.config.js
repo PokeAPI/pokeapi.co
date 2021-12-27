@@ -1,32 +1,13 @@
-import marked from 'marked';
 import hashSum from 'hash-sum';
-import slugify from 'slugify';
+import marked from 'marked';
 import path from 'path';
+import slugify from 'slugify';
 
 const BASE_URL = 'https://pokeapi.co/api';
 
 export default {
     plugins: [
         'react-static-plugin-react-router',
-        [
-            'react-static-plugin-favicons',
-            {
-                inputFile: path.resolve(
-                    __dirname,
-                    'src/images/pokeapi_256.png'
-                ),
-                configuration: {
-                    appName: 'PokéAPI',
-                    appDescription: 'An open RESTful API for Pokémon data',
-                    developerURL: 'https://github.com/PokeAPI/pokeapi.co',
-                    background: '#000000',
-                    theme_color: '#EF5350',
-                    display: 'minimal-ui',
-                    start_url: '/',
-                    // icons: {}
-                },
-            },
-        ],
         ['react-static-plugin-google-tag-manager', {id: 'GTM-MD89GGQ'}],
     ],
     minLoadTime: 200,

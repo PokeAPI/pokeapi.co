@@ -35,10 +35,16 @@ const wrapperLibraries = [
         author: 'Paul Hallett',
     },
     {
-        description: 'Kotlin (and Java)',
+        description: 'Kotlin',
         name: 'PokeKotlin',
         link: 'https://github.com/PokeAPI/pokekotlin',
         author: 'sargunster',
+    },
+    {
+        description: 'Java (Spring Boot) with auto caching',
+        name: 'pokeapi-reactor',
+        link: 'https://github.com/SirSkaro/pokeapi-reactor',
+        author: 'Benjamin Churchill',
     },
     {
         description: '.NET (C#, VB, etc)',
@@ -148,15 +154,6 @@ export default function Documentation() {
                     removed entirely, but we still encourage you to limit the
                     frequency of requests to limit our hosting costs.
                 </p>
-                {/* <p>
-                    If you are going to be regularly using the API, we recommend
-                    caching data on your service or deploying your own instance
-                    of the API (jump on{' '}
-                    <a href="https://pokeapi-slack-invite.herokuapp.com/">
-                        Slack
-                    </a>{' '}
-                    for help with this).
-                </p> */}
 
                 <h2 id="fairuse">Fair Use Policy</h2>
                 <p>

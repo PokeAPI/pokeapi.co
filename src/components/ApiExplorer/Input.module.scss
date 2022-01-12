@@ -22,8 +22,8 @@ $mobile-breakpoint: 30em;
     z-index: 2;
     font-size: 1em;
     // @media (max-width: $mobile-breakpoint) {
-        // flex: 1;
-        // min-width: 100%;
+    // flex: 1;
+    // min-width: 100%;
     // }
 }
 .input {
@@ -61,4 +61,61 @@ $button-color: #0074eced;
     &:active {
         background-color: darken($button-color, 10%);
     }
+}
+
+.buttoncopy {
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    padding: 0.35em 0.75em;
+}
+
+.iconcopy:hover {
+    opacity: 100%;
+}
+
+.iconcopy {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #555;
+    opacity: 75%;
+
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

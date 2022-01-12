@@ -27,6 +27,8 @@ export default function ClipboardButton({text}) {
             >
                 <svg
                     className={styles.iconcopy}
+                    width='1.5rem'
+                    height='1.5rem'
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

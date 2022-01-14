@@ -28,7 +28,7 @@
                     {
                         "name": "previous",
                         "description": "The URL for the previous page in the list.",
-                        "type": "boolean"
+                        "type": "string"
                     },
                     {
                         "name": "results",

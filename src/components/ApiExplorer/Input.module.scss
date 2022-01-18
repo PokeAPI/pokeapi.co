@@ -62,3 +62,12 @@ $button-color: #0074eced;
         background-color: darken($button-color, 10%);
     }
 }
+
+@media screen and (max-width: 700px)  {
+    .button {
+        flex-grow: 1;
+        border-radius: 10px;
+        margin-top: 10px;
+        width: 100%;
+    }
+}

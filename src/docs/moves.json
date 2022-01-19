@@ -100,7 +100,7 @@
             }],
             "flavor_text_entries": [
                 {
-                    "flavor_text": "Pounds with fore­\nlegs or tail.",
+                    "flavor_text": "Pounds with fore\nlegs or tail.",
                     "language": {
                         "url": "$BASE_URL/v2/language/9/",
                         "name": "en"
@@ -200,8 +200,11 @@
                         "name": "learned_by_pokemon",
                         "description": "List of Pokemon that can learn the move",
                         "type": {
-                            "type": "NamedAPIResource",
-                            "of": "Pokemon"
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Pokemon"
+                            }
                         }
                     },
                     {

@@ -3,15 +3,15 @@
     border: 1px solid #e6e6e6;
     background: #fff;
     padding: 0.35em 0.75em;
+    opacity: 0.75;
 }
 
-.iconcopy:hover {
-    opacity: 100%;
+.buttoncopy:hover {
+    opacity: 1;
 }
 
 .iconcopy {
     color: #555;
-    opacity: 75%;
 }
 
 .tooltip {

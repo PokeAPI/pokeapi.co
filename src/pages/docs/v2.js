@@ -100,6 +100,12 @@ const wrapperLibraries = [
         link: 'https://crates.io/crates/rustemon',
         author: 'mlemesle',
     },
+    {
+        description: 'Asynchronous Python wrapper with auto caching',
+        name: 'aiopokeapi',
+        link: 'https://github.com/beastmatser/aiopokeapi',
+        author: 'beastmatser'
+    }
 ];
 
 export default function Documentation() {

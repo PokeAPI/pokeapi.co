@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
+import ClipboardButton from './ClipboardButton';
 import styles from './Input.module.scss';
 
 export default function Input2({
@@ -32,7 +33,10 @@ export default function Input2({
                 value={value}
                 onChange={event => setValue(event.target.value)}
             />
-            <button className={styles.button}>Submit</button>
+            <ClipboardButton text={`${urlPrefix}${value}`} />
+            <button type="submit" className={styles.button}>
+                Submit
+            </button>
         </form>
     );
 }

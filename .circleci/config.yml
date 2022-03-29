@@ -3,7 +3,7 @@ version: 2.1
 executors:
   linux:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202111-02
 
 commands:
   build:
@@ -15,10 +15,11 @@ commands:
             echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
             echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
       - run:
-          name: Use Node 10
+          name: Use Node LTS
           command: |
-            nvm use v10
-            nvm alias default v10
+            nvm install 'lts/*'
+            nvm use 'lts/*'
+            nvm alias default 'lts/*'
       - run:
           name: Install exact dependencies
           command: npm ci

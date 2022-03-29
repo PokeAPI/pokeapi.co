@@ -7,9 +7,31 @@
 }
 
 .container {
-    max-width: $page-max-width;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    div:first-child {
+        grid-column: 1 / 4;
+    }
+
+    div:last-child {
+        grid-column: 4;
+    }
+}
+
+@media screen and (max-width: 768px)  {
+    .container {
+        grid-template-columns: repeat(1, 1fr);
+
+        div:first-child {
+            grid-column: 1;
+        }
+
+        div:last-child {
+            grid-column: 1;
+        }
+    }
 }

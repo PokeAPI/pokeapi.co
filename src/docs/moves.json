@@ -200,8 +200,11 @@
                         "name": "learned_by_pokemon",
                         "description": "List of Pokemon that can learn the move",
                         "type": {
-                            "type": "NamedAPIResource",
-                            "of": "Pokemon"
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Pokemon"
+                            }
                         }
                     },
                     {

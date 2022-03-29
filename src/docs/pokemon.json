@@ -1564,7 +1564,7 @@
                         "name": "types",
                         "description": "A list of details showing types this Pokémon form has.",
                         "type": {
-                             "type": "NamedAPIResource",
+                             "type": "list",
                              "of": "PokemonFormType"
                          }
                     },

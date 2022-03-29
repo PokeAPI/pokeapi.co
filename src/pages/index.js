@@ -15,7 +15,7 @@ export default () => (
                 </div>
                 <h2>The RESTful Pokémon API</h2>
                 <p>
-                    Serving over <strong>60,000,000</strong> API calls each
+                    Serving over <strong>250,000,000</strong> API calls each
                     month!
                 </p>
             </div>

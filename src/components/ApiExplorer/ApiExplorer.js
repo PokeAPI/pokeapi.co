@@ -75,9 +75,9 @@ export default function ApiExplorer({baseApiUrl}) {
             />
             <p className={styles.hint_sentence}>
                 Need a hint? Try <Hint value="pokemon/ditto" />,{' '}
-                <Hint value="pokemon/1" />, <Hint value="type/3" />,{' '}
-                <Hint value="ability/4" />, or{' '}
-                <Hint value="pokemon?limit=100&offset=200" />.
+                <Hint value="pokemon-species/aegislash" />, <Hint value="type/3" />,{' '}
+                <Hint value="ability/battle-armor" />, or{' '}
+                <Hint value="pokemon?limit=100000&offset=0" />.
             </p>
             <p>
                 Direct link to results:{' '}

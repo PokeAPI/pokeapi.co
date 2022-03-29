@@ -84,7 +84,7 @@ function processDocs(docs) {
             htmlDescription: resource.description
                 ? marked(resource.description)
                 : null,
-            exampleRequest: BASE_URL + resource.exampleRequest,
+            exampleRequest: resource.exampleRequest ? BASE_URL + resource.exampleRequest : null,
             exampleResponse: resource.exampleResponse
                 ? JSON.parse(
                       JSON.stringify(resource.exampleResponse, null, 2).replace(

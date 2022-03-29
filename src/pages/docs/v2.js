@@ -238,7 +238,7 @@ function Resource({
     return (
         <React.Fragment key={name}>
             <h3 className={styles.section_name} id={id}>
-                {name} <span className={styles.section_type}>(endpoint)</span>
+                {name} <span className={styles.section_type}>{exampleRequest === null ? null : "(endpoint)"}</span>
             </h3>
             <div
                 dangerouslySetInnerHTML={{

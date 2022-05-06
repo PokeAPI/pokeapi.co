@@ -41,6 +41,12 @@ const wrapperLibraries = [
         author: 'sargunster',
     },
     {
+        description: 'Java (Spring Boot) with auto caching',
+        name: 'pokeapi-reactor',
+        link: 'https://github.com/SirSkaro/pokeapi-reactor',
+        author: 'Benjamin Churchill',
+    },
+    {
         description: '.NET (C#, VB, etc)',
         name: 'PokeApi.NET',
         link: 'https://gitlab.com/PoroCYon/PokeApi.NET',

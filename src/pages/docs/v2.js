@@ -154,6 +154,16 @@ export default function Documentation() {
                     removed entirely, but we still encourage you to limit the
                     frequency of requests to limit our hosting costs.
                 </p>
+				    
+		{/* <p> 
+			If you are going to be regularly using the API, we recommend
+			caching data on your service or deploying your own instance
+			of the API (jump on{' '}
+			<a href="https://pokeapi-slack-invite.herokuapp.com/">
+				Slack
+			</a>{' '}
+			for help with this).
+		</p> */}
 
                 <h2 id="fairuse">Fair Use Policy</h2>
                 <p>

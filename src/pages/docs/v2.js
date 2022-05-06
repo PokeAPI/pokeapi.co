@@ -35,7 +35,7 @@ const wrapperLibraries = [
         author: 'Paul Hallett',
     },
     {
-        description: 'Kotlin',
+        description: 'Kotlin (and Java)',
         name: 'PokeKotlin',
         link: 'https://github.com/PokeAPI/pokekotlin',
         author: 'sargunster',

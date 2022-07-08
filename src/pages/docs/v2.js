@@ -111,6 +111,12 @@ const wrapperLibraries = [
         name: 'aiopokeapi',
         link: 'https://github.com/beastmatser/aiopokeapi',
         author: 'beastmatser'
+    },
+    {
+        description: 'Scala 3 with auto caching',
+        name: 'pokeapi-scala',
+        link: 'https://github.com/juliano/pokeapi-scala',
+        author: 'Juliano Alves',
     }
 ];
 

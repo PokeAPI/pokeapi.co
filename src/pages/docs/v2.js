@@ -200,7 +200,7 @@ export default function Documentation() {
                 <p>
                     Have questions? Ideas? Notice something amiss here in the
                     docs? Hit us up on Slack. Sign up right{' '}
-                    <a href="https://pokeapi-slack-invite.herokuapp.com/">
+                    <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-1l4vpwa8k-muQmMrFfv7TIFGrVWzjzcw">
                         here
                     </a>{' '}
                     then visit our <a href="https://pokeapi.slack.com">Slack</a>{' '}

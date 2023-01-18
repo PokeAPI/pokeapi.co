@@ -132,6 +132,9 @@ export default function About() {
                     In August 2020 the PokéAPI community decided <a href="https://github.com/PokeAPI/pokeapi/issues/520">to temporarily fork</a> <a href="https://github.com/veekun/pokedex">veekun/pokedex</a>, which was the primary and only source of data. This operation was planned in order to add new generation-8 data, which Veekun lacked. The following people contributed to fetching and formatting generation-8 and newer data: <a href="https://github.com/Naramsim">Alessandro Pezzé</a>, <a href="https://github.com/ichbinfrog">Hoang Quoc Trung</a>, <a href="https://github.com/CMahk">Chandler Mahkorn</a>, <a href="https://github.com/AndreArrebola">André Sousa</a>, <a href="https://github.com/alex-whan">Alexander Whan</a>, <a href="https://github.com/myoKun345">Austin Jones</a>, <a href="https://github.com/tomi-912">tomi-912</a>, <a href="https://github.com/ercdndrs">Eric Donders</a>, <a href="https://github.com/pifopi">Gaël Dottel</a>, <a href="https://github.com/Parnassius">Parnassius</a> and <a href="https://github.com/anhthang">Anh Thang</a>.
                 </p>
                 <p>
+                In January 2023 <a href="https://github.com/bitomic">bitomic</a>, <a href="https://github.com/giginet">Kohki Miki</a>, <a href="https://github.com/pebou">Paul-Émile</a>, <a href="https://github.com/tillfox">tillfox</a> scraped generation 9 data from the web and added it here. 
+                </p>
+                <p>
                 The current owners of the PokéAPI project are <a href="https://github.com/phalt">Paul Hallet</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them other core maintainers include <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
                 </p>
                 <p>

@@ -223,7 +223,7 @@ export default function About() {
                 </p>
                 
                 <p>
-                This website now uses <a href="https://github.com/react-static/react-static">React Static</a> and the code lives in it's own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
+                This website now uses <a href="https://github.com/react-static/react-static">React Static</a> and the code lives in its own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
                 </p>
             </Faq>
         </PlainPage>

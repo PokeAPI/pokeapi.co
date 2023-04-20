@@ -42,6 +42,7 @@ function App() {
                     content="An open RESTful API for Pokémon data"
                 />
                 <link rel="icon" href="/pokeapi_192_square.png" />
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9300109033485921" crossorigin="anonymous"></script>
             </Head>
 
             <Header id="site-header" />

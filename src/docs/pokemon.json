@@ -224,24 +224,40 @@
             {
                 "name": "Characteristic",
                 "fields": [
-                     {
-                         "name": "id",
-                         "description": "The identifier for this resource.",
-                         "type": "integer"
-                     },
-                     {
-                         "name": "gene_modulo",
-                         "description": "The remainder of the highest stat/IV divided by 5.",
-                         "type": "integer"
-                     },
-                     {
-                         "name": "possible_values",
-                         "description": "The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5.",
-                         "type": {
-                              "type": "list",
-                              "of": "integer"
-                          }
-                     }
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gene_modulo",
+                        "description": "The remainder of the highest stat/IV divided by 5.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "possible_values",
+                        "description": "The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5.",
+                        "type": {
+                            "type": "list",
+                            "of": "integer"
+                        }
+                    },
+                    {
+                        "name": "highest_stat",
+                        "description": "The stat which results in this characteristic.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Stat"
+                        }
+                    },
+                    {
+                        "name": "descriptions",
+                        "description": "The descriptions of this characteristic listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Description"
+                        }
+                    }
                 ]
             }
         ]

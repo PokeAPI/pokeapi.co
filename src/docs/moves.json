@@ -496,7 +496,7 @@
     },
     {
         "name": "Move Ailments",
-        "description": "Move Ailments are status conditions caused by moves used during battle. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/http://bulbapedia.bulbagarden.net/wiki/Status_condition) for greater detail.",
+        "description": "Move Ailments are status conditions caused by moves used during battle. See [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Status_condition) for greater detail.",
         "exampleRequest": "/v2/move-ailment/{id or name}/",
         "exampleResponse": {
             "id": 1,

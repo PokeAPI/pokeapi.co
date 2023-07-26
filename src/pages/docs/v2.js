@@ -88,11 +88,11 @@ const wrapperLibraries = [
         link: 'https://github.com/mtslzr/pokeapi-go',
         author: 'mtslzr',
     },
-	{
-		description: 'Crystal',
-		name: 'pokeapi',
-		link: 'https://github.com/henrikac/pokeapi',
-		author: 'henrikac',
+    {
+        description: 'Crystal',
+        name: 'pokeapi',
+        link: 'https://github.com/henrikac/pokeapi',
+        author: 'henrikac',
     },
     {
         description: 'Typescript with auto caching',
@@ -110,14 +110,20 @@ const wrapperLibraries = [
         description: 'Asynchronous Python wrapper with auto caching',
         name: 'aiopokeapi',
         link: 'https://github.com/beastmatser/aiopokeapi',
-        author: 'beastmatser'
+        author: 'beastmatser',
     },
     {
         description: 'Scala 3 with auto caching',
         name: 'pokeapi-scala',
         link: 'https://github.com/juliano/pokeapi-scala',
         author: 'Juliano Alves',
-    }
+    },
+    {
+        description: 'Elixir wrapper with auto caching',
+        name: 'Max-Elixir-PokeAPI',
+        link: 'https://github.com/HenriqueArtur/Max-Elixir-PokeAPI',
+        author: 'Henrique Artur',
+    },
 ];
 
 export default function Documentation() {

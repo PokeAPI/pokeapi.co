@@ -3,7 +3,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![build status](https://img.shields.io/circleci/build/github/PokeAPI/pokeapi.co/master.svg)](https://circleci.com/gh/PokeAPI/pokeapi.co)
 
-This repository contains the source code and documentation for [pokeapi.co](pokeapi.co). This website is built on [React-Static](https://react-static.js.org), a static site generator similar to [Gatsby](https://www.gatsbyjs.org/), except unopinionated and with less magic.
+This repository contains the source code and documentation for [pokeapi.co](https://pokeapi.co/). This website is built on [React-Static](https://react-static.js.org), a static site generator similar to [Gatsby](https://www.gatsbyjs.org/), except unopinionated and with less magic.
 
 ## Getting Started
 

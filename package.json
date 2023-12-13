@@ -17,17 +17,17 @@
         "serve": "serve dist -p 3000"
     },
     "dependencies": {
-        "classnames": "^2.3.1",
+        "classnames": "^2.3.2",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-html-id": "^0.1.5",
-        "react-json-tree": "^0.15.1",
-        "react-router": "^5.2.1",
-        "react-router-dom": "^5.3.0",
+        "react-json-tree": "^0.15.2",
+        "react-router": "^5.3.4",
+        "react-router-dom": "^5.3.4",
         "react-static": "7.6.2",
         "react-static-plugin-react-router": "^7.6.2",
-        "react-use-clipboard": "^1.0.7",
-        "sanitize.css": "^11.0.1"
+        "react-use-clipboard": "^1.0.9",
+        "sanitize.css": "^13.0.0"
     },
     "devDependencies": {
         "autoprefixer": "^9.8.8",
@@ -36,18 +36,18 @@
         "eslint-config-react-app": "^5.2.1",
         "eslint-config-react-tools": "^1.1.7",
         "eslint-plugin-flowtype": "^4.7.0",
-        "eslint-plugin-import": "^2.25.3",
-        "eslint-plugin-jsx-a11y": "^6.5.1",
-        "eslint-plugin-react": "^7.27.1",
-        "extract-css-chunks-webpack-plugin": "^4.9.0",
+        "eslint-plugin-import": "^2.29.0",
+        "eslint-plugin-jsx-a11y": "^6.8.0",
+        "eslint-plugin-react": "^7.33.2",
+        "extract-css-chunks-webpack-plugin": "^4.10.0",
         "hash-sum": "^2.0.0",
         "marked": "^0.8.2",
         "postcss-flexbugs-fixes": "^4.2.1",
-        "react-hot-loader": "^4.12.11",
+        "react-hot-loader": "^4.13.1",
         "react-static-plugin-google-tag-manager": "^1.2.0",
-        "sass": "^1.45.0",
-        "sass-loader": "^10.2.0",
+        "sass": "^1.69.5",
+        "sass-loader": "^10.5.0",
         "serve": "^11.3.2",
-        "slugify": "^1.6.4"
+        "slugify": "^1.6.6"
     }
 }

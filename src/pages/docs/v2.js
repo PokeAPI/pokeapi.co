@@ -200,20 +200,20 @@ export default function Documentation() {
                     <li>
                         Be nice and friendly to your fellow PokéAPI developers.
                     </li>
+                    <li>
+                        If you spot security vulnerabilities act and <a href="https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability">report them</a> responsibly.
+                    </li>
                 </ul>
 
-                <h2 id="slack">Slack</h2>
+                <h2 id="slack">Slack and community</h2>
                 <p>
-                    Have questions? Ideas? Notice something amiss here in the
-                    docs? Hit us up on Slack. Sign up right{' '}
+                    Currently no maintainer has enough free time to support the community on Slack. Our Slack is in an unmaintained status.
+                    HYou can still sign up right{' '}
                     <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-1l4vpwa8k-muQmMrFfv7TIFGrVWzjzcw">
                         here
                     </a>{' '}
                     then visit our <a href="https://pokeapi.slack.com">Slack</a>{' '}
-                    team. We encourage you to come here before opening a ticket
-                    on GitHub, so we can keep our issues nice and organized.
-                    There are also a solid group of people using the API who may
-                    already have answers or plans from experience.
+                    page.
                 </p>
 
                 <h2 id="wrap">Wrapper Libraries</h2>

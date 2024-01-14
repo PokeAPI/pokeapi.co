@@ -9,15 +9,14 @@ import addWordBreaks from '../../utils/addWordBreaks';
 import styles from './v2.module.scss';
 
 const wrapperLibraries = [
-    
+
 ];
-
-
 
 export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
         {name: 'Fair Use Policy', id: 'fairuse', endOfSection: true},
+        {name: 'Beta status', id: 'betastatus', endOfSection: false},
     ];
 
     return (
@@ -53,7 +52,6 @@ EOF
                 <p>
                     A Node example and some GQL queries are available <a href="https://github.com/PokeAPI/pokeapi/tree/master/graphql/examples">here</a>.
                 </p>
-            
 
                 <h2 id="fairuse">Fair Use Policy</h2>
                 <p>
@@ -73,9 +71,18 @@ EOF
                     <li>
                         Be nice and friendly to your fellow PokéAPI developers.
                     </li>
+                    <li>
+                        If you spot security vulnerabilities act and <a href="https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability">report them</a> responsibly.
+                    </li>
                 </ul>
+                <h2 id="betastatus">Beta status</h2>
+                <p>
+                    To reduce costs we are hosting the GraphQL API on a GCP e2-micro free instance. The machine can hardly support all the load of Hasura and Postgres thanks to some ingenious tweaks.
+                </p>
+                <p>
+                    Nonetheless this has a cost to the user experience. A 100 calls/h per IP rate-limit is put in place, the instance is set to reboot every day at 1AM UTC with a consequent 2 minutes of downtime, every successfull HTTP response is cached server-side, sporadic maintenance and testing might stop the service.
+                </p>
             </DocsContainer>
         </Page>
     );
 }
-

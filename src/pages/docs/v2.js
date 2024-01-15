@@ -208,8 +208,8 @@ export default function Documentation() {
                 <h2 id="slack">Slack and community</h2>
                 <p>
                     Currently no maintainer has enough free time to support the community on Slack. Our Slack is in an unmaintained status.
-                    HYou can still sign up right{' '}
-                    <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-1l4vpwa8k-muQmMrFfv7TIFGrVWzjzcw">
+                    You can still sign up right{' '}
+                    <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-2ampo6her-_tHSI3uOS65WzGypt7Y96w">
                         here
                     </a>{' '}
                     then visit our <a href="https://pokeapi.slack.com">Slack</a>{' '}

@@ -27,11 +27,14 @@ function App() {
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9300109033485921" crossorigin="anonymous"></script>                
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3X3FV0WED"></script>
                 <script>
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                
-                  gtag('config', 'G-X3X3FV0WED');
+                {
+                    `window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments)
+                    }
+                    gtag('js', new Date());
+                    gtag('config', 'G-X3X3FV0WED');`
+                }
                 </script>
 
                 <html lang="en" />

@@ -49,7 +49,6 @@ export default {
             {
                 path: '/docs/',
                 template: 'src/pages/docs.js',
-                redirect: '/docs/v2',
             },
             {
                 path: '/docs/v1',

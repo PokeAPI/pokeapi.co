@@ -1047,6 +1047,10 @@
                     }
                 }
             },
+            "cries": {
+                "latest": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/35.ogg",
+                "legacy": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/35.ogg"
+            },
             "stats": [
                 {
                     "base_stat": 35,
@@ -1183,6 +1187,11 @@
                         "name": "sprites",
                         "description": "A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at <a href='https://github.com/PokeAPI/sprites#sprites'>PokeAPI/sprites</a>",
                         "type": "PokemonSprites"
+                    },
+                    {
+                        "name": "cries",
+                        "description": "A set of cries used to depict this Pokémon in the game. A visual representation of the various cries can be found at <a href='https://github.com/PokeAPI/cries#cries'>PokeAPI/cries</a>",
+                        "type": "PokemonCries"
                     },
                     {
                         "name": "species",
@@ -1440,6 +1449,21 @@
                     {
                         "name": "back_shiny_female",
                         "description": "The shiny female depiction of this Pokémon from the back in battle.",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "name": "PokemonCries",
+                "fields": [
+                    {
+                        "name": "latest",
+                        "description": "The latest depiction of this Pokémon's cry.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "legacy",
+                        "description": "The legacy depiction of this Pokémon's cry.",
                         "type": "string"
                     }
                 ]

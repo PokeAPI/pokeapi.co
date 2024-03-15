@@ -4,7 +4,10 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'PokeAPI',
+      title: '',
+      logo: {
+        src: './src/assets/pokeapi_256.png',
+      },
     }),
   ],
 });

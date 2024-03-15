@@ -1,6 +1,20 @@
 ---
 title: PokeAPI
 description: The RESTful Pokémon API
+template: splash
+hero:
+  title: PokeAPI
+  tagline: The RESTful Pokémon API
+  actions:
+    - text: Get started
+      link: /docs/usage/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/pokeapi/pokeapi
+      icon: external
+      attrs:
+        rel: me
 ---
 
 Serving over **1,000,000,000** API calls each month!

@@ -1,10 +1,10 @@
 import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
 
-import starlight from "@astrojs/starlight";
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [starlight(
-    title: 'The RESTful Pokémon API',
-  )]
+  integrations: [
+    starlight({
+      title: 'My delightful docs site',
+    }),
+  ],
 });

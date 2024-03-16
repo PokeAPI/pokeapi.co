@@ -13,10 +13,15 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: 'API V2',
+          label: 'API',
           autogenerate: { directory: 'v2' },
         },
         { label: 'About', link: 'about' },
+        {
+          label: 'GraphQL',
+          link: 'graphql',
+          badge: 'v1beta',
+        },
       ],
     }),
   ],

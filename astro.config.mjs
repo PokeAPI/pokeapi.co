@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 
 export default defineConfig({
   integrations: [
@@ -11,12 +12,31 @@ export default defineConfig({
       social: {
         github: 'https://github.com/pokeapi/pokeapi',
       },
+			plugins: [
+        // Generate the OpenAPI documentation pages.
+        starlightOpenAPI([
+          {
+           base: 'v2/openapi',
+           label: 'OpenAPI',
+           schema: './openapi.yml',
+          },
+        ]),
+      ],
       sidebar: [
         {
           label: 'API',
-          autogenerate: { directory: 'v2' },
+          items: [
+            {
+              label: 'V2',
+              link: 'v2',
+            },
+            ...openAPISidebarGroups,
+          ]
         },
-        { label: 'About', link: 'about' },
+        {
+          label: 'About',
+          link: 'about'
+        },
         {
           label: 'GraphQL',
           link: 'graphql',

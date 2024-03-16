@@ -8,12 +8,16 @@ export default defineConfig({
       logo: {
         src: './src/assets/pokeapi_256.png',
       },
-			sidebar: [
-				{
-					label: 'API V2',
-					autogenerate: { directory: 'v2' },
-				},
-			],
+      social: {
+        github: 'https://github.com/pokeapi/pokeapi',
+      },
+      sidebar: [
+        {
+          label: 'API V2',
+          autogenerate: { directory: 'v2' },
+        },
+        { label: 'About', link: 'about' },
+      ],
     }),
   ],
 });

@@ -6,7 +6,7 @@ hero:
   title: PokeAPI
   tagline: The RESTful Pokémon API
   actions:
-    - text: Get started
+    - text: Check out the docs!
       link: /v2/
       icon: right-arrow
       variant: primary

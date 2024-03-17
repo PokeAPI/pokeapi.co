@@ -3,6 +3,8 @@ import starlight from '@astrojs/starlight';
 import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 
 export default defineConfig({
+  site: 'https://indyandie.github.io/',
+  base: '/pokeapi.co',
   integrations: [
     starlight({
       title: '',
@@ -12,13 +14,13 @@ export default defineConfig({
       social: {
         github: 'https://github.com/pokeapi/pokeapi',
       },
-			plugins: [
+      plugins: [
         // Generate the OpenAPI documentation pages.
         starlightOpenAPI([
           {
-           base: 'v2/openapi',
-           label: 'OpenAPI',
-           schema: './openapi.yml',
+            base: 'v2/openapi',
+            label: 'OpenAPI',
+            schema: './openapi.yml',
           },
         ]),
       ],

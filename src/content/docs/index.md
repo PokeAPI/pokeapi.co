@@ -7,7 +7,7 @@ hero:
   tagline: The RESTful Pokémon API
   actions:
     - text: Check out the docs!
-      link: /v2/
+      link: /pokeapi.co/v2/
       icon: right-arrow
       variant: primary
     - text: View on GitHub

@@ -18,7 +18,7 @@ export default defineConfig({
         // Generate the OpenAPI documentation pages.
         starlightOpenAPI([
           {
-            base: 'v2/openapi',
+            base: '/pokeapi.co/v2/openapi',
             label: 'OpenAPI',
             schema: './openapi.yml',
           },

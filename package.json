@@ -15,9 +15,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/react": "^3.1.0",
-    "@astrojs/starlight": "^0.21.2",
-    "astro": "^4.5.10",
+    "@astrojs/react": "^3.4.0",
+    "@astrojs/starlight": "^0.23.1",
+    "astro": "^4.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "starlight-openapi": "^0.6.0"

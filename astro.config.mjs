@@ -20,7 +20,7 @@ export default defineConfig({
           {
             base: '/v2/openapi',
             label: 'OpenAPI',
-            schema: './openapi.yml',
+            schema: 'https://raw.githubusercontent.com/PokeAPI/pokeapi/master/openapi.yml',
           },
         ]),
       ],

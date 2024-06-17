@@ -94,7 +94,7 @@ export default function About() {
                     <a href="https://github.com/PokeAPI/pokeapi/">GitHub</a>.
                 </p>
                 <p>
-                    Have ideas for new features? We're on Slack! Sign up <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-1l4vpwa8k-muQmMrFfv7TIFGrVWzjzcw"> right here </a> then visit our <a href="https://pokeapi.slack.com">slack team</a>.
+                    Have ideas for new features? We're on Slack! Sign up <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-2ampo6her-_tHSI3uOS65WzGypt7Y96w"> right here </a> then visit our <a href="https://pokeapi.slack.com">slack team</a>.
                 </p>
             </Faq>
             <Faq title="So who built this?">

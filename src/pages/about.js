@@ -102,14 +102,7 @@ export default function About() {
                     PokéAPI V1 was created by{' '}
                     <a href="https://github.com/phalt">Paul Hallett</a> as a
                     weekend project but it quickly became more than a weekend's
-                    worth of work. In{' '}
-                    <a
-                        href="https://phalt.github.io/posts/if-you-have-data-they-will-consume-it/"
-                        target="none"
-                    >
-                        December of 2014
-                    </a>{' '}
-                    Paul deprecated V1 in favor of working on V2.
+                    worth of work. In December of 2014 Paul deprecated V1 in favor of working on V2.
                 </p>
                 <p>
                     This is where{' '}

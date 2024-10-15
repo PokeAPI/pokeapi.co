@@ -11,12 +11,17 @@
     },
     {
         "level": "success",
-        "active": true,
+        "active": false,
         "message": "PokeAPI proudly announces Beta support for GraphQL. Access our free console at [beta.pokeapi.co/graphql/console](https://beta.pokeapi.co/graphql/console/) and take a look at the [documentation](/docs/graphql)"
     },
     {
         "level": "info",
-        "active": true,
+        "active": false,
         "message": "**Sword and Shield** data might be inaccurate and lacking in various aspects due to the fact that it is not taken directly from Nintendo's Pokemon ROMs. If you spot any mistake, please report it [here](https://github.com/PokeAPI/pokedex/issues)"
+    },
+    {
+        "level": "info",
+        "active": true,
+        "message": "PokeAPI turns 10 on December 4th! Celebrate and discover the entire source code over at [PokeAPI/pokeapi](https://github.com/PokeAPI/pokeapi)!"
     }
 ]

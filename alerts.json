@@ -20,7 +20,7 @@
         "message": "**Sword and Shield** data might be inaccurate and lacking in various aspects due to the fact that it is not taken directly from Nintendo's Pokemon ROMs. If you spot any mistake, please report it [here](https://github.com/PokeAPI/pokedex/issues)"
     },
     {
-        "level": "info",
+        "level": "success",
         "active": true,
         "message": "PokeAPI turns 10 on December 4th! Celebrate and discover the entire source code over at [PokeAPI/pokeapi](https://github.com/PokeAPI/pokeapi)!"
     }

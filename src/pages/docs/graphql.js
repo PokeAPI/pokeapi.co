@@ -28,7 +28,7 @@ export default function Documentation() {
                     Beta support for <a href="https://graphql.org/">GraphQL</a> is rolling out starting April 2021
                 </p>
                 <p>
-                    A free rate-limited endpoint is available at <a href="https://beta.pokeapi.co/graphql/v1beta">beta.pokeapi.co/graphql/v1beta</a>. This endpoint can be subject to changes in future. Only POST requests are allowed.
+                    A free rate-limited endpoint is available at <a href="https://beta.pokeapi.co/graphql/v1beta">beta.pokeapi.co/graphql/v1beta</a>. This endpoint can be subject to changes in the future. Only POST requests are allowed.
                 </p>
                 <p>
                     To ease learning and developing, a <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface is hosted at <a href="https://beta.pokeapi.co/graphql/console/">beta.pokeapi.co/graphql/console/</a>. This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
@@ -80,7 +80,7 @@ EOF
                     To reduce costs we are hosting the GraphQL API on a GCP e2-micro free instance. The machine can hardly support all the load of Hasura and Postgres thanks to some ingenious tweaks.
                 </p>
                 <p>
-                    Nonetheless this has a cost to the user experience. A 100 calls/h per IP rate-limit is put in place, the instance is set to reboot every day at 1AM UTC with a consequent 2 minutes of downtime, every successfull HTTP response is cached server-side, sporadic maintenance and testing might stop the service.
+                    Nonetheless, this has a cost to the user experience. A 100 calls/h per IP rate-limit is put in place, the instance is set to reboot every day at 1 AM UTC with a consequent 2 minutes of downtime, every successful HTTP response is cached server-side, sporadic maintenance and testing might stop the service.
                 </p>
             </DocsContainer>
         </Page>

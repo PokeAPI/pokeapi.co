@@ -128,7 +128,7 @@ export default function About() {
                 In January 2023 <a href="https://github.com/bitomic">bitomic</a>, <a href="https://github.com/giginet">Kohki Miki</a>, <a href="https://github.com/pebou">Paul-Émile</a>, <a href="https://github.com/tillfox">tillfox</a> scraped generation 9 data from the web and added it here. 
                 </p>
                 <p>
-                The current owners of the PokéAPI project are <a href="https://github.com/phalt">Paul Hallet</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them other core maintainers include <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
+                The current owners of the PokéAPI project are <a href="https://github.com/phalt">Paul Hallett</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them other core maintainers include <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
                 </p>
                 <p>
                     We also have a{' '}

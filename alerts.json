@@ -21,7 +21,7 @@
     },
     {
         "level": "success",
-        "active": true,
+        "active": false,
         "message": "PokeAPI turned 10 on December 4th! Discover the entire source code over at [PokeAPI/pokeapi](https://github.com/PokeAPI/pokeapi)!"
     }
 ]

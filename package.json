@@ -15,23 +15,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/react": "^3.4.0",
-    "@astrojs/starlight": "^0.23.3",
-    "astro": "^4.9.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "starlight-openapi": "^0.6.4"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-config-react-tools": "^1.1.7",
-    "eslint-plugin-flowtype": "^4.7.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.33.2",
-    "extract-css-chunks-webpack-plugin": "^4.10.0",
-    "hash-sum": "^2.0.0",
-    "marked": "^12.0.1"
+    "@astrojs/starlight": "^0.31.1",
+    "astro": "^5.1.10",
+    "starlight-openapi": "^0.10.0"
   }
 }

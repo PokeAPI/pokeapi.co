@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from 'astro/config'
+import starlight from '@astrojs/starlight'
 import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 
 export default defineConfig({
@@ -33,11 +33,11 @@ export default defineConfig({
               link: 'v2',
             },
             ...openAPISidebarGroups,
-          ]
+          ],
         },
         {
           label: 'About',
-          link: 'about'
+          link: 'about',
         },
         {
           label: 'GraphQL',
@@ -47,4 +47,4 @@ export default defineConfig({
       ],
     }),
   ],
-});
+})

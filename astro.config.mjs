@@ -27,6 +27,10 @@ export default defineConfig({
       ],
       sidebar: [
         {
+          label: 'About',
+          link: 'about',
+        },
+        {
           label: 'API',
           items: [
             {
@@ -35,10 +39,6 @@ export default defineConfig({
             },
             ...openAPISidebarGroups,
           ],
-        },
-        {
-          label: 'About',
-          link: 'about',
         },
         {
           label: 'GraphQL',

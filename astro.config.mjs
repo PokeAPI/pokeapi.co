@@ -7,9 +7,10 @@ export default defineConfig({
   base: '/pokeapi.co',
   integrations: [
     starlight({
-      title: '',
+      title: 'PokéAPI',
       logo: {
         src: './src/assets/pokeapi_256.png',
+        replacesTitle: true,
       },
       social: {
         github: 'https://github.com/pokeapi/pokeapi',

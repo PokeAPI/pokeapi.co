@@ -3,8 +3,7 @@ import starlight from '@astrojs/starlight'
 import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 
 export default defineConfig({
-  site: 'https://indyandie.github.io/',
-  base: '/pokeapi.co',
+  site: 'https://poke.indieandy.cc/',
   integrations: [
     starlight({
       title: 'PokéAPI',

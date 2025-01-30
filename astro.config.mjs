@@ -13,6 +13,7 @@ export default defineConfig({
       },
       social: {
         github: 'https://github.com/pokeapi/pokeapi',
+        slack: 'https://pokeapi.slack.com/',
       },
       plugins: [
         // Generate the OpenAPI documentation pages.

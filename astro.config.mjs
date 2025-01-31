@@ -1,12 +1,16 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   site: 'https://poke.indieandy.cc/',
   integrations: [
     starlight({
       title: 'PokéAPI',
+      customCss: [
+        './src/styles/global.css',
+      ],
       logo: {
         src: './src/assets/pokeapi_256.png',
         replacesTitle: true,
@@ -48,4 +52,5 @@ export default defineConfig({
       ],
     }),
   ],
+  vite: { plugins: [tailwindcss()] },
 })

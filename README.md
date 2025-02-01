@@ -3,14 +3,14 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![build status](https://img.shields.io/circleci/build/github/PokeAPI/pokeapi.co/master.svg)](https://circleci.com/gh/PokeAPI/pokeapi.co)
 
-This repository contains the source code and documentation for [pokeapi.co](https://pokeapi.co/). This website is built on [React-Static](https://react-static.js.org), a static site generator similar to [Gatsby](https://www.gatsbyjs.org/), except unopinionated and with less magic.
+This repository contains the source code and documentation for [pokeapi.co](https://pokeapi.co/). This website is built with [starlight](https://starlight.astro.build/).
 
 ## Getting Started
 
 ### Prerequisities
 
 -   Git
--   [Node](https://nodejs.org/en/): 10.11.0 or greater
+-   [Node](https://nodejs.org/en/): (v16 or higher)
 -   A GitHub fork of the repo (for any contributions)
 -   A clone of the [pokeapi.co repo](https://github.com/pokeapi/pokeapi.co) on your local machine
 
@@ -21,13 +21,13 @@ This repository contains the source code and documentation for [pokeapi.co](http
 
 ### Running locally
 
-1. `npm run start` to start the hot-reloading development server (powered by [React-Static](https://react-static.js.org)).
-2. Go to `http://localhost:3000` to view the site in your browser.
+1. `npm run dev` to start the [Astro’s development server](https://docs.astro.build/en/reference/cli-reference/#astro-dev).
+2. This will log a message to your terminal with the URL of your local preview. Open this URL to start browsing your site.
 
 ### Building for production
 
 1. `npm run build` to build the production site.
-2. `npm run serve` to serve the production version of the site on a local test server.
+2. `npm run preview` to serve the production version of the site on a local test server.
 
 Production files are located in the `dist` directory.
 

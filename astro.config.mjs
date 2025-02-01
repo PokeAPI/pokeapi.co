@@ -4,7 +4,7 @@ import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  site: 'https://poke.indieandy.cc/',
+  site: 'https://pokeapi.co',
   integrations: [
     starlight({
       title: 'PokéAPI',

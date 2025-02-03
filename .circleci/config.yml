@@ -3,7 +3,7 @@ version: 2.1
 executors:
   linux:
     machine:
-      image: ubuntu-2004:202111-02
+      image: ubuntu-2404:2024.11.1
 
 commands:
   build:

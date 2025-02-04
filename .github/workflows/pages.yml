@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - feat/astro-starlight
-  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -38,7 +37,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build with Astro
-        # run: BASE_URL='https://pokeapi.github.io/' npm run build
         run: npm run build --site 'https://pokeapi.github.io/' --base 'pokeapi.co'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

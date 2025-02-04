@@ -1,7 +1,12 @@
 {
   "name": "pokeapi.co",
   "description": "PokéAPI website",
-  "author": "Charles Marttinen",
+  "author": "PokeAPI",
+  "contributors": [
+    "Charles Marttinen",
+    "Naramsim",
+    "Indyandie"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,15 +16,15 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --site 'https://pokeapi.co/'",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.31.1",
-    "@tailwindcss/vite": "^4.0.1",
-    "astro": "^5.2.1",
-    "starlight-openapi": "^0.11.0",
-    "tailwindcss": "^4.0.1"
+    "@tailwindcss/vite": "^4.0.3",
+    "astro": "^5.2.5",
+    "starlight-openapi": "^0.12.0",
+    "tailwindcss": "^4.0.3"
   }
 }

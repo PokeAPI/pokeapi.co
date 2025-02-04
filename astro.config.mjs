@@ -3,11 +3,9 @@ import starlight from '@astrojs/starlight'
 import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 import tailwindcss from '@tailwindcss/vite'
 
-// const base_url = process.env.BASE_URL || ''
-
 export default defineConfig({
   site: 'https://pokeapi.co',
-  base: '/pokeapi.co',
+  base: '',
   integrations: [
     starlight({
       title: 'PokéAPI',
@@ -23,10 +21,8 @@ export default defineConfig({
         slack: 'https://pokeapi.slack.com/',
       },
       plugins: [
-        // Generate the OpenAPI documentation pages.
         starlightOpenAPI([
           {
-            // base: `${base_url}/v2/openapi`,
             base: `/v2/openapi`,
             label: 'OpenAPI',
             schema: 'https://raw.githubusercontent.com/PokeAPI/pokeapi/master/openapi.yml',

@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build with Astro
-        run: npm run build --site 'https://pokeapi.github.io/' --base 'pokeapi.co'
+        run: npm run build:ghpages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

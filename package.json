@@ -16,7 +16,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build --site 'https://pokeapi.co/'",
+    "build": "astro build --site https://pokeapi.co/",
+    "build:ghpages": "astro build --site https://pokeapi.github.io/ --base pokeapi.co",
     "preview": "astro preview",
     "astro": "astro"
   },

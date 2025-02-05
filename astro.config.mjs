@@ -9,6 +9,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'PokéAPI',
+      components: {
+        Footer: './src/components/PokeFooter.astro',
+      },
       customCss: [
         './src/styles/global.css',
       ],

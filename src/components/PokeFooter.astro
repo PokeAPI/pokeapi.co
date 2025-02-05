@@ -1,0 +1,55 @@
+---
+import type { Props } from '@astrojs/starlight/props'
+import Pagination from '@astrojs/starlight/components/Pagination.astro'
+---
+
+<nav class="pb-12">
+  <Pagination {...Astro.props}></Pagination>
+</nav>
+<footer
+  class="
+    fixed bottom-0 left-0
+    w-full px-12 py-4 mt-12
+    flex items-center gap-8 place-content-between
+    bg-(--sl-color-black) border-t border-t-(--sl-color-accent)
+  "
+>
+  <small>
+    Created by <a href="https://github.com/phalt"><strong>Paul Hallett</strong></a> and other <a
+      href="https://github.com/PokeAPI/pokeapi/graphs/contributors"
+    >PokéAPI contributors</a> around the world. Pokémon and Pokémon character names are trademarks of Nintendo.
+  </small>
+  <a href="https://pokeapi.statuspage.io/"><img
+      alt="Status"
+      src="https://img.shields.io/badge/dynamic/json?color=blue&label=status&query=%24.status.description&url=https%3A%2F%2Fzlfyqp3hlvly.statuspage.io%2Fapi%2Fv2%2Fsummary.json"
+    /></a>
+</footer>
+
+<style>
+  .meta {
+    gap: 0.75rem 3rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .meta > :global(p:only-child) {
+    margin-inline-start: auto;
+  }
+
+  .kudos {
+    align-items: center;
+    gap: 0.5em;
+    margin: 1.5rem auto;
+    font-size: var(--sl-text-xs);
+    text-decoration: none;
+    color: var(--sl-color-gray-3);
+  }
+  .kudos :global(svg) {
+    color: var(--sl-color-orange);
+  }
+  .kudos:hover {
+    color: var(--sl-color-white);
+  }
+</style>

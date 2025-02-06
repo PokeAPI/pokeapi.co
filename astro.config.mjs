@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   site: 'https://pokeapi.co',
   base: '',
+  trailingSlash: "always",
   integrations: [
     starlight({
       title: 'PokéAPI',

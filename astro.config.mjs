@@ -11,6 +11,7 @@ export default defineConfig({
       title: 'PokéAPI',
       components: {
         Footer: './src/components/PokeFooter.astro',
+        Header: './src/components/PokeHeader.astro',
       },
       customCss: [
         './src/styles/global.css',

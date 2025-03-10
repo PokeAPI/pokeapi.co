@@ -862,7 +862,8 @@
                             "move_learn_method": {
                                 "name": "level-up",
                                 "url": "$BASE_URL/v2/move-learn-method/1/"
-                            }
+                            },
+                            "order": 1
                         }
                     ]
                 }
@@ -1381,6 +1382,11 @@
                     {
                         "name": "level_learned_at",
                         "description": "The minimum level to learn the move.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "order",
+                        "description": "Order by which the pokemon will learn the move. A newly learnt move will replace the move with lowest order.",
                         "type": "integer"
                     }
                 ]

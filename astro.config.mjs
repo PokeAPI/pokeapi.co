@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   site: 'https://pokeapi.co',
   base: '',
-  trailingSlash: "always",
+  trailingSlash: 'always',
   integrations: [
     starlight({
       title: 'PokéAPI',
@@ -21,10 +21,10 @@ export default defineConfig({
         src: './src/assets/pokeapi_256.png',
         replacesTitle: true,
       },
-      social: {
-        github: 'https://github.com/pokeapi/pokeapi',
-        slack: 'https://pokeapi.slack.com/',
-      },
+      social: [
+        { icon: 'github', label: 'Github', href: 'https://github.com/pokeapi/pokeapi' },
+        { icon: 'slack', label: 'Slack', href: 'https://pokeapi.slack.com/' },
+      ],
       plugins: [
         starlightOpenAPI([
           {

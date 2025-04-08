@@ -89,6 +89,12 @@ const wrapperLibraries = [
         author: 'mtslzr',
     },
     {
+        description: 'Go',
+        name: 'PokeGo',
+        link: 'https://github.com/JoshGuarino/PokeGo',
+        author: 'Josh Guarino'
+    },
+    {
         description: 'Crystal',
         name: 'pokeapi',
         link: 'https://github.com/henrikac/pokeapi',

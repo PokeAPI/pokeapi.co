@@ -1086,6 +1086,21 @@
                         }
                     ]
                 }
+            ],
+            "past_abilities": [
+                {
+                    "generation": {
+                        "name": "generation-iv",
+                        "url": "$BASE_URL/v2/generation/4/"
+                    },
+                    "abilities": [
+                        {
+                            "ability": null,
+                            "is_hidden": true,
+                            "slot": 3
+                        }
+                    ]
+                }
             ]
         },
         "responseModels": [
@@ -1181,6 +1196,14 @@
                         "type": {
                             "type": "list",
                             "of": "PokemonTypePast"
+                        }
+                    },
+                    {
+                        "name": "past_abilities",
+                        "description": "A list of details showing abilities this pokémon had in previous generations",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonAbilityPast"
                         }
                     },
                     {
@@ -1295,6 +1318,27 @@
                         "type": {
                             "type": "list",
                             "of": "PokemonType"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "PokemonAbilityPast",
+                "fields": [
+                    {
+                        "name": "generation",
+                        "description": "The last generation in which the referenced pokémon had the listed abilities.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Generation"
+                        }
+                    },
+                    {
+                        "name": "abilities",
+                        "description": "The abilities the referenced pokémon had up to and including the listed generation. If null, the slot was previously empty.",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonAbility"
                         }
                     }
                 ]

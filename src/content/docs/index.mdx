@@ -21,21 +21,24 @@ hero:
         rel: me
 ---
 
+import ApiExplorer from '../../components/ApiExplorer.astro';
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
 <div class="text-2xl text-center leading-[1.8]">
 All the Pokémon data you'll ever need in one place, easily accessible through a modern free open-source RESTful API.
 </div>
 
----
-
-import { Card, CardGrid } from '@astrojs/starlight/components';
+<ApiExplorer />
 
 <CardGrid stagger>
-  <Card title="What is this?" icon="puzzle">
+
+<Card title="What is this?" icon="puzzle">
     This is a full **RESTful API** linked to an extensive database detailing everything about the Pokémon main game series.
     <br/>
     We've covered everything from Pokémon to Berry Flavors.
   </Card>
-  <Card title="Where do I start?" icon="rocket">
+
+<Card title="Where do I start?" icon="rocket">
     We have awesome [documentation](./v2/) on how to use this API. It takes minutes to get started.
     <br/>
     This API will always be publicly available and will never require any extensive setup process to consume.

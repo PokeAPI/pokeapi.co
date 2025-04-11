@@ -1,0 +1,121 @@
+---
+import ditto from '../data/ditto.json'
+const dittoJson = JSON.stringify(ditto)
+const pokeUrl = 'https://pokeapi.co/api/v2/ '
+
+import { Aside } from '@astrojs/starlight/components'
+---
+
+<link is:raw rel="stylesheet" href="https://cdn.jsdelivr.net/gh/williamtroup/JsonTree.js@4.7.0/dist/jsontree.js.min.css">
+
+<link rel="stylesheet" href="/styles/koki.css">
+<script is:inline src="/js/koki.js"></script>
+
+<section class="py-12">
+  <h2 class="text-center">Try it now!</h2>
+
+  <Aside type="tip" title="Need a hint?">
+    Try <code>pokemon/ditto</code>, <code>pokemon-species/aegislash</code>, <code>type/3</code>,
+    <code>ability/battle-armor</code>, or <code>pokemon?limit=100000&offset=0</code>.
+  </Aside>
+
+  <div class="py-8 flex items-baseline">
+    <label
+      class="
+        font-bold
+        text-(--sl-color-white)
+        grow
+        flex
+        items-baseline
+      "
+    >{pokeUrl}
+      <input
+        style="margin-left: 16px; margin-right: 16px"
+        class="
+          w-auto p-2
+          bg-(--sl-color-gray-5) rounded-sm
+          grow
+        "
+        type="text"
+        name="pokeapi-path"
+        id="pokeapi-path"
+        placeholder="path/segment"
+        required
+        title="no"
+        value="pokemon/ditto"
+        pattern="(\w|\d|-)+( |(/(\w|\d|-)+)+)"
+        minlength="1"
+        onkeypress="if(event.keyCode === 13) sendRequest()"
+      >
+    </label>
+    <button
+      style="font-weight: bolder"
+      id="sendRequestSubmit"
+      class="
+        bg-(--sl-color-accent)
+        text-(--sl-color-white)
+        p-3 rounded-md
+        cursor-pointer
+      "
+      onclick="sendRequest()"
+    >
+      Send Request
+    </button>
+  </div>
+  <p>
+    Direct link to results: <a id="pokeapi-direct-link" target="_blank" href="https://pokeapi.co/api/v2/pokemon/ditto"
+    >https://pokemon.co/v2/pokemon/ditto</a>
+  </p>
+
+  <article id="json-preview" data-ditto={dittoJson}>
+    <div id="json-container">hello</div>
+  </article>
+</section>
+
+<script is:inline defer>
+  const jsonPreview = document.getElementById('json-preview')
+  const pokeapiPathInput = document.getElementById('pokeapi-path')
+  const pokeapiDirectLink = document.getElementById('pokeapi-direct-link')
+  let ditto = jsonPreview.dataset.ditto
+
+  const pokeUrl = 'https://pokeapi.co/api/v2/'
+  const jsonContainer = document.getElementById('json-container')
+
+  let pokeApiPath = document.querySelector('#pokeapi-path').value
+  let requestUrl = pokeUrl + pokeApiPath
+
+  kokiInit(ditto, jsonContainer, 'Resource for ditto')
+
+  async function sendRequest() {
+    pokeApiPath = pokeapiPathInput.value
+    const url = pokeUrl + pokeApiPath
+
+    if (url !== requestUrl) {
+      pokeapiPathInput.disabled = true
+      kokiInit(ditto, jsonContainer, 'Loading...')
+      try {
+        const response = await fetch(url)
+        const { status } = response
+        if (status === 200) {
+          const jsonData = await response.json()
+          ditto = JSON.stringify(jsonData)
+          const title = `Resource for ${jsonData.name}`
+          pokeapiDirectLink.innerHTML = url
+          pokeapiDirectLink.href = url
+
+          kokiInit(ditto, jsonContainer, title)
+        } else {
+          kokiInit('null', jsonContainer, 'Resource not found')
+        }
+      } catch (err) {
+        console.log('ERROR', err)
+        kokiInit('null', jsonContainer, 'Resource not found')
+      }
+      requestUrl = url
+    } else {
+      requestUrl = url
+      console.log('dupes', url)
+    }
+    pokeapiPathInput.disabled = false
+  }
+</script>

@@ -1,0 +1,276 @@
+.arbol-root {
+  --font-fam: var(--arbol--text-font, serif);
+  background: var(--arbol-bg-color, black);
+  color: var(--arbol-text-color, white);
+  font-size: var(--arbol--text-size, 16px);
+  font-family: var(--font-fam);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  transition: all 0.25s ease-out;
+
+  * {
+    list-style: none;
+    transition: all 0.25s ease-out;
+  }
+
+  *::-webkit-details-marker {
+    display: none;
+  }
+
+  ul {
+    padding-left: 16px;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  & > details {
+    color: lightgrey;
+    font-family: var(--arbol-code-text-font, monospace);
+    position: relative;
+
+    & > summary {
+      header {
+        padding: 16px;
+        background: var(--arbol-header-bg, black);
+        color: var(--arbol-header-text-color, whitesmoke);
+        font-family: var(--font-fam);
+        line-height: 1.2;
+
+        h2 {
+          font-size: 24px;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+
+    label:has(input) {
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      margin-right: 23px;
+      margin-top: 24px;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      background: var(--arbol-header-bg, gray);
+      color: var(--arbol-text-color, antiquewhite);
+      opacity: 0.5;
+      padding: 6px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+
+      &:hover {
+        color: var(--arbol-header-text-color, white);
+        opacity: 0.8;
+      }
+
+      input {
+        display: none;
+      }
+    }
+
+    label:has(input:checked) {
+      &::before {
+        content: "Show JSON Tree";
+      }
+      & ~ data {
+        display: none;
+      }
+    }
+
+    label:has(input:not(:checked)) {
+      &::before {
+        content: "Show Raw JSON";
+      }
+      & ~ pre {
+        display: none;
+      }
+    }
+
+    & > pre {
+      margin: 0;
+      padding: 24px;
+      max-height: 600px;
+      overflow: scroll;
+      font-size: var(--arbol-code-text-size, 14px);
+      color: var(--arbol-code-text-color, gray);
+    }
+
+    data > ul {
+      padding: 24px;
+      margin: 0;
+      max-height: 600px;
+      overflow-y: scroll;
+      font-size: var(--arbol-code-text-size, 14px);
+      color: var(--arbol-code-text-color, gray);
+
+      details.arrobj {
+        summary {
+          font-weight: bolder;
+          small {
+            color: var(--arbol-code-misc, orchid);
+            font-weight: lighter;
+          }
+        }
+      }
+
+      var {
+        color: var(--arbol-code-variable, goldenrod);
+        &::before {
+          content: "\"";
+        }
+        &::after {
+          content: "\":";
+        }
+      }
+
+      code.arbol-value {
+        color: var(--arbol-code-value, lightblue);
+      }
+
+      code.arbol-value.string {
+        color: var(--arbol-code-string, darkseagreen);
+        font-weight: light;
+        &::before {
+          content: "\"";
+        }
+        &::after {
+          content: "\"";
+        }
+      }
+
+      code.arbol-value.boolean {
+        color: var(--arbol-code-bool, deepskyblue);
+        font-weight: bolder;
+      }
+
+      code.arbol-value.number {
+        color: var(--arbol-code-numeric, turquoise);
+        font-weight: bolder;
+      }
+      code.arbol-value.undefined {
+        color: var(--arbol-code-undefined, palevioletred);
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+:root {
+  --kuro-red-normal: #d23e08;
+  --kuro-red-normal-rgb: 210, 62, 8;
+  --kuro-red-light: #ffb7b7;
+  --kuro-red-light-rgb: 255, 183, 183;
+  --kuro-red-dark: #b66056;
+  --kuro-red-dark-rgb: 182, 96, 86;
+  --kuro-green-normal: #54ca74;
+  --kuro-green-normal-rgb: 84, 202, 116;
+  --kuro-green-light: #c1ffae;
+  --kuro-green-light-rgb: 193, 255, 174;
+  --kuro-green-dark: #85b1a9;
+  --kuro-green-dark-rgb: 133, 177, 169;
+  --kuro-blue-normal: #2ab9ff;
+  --kuro-blue-normal-rgb: 42, 185, 255;
+  --kuro-blue-light: #a1d9ff;
+  --kuro-blue-light-rgb: 161, 217, 255;
+  --kuro-blue-dark: #6890d7;
+  --kuro-blue-dark-rgb: 104, 144, 215;
+  --kuro-cyan-normal: #1ef9f5;
+  --kuro-cyan-normal-rgb: 30, 249, 245;
+  --kuro-cyan-light: #8efff3;
+  --kuro-cyan-light-rgb: 142, 255, 243;
+  --kuro-cyan-dark: #60bebe;
+  --kuro-cyan-dark-rgb: 96, 190, 190;
+  --kuro-magenta-normal: #ff50da;
+  --kuro-magenta-normal-rgb: 255, 80, 218;
+  --kuro-magenta-light: #ffa2ed;
+  --kuro-magenta-light-rgb: 255, 162, 237;
+  --kuro-magenta-dark: #cc83bd;
+  --kuro-magenta-dark-rgb: 204, 131, 189;
+  --kuro-yellow-normal: #fff700;
+  --kuro-yellow-normal-rgb: 255, 247, 0;
+  --kuro-yellow-light: #fcffb8;
+  --kuro-yellow-light-rgb: 252, 255, 184;
+  --kuro-yellow-dark: #dbbb43;
+  --kuro-yellow-dark-rgb: 219, 187, 67;
+  --kuro-black-normal: #333333;
+  --kuro-black-normal-rgb: 51, 51, 51;
+  --kuro-black-light: #515151;
+  --kuro-black-light-rgb: 81, 81, 81;
+  --kuro-black-dark: #141515;
+  --kuro-black-dark-rgb: 20, 21, 21;
+  --kuro-white-normal: #ddd0c4;
+  --kuro-white-normal-rgb: 221, 208, 196;
+  --kuro-white-light: #ffffff;
+  --kuro-white-light-rgb: 255, 255, 255;
+  --kuro-white-dark: #94959b;
+  --kuro-white-dark-rgb: 148, 149, 155;
+  --kuro-purple-normal: #9e60ec;
+  --kuro-purple-normal-rgb: 158, 96, 236;
+  --kuro-purple-light: #a994ff;
+  --kuro-purple-light-rgb: 169, 148, 255;
+  --kuro-purple-dark: #887aa3;
+  --kuro-purple-dark-rgb: 136, 122, 163;
+  --kuro-orange-normal: #e59605;
+  --kuro-orange-normal-rgb: 229, 150, 5;
+  --kuro-orange-light: #ffc663;
+  --kuro-orange-light-rgb: 255, 198, 99;
+  --kuro-orange-dark: #ab7b4e;
+  --kuro-orange-dark-rgb: 171, 123, 78;
+  --kuro-brown-normal: #9d5918;
+  --kuro-brown-normal-rgb: 157, 89, 24;
+  --kuro-brown-light: #f9cfb9;
+  --kuro-brown-light-rgb: 249, 207, 185;
+  --kuro-brown-dark: #837369;
+  --kuro-brown-dark-rgb: 131, 115, 105;
+
+  --kuro-code-operator: var(--kuro-white-dark);
+  --kuro-code-namespace: var(--kuro-cyan-normal);
+  --kuro-code-punctuation: var(--kuro-white-dark);
+  --kuro-code-variable: var(--kuro-magenta-dark);
+  --kuro-code-variable-other: var(--kuro-brown-normal);
+  --kuro-code-variable-other-member: var(--kuro-orange-dark);
+  --kuro-code-constant: var(--kuro-blue-normal);
+  --kuro-code-constant-builtin: var(--kuro-white-normal);
+  --kuro-code-constant-builtin-bg: var(--kuro-blue-dark);
+  --kuro-code-constant-builtin: var(--kuro-blue-normal);
+  --kuro-code-constant-numeric: var(--kuro-cyan-dark);
+  --kuro-code-attribute: var(--kuro-yellow-normal);
+  --kuro-code-constant-character-escape: var(--kuro-brown-light);
+  --kuro-code-type: var(--kuro-orange-normal);
+  --kuro-code-type-builtin: var(--kuro-blue-light);
+  --kuro-code-type-enum-variant: var(--kuro-yellow-light);
+  --kuro-code-string: var(--kuro-green-dark);
+  --kuro-code-function: var(--kuro-yellow-dark);
+  --kuro-code-constructor: var(--kuro-cyan-normal);
+  --kuro-code-special: var(--kuro-green-light);
+  --kuro-code-function-macro: var(--kuro-purple-light);
+  --kuro-code-keyword: var(--kuro-blue-dark);
+  --kuro-code-label: var(--kuro-yellow-light);
+  --kuro-code-comment: var(--kuro-yellow-light);
+  --kuro-code-fg: var(--kuro-white-light);
+  --kuro-code-bg: var(--kuro-black-dark);
+  --kuro-monospace-default: "JetBrainsMono Nerd Font", ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", "DejaVu Sans Mono", "Liberation Mono", Menlo, Monaco, "Consolas", "Source Code Pro", monospace;
+}
+
+.kurokula {
+  --arbol-header-bg: var(--kuro-code-bg);
+  --arbol-header-text-color: var(--kuro-white-light);
+  --arbol-bg-color: var(--kuro-code-bg);
+  --arbol-text-color: var(--kuro-code-fg);
+  --arbol--text-font: "Atkinson Hyperlegible", serif;
+  --arbol--text-size: 17px;
+  --arbol-code-text-font: var(--kuro-monospace-default);
+  --arbol-code-text-size: 13px;
+  --arbol-code-text-color: var(--kuro-yellow-dark);
+  --arbol-code-variable: var(--kuro-code-variable);
+  --arbol-code-value: var(--kuro-blue-light);
+  --arbol-code-numeric: var(--kuro-code-constant-numeric);
+  --arbol-code-bool: var(--kuro-code-constant);
+  --arbol-code-string: var(--kuro-code-string);
+  --arbol-code-undefined: var(--kuro-red-light);
+  --arbol-code-misc: var(--kuro-white-normal);
+}

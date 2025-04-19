@@ -11,15 +11,41 @@ import { Aside } from '@astrojs/starlight/components'
 <link rel="stylesheet" href="/styles/koki.css">
 <script is:inline src="/js/koki.js"></script>
 
+<style>
+  :root {
+    /* Header */
+    --arbol-header-bg: var(--sl-color-bg-sidebar);
+    --arbol-header-text-color: var(--sl-color-gray-1);
+
+    /* General */
+    --arbol-bg-color: var(--sl-color-bg-inline-code);
+    --arbol-text-color: var(--sl-color-white);
+    --arbol--text-font: var(--__sl-font);
+    --arbol--text-size: var(--sl-text-body);
+
+    /* Code */
+    --arbol-code-text-font: var(--__sl-font-mono);
+    --arbol-code-text-size: var(--sl-text-code);
+    --arbol-code-text-color: var(--sl-color-gray-1);
+    --arbol-code-variable: var(--sl-color-orange-high);
+    --arbol-code-value: var(--sl-color-green-high);
+    --arbol-code-numeric: var(--sl-color-purple-high);
+    --arbol-code-bool: var(--sl-color-blue-high);
+    --arbol-code-string: var(--sl-color-accent-high);
+    --arbol-code-undefined: var(--sl-color-red-high);
+    --arbol-code-misc: var(--sl-color-orange-high);
+  }
+</style>
+
 <section class="py-12">
-  <h2 class="text-center">Try it now!</h2>
+  <h2 class="text-center" style="margin-bottom: 32px">Try it now!</h2>
 
   <Aside type="tip" title="Need a hint?">
     Try <code>pokemon/ditto</code>, <code>pokemon-species/aegislash</code>, <code>type/3</code>,
     <code>ability/battle-armor</code>, or <code>pokemon?limit=100000&offset=0</code>.
   </Aside>
 
-  <div class="py-8 flex items-baseline">
+  <div class="flex items-baseline">
     <label
       class="
         font-bold
@@ -67,7 +93,7 @@ import { Aside } from '@astrojs/starlight/components'
     >https://pokemon.co/v2/pokemon/ditto</a>
   </p>
 
-  <article id="json-preview" data-ditto={dittoJson}>
+  <article id="json-preview" data-ditto={dittoJson} class="not-content">
     <div id="json-container">hello</div>
   </article>
 </section>

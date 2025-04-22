@@ -11,29 +11,33 @@ import { Aside } from '@astrojs/starlight/components'
 <link rel="stylesheet" href="/styles/koki.css">
 <script is:inline src="/js/koki.js"></script>
 
-<style>
-  :root {
-    /* Header */
-    --arbol-header-bg: var(--sl-color-bg-sidebar);
-    --arbol-header-text-color: var(--sl-color-gray-1);
+<style is:inline>
+  @layer starlight, arbol, koki;
 
-    /* General */
-    --arbol-bg-color: var(--sl-color-bg-inline-code);
-    --arbol-text-color: var(--sl-color-white);
-    --arbol--text-font: var(--__sl-font);
-    --arbol--text-size: var(--sl-text-body);
+  @layer koki {
+    #json-preview {
+      /* Header */
+      --arbol-header-bg: var(--sl-color-bg-sidebar);
+      --arbol-header-text-color: var(--sl-color-gray-1);
 
-    /* Code */
-    --arbol-code-text-font: var(--__sl-font-mono);
-    --arbol-code-text-size: var(--sl-text-code);
-    --arbol-code-text-color: var(--sl-color-gray-1);
-    --arbol-code-variable: var(--sl-color-orange-high);
-    --arbol-code-value: var(--sl-color-green-high);
-    --arbol-code-numeric: var(--sl-color-purple-high);
-    --arbol-code-bool: var(--sl-color-blue-high);
-    --arbol-code-string: var(--sl-color-accent-high);
-    --arbol-code-undefined: var(--sl-color-red-high);
-    --arbol-code-misc: var(--sl-color-orange-high);
+      /* General */
+      --arbol-bg-color: var(--sl-color-bg-inline-code);
+      --arbol-text-color: var(--sl-color-white);
+      --arbol--text-font: var(--__sl-font);
+      --arbol--text-size: var(--sl-text-body);
+
+      /* Code */
+      --arbol-code-text-font: var(--__sl-font-mono);
+      --arbol-code-text-size: var(--sl-text-code);
+      --arbol-code-text-color: var(--sl-color-gray-1);
+      --arbol-code-variable: var(--sl-color-orange-high);
+      --arbol-code-value: var(--sl-color-green-high);
+      --arbol-code-numeric: var(--sl-color-purple-high);
+      --arbol-code-bool: var(--sl-color-blue-high);
+      --arbol-code-string: var(--sl-color-accent-high);
+      --arbol-code-undefined: var(--sl-color-red-high);
+      --arbol-code-misc: var(--sl-color-orange-high);
+    }
   }
 </style>
 

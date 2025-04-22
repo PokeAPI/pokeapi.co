@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.34.0",
+    "@astrojs/starlight-tailwind": "^4.0.1",
     "@tailwindcss/vite": "^4.0.3",
     "astro": "^5.7.4",
     "starlight-openapi": "^0.16.0",

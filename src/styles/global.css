@@ -1,4 +1,8 @@
-@import "tailwindcss";
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 /* Dark mode colors. */
 :root {
@@ -14,6 +18,7 @@
   --sl-color-gray-6: #24272f;
   --sl-color-black: #17181c;
 }
+
 /* Light mode colors. */
 :root[data-theme="light"] {
   --sl-color-accent-low: #f8cbc0;

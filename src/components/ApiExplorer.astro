@@ -100,7 +100,7 @@ import { Aside } from '@astrojs/starlight/components'
         value="pokemon/ditto"
         pattern="(\w|\d|-)+( |(/(\w|\d|-)+)+)"
         minlength="1"
-        onkeypress="if(event.keyCode === 13) sendRequest()"
+        onkeypress="if(event.key === 'Enter') sendRequest()"
       >
     </label>
     <button

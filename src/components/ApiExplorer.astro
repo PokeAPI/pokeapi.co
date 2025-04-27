@@ -46,25 +46,50 @@ import { Aside } from '@astrojs/starlight/components'
 
   <Aside type="tip" title="Need a hint?">
     Try <code>pokemon/ditto</code>, <code>pokemon-species/aegislash</code>, <code>type/3</code>,
-    <code>ability/battle-armor</code>, or <code>pokemon?limit=100000&offset=0</code>. Read the <a href="./v2/openapi/">OpenAPI docs</a> for more options.
+    <code>ability/battle-armor</code>, or <code>pokemon?limit=100000&offset=0</code>. Read the <a href="./v2/openapi/"
+    >OpenAPI docs</a> for more options.
   </Aside>
 
-  <div class="flex items-baseline">
+  <div
+    class="
+      flex
+      flex-col
+      w-full
+      md:flex-row
+      md:items-baseline
+    "
+  >
     <label
       class="
         font-bold
         text-(--sl-color-white)
-        grow
         flex
-        items-baseline
+        flex-col
+        w-full
+        md:flex-row
+        md:items-baseline
+        md:grow
+        md:w-auto
       "
-    >{pokeUrl}
-      <input
-        style="margin-left: 16px; margin-right: 16px"
+    >
+      <span
         class="
-          w-auto p-2
-          bg-(--sl-color-gray-5) rounded-sm
-          grow
+          w-full
+          mb-2
+          text-center
+          md:text-left
+          md:w-auto
+        "
+      >{pokeUrl}</span>
+      <input
+        class="
+          w-auto
+          text-center
+          p-3 rounded-md
+          bg-(--sl-color-gray-5)
+          md:grow
+          md:mx-4
+          md:text-left
         "
         type="text"
         name="pokeapi-path"
@@ -86,6 +111,10 @@ import { Aside } from '@astrojs/starlight/components'
         text-(--sl-color-white)
         p-3 rounded-md
         cursor-pointer
+        w-full
+        mb-4
+        md:w-auto
+        md:mb-0
       "
       onclick="sendRequest()"
     >

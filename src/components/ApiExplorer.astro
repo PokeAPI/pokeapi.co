@@ -126,7 +126,15 @@ import { Aside } from '@astrojs/starlight/components'
     >https://pokemon.co/v2/pokemon/ditto</a>
   </p>
 
-  <article id="json-preview" data-ditto={dittoJson} class="not-content">
+  <article
+    id="json-preview"
+    data-ditto={dittoJson}
+    class="
+      not-content
+      [&_summary_header_h2]:text-lg!
+      md:[&_summary_header_h2]:text-xl!
+    "
+  >
     <div id="json-container">hello</div>
   </article>
 </section>

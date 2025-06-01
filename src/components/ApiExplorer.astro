@@ -3,7 +3,7 @@ import ditto from '../data/ditto.json'
 const dittoJson = JSON.stringify(ditto)
 const pokeUrl = 'https://pokeapi.co/api/v2/ '
 
-import { Aside } from '@astrojs/starlight/components'
+import { Aside, Icon } from '@astrojs/starlight/components'
 ---
 
 <link is:raw rel="stylesheet" href="https://cdn.jsdelivr.net/gh/williamtroup/JsonTree.js@4.7.0/dist/jsontree.js.min.css">
@@ -81,27 +81,43 @@ import { Aside } from '@astrojs/starlight/components'
           md:w-auto
         "
       >{pokeUrl}</span>
-      <input
-        class="
-          w-auto
-          text-center
-          p-3 rounded-md
-          bg-(--sl-color-gray-5)
-          md:grow
-          md:mx-4
-          md:text-left
-        "
-        type="text"
-        name="pokeapi-path"
-        id="pokeapi-path"
-        placeholder="path/segment"
-        required
-        title="no"
-        value="pokemon/ditto"
-        pattern="(\w|\d|-)+( |(/(\w|\d|-)+)+)"
-        minlength="1"
-        onkeypress="if(event.key === 'Enter') sendRequest()"
-      >
+      <div class="flex md:grow md:mr-4">
+        <input
+          class="
+            w-auto
+            text-center
+            p-3 rounded-md
+            bg-(--sl-color-gray-5)
+            grow
+            md:ml-4
+            md:text-left
+          "
+          type="text"
+          name="pokeapi-path"
+          id="pokeapi-path"
+          placeholder="path/segment"
+          required
+          title="no"
+          value="pokemon/ditto"
+          pattern="(\w|\d|-)+( |(/(\w|\d|-)+)+)"
+          minlength="1"
+          onkeypress="if(event.key === 'Enter') sendRequest()"
+        >
+        <button
+          id="copy-url-to-clipboard"
+          class="
+            font-semibold
+            p-3 rounded-md
+            ml-2
+            cursor-pointer
+            flex
+            align-middle
+            justify-center
+          "
+        >
+          <Icon name="document" size="24px" class="m-auto" />
+        </button>
+      </div>
     </label>
     <button
       id="sendRequestSubmit"
@@ -152,6 +168,21 @@ import { Aside } from '@astrojs/starlight/components'
   let requestUrl = pokeUrl + pokeApiPath
 
   kokiInit(ditto, jsonContainer, 'Resource for ditto')
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => console.log('Text copied to clipboard'))
+      .catch((err) => console.error('Failed to copy: ', err))
+  }
+
+  let copyToUrlClipboardButton = document.getElementById('copy-url-to-clipboard')
+
+  copyToUrlClipboardButton.addEventListener('click', function () {
+    pokeApiPath = pokeapiPathInput.value
+    const url = pokeUrl + pokeApiPath
+
+    copyToClipboard(url)
+  })
 
   async function sendRequest() {
     pokeApiPath = pokeapiPathInput.value

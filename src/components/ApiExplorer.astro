@@ -42,6 +42,25 @@ import { Aside, Icon } from '@astrojs/starlight/components'
 </style>
 
 <section class="py-12">
+  <dialog
+    open
+    id="copy-dialog"
+    class="
+      z-100
+      bottom-10 fixed
+      m-auto
+      rounded-lg
+      opacity-0
+      transition-all
+      duration-500
+      ease-in-out
+    "
+  >
+    <p class="flex align-baseline">
+      <Icon name="approve-check-circle" size="24px" class="m-auto" class="mr-2" />
+      Copied to clipboard
+    </p>
+  </dialog>
   <h2 id="try-it-now" class="text-center mb-10">Try it now!</h2>
 
   <Aside type="tip" title="Need a hint?">
@@ -171,11 +190,31 @@ import { Aside, Icon } from '@astrojs/starlight/components'
 
   function copyToClipboard(text) {
     navigator.clipboard.writeText(text)
-      .then(() => console.log('Text copied to clipboard'))
+      .then(() => {
+        const durationTime = 500
+        const hiddenDelay = 2000
+
+        console.log('Text copied to clipboard')
+        copyDialog.classList.remove('hidden')
+        copyDialog.classList.add('block')
+        setTimeout(() => {
+          copyDialog.classList.add('opacity-100')
+          copyDialog.classList.remove('opacity-0')
+        })
+        setTimeout(() => {
+          copyDialog.classList.remove('opacity-100')
+          copyDialog.classList.add('opacity-0')
+          setTimeout(() => {
+            copyDialog.classList.add('hidden')
+            copyDialog.classList.remove('block')
+          }, durationTime)
+        }, hiddenDelay)
+      })
       .catch((err) => console.error('Failed to copy: ', err))
   }
 
-  let copyToUrlClipboardButton = document.getElementById('copy-url-to-clipboard')
+  const copyToUrlClipboardButton = document.getElementById('copy-url-to-clipboard')
+  const copyDialog = document.getElementById('copy-dialog')
 
   copyToUrlClipboardButton.addEventListener('click', function () {
     pokeApiPath = pokeapiPathInput.value

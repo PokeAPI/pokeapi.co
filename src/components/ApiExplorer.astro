@@ -241,7 +241,8 @@ import { Aside, Icon } from '@astrojs/starlight/components'
         if (status === 200) {
           const jsonData = await response.json()
           ditto = JSON.stringify(jsonData)
-          const title = `Resource for ${jsonData.name}`
+          const titleName = jsonData.name || pokeApiPath
+          const title = `Resource for ${titleName}`
           pokeapiDirectLink.innerHTML = url
           pokeapiDirectLink.href = url
 

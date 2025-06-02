@@ -64,8 +64,13 @@ import { Aside, Icon } from '@astrojs/starlight/components'
   <h2 id="try-it-now" class="text-center mb-10">Try it now!</h2>
 
   <Aside type="tip" title="Need a hint?">
-    Try <code>pokemon/ditto</code>, <code>pokemon-species/aegislash</code>, <code>type/3</code>,
-    <code>ability/battle-armor</code>, or <code>pokemon?limit=100000&offset=0</code>. Read the <a href="./v2/openapi/"
+    Try
+    <a class="input-hints cursor-pointer" href="#try-it-now"><code>pokemon/ditto</code></a>,
+    <a class="input-hints cursor-pointer" href="#try-it-now"><code>pokemon-species/aegislash</code></a>,
+    <a class="input-hints cursor-pointer" href="#try-it-now"><code>type/3</code></a>,
+    <a class="input-hints cursor-pointer" href="#try-it-now"><code>ability/battle-armor</code></a>, or
+    <a class="input-hints cursor-pointer" href="#try-it-now"><code>pokemon?limit=100000&offset=0</code></a>. Read the <a
+      href="./v2/openapi/"
     >OpenAPI docs</a> for more options.
   </Aside>
 
@@ -256,4 +261,14 @@ import { Aside, Icon } from '@astrojs/starlight/components'
     pokeapiPathInput.disabled = false
     pokeapiPathInput.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+
+  const inputHints = document.querySelectorAll('.input-hints code')
+  inputHints.forEach((inputHint) => {
+    console.log(inputHint.innerText)
+
+    inputHint.addEventListener('click', function () {
+      pokeapiPathInput.value = inputHint.innerText
+      sendRequest()
+    })
+  })
 </script>

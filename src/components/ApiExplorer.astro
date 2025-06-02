@@ -240,13 +240,13 @@ import { Aside, Icon } from '@astrojs/starlight/components'
         const { status } = response
         if (status === 200) {
           const jsonData = await response.json()
-          ditto = JSON.stringify(jsonData)
+          const jsonString = JSON.stringify(jsonData)
           const titleName = jsonData.name || pokeApiPath
           const title = `Resource for ${titleName}`
           pokeapiDirectLink.innerHTML = url
           pokeapiDirectLink.href = url
 
-          kokiInit(ditto, jsonContainer, title)
+          kokiInit(jsonString, jsonContainer, title)
         } else {
           kokiInit('null', jsonContainer, 'Resource not found')
         }

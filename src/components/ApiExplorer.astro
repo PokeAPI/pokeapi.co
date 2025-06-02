@@ -263,12 +263,11 @@ import { Aside, Icon } from '@astrojs/starlight/components'
     pokeapiPathInput.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const inputHints = document.querySelectorAll('.input-hints code')
-  inputHints.forEach((inputHint) => {
-    console.log(inputHint.innerText)
+  const inputHints = document.querySelectorAll('.input-hints')
 
-    inputHint.addEventListener('click', function () {
-      pokeapiPathInput.value = inputHint.innerText
+  inputHints.forEach((inputHintLink) => {
+    inputHintLink.addEventListener('click', function () {
+      pokeapiPathInput.value = inputHintLink.querySelector('code').innerText
       sendRequest()
     })
   })

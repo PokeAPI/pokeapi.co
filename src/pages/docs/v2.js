@@ -35,10 +35,10 @@ const wrapperLibraries = [
         author: 'Paul Hallett',
     },
     {
-        description: 'Kotlin (and Java)',
+        description: 'Kotlin Multiplatform (JVM, Native, Browser, and Node) with auto caching',
         name: 'PokeKotlin',
         link: 'https://github.com/PokeAPI/pokekotlin',
-        author: 'sargunster',
+        author: 'sargunv',
     },
     {
         description: 'Java (Spring Boot) with auto caching',

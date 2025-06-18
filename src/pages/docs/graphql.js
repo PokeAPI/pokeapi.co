@@ -59,7 +59,7 @@ EOF
 
                 <h2 id="v1beta">v1beta</h2>
                 <p>
-                    This <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> specification is sun-setting and schedule to be removed in summer 2025.
+                    This <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> specification is sun-setting and scheduled to be removed in summer 2025. A GraphiQL console can still be found at <a href="https://beta.pokeapi.co/graphql/console">beta.pokeapi.co/graphql/console</a>
                 </p>
 
                 <h2 id="fairuse">Fair Use</h2>

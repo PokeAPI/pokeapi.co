@@ -5,9 +5,9 @@
         "comment": "Inactive alerts will not be shown. You can use markdown, like _this_, **this**, or [this](https://pokeapi.co). Possible levels are 'info', 'important' and 'success'. The default is 'info'. Important alerts are sticky and stay on-screen until dismissed by the user."
     },
     {
-        "level": "success",
-        "active": false,
-        "message": "Data from last year's **Sword and Shield** games (generation 8) is currently **being added** to PokéAPI. While waiting for an upstream project ([Veekun](https://github.com/veekun/pokedex)) for verified data we decided to allow our community to bring in new data from various different sources. If you want to participate to this update project [read more on GitHub](https://github.com/PokeAPI/pokeapi/issues/520)."
+        "level": "important",
+        "active": true,
+        "message": "Starting June 18th a new GraphQL specification is rolling out, v1beta2. Read more at [GraphQL v1beta2](/docs/graphql#v1beta2). The former v1beta version is sun-setting and scheduled to be removed."
     },
     {
         "level": "success",

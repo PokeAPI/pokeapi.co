@@ -15,6 +15,8 @@ const wrapperLibraries = [
 export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
+        {name: 'v1beta2', id: 'v1beta2'},
+        {name: 'v1beta', id: 'v1beta'},
         {name: 'Fair Use Policy', id: 'fairuse', endOfSection: true},
         {name: 'Beta status', id: 'betastatus', endOfSection: false},
     ];
@@ -52,9 +54,15 @@ EOF
 
                 <h2 id="v1beta2">v1beta2</h2>
                 <p>
-                    A new specification <a href="https://graphql.pokeapi.co/v1beta2">v1beta2</a> has been released and the former <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> is set to be removed in the near future. The major change is that the prefix <i>pokemon_v2_</i> has been stripped away from all types so to have a clearer way to build GQL queries.
+                    A new specification <a href="https://graphql.pokeapi.co/v1beta2">v1beta2</a> has been released on June 2025. The major change is that the prefix <i>pokemon_v2_</i> has been stripped away from all types so to have a clearer way to build GQL queries.
                 </p>
 
+                <h2 id="v1beta">v1beta</h2>
+                <p>
+                    This <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> specification is sun-setting and schedule to be removed in summer 2025.
+                </p>
+
+                <h2 id="fairuse">Fair Use</h2>
                 <p>
                     PokéAPI is free and open to use. It is also very popular.
                     Because of this, we ask every developer to abide by our fair

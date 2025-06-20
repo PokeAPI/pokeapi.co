@@ -15,6 +15,8 @@ const wrapperLibraries = [
 export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
+        {name: 'v1beta2', id: 'v1beta2'},
+        {name: 'v1beta', id: 'v1beta'},
         {name: 'Fair Use Policy', id: 'fairuse', endOfSection: true},
         {name: 'Beta status', id: 'betastatus', endOfSection: false},
     ];
@@ -25,24 +27,21 @@ export default function Documentation() {
 
                 <h2 id="info">Information</h2>
                 <p>
-                    Beta support for <a href="https://graphql.org/">GraphQL</a> is rolling out starting April 2021
+                    A free rate-limited endpoint is available at <a href="https://graphql.pokeapi.co/v1beta2">graphql.pokeapi.co/v1beta2</a>. This endpoint can be subject to changes in the future. Only POST requests are allowed.
                 </p>
                 <p>
-                    A free rate-limited endpoint is available at <a href="https://beta.pokeapi.co/graphql/v1beta">beta.pokeapi.co/graphql/v1beta</a>. This endpoint can be subject to changes in the future. Only POST requests are allowed.
-                </p>
-                <p>
-                    To ease learning and developing, a <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface is hosted at <a href="https://beta.pokeapi.co/graphql/console/">beta.pokeapi.co/graphql/console/</a>. This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
+                    To ease learning and developing, a <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface is hosted at <a href="https://graphql.pokeapi.co/v1beta2/console/">graphql.pokeapi.co/v1beta2/console/</a>. This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
                 </p>
 
                 <code className="code"  dangerouslySetInnerHTML={ {__html:`
 # This curl retrieves all items and relative costs
-curl 'https://beta.pokeapi.co/graphql/v1beta' \\
+curl 'https://graphql.pokeapi.co/v1beta2' \\
 -H 'content-type: application/json' \\
 -H 'accept: */*' \\
 --compressed \\
 --data-binary @- << EOF
 {
-    "query": "query getItems{pokemon_v2_item{name,cost}}",
+    "query": "query getItems{item{name,cost}}",
     "variables": null,
     "operationName":"getItems"
 }
@@ -53,7 +52,17 @@ EOF
                     A Node example and some GQL queries are available <a href="https://github.com/PokeAPI/pokeapi/tree/master/graphql/examples">here</a>.
                 </p>
 
-                <h2 id="fairuse">Fair Use Policy</h2>
+                <h2 id="v1beta2">v1beta2</h2>
+                <p>
+                    A new specification <a href="https://graphql.pokeapi.co/v1beta2">v1beta2</a> has been released on June 2025. The major change is that the prefix <i>pokemon_v2_</i> has been stripped away from all types so to have a clearer way to build GQL queries.
+                </p>
+
+                <h2 id="v1beta">v1beta</h2>
+                <p>
+                    This <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> specification is sun-setting and scheduled to be removed in summer 2025. A GraphiQL console can still be found at <a href="https://beta.pokeapi.co/graphql/console">beta.pokeapi.co/graphql/console</a>
+                </p>
+
+                <h2 id="fairuse">Fair Use</h2>
                 <p>
                     PokéAPI is free and open to use. It is also very popular.
                     Because of this, we ask every developer to abide by our fair

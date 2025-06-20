@@ -1,4 +1,4 @@
-# pokeapi.co
+# pokeapi.co <a href="https://pokeapi.co/api/v2/pokemon/xatu"><img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/178.svg' height=50px/></a>
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![build status](https://img.shields.io/circleci/build/github/PokeAPI/pokeapi.co/master.svg)](https://circleci.com/gh/PokeAPI/pokeapi.co)

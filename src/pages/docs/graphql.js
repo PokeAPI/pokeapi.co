@@ -49,12 +49,12 @@ EOF
                 `} }/>
 
                 <p>
-                    A Node example and some GQL queries are available <a href="https://github.com/PokeAPI/pokeapi/tree/master/graphql/examples">here</a>.
+                    A Node example and some GQL queries are available <a href="https://github.com/PokeAPI/pokeapi/tree/master/graphql/v1beta2/examples">here</a>.
                 </p>
 
                 <h2 id="v1beta2">v1beta2</h2>
                 <p>
-                    A new specification <a href="https://graphql.pokeapi.co/v1beta2">v1beta2</a> has been released on June 2025. The major change is that the prefix <i>pokemon_v2_</i> has been stripped away from all types so to have a clearer way to build GQL queries.
+                    A new specification <a href="https://graphql.pokeapi.co/v1beta2">v1beta2</a> has been released on June 2025. The major change is that the prefix <i>pokemon_v2_</i> has been stripped away from all types so to have a clearer way to build GQL queries. A GraphiQL console can be found at <a href="https://graphql.pokeapi.co/v1beta2/console">graphql.pokeapi.co/v1beta2/console</a>
                 </p>
 
                 <h2 id="v1beta">v1beta</h2>

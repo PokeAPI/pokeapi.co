@@ -181,6 +181,11 @@
                         "type": "integer"
                     },
                     {
+                        "name": "needs_multiplayer",
+                        "description": "Whether or not multiplayer link play is needed to evolve into this Pokémon species (e.g. Union Circle).",
+                        "type": "boolean"
+                    },
+                    {
                         "name": "needs_overworld_rain",
                         "description": "Whether or not it must be raining in the overworld to cause evolution this Pokémon species.",
                         "type": "boolean"
@@ -223,6 +228,45 @@
                         "name": "turn_upside_down",
                         "description": "Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.",
                         "type": "boolean"
+                    },
+                    {
+                        "name": "region",
+                        "description": "The required region in which this evolution can occur.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Region"
+                        }
+                    },
+                    {
+                        "name": "base_form",
+                        "description": "The required form for which this evolution can occur.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "PokemonSpecies"
+                        }
+                    },
+                    {
+                        "name": "used_move",
+                        "description": "The move that must be used by the evolving Pokémon species during the evolution trigger event in order to evolve into this Pokémon species.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "PokemonMove"
+                        }
+                    },
+                    {
+                        "name": "min_move_count",
+                        "description": "The minimum number of times a move must be used in order to evolve into this Pokémon species.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "min_steps",
+                        "description": "The minimum number of steps that must be taken in order to evolve into this Pokémon species.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "min_damage_taken",
+                        "description": "The minimum amount of damage taken during the evolution trigger event in order to evolve into this Pokémon species.",
+                        "type": "integer"
                     }
                 ]
             }

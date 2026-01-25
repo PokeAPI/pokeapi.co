@@ -1209,7 +1209,7 @@
                     },
                     {
                         "name": "past_stats",
-                        "description": "",
+                        "description": "A list of details showing stats this pokémon had in previous generations",
                         "type": {
                             "type": "list",
                             "of": "PokemonStatPast"

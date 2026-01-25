@@ -1208,6 +1208,14 @@
                         }
                     },
                     {
+                        "name": "past_stats",
+                        "description": "",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonStatPast"
+                        }
+                    },
+                    {
                         "name": "sprites",
                         "description": "A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at <a href='https://github.com/PokeAPI/sprites#sprites'>PokeAPI/sprites</a>",
                         "type": "PokemonSprites"
@@ -1340,6 +1348,27 @@
                         "type": {
                             "type": "list",
                             "of": "PokemonAbility"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "PokemonStatPast",
+                "fields": [
+                    {
+                        "name": "generation",
+                        "description": "The last generation in which the referenced pokémon had the listed stats.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Generation"
+                        }
+                    },
+                    {
+                        "name": "stats",
+                        "description": "The stat the Pokémon had up to and including the listed generation.",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonStat"
                         }
                     }
                 ]

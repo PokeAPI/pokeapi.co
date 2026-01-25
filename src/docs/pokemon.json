@@ -1216,6 +1216,14 @@
                         }
                     },
                     {
+                        "name": "original_stats",
+                        "description": "A list of base stat values for this Pokémon in the first generation.",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonStatOriginal"
+                        }
+                    },
+                    {
                         "name": "sprites",
                         "description": "A set of sprites used to depict this Pokémon in the game. A visual representation of the various sprites can be found at <a href='https://github.com/PokeAPI/sprites#sprites'>PokeAPI/sprites</a>",
                         "type": "PokemonSprites"
@@ -1370,6 +1378,24 @@
                             "type": "list",
                             "of": "PokemonStat"
                         }
+                    }
+                ]
+            },
+            {
+                "name": "PokemonStatOriginal",
+                "fields": [
+                    {
+                        "name": "stat",
+                        "description": "The stat the Pokémon has.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Stat"
+                        }
+                    },
+                    {
+                        "name": "base_stat",
+                        "description": "The base value of the stat.",
+                        "type": "integer"
                     }
                 ]
             },

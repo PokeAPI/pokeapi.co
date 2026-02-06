@@ -250,7 +250,7 @@
                         "description": "The move that must be used by the evolving Pokémon species during the evolution trigger event in order to evolve into this Pokémon species.",
                         "type": {
                             "type": "NamedAPIResource",
-                            "of": "PokemonMove"
+                            "of": "Move"
                         }
                     },
                     {

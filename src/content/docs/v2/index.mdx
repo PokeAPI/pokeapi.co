@@ -2,6 +2,21 @@
 title: V2
 ---
 
+import Resource from '../../../components/ResourceSection.astro';
+
+import resourceLists from '../../../data/operations/resource-lists.json';
+import berries from '../../../data/operations/berries.json';
+import contests from '../../../data/operations/contests.json';
+import encounters from '../../../data/operations/encounters.json';
+import evolution from '../../../data/operations/evolution.json';
+import games from '../../../data/operations/games.json';
+import items from '../../../data/operations/items.json';
+import locations from '../../../data/operations/locations.json';
+import machines from '../../../data/operations/machines.json';
+import moves from '../../../data/operations/moves.json';
+import pokemon from '../../../data/operations/pokemon.json';
+import utility from '../../../data/operations/utility.json';
+
 :::caution
 If you were using `v1` of this API, please switch to `v2` (this page).
 :::
@@ -28,3 +43,77 @@ PokéAPI is primarily an educational tool, and we will not tolerate denial of se
 
 Currently no maintainer has enough free time to support the community on Slack. Our Slack is in an unmaintained status. You can still sign up right [here](https://join.slack.com/t/pokeapi/shared_invite/zt-2ampo6her-_tHSI3uOS65WzGypt7Y96w)
 then visit our [Slack](https://pokeapi.slack.com) page.
+
+---
+
+## Resource Lists/Pagination <span class="font-light opacity-80">(group)</span>
+
+Calling any API endpoint without a resource ID or name will return a paginated list of available resources for that API. By default, a list "page" will contain up to 20 resources. If you would like to change this just add a 'limit' query parameter to the GET request, e.g. ?limit=60. You can use 'offset' to move to the next page, e.g. ?limit=60&offset=60. characteristic, contest-effect, evolution-chain, machine, super-contest-effect endpoints are unnamed, the rest are named.
+
+<Resource data={resourceLists} />
+
+---
+
+## Berries <span class="font-light opacity-80">(group)</span>
+
+<Resource data={berries} />
+
+---
+
+## Contests <span class="font-light opacity-80">(group)</span>
+
+<Resource data={contests} />
+
+---
+
+## Encounters <span class="font-light opacity-80">(group)</span>
+
+<Resource data={encounters} />
+
+---
+
+## Evolution <span class="font-light opacity-80">(group)</span>
+
+<Resource data={evolution} />
+
+---
+
+## Games <span class="font-light opacity-80">(group)</span>
+
+<Resource data={games} />
+
+---
+
+## Items <span class="font-light opacity-80">(group)</span>
+
+<Resource data={items} />
+
+---
+
+## Locations <span class="font-light opacity-80">(group)</span>
+
+<Resource data={locations} />
+
+---
+
+## Machines <span class="font-light opacity-80">(group)</span>
+
+<Resource data={machines} />
+
+---
+
+## Moves <span class="font-light opacity-80">(group)</span>
+
+<Resource data={moves} />
+
+---
+
+## Pokemon <span class="font-light opacity-80">(group)</span>
+
+<Resource data={pokemon} />
+
+---
+
+## Utility <span class="font-light opacity-80">(group)</span>
+
+<Resource data={utility} />

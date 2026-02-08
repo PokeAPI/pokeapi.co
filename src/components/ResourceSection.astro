@@ -1,0 +1,82 @@
+---
+import { Code } from '@astrojs/starlight/components'
+
+const { data } = Astro.props
+---
+
+{
+  data.map((obj, index) => (
+    <section>
+      <h3 class="mt-12" id={obj.name}>
+        {obj.name}
+        <span class="font-light opacity-80"> (Endpoint)</span>
+      </h3>
+
+      <p>{obj.description}</p>
+
+      <div>
+        {
+          (obj.exampleResponse && obj.exampleRequest) ? (
+            <Code
+              code={JSON.stringify(obj.exampleResponse, null, 2).replaceAll('$BASE_URL', 'https://pokeapi.co/api')}
+              lang="json"
+              title={'GET ' + 'https://pokeapi.co/api' + obj.exampleRequest}
+            ></Code>
+          ) : ''
+        }
+      </div>
+
+      {
+        obj.responseModels.map((model, index) => (
+          <h4 id={model.name}>
+            {model.name}
+            <span class="font-light opacity-80"> (Type)</span>
+          </h4>
+          <table class="table [&_tr:hover]:bg-[unset]">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                model.fields.map((field, index) => (
+                  <tr class="border-b border-gray-200 hover:bg-gray-50">
+                    <td>
+                      <strong><code>{field.name}</code></strong>
+                    </td>
+                    <td>
+                      {field.description}
+                    </td>
+                    <td>
+                      {
+                        (field.type.of && field.type.of.of)
+                          ? (
+                          <span><code>{field.type.type}</code>&nbsp;<a href={`#${field.type.of.type}`}>{field.type.of.type}</a>
+                            (<a href={`#${field.type.of.of}`}>{field.type.of.of}</a>)</span>
+                        )
+                        : (field.type.type === 'list')
+                        ? <div><code>{field.type.type}</code>&nbsp;<a href={`#${field.type.of}`}>{field.type.of}</a></div>
+                        : (field.type.type)
+                        ? (
+                          <div>
+                            <a href={`#${field.type.type}`}>{field.type.type}</a> (<a href={`#${field.type.of}`}>{
+                              field.type.of
+                            }</a>)
+                          </div>
+                        )
+                        : <code>{field.type}</code>
+                      }
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        ))
+      }
+    </section>
+  ))
+}

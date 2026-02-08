@@ -1,6 +1,6 @@
 ---
 import { Code } from '@astrojs/starlight/components'
-
+import { marked } from 'marked'
 const { data } = Astro.props
 ---
 
@@ -12,7 +12,8 @@ const { data } = Astro.props
         <span class="font-light opacity-80"> (Endpoint)</span>
       </h3>
 
-      <p>{obj.description}</p>
+      <!-- <p>{marked.parse(obj.description)}</p> -->
+      {obj.description && <p set:html={marked.parse(obj.description)}></p>}
 
       <div>
         {

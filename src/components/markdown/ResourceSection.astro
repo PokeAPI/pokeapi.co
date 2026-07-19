@@ -1,0 +1,190 @@
+---
+import {Code} from "@astrojs/starlight/components";
+import {marked} from "marked";
+import ApiExplorer from "../explorer/ApiExplorer.astro";
+const {data, playground = true} = Astro.props;
+type PrimitiveType = "string" | "integer" | "number" | "boolean" | "array" | "object";
+
+const validTypes: PrimitiveType[] = ["string", "integer", "number", "boolean", "array", "object"];
+
+interface NestedObjectType {
+  type: string;
+  of: string;
+}
+
+interface ListFieldType {
+  type: "list";
+  of: string | NestedObjectType;
+}
+
+// A field's type is EITHER a plain string (primitive name or schema/model name)
+// OR one of the two object shapes below.
+type FieldType = string | ListFieldType | NestedObjectType;
+
+interface ResponseField {
+  name: string;
+  description: string;
+  type: FieldType;
+}
+
+interface ResponseModel {
+  name: string;
+  fields: ResponseField[];
+}
+
+interface EndpointData {
+  name: string;
+  description?: string;
+  exampleRequest?: string;
+  exampleResponse?: unknown;
+  responseModels: ResponseModel[];
+}
+
+function isPrimitive(t: FieldType): t is PrimitiveType {
+  return typeof t === "string" && (validTypes as string[]).includes(t);
+}
+---
+
+{
+  data.map((obj: EndpointData) => (
+    <section>
+      <h3 class="mt-12" id={obj.name}>
+        {obj.name}
+        <span class="font-light opacity-80"> (Endpoint)</span>
+      </h3>
+
+      {obj.description && <p set:html={marked.parse(obj.description)} />}
+
+      <div>
+        {obj.exampleResponse && obj.exampleRequest ? (
+          playground ? (
+            <ApiExplorer
+              endpoint={obj.exampleRequest.split("/")[2]}
+              exampleRequest={obj.exampleRequest}
+              exampleResponse={JSON.parse(
+                JSON.stringify(obj.exampleResponse, null, 2).replaceAll("$BASE_URL", "https://pokeapi.co/api")
+              )}
+            />
+          ) : (
+            <div class="sl-openapi-example">
+              <Code
+                code={JSON.stringify(obj.exampleResponse, null, 2).replaceAll("$BASE_URL", "https://pokeapi.co/api")}
+                lang="json"
+                title={"GET https://pokeapi.co/api" + obj.exampleRequest}
+              />
+            </div>
+          )
+        ) : null}
+      </div>
+
+      {obj.responseModels.map((model) => (
+        <>
+          <h4 id={model.name}>
+            {model.name}
+            <span class="font-light opacity-80"> (Type)</span>
+          </h4>
+          <table class="table [&_tr:hover]:bg-[unset]">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {model.fields.map((field: ResponseField) => (
+                <tr class="border-b border-gray-200 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800/30">
+                  <td class="text-xs sm:text-sm">
+                    <strong>
+                      <code>{field.name}</code>
+                    </strong>
+                  </td>
+                  <td class="text-xs sm:text-sm" set:html={marked.parseInline(field.description)} />
+                  <td class="text-xs sm:text-sm">
+                    {typeof field.type === "string" ? (
+                      isPrimitive(field.type) ? (
+                        <span class={`type-badge type-badge--${field.type}`}>
+                          <span class={`type-badge-icon type-badge-icon--${field.type}`} />
+                          {field.type}
+                        </span>
+                      ) : (
+                        <span class="inline-flex flex-wrap items-center gap-1.5">
+                          <div class="type-badge type-badge--schema">
+                            <span class="type-badge-icon type-badge-icon--schema" />
+                            <a
+                              href={`#${field.type}`}
+                              class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                            >
+                              {field.type}
+                            </a>
+                          </div>
+                        </span>
+                      )
+                    ) : field.type.type === "list" ? (
+                      typeof field.type.of === "object" ? (
+                        <span class="inline-flex flex-wrap items-center gap-1.5">
+                          <span class="type-badge type-badge--list">
+                            <span class="type-badge-icon type-badge-icon--list" />
+                            <span class="mt-px">list</span>
+                          </span>
+                          <span class="text-xs text-slate-400 dark:text-slate-500">of</span>
+                          <div class="type-badge type-badge--object">
+                            <span class="type-badge-icon type-badge-icon--object" />
+                            <a
+                              href={`#${field.type.of.type}`}
+                              class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                            >
+                              {field.type.of.type}
+                            </a>
+                            <a
+                              href={`#${field.type.of.of}`}
+                              class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                            >
+                              [{field.type.of.of}]
+                            </a>
+                          </div>
+                        </span>
+                      ) : (
+                        <span class="inline-flex flex-wrap items-center gap-1.5">
+                          <span class="type-badge type-badge--list">
+                            <span class="type-badge-icon type-badge-icon--list" />
+                            <span class="mt-px">list</span>
+                          </span>
+                          <span class="text-xs text-slate-400 dark:text-slate-500">of</span>
+                          <a
+                            href={`#${field.type.of}`}
+                            class="mb-0.5 border-b-0! text-sm font-semibold! text-(--sl-color-accent)! no-underline! transition-colors duration-150 hover:text-(--sl-color-accent-high)! hover:underline!"
+                          >
+                            {field.type.of}
+                          </a>
+                        </span>
+                      )
+                    ) : (
+                      <span class="inline-flex flex-wrap items-center gap-1.5">
+                        <div class="type-badge type-badge--object">
+                          <span class="type-badge-icon type-badge-icon--object" />
+                          <a
+                            href={`#${field.type.type}`}
+                            class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                          >
+                            {field.type.type}
+                          </a>
+                          <a
+                            href={`#${field.type.of}`}
+                            class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                          >
+                            [{field.type.of}]
+                          </a>
+                        </div>
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ))}
+    </section>
+  ))
+}

@@ -1,0 +1,293 @@
+@layer starlight, arbol, koki;
+
+@layer koki {
+  .api-explorer-root :is(.font-mono, pre, code, input, button) {
+    font-family: var(--__sl-font-mono) !important;
+  }
+
+  .explorer-base-url {
+    letter-spacing: 0.01em !important;
+  }
+
+  .api-explorer-root pre {
+    margin: 0 !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  .koki-tree-content {
+    --arbol-bg-color: transparent;
+    --arbol-text-color: var(--sl-color-white);
+    --arbol-code-text-font: var(--__sl-font-mono);
+    --arbol-code-text-size: 0.82rem;
+    --arbol-code-variable: #f59e0b;
+    --arbol-code-value: #86efac;
+    --arbol-code-numeric: #a78bfa;
+    --arbol-code-bool: #60a5fa;
+    --arbol-code-string: #86efac;
+    --arbol-code-undefined: #f87171;
+    --arbol-code-misc: #f59e0b;
+  }
+
+  .explorer-select-trigger::after {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    translate: 0 -50%;
+    transition:
+      transform 0.2s ease,
+      border-top-color 0.2s ease;
+    border-top: 5px solid var(--sl-color-gray-3);
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    width: 0;
+    height: 0;
+    content: "";
+  }
+
+  .explorer-select-trigger[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+    border-top-color: var(--sl-color-accent);
+  }
+
+  .explorer-dropdown-panel {
+    display: none;
+  }
+
+  .explorer-select-wrap.open .explorer-dropdown-panel {
+    display: block;
+  }
+  .explorer-select-wrap.open .explorer-select-trigger {
+    background: var(--sl-color-gray-6);
+  }
+
+  .explorer-direct-link:hover + .explorer-out-link-icon {
+    color: var(--sl-color-white) !important;
+  }
+
+  .api-explorer-root .starlight-aside {
+    --sl-color-asides-text-accent: #ffcb05 !important;
+    --sl-color-asides-border: #ffcb05 !important;
+    background-color: color-mix(in srgb, #ffcb05 8%, var(--sl-color-black)) !important;
+  }
+  [data-theme="light"] .api-explorer-root .starlight-aside {
+    --sl-color-asides-text-accent: #8c6200 !important;
+    --sl-color-asides-border: #ffcb05 !important;
+    background-color: color-mix(in srgb, #ffcb05 8%, var(--sl-color-black)) !important;
+  }
+
+  .panel-raw,
+  .panel-tree {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .koki-code-area-wrapper {
+    --code-bg: var(--sl-color-black);
+    margin: 0 !important;
+    background: var(--code-bg);
+    padding: 0 !important;
+    height: 560px;
+    overflow: auto;
+  }
+
+  .koki-code-area {
+    --gutter-bg: var(--sl-color-gray-6);
+    --gutter-border: var(--sl-color-gray-5);
+    display: flex;
+    align-items: stretch;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: max-content;
+    min-height: 100%;
+  }
+
+  .koki-code-area .koki-gutter {
+    position: sticky;
+    left: 0;
+    flex: 0 0 58px;
+    z-index: 2;
+    border-right: 1px solid var(--gutter-border);
+    background: var(--gutter-bg);
+    padding: 12px 0;
+    user-select: none;
+    text-align: right;
+  }
+
+  .koki-line-number {
+    display: block;
+    padding: 0 10px;
+    color: var(--sl-color-gray-4);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    font-family: var(--__sl-font-mono);
+  }
+
+  .raw-fold {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .raw-fold-summary {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+    user-select: none;
+  }
+
+  .raw-fold-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .raw-fold-summary::before {
+    position: absolute;
+    top: 0;
+    left: calc(var(--indent-level) * 4ch - 2.2ch);
+    opacity: 0.35;
+    transition: transform 0.1s ease;
+    width: 1.2ch;
+    content: "▼";
+    font-size: 0.55rem;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  details:not([open]) > .raw-fold-summary::before {
+    transform: rotate(-90deg);
+  }
+
+  .raw-fold-placeholder {
+    display: none;
+    margin: 0 2px;
+    border-radius: 3px;
+    background: var(--sl-color-gray-5);
+    padding: 0 4px;
+    color: var(--sl-color-gray-2);
+    font-weight: 500;
+    font-size: 0.72rem;
+  }
+
+  details:not([open]) > .raw-fold-summary .raw-fold-placeholder {
+    display: inline;
+  }
+
+  .raw-fold-content {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .raw-line {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: pre;
+  }
+
+  .raw-line-end {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: pre;
+  }
+
+  .koki-raw-content,
+  .koki-raw-content * {
+    box-sizing: border-box !important;
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+    font-family: var(--__sl-font-mono) !important;
+  }
+
+  .koki-raw-content {
+    flex: 1;
+    margin: 0 !important;
+    border: none !important;
+    background: none !important;
+    padding: 12px 20px !important;
+    overflow: visible;
+    color: var(--sl-color-gray-1) !important;
+    white-space: pre;
+    tab-size: 2;
+  }
+
+  .json-key {
+    color: #f59e0b;
+  }
+  .json-string {
+    color: #86efac;
+  }
+  .json-number {
+    color: #c084fc;
+  }
+  .json-bool {
+    color: #60a5fa;
+  }
+  .json-null {
+    color: #f87171;
+  }
+  .json-punct {
+    color: var(--sl-color-gray-3);
+  }
+
+  :root[data-theme="light"] .json-key {
+    color: #92400e;
+  }
+  :root[data-theme="light"] .json-string {
+    color: #15803d;
+  }
+  :root[data-theme="light"] .json-number {
+    color: #7c3aed;
+  }
+  :root[data-theme="light"] .json-bool {
+    color: #2563eb;
+  }
+  :root[data-theme="light"] .json-null {
+    color: #dc2626;
+  }
+  :root[data-theme="light"] .json-punct {
+    color: #6b7280;
+  }
+
+  [data-theme="light"] .koki-copy-btn.copied {
+    border-color: #15803d !important;
+    color: #15803d !important;
+  }
+
+  .koki-tree-content {
+    flex: 1;
+    padding: 12px 8px 12px 12px;
+    min-width: 0;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    font-family: var(--__sl-font-mono);
+  }
+
+  .koki-tree-content .arbol-root {
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .koki-tree-content .arbol-root .koki-tree-header {
+    display: none;
+  }
+
+  .koki-state-msg {
+    padding: 40px 24px;
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}

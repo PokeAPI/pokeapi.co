@@ -1,0 +1,95 @@
+---
+
+---
+
+<div class="flex items-center" title="Toggle theme">
+  <label class="flex cursor-pointer items-center gap-1.75 select-none" aria-label="Toggle dark/light theme">
+    <span
+      class="sun-icon flex h-4.5 w-4.5 scale-85 items-center justify-center text-(--sl-color-gray-3) opacity-45 transition-all duration-300 ease-in-out [:root[data-theme=light]_&]:scale-105 [:root[data-theme=light]_&]:text-[#f59e0b] [:root[data-theme=light]_&]:opacity-100"
+      aria-hidden="true"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path
+          d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          fill="none"></path>
+      </svg>
+    </span>
+
+    <button
+      class="theme-slider-track relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-[1.5px] border-[rgba(59,130,246,0.35)] bg-linear-to-br from-[#1a1f2e] to-[#252840] p-0 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5),0_0_10px_rgba(59,130,246,0.12)] transition-[background,border-color,box-shadow] duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--sl-color-accent) [:root[data-theme=light]_&]:border-[#f59e0b] [:root[data-theme=light]_&]:bg-linear-to-br [:root[data-theme=light]_&]:from-[#fde68a] [:root[data-theme=light]_&]:to-[#fbbf24] [:root[data-theme=light]_&]:shadow-[inset_0_1px_3px_rgba(0,0,0,0.1),0_0_10px_rgba(251,191,36,0.3)]"
+      role="switch"
+      aria-checked="true"
+      aria-label="Toggle dark/light mode"
+    >
+      <span
+        class="theme-slider-thumb pointer-events-none absolute top-0.5 left-0.5 h-4.5 w-4.5 translate-x-5 rounded-full bg-linear-to-br from-[#60a5fa] to-[#2563eb] shadow-[0_1px_6px_rgba(37,99,235,0.55)] transition-[transform,background,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] [:root[data-theme=light]_&]:translate-x-0 [:root[data-theme=light]_&]:from-[#fff7ed] [:root[data-theme=light]_&]:to-[#fef3c7] [:root[data-theme=light]_&]:shadow-[0_1px_6px_rgba(245,158,11,0.5)]"
+      ></span>
+    </button>
+
+    <span
+      class="moon-icon flex h-4.5 w-4.5 scale-105 items-center justify-center text-(--sl-color-accent) opacity-100 transition-all duration-300 ease-in-out [:root[data-theme=light]_&]:scale-85 [:root[data-theme=light]_&]:text-(--sl-color-gray-3) [:root[data-theme=light]_&]:opacity-40"
+      aria-hidden="true"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </span>
+  </label>
+</div>
+
+<style>
+  .theme-slider-track.no-transition,
+  .theme-slider-track.no-transition .theme-slider-thumb {
+    transition: none !important;
+  }
+</style>
+
+<script>
+  function applyThemeToToggle(track: HTMLElement, isLight: boolean, animate: boolean) {
+    if (!animate) {
+      track.classList.add("no-transition");
+      void track.offsetWidth;
+    }
+    track.setAttribute("aria-checked", isLight ? "false" : "true");
+    if (!animate) {
+      requestAnimationFrame(() => track.classList.remove("no-transition"));
+    }
+  }
+
+  function syncAllTracks(animate: boolean) {
+    const isLight = document.documentElement.dataset.theme === "light";
+    document
+      .querySelectorAll<HTMLElement>(".theme-slider-track")
+      .forEach((t) => applyThemeToToggle(t, isLight, animate));
+  }
+
+  function initThemeToggle() {
+    document.querySelectorAll<HTMLElement>(".theme-slider-track").forEach((track) => {
+      applyThemeToToggle(track, document.documentElement.dataset.theme === "light", false);
+
+      const fresh = track.cloneNode(true) as HTMLElement;
+      track.parentNode!.replaceChild(fresh, track);
+
+      fresh.addEventListener("click", () => {
+        const newTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = newTheme;
+        try {
+          localStorage.setItem("starlight-theme", newTheme);
+        } catch {}
+      });
+    });
+
+    const observer = new MutationObserver(() => syncAllTracks(true));
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener("astro:after-swap", initThemeToggle);
+</script>

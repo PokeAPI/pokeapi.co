@@ -1,13 +1,14 @@
 ---
 title: Home
 description: The RESTful Pokémon API
-template: splash
 hero:
   title: The RESTful Pokémon API
-  tagline: Serving over 1,000,000,000 API calls each month!
+  tagline: "Serving over <strong style='color: var(--sl-color-hero-tagline-highlight); font-weight: 800;'>50 billion</strong> API calls each month!<br/><span style='display: block; margin-top: 0.85rem; font-size: 1.15rem; line-height: 1.6; font-weight: 400; color: var(--sl-color-gray-2);'>All the Pokémon data you’ll ever need in one place, easily accessible through a modern free open-source RESTful API.</span>"
   image:
-      alt: A glittering, brightly colored logo
-      file: ../../assets/pokeapi_256.png
+    file: ../../assets/hero.png
+    alt: PokéAPI Hero Image
+    width: 765
+    height: 326
   actions:
     - text: Check out the docs!
       link: ./v2/
@@ -19,28 +20,28 @@ hero:
       variant: secondary
       attrs:
         rel: me
+prev: false
+next: false
+tableOfContents: false
 ---
 
-import ApiExplorer from '../../components/ApiExplorer.astro';
+import ApiExplorer from '../../components/explorer/ApiExplorer.astro';
 import { Card, CardGrid } from '@astrojs/starlight/components'
-
-<div class="text-2xl text-center leading-[1.8]">
-All the Pokémon data you'll ever need in one place, easily accessible through a modern free open-source RESTful API.
-</div>
 
 <ApiExplorer />
 
-<CardGrid stagger>
+<div style={{ marginTop: '3rem' }}>
+  <CardGrid>
+    <Card title="What is this?" icon="puzzle">
+      This is a full **RESTful API** linked to an extensive database detailing everything about the Pokémon main game series.
+      <br/>
+      We've covered everything from Pokémon to Berry Flavors.
+    </Card>
 
-<Card title="What is this?" icon="puzzle">
-    This is a full **RESTful API** linked to an extensive database detailing everything about the Pokémon main game series.
-    <br/>
-    We've covered everything from Pokémon to Berry Flavors.
-  </Card>
-
-<Card title="Where do I start?" icon="rocket">
-    We have awesome [documentation](./v2/) on how to use this API. It takes minutes to get started.
-    <br/>
-    This API will always be publicly available and will never require any extensive setup process to consume.
-  </Card>
-</CardGrid>
+    <Card title="Where do I start?" icon="rocket">
+      We have awesome [documentation](./v2/) on how to use this API. It takes minutes to get started.
+      <br/>
+      This API will always be publicly available and will never require any extensive setup process to consume.
+    </Card>
+  </CardGrid>
+</div>

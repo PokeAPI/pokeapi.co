@@ -1,0 +1,94 @@
+---
+import LanguageSelect from "@astrojs/starlight/components/LanguageSelect.astro";
+import Search from "@astrojs/starlight/components/Search.astro";
+import SiteTitle from "@astrojs/starlight/components/SiteTitle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import SocialIcons from "./SocialIcons.astro";
+
+import PokeNav from "./PokeNav.astro";
+---
+
+<div
+  class="header flex h-full items-center justify-between gap-(--sl-nav-gap) min-[50rem]:grid min-[50rem]:grid-cols-[minmax(calc(var(--__sidebar-width)+max(0rem,var(--__main-column-fr)-var(--sl-nav-gap))),auto)_1fr_auto] min-[50rem]:content-center"
+>
+  <div class="-m-1 flex min-w-0 overflow-clip p-1">
+    <SiteTitle />
+  </div>
+  <div class="flex print:hidden">
+    <Search />
+  </div>
+  <div class="hidden items-center gap-4 md:flex print:hidden">
+    <div class="flex items-center gap-4 after:h-8 after:border-r after:border-(--sl-color-gray-5) after:content-['']">
+      <PokeNav />
+    </div>
+    <div class="flex items-center gap-4 after:h-8 after:border-r after:border-(--sl-color-gray-5) after:content-['']">
+      <SocialIcons />
+    </div>
+    <ThemeToggle />
+    <LanguageSelect />
+  </div>
+</div>
+
+<style>
+  @media (min-width: 50rem) {
+    :global(:root[data-has-sidebar]) {
+      --__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
+    }
+
+    :global(:root:not([data-has-toc])) {
+      --__toc-width: 0rem;
+    }
+
+    .header {
+      --__sidebar-width: max(0rem, var(--sl-content-inline-start, 0rem) - var(--sl-nav-pad-x));
+      --__main-column-fr: calc(
+        (
+            100% + var(--__sidebar-pad, 0rem) - var(--__toc-width, var(--sl-sidebar-width)) - 2 *
+              var(--__toc-width, var(--sl-nav-pad-x)) - var(--sl-content-inline-start, 0rem) - var(--sl-content-width)
+          ) /
+          2
+      );
+    }
+  }
+</style>
+
+<button
+  id="back-to-top"
+  class="back-to-top invisible fixed right-8 bottom-8 z-99999 flex h-11 w-11 translate-y-2.5 cursor-pointer items-center justify-center rounded-lg border border-(--sl-color-gray-5) bg-(--sl-color-gray-6) text-(--sl-color-white) opacity-0 shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-(--sl-color-accent) hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-accent-high) hover:shadow-[0_6px_16px_rgba(59,130,246,0.25)] active:translate-y-0 [&.visible]:visible [&.visible]:translate-y-0 [&.visible]:opacity-100"
+  aria-label="Back to top"
+  type="button"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="m18 15-6-6-6 6"></path>
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById("back-to-top");
+  if (btn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        btn.classList.add("visible");
+      } else {
+        btn.classList.remove("visible");
+      }
+    });
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+</script>

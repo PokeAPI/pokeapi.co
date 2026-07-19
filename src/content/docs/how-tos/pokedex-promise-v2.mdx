@@ -1,0 +1,220 @@
+---
+title: pokedex-promise V2 Guide
+description: Learn how to query Pokémon data in Node.js using the pokedex-promise-v2 client wrapper.
+sidebar:
+  order: 3
+publishDate: 2026-07-18
+keywords: [client, pokedex-promise-v2, node.js, javascript, caching]
+---
+
+import "../../../components/markdown/guides.css";
+import { Steps, Tabs, TabItem, Aside, Card, CardGrid, LinkCard, Badge } from '@astrojs/starlight/components';
+
+[pokedex-promise-v2](https://github.com/PokeAPI/pokedex-promise-v2) is a popular, lightweight Node.js client wrapper for PokéAPI. It features built-in in-memory caching, automatic rate limiting fallback configurations, and support for Promises, Async/Await, and Callbacks.
+
+This guide will walk you through installing the package, configuring the client, and fetching Pokémon data.
+
+---
+
+## Getting Started
+
+Follow these steps to integrate `pokedex-promise-v2` into your Node.js application:
+
+<Steps>
+
+1. **Install the package**
+   Choose your preferred package manager to add `pokedex-promise-v2` to your project:
+   
+   <Tabs>
+     <TabItem label="npm">
+       ```sh title="Terminal"
+       npm install pokedex-promise-v2
+       ```
+     </TabItem>
+     <TabItem label="yarn">
+       ```sh title="Terminal"
+       yarn add pokedex-promise-v2
+       ```
+     </TabItem>
+     <TabItem label="pnpm">
+       ```sh title="Terminal"
+       pnpm i pokedex-promise-v2
+       ```
+     </TabItem>
+   </Tabs>
+
+2. **Configure your project for ESM**
+   Since version `4.0.0`, `pokedex-promise-v2` is a pure **ES Modules (ESM)** package <Badge text="Required" variant="danger" />.
+   
+   :::caution[Important ESM Requirement]
+   You must configure your project to support ES modules. Ensure your `package.json` contains:
+   ```json title="package.json" ins={3}
+   {
+     "name": "my-pokemon-app",
+     "type": "module"
+   }
+   ```
+   Otherwise, trying to use `import` in Node.js will throw a syntax error.
+   :::
+
+3. **Initialize the client**
+   Import the package and initialize a new `Pokedex` instance.
+   
+   ```js title="app.js"
+   import Pokedex from 'pokedex-promise-v2';
+   const P = new Pokedex();
+   ```
+
+4. **Run your first query**
+   Retrieve information for a Pokémon by name or ID.
+   
+   ```js title="app.js" {3}
+   import Pokedex from 'pokedex-promise-v2';
+   const P = new Pokedex();
+   const pikachu = await P.getPokemonByName("pikachu");
+   console.log(`Pokedex ID: ${pikachu.id}`); // 25
+   ```
+
+   To run this file, open your terminal and press <kbd>node app.js</kbd> followed by <kbd>Enter</kbd>.
+
+</Steps>
+
+---
+
+## Querying Patterns
+
+`pokedex-promise-v2` is highly flexible. You can query endpoints using Async/Await, Promises, or traditional Callbacks. You can also fetch single records or retrieve arrays of records in a single call.
+
+### 1. Main Fetching Methods
+
+* **`getPokemonByName(nameOrId)`** <Badge text="Async/Await" variant="note" /><Badge text="Promise" /><Badge text="Callback" variant="success" />
+  Fetch Pokemon data by string name or integer ID.
+* **`getPokemonSpeciesByName(nameOrId)`** <Badge text="Async/Await" variant="note" /><Badge text="Promise" /><Badge text="Callback" variant="success" />
+  Fetch species data (including language translations, evolution chains, and descriptions).
+
+### 2. Implementation Patterns
+
+<Tabs>
+  <TabItem label="Async / Await">
+    ```js title="async-await.js" {4-7}
+    import Pokedex from 'pokedex-promise-v2';
+    const P = new Pokedex();
+
+    try {
+      const species = await P.getPokemonSpeciesByName("golduck");
+      const frenchName = species.names.find(n => n.language.name === 'fr').name;
+      console.log(`French name of Golduck: ${frenchName}`);
+    } catch (error) {
+      console.error("Failed to fetch Pokémon species data:", error);
+    }
+    ```
+  </TabItem>
+  <TabItem label="Promises">
+    ```js title="promises.js" {4-10}
+    import Pokedex from 'pokedex-promise-v2';
+    const P = new Pokedex();
+
+    // Passing an array fetches multiple records simultaneously
+    P.getPokemonByName(['eevee', 'ditto'])
+      .then((response) => {
+        console.log(response); // Array containing Eevee and Ditto data
+      })
+      .catch((error) => {
+        console.error('Error fetching Pokémon:', error);
+      });
+    ```
+  </TabItem>
+  <TabItem label="Callbacks">
+    ```js title="callbacks.js" {4-10}
+    import Pokedex from 'pokedex-promise-v2';
+    const P = new Pokedex();
+
+    // You can pass an integer ID instead of a string name
+    P.getPokemonByName(34, (response, error) => {
+      if (!error) {
+        console.log(`Pokémon Name: ${response.name}`); // nidoking
+      } else {
+        console.error(error);
+      }
+    });
+    ```
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>View Pikachu Query JSON Response Payload Structure</summary>
+  <div class="content">
+
+    ```json title="pikachu-response.json"
+    {
+      "id": 25,
+      "name": "pikachu",
+      "base_experience": 112,
+      "height": 4,
+      "is_default": true,
+      "order": 35,
+      "weight": 60,
+      "abilities": [
+        {
+          "is_hidden": false,
+          "slot": 1,
+          "ability": {
+            "name": "static",
+            "url": "https://pokeapi.co/api/v2/ability/9/"
+          }
+        }
+      ],
+      "forms": [
+        {
+          "name": "pikachu",
+          "url": "https://pokeapi.co/api/v2/pokemon-form/25/"
+        }
+      ]
+    }
+    ```
+
+  </div>
+</details>
+
+---
+
+## Advanced Configurations
+
+By default, the client is initialized to target the public API endpoint (`https://pokeapi.co/api/v2/`), timeout after 20 seconds, and cache responses in memory for **11 days**.
+
+You can customize this behavior by passing a configuration object to the constructor:
+
+```javascript title="config.js" {4-8}
+import Pokedex from 'pokedex-promise-v2';
+
+const customOptions = {
+  protocol: 'https',
+  hostName: 'pokeapi.co',
+  versionPath: '/api/v2/',
+  cacheLimit: 5 * 60 * 1000, // Cache for 5 minutes (in milliseconds)
+  timeout: 5000              // Timeout after 5 seconds (in milliseconds)
+};
+
+const P = new Pokedex(customOptions);
+```
+
+:::tip[Custom API Endpoints]
+If you run a local PokéAPI instance or cache-proxy on localhost, you can set `hostName` to `'localhost:8000'` (or your local port) to redirect all client calls there!
+:::
+
+---
+
+## Next Steps
+
+<CardGrid>
+  <LinkCard
+    title="pokedex-promise-v2 GitHub"
+    description="Check the official repository for a full list of available endpoint methods."
+    href="https://github.com/PokeAPI/pokedex-promise-v2"
+  />
+  <LinkCard
+    title="Go to PokéAPI Homepage"
+    description="Return to the main PokéAPI docs page."
+    href="../../"
+  />
+</CardGrid>

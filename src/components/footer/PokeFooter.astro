@@ -1,0 +1,69 @@
+---
+import Pagination from "@astrojs/starlight/components/Pagination.astro";
+import FooterBrand from "./FooterBrand.astro";
+import FooterNav from "./FooterNav.astro";
+import FooterStatus from "./FooterStatus.astro";
+import ScrollNextIndicator from "./ScrollNextIndicator.astro";
+
+const currentYear = new Date().getFullYear();
+
+import "./poke-footer.css";
+---
+
+<nav class="py-12 pb-4">
+  <Pagination />
+</nav>
+
+<footer
+  class="relative mt-0 overflow-hidden border-t border-transparent bg-(--sl-color-black) [border-image:linear-gradient(90deg,transparent,var(--sl-color-accent)_30%,var(--pokemon-yellow)_60%,transparent)_1]"
+>
+  <div class="footer-bg" aria-hidden="true">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-300 px-8 py-14 pb-8 max-[600px]:px-5 max-[600px]:py-8 max-[600px]:pb-5">
+    <div class="mb-10 grid grid-cols-1 gap-12 max-[600px]:mb-6 max-[600px]:gap-6 md:grid-cols-[1.4fr_2fr]">
+      <FooterBrand />
+      <FooterNav />
+    </div>
+
+    <FooterStatus />
+
+    <div
+      class="mb-6 h-px bg-[linear-gradient(90deg,transparent,var(--sl-color-gray-5)_20%,var(--sl-color-gray-5)_80%,transparent)]"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="flex flex-col items-center gap-1 text-center">
+      <p class="m-0 text-[0.78rem] leading-normal text-(--sl-color-gray-3)">
+        &copy; {currentYear} Created by <a
+          class="text-(--sl-color-gray-2) no-underline transition-colors duration-150 ease-in-out hover:text-(--sl-color-accent-high)"
+          href="https://github.com/phalt"
+          target="_blank"
+          rel="noopener"><strong>Paul Hallett</strong></a
+        > and <a
+          class="text-(--sl-color-gray-2) no-underline transition-colors duration-150 ease-in-out hover:text-(--sl-color-accent-high)"
+          href="https://github.com/PokeAPI/pokeapi/graphs/contributors"
+          target="_blank"
+          rel="noopener">PokéAPI contributors</a
+        > around the world.
+      </p>
+      <p class="m-0 text-[0.78rem] leading-normal text-(--sl-color-gray-3)">
+        Pokémon and Pokémon character names are trademarks of Nintendo.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<ScrollNextIndicator />
+
+<script src="./footer-status.js"></script>
+
+<script src="./starlight-openapi-custom.js"></script>
+
+<script>
+  import "./continuous-scroll.js";
+</script>

@@ -1,0 +1,43 @@
+---
+title: How-To Guides
+description: Learn how to integrate and use PokéAPI with different libraries, frameworks, and patterns.
+sidebar:
+    order: 1
+---
+
+import "../../../components/markdown/guides.css";
+import {CardGrid, LinkCard, Card} from '@astrojs/starlight/components';
+
+Welcome to the **PokéAPI How-To Guides**! This section contains tutorials, walkthroughs, and step-by-step guides to help you build applications using PokéAPI.
+
+Whether you are looking to integrate a community-built API client wrapper, optimize your caching strategies, or write your own guide, you will find instructions here.
+
+## Featured Guides
+
+<CardGrid>
+    <LinkCard
+        title="Getting Started with pokedex-promise-v2"
+        description="Learn how to fetch Pokémon data in Node.js using the official/popular pokedex-promise-v2 client wrapper."
+        href="./pokedex-promise-v2/"
+    />
+    <LinkCard
+        title="Writing How-To Guides"
+        description="A contributor's guide on how to write clear, beautiful, and interactive guides for this site using Starlight components."
+        href="./writing-guides/"
+    />
+</CardGrid>
+
+---
+
+## Why Use Guides?
+
+<CardGrid>
+    <Card title="Speed Up Integration" icon="rocket">
+        Learn best practices and copy-paste functional code snippets in
+        languages like JavaScript, Python, Go, and more.
+    </Card>
+    <Card title="Follow Best Practices" icon="approve-check-circle">
+        Understand caching, pagination, and fair use guidelines to keep your
+        application running smoothly and avoid rate limits.
+    </Card>
+</CardGrid>

@@ -1,0 +1,228 @@
+---
+title: Write How-To Guides
+description: A guide for contributors showing how to write and style how-to articles using Astro Starlight components.
+sidebar:
+  order: 2
+keywords: [starlight, writing, styling, formatting, mdx]
+---
+
+import "../../../components/markdown/guides.css";
+import { Steps, Tabs, TabItem, Aside, FileTree, Card, CardGrid, LinkCard, Badge } from '@astrojs/starlight/components';
+
+Welcome! This guide explains how to write new guides for PokéAPI's documentation website. Since our site is built with **Starlight**, you have access to a rich set of built-in components that make writing interactive MDX guides simple and elegant.
+
+This page serves as both an instruction manual and a living showcase of the components you can use in your guides.
+
+---
+
+## Step-by-Step Guide Creation
+
+Follow these steps to write and register a new guide:
+
+<Steps>
+
+1. **Create your MDX file**
+   Add a new file with the `.mdx` extension inside the `how-tos` directory.
+   
+   <FileTree>
+   - src/
+     - content/
+       - docs/
+         - how-tos/
+           - **your-new-guide.mdx**
+   </FileTree>
+
+2. **Define the Frontmatter**
+   Add standard metadata at the top of your MDX file wrapped in triple-dashes (`---`).
+   
+   ```yaml title="src/content/docs/how-tos/your-new-guide.mdx"
+   ---
+   title: Your Guide Title
+   description: A concise description of your guide for search results.
+   ---
+   ```
+
+3. **Register your guide in the Sidebar**
+   Open astro.config.mjs and find the `sidebar` configuration. Add your guide to the `items` array under the **How-To Guides** section:
+   
+   ```javascript title="astro.config.mjs" ins={6-9}
+   sidebar: [
+     {
+       label: 'How-To Guides',
+       items: [
+         { label: 'Writing Guides', link: 'how-tos/writing-guides' },
+         {
+           label: 'Your Guide Label',
+           link: 'how-tos/your-new-guide',
+         }
+       ],
+     }
+   ]
+   ```
+
+4. **Add content and components**
+   Write your content using Markdown and embed Starlight components to make your guide interactive and engaging.
+
+</Steps>
+
+---
+
+## Interactive Components Showcase
+
+To make your guide readable and match the PokéAPI styling, use these components.
+
+### 1. Steps
+
+Wrap ordered lists inside the `<Steps>` component to render step-by-step progress lines.
+
+```mdx title="Example Steps" {3,6}
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+1. First step
+2. Second step
+</Steps>
+```
+
+### 2. Asides / Callouts
+
+Use asides to call out important information. You can use either the `<Aside>` component or markdown container directives (`:::note`, `:::tip`, `:::caution`, `:::danger`).
+
+<Aside type="note">
+  **Note**: This is a standard informational aside. Excellent for background context.
+</Aside>
+
+<Aside type="tip" title="Pro-Tip!">
+  **Tip**: You can customize the title of the aside using the `title` attribute.
+</Aside>
+
+:::caution[Warning]
+Use cautions to warn users about potential pitfalls, such as deprecated endpoints or API limitations.
+:::
+
+:::danger[Critical]
+Use danger alerts sparingly—mostly for actions that can result in banned IP addresses or server abuse.
+:::
+
+### 3. Tabs (Multi-language and Options)
+
+Use tabs when you want to show different commands or code snippets for different environments.
+
+<Tabs>
+  <TabItem label="npm">
+    ```sh
+    npm install pokeapi-js-wrapper
+    ```
+  </TabItem>
+  <TabItem label="yarn">
+    ```sh
+    yarn add pokeapi-js-wrapper
+    ```
+  </TabItem>
+  <TabItem label="pnpm">
+    ```sh
+    pnpm add pokeapi-js-wrapper
+    ```
+  </TabItem>
+</Tabs>
+
+### 4. File Trees
+
+Use file trees to illustrate directory structures or explain where files need to be created.
+
+<FileTree>
+- my-poke-app/
+  - package.json
+  - src/
+    - main.js
+    - components/
+      - PokeCard.vue
+</FileTree>
+
+### 5. Badges
+
+Badges are great for highlighting statuses, request methods, API version tags, or required configuration parameters.
+You can import the `<Badge>` component from `@astrojs/starlight/components`.
+
+* **Methods / Types:** <Badge text="GET" variant="note" /><Badge text="POST" variant="success" /><Badge text="ESM Required" variant="caution" /><Badge text="Deprecated" variant="danger" />
+* **Normal / Default:** <Badge text="Default" />
+
+```mdx title="Example Badges"
+import { Badge } from '@astrojs/starlight/components';
+
+Methods: <Badge text="GET" variant="note" /><Badge text="Deprecated" variant="danger" />
+```
+
+### 6. Keyboard Shortcuts
+
+For command line guides or setup tutorials, wrap terminal keys inside `<kbd>` tags. They will render styled as physical buttons:
+
+* **Example:** Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the dev server, then press <kbd>Enter</kbd> to restart.
+
+```markdown
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the dev server.
+```
+
+### 7. Collapsible Code Sections
+
+Use HTML `<details>` and `<summary>` wrappers with our custom styles to hide huge raw data structures, configurations, or deep code files to keep the page length readable. Make sure to wrap details content in a `<div class="content">` to inherit proper line heights and top spacing:
+
+<details>
+  <summary>View PokéAPI JSON Schema Sample</summary>
+  <div class="content">
+
+    ```json title="sample.json"
+    {
+      "id": 25,
+      "name": "pikachu",
+      "types": [{ "slot": 1, "type": { "name": "electric" } }]
+    }
+    ```
+
+  </div>
+</details>
+
+````html title="Example Details block"
+<details>
+  <summary>View PokéAPI JSON Schema Sample</summary>
+  <div class="content">
+    ```json
+    { "id": 25, "name": "pikachu" }
+    ```
+  </div>
+</details>
+````
+
+### 8. Code Block Annotations (Expressive Code)
+
+Starlight has **Expressive Code** built-in. You don't need any components to use annotations:
+
+* **Line Highlighting:** Add `{line_numbers}` next to code type.
+* **Diff Highlighting:** Use comment tags `// ins-next`, `// del-next`, `// ins`, or `// del` to highlight additions/deletions.
+* **Titles / Frames:** Set `title="filename.js"` to add a beautiful filename frame.
+
+```js title="src/example.js" ins={3} del={4}
+// Highlight line 3 and mark lines 3 & 4 as inserted/deleted
+console.log("This is normal line");
+console.log("This line is highlighted & inserted");
+console.log("This line is deleted");
+```
+
+---
+
+## Next Steps
+
+Once you are done writing your guide, check out existing guides for inspiration:
+
+<CardGrid>
+  <LinkCard
+    title="Getting Started with pokedex-promise-v2"
+    description="Look at a complete wrapper library guide in action."
+    href="../pokedex-promise-v2/"
+  />
+  <LinkCard
+    title="Go to PokéAPI Homepage"
+    description="Return to the main PokéAPI docs page."
+    href="../../"
+  />
+</CardGrid>

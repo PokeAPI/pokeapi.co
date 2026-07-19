@@ -1,0 +1,114 @@
+@layer arbol {
+  .arbol-root {
+    margin: 0;
+    background: var(--arbol-bg-color, transparent);
+    padding: 0;
+    color: var(--arbol-text-color, inherit);
+    font-size: var(--arbol-code-text-size, 0.82rem);
+    line-height: 1.65;
+    font-family: var(--arbol-code-text-font, monospace);
+
+    * {
+      list-style: none;
+    }
+    *::-webkit-details-marker {
+      display: none;
+    }
+
+    ul {
+      margin: 0 !important;
+      margin-left: 4px !important;
+      border-left: 1px solid color-mix(in srgb, var(--sl-color-gray-5, #353841) 50%, transparent);
+      padding-left: 18px;
+    }
+
+    & > ul {
+      margin-left: 0 !important;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 0 !important;
+      padding: 0;
+    }
+
+    summary {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      cursor: pointer;
+      margin: 0 !important;
+      padding: 0;
+      list-style: none;
+    }
+    summary::marker,
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details > summary::before {
+      display: inline-block;
+      flex-shrink: 0;
+      align-self: center;
+      opacity: 0.45;
+      transition: transform 0.15s ease;
+      margin-right: 3px;
+      width: 0.9em;
+      content: "▶";
+      font-size: 0.6em;
+    }
+    details[open] > summary::before {
+      transform: rotate(90deg);
+    }
+
+    details.arrobj summary {
+      font-weight: 600;
+      small {
+        opacity: 0.75;
+        margin-left: 4px;
+        color: var(--arbol-code-misc, #f59e0b);
+        font-weight: 400;
+        font-size: 0.85em;
+      }
+    }
+
+    var {
+      color: var(--arbol-code-variable, #f59e0b);
+      font-style: normal;
+      &::before {
+        content: '"';
+      }
+      &::after {
+        content: '":';
+      }
+    }
+
+    code.arbol-value {
+      font-family: inherit;
+    }
+
+    code.arbol-value.string {
+      color: var(--arbol-code-string, #86efac);
+      &::before {
+        content: '"';
+      }
+      &::after {
+        content: '"';
+      }
+    }
+    code.arbol-value.boolean {
+      color: var(--arbol-code-bool, #60a5fa);
+      font-weight: 700;
+    }
+    code.arbol-value.number {
+      color: var(--arbol-code-numeric, #c084fc);
+      font-weight: 600;
+    }
+    code.arbol-value.null,
+    code.arbol-value.undefined {
+      opacity: 0.8;
+      color: var(--arbol-code-undefined, #f87171);
+    }
+  }
+}

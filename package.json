@@ -5,7 +5,8 @@
   "contributors": [
     "Charles Marttinen",
     "Naramsim",
-    "Indyandie"
+    "Indyandie",
+    "FallenDeity"
   ],
   "license": "MIT",
   "repository": {
@@ -14,20 +15,32 @@
   },
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "start": "astro dev",
-    "build": "astro build --site https://pokeapi.co/",
-    "build:ghpages": "astro build --site https://pokeapi.github.io --base pokeapi.co/",
-    "preview": "astro preview",
-    "astro": "astro"
+    "build": "cross-env SITE_URL=https://pokeapi.co astro build",
+    "build:ghpages": "cross-env SITE_URL=https://fallendeity.github.io BASE_URL=/pokeapi.co/ astro build",
+    "preview": "astro preview --host",
+    "astro": "astro",
+    "format": "prettier --write \"{src,.}/**/*.{astro,js,mjs,css,json}\"",
+    "format:check": "prettier --check \"{src,.}/**/*.{astro,js,mjs,css,json}\""
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.37.6",
-    "@astrojs/starlight-tailwind": "^4.0.2",
+    "@astrojs/starlight": "^0.41.3",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@expressive-code/plugin-line-numbers": "^0.44.0",
     "@tailwindcss/vite": "^4.0.3",
-    "astro": "^5.17.1",
-    "marked": "^17.0.1",
-    "starlight-openapi": "^0.22.0",
-    "tailwindcss": "^4.0.3"
+    "astro": "^7.0.9",
+    "astro-og-canvas": "^0.13.0",
+    "marked": "^18.0.6",
+    "starlight-openapi": "^0.26.0",
+    "tailwindcss": "^4.0.3",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "prettier": "^3.9.5",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-css-order": "^2.2.0",
+    "prettier-plugin-tailwindcss": "^0.8.1"
   }
 }

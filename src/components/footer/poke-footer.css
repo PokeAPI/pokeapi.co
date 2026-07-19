@@ -1,0 +1,244 @@
+@keyframes indicator-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--sl-color-accent) 20%, transparent);
+  }
+  50% {
+    transform: translateY(4px);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--sl-color-accent) 45%, transparent);
+  }
+}
+
+@keyframes blobFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  33% {
+    transform: translateY(-18px) scale(1.04);
+  }
+  66% {
+    transform: translateY(10px) scale(0.97);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-blob {
+  position: absolute;
+  opacity: 0.06;
+  filter: blur(80px);
+  animation: blobFloat 12s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+.bg-blob-1 {
+  top: -120px;
+  left: -80px;
+  animation-delay: 0s;
+  background: var(--sl-color-accent);
+  width: 400px;
+  height: 400px;
+}
+
+.bg-blob-2 {
+  right: 10%;
+  bottom: -100px;
+  animation-delay: -4s;
+  background: var(--pokemon-yellow);
+  width: 350px;
+  height: 350px;
+}
+
+.bg-blob-3 {
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: -8s;
+  background: #a855f7;
+  width: 280px;
+  height: 280px;
+}
+
+.github-pill {
+  border-color: #444;
+  background: #24292e;
+  color: #c9d1d9;
+}
+
+.github-pill:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.slack-pill {
+  border-color: #4a1942;
+  background: #1a1a2e;
+  color: #e2e2e2;
+}
+
+.slack-pill:hover {
+  box-shadow: 0 4px 12px rgba(224, 30, 90, 0.2);
+}
+
+.status-header-dot.dot-operational {
+  box-shadow: 0 0 6px #22c55e80;
+  background: #22c55e;
+}
+.status-header-dot.dot-degraded {
+  box-shadow: 0 0 6px #f59e0b80;
+  background: #f59e0b;
+}
+.status-header-dot.dot-outage {
+  box-shadow: 0 0 6px #ef444480;
+  background: #ef4444;
+}
+
+.status-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.status-badge.skeleton {
+  animation: shimmer 1.5s infinite;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--sl-color-gray-5) 25%,
+    var(--sl-color-gray-4) 50%,
+    var(--sl-color-gray-5) 75%
+  );
+  background-size: 200% 100%;
+  width: 140px;
+  height: 34px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  cursor: default;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 0.375rem 0.75rem;
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-decoration: none !important;
+}
+
+.status-badge:not(.skeleton):hover {
+  transform: translateY(-1px);
+}
+
+.status-badge--operational {
+  border-color: color-mix(in srgb, #22c55e 25%, transparent);
+  background: color-mix(in srgb, #22c55e 8%, transparent);
+  color: #4ade80;
+}
+
+.status-badge--degraded {
+  border-color: color-mix(in srgb, #f59e0b 25%, transparent);
+  background: color-mix(in srgb, #f59e0b 8%, transparent);
+  color: #fbbf24;
+}
+
+.status-badge--outage {
+  border-color: color-mix(in srgb, #ef4444 25%, transparent);
+  background: color-mix(in srgb, #ef4444 8%, transparent);
+  color: #f87171;
+}
+
+.status-badge--unknown {
+  border-color: var(--sl-color-gray-4);
+  background: color-mix(in srgb, var(--sl-color-gray-3) 8%, transparent);
+  color: var(--sl-color-gray-2);
+}
+
+.badge-dot {
+  flex-shrink: 0;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+}
+
+.status-badge--operational .badge-dot {
+  background: #22c55e;
+}
+.status-badge--degraded .badge-dot {
+  background: #f59e0b;
+}
+.status-badge--outage .badge-dot {
+  animation: none;
+  background: #ef4444;
+}
+.status-badge--unknown .badge-dot {
+  animation: none;
+  background: var(--sl-color-gray-3);
+}
+
+.badge-name {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-type {
+  opacity: 0.6;
+  font-weight: 400;
+  font-size: 0.67rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .footer-status {
+  border-color: var(--sl-color-gray-5);
+  background: color-mix(in srgb, var(--sl-color-gray-6) 80%, transparent);
+}
+
+[data-theme="light"] .github-pill {
+  border-color: #d0d7de;
+  background: #f6f8fa;
+  color: #24292e;
+}
+
+[data-theme="light"] .slack-pill {
+  border-color: #e4e0e0;
+  background: #fafafa;
+  color: #1d1c1d;
+}
+
+[data-theme="light"] .bg-blob {
+  opacity: 0.03;
+}

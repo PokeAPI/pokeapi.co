@@ -1,0 +1,35 @@
+<div
+  class="scroll-next-indicator box-border hidden items-center justify-center bg-transparent px-2 py-8 pb-22"
+  id="scroll-next-indicator"
+  style="display: none;"
+>
+  <div class="flex flex-col items-center justify-center gap-2.5">
+    <div
+      class="flex h-8 w-8 animate-[indicator-bounce_2s_infinite_ease-in-out] items-center justify-center rounded-full border-2 border-(--sl-color-accent) bg-[color-mix(in_srgb,var(--sl-color-gray-6)_40%,transparent)] text-(--sl-color-accent) shadow-[0_0_6px_color-mix(in_srgb,var(--sl-color-accent)_20%,transparent)]"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 5v14M19 12l-7 7-7-7"></path>
+      </svg>
+    </div>
+    <div
+      class="mt-1.5 inline-flex items-center justify-center rounded-full border border-(--sl-color-gray-5) bg-[color-mix(in_srgb,var(--sl-color-gray-6)_65%,transparent)] px-[0.95rem] py-2 shadow-(--sl-shadow-md) backdrop-blur-md"
+    >
+      <span
+        class="scroll-indicator-text font-sans text-[0.78rem] leading-[1.1] font-medium text-(--sl-color-gray-3) [&_strong]:font-semibold [&_strong]:text-(--sl-color-accent-high)"
+        >Keep scrolling to load the next guide</span
+      >
+    </div>
+  </div>
+</div>
+
+<script src="./scroll-indicator.js"></script>

@@ -1,5 +1,7 @@
 ---
 title: GraphQL v1beta
+description: Beta support for PokéAPI GraphQL queries and explorer console.
+keywords: [graphql, query, console]
 ---
 
 ## Infomation
@@ -12,16 +14,15 @@ To ease learning and developing, a [GraphiQL](https://github.com/graphql/graphiq
 
 ```sh
 # This curl retrieves all items and relative costs
-curl 'https://beta.pokeapi.co/graphql/v1beta' \\
--H 'content-type: application/json' \\
--H 'accept: */*' \\
---compressed \\
---data-binary @- << EOF
-{
-"query": "query getItems{pokemon_v2_item{name,cost}}",
-"variables": null,
-"operationName":"getItems"
-}
+curl 'https://beta.pokeapi.co/graphql/v1beta'\\ -
+  H 'content-type: application/json'\\ -
+  H 'accept: */*'\\
+  --compressed\\
+  --data - binary @ - << EOF {
+    "query": "query getItems{pokemon_v2_item{name,cost}}",
+    "variables": null,
+    "operationName": "getItems"
+  }
 EOF
 ```
 
@@ -38,7 +39,6 @@ PokéAPI is primarily an educational tool, and we will not tolerate denial of se
 - Locally cache resources whenever you request them.
 - Be nice and friendly to your fellow PokéAPI developers.
 - If you spot security vulnerabilities act and [report them](https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability) responsibly.
-
 
 ### Beta status
 

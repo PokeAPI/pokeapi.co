@@ -1,0 +1,72 @@
+<div
+  class="footer-status mb-7 rounded-xl border border-(--sl-color-gray-5) bg-[color-mix(in_srgb,var(--sl-color-gray-6)_60%,transparent)] p-5 backdrop-blur-md"
+>
+  <div class="mb-4 flex items-center gap-2">
+    <span
+      class="status-header-dot h-2 w-2 shrink-0 rounded-full bg-(--sl-color-gray-3) transition-colors duration-300 ease-in-out"
+      id="footer-global-dot"
+      aria-hidden="true"></span>
+    <h4 class="m-0 flex-1 text-[0.78rem] font-semibold tracking-wide text-(--sl-color-gray-2) uppercase">
+      System Status
+    </h4>
+    <a
+      href="https://pokeapi.statuspage.io/"
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-1.25 text-[0.75rem] whitespace-nowrap text-(--sl-color-accent) no-underline transition-colors duration-150 ease-in-out hover:text-(--sl-color-accent-high)"
+    >
+      View full status
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        ><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15,3 21,3 21,9"
+        ></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg
+      >
+    </a>
+  </div>
+
+  <div class="mb-3.5 flex flex-wrap items-center gap-2" id="footer-shields-row">
+    <a
+      href="https://pokeapi.statuspage.io/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="shield-link master-shield inline-flex items-center overflow-hidden rounded-md leading-0 no-underline transition duration-150 ease-in-out hover:-translate-y-0.5 hover:opacity-85"
+      id="footer-master-shield"
+      aria-label="Overall system status"
+    >
+      <img
+        src="https://img.shields.io/badge/dynamic/json?style=flat&color=brightgreen&label=status&query=%24.status.description&url=https%3A%2F%2Fzlfyqp3hlvly.statuspage.io%2Fapi%2Fv2%2Fsummary.json"
+        alt="Overall system status"
+        class="block h-5 w-auto"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+
+    <a
+      href="https://pokeapi.co/api/v2/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="shield-link inline-flex items-center overflow-hidden rounded-md leading-0 no-underline transition duration-150 ease-in-out hover:-translate-y-0.5 hover:opacity-85"
+      id="footer-latency-shield"
+      aria-label="API response time"
+      title="Live response time measured from your browser"
+    >
+      <img
+        src="https://img.shields.io/badge/response_time-...-lightgrey?style=flat"
+        alt="API response time"
+        class="block h-5 w-auto"
+        id="footer-latency-img"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </div>
+</div>

@@ -1,0 +1,414 @@
+---
+import crypto from "node:crypto";
+import ditto from "../../data/ditto.json";
+
+import {Aside} from "@astrojs/starlight/components";
+
+interface Props {
+  endpoint?: string;
+  exampleRequest?: string;
+  exampleResponse?: any;
+}
+
+const {endpoint, exampleRequest, exampleResponse} = Astro.props;
+
+let defaultParam = "ditto";
+if (exampleRequest) {
+  const prefix = `/v2/${endpoint}/`;
+  if (exampleRequest.startsWith(prefix)) {
+    defaultParam = exampleRequest.slice(prefix.length);
+    if (defaultParam.endsWith("/")) {
+      defaultParam = defaultParam.slice(0, -1);
+    }
+  } else {
+    const rootPrefix = `/v2/${endpoint}`;
+    if (exampleRequest.startsWith(rootPrefix)) {
+      defaultParam = exampleRequest.slice(rootPrefix.length);
+    } else {
+      defaultParam = "";
+    }
+  }
+} else if (endpoint) {
+  defaultParam = "1";
+}
+
+const instanceId = "explorer-" + crypto.randomUUID();
+
+const endpoints = [
+  {
+    group: "Berries",
+    icon: "berries.png",
+    options: ["berry", "berry-firmness", "berry-flavor"],
+  },
+  {
+    group: "Contests",
+    icon: "contests.png",
+    options: ["contest-type", "contest-effect", "super-contest-effect"],
+  },
+  {
+    group: "Encounters",
+    icon: "encounters.png",
+    options: ["encounter-method", "encounter-condition", "encounter-condition-value"],
+  },
+  {
+    group: "Evolution",
+    icon: "evolution.png",
+    options: ["evolution-chain", "evolution-trigger"],
+  },
+  {
+    group: "Games",
+    icon: "games.png",
+    options: ["generation", "pokedex", "version", "version-group"],
+  },
+  {
+    group: "Items",
+    icon: "items.png",
+    options: ["item", "item-attribute", "item-category", "item-fling-effect", "item-pocket"],
+  },
+  {
+    group: "Locations",
+    icon: "locations.png",
+    options: ["location", "location-area", "pal-park-area", "region"],
+  },
+  {group: "Machines", icon: "machines.png", options: ["machine"]},
+  {
+    group: "Moves",
+    icon: "moves.png",
+    options: [
+      "move",
+      "move-ailment",
+      "move-battle-style",
+      "move-category",
+      "move-damage-class",
+      "move-learn-method",
+      "move-target",
+    ],
+  },
+  {
+    group: "Pokémon",
+    icon: "pokemon.png",
+    options: [
+      "ability",
+      "characteristic",
+      "egg-group",
+      "gender",
+      "growth-rate",
+      "nature",
+      "pokeathlon-stat",
+      "pokemon",
+      "pokemon-color",
+      "pokemon-form",
+      "pokemon-habitat",
+      "pokemon-shape",
+      "pokemon-species",
+      "stat",
+      "type",
+    ],
+  },
+];
+
+const endpointImages = import.meta.glob<{default: ImageMetadata}>("../../assets/endpoint-categories/*.png", {
+  eager: true,
+});
+
+import "./koki.css";
+import "./api-explorer.css";
+---
+
+<script src="./koki.js"></script>
+
+<section
+  class="koki-api-explorer-widget -mt-8"
+  id={instanceId}
+  data-instance-id={instanceId}
+  data-endpoint={endpoint || "pokemon"}
+  data-param={defaultParam}
+>
+  <div class="api-explorer-root not-content">
+    {
+      !endpoint && (
+        <h2 id="try-it-now" class="mb-10 text-center" style="margin-top:0!important">
+          Try it now!
+        </h2>
+      )
+    }
+
+    {
+      !endpoint && (
+        <Aside type="tip" title="Need a hint?">
+          Try&nbsp;
+          <a class="input-hints cursor-pointer" href="#try-it-now" data-endpoint="pokemon" data-param="ditto">
+            <code>pokemon/ditto</code>
+          </a>
+          ,&nbsp;
+          <a
+            class="input-hints cursor-pointer"
+            href="#try-it-now"
+            data-endpoint="pokemon-species"
+            data-param="aegislash"
+          >
+            <code>pokemon-species/aegislash</code>
+          </a>
+          ,&nbsp;
+          <a class="input-hints cursor-pointer" href="#try-it-now" data-endpoint="type" data-param="3">
+            <code>type/3</code>
+          </a>
+          ,&nbsp;
+          <a class="input-hints cursor-pointer" href="#try-it-now" data-endpoint="ability" data-param="battle-armor">
+            <code>ability/battle-armor</code>
+          </a>
+          , or&nbsp;
+          <a
+            class="input-hints cursor-pointer"
+            href="#try-it-now"
+            data-endpoint="pokemon"
+            data-param="?limit=100&offset=0"
+          >
+            <code>pokemon?limit=100&amp;offset=0</code>
+          </a>
+          .
+          <>
+            <br />
+            <br />
+          </>
+          Read the <a href="./v2/openapi/">OpenAPI docs</a> for more options.
+        </Aside>
+      )
+    }
+
+    <div class="py-3"></div>
+
+    <div
+      class="explorer-request-bar relative flex h-12 items-stretch overflow-visible rounded-[10px] border-[1.5px] border-(--sl-color-gray-5) shadow-[0_2px_10px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-200 ease-out focus-within:border-(--sl-color-accent) focus-within:shadow-[0_2px_12px_rgba(0,0,0,0.2)] focus-within:ring-[3px] focus-within:ring-[rgba(59,130,246,0.18)]"
+      role="group"
+      aria-label="API request builder"
+    >
+      <span
+        class="explorer-base-url flex shrink-0 items-center rounded-l-lg border-r-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-gray-6) pr-2.5 pl-3.5 font-mono text-[0.76rem] font-semibold whitespace-nowrap text-(--sl-color-accent-high) select-none max-[600px]:pr-2 max-[600px]:pl-2.5"
+        aria-label="Base URL"
+      >
+        <span class="explorer-base-url-full inline max-[600px]:hidden">https://pokeapi.co/api/v2/</span>
+        <span class="explorer-base-url-short hidden max-[600px]:inline">/v2/</span>
+      </span>
+
+      {
+        endpoint ? (
+          <span class="explorer-endpoint-label box-border flex h-full items-center border-r-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-gray-6) px-4 font-mono text-[0.82rem] font-semibold text-(--sl-color-accent-high) select-none">
+            {endpoint}
+          </span>
+        ) : (
+          <div class="explorer-select-wrap relative flex shrink-0 items-stretch border-r-[1.5px] border-(--sl-color-gray-5)">
+            <button
+              class="explorer-select-trigger relative flex max-w-60 min-w-35 cursor-pointer items-center gap-1.5 overflow-hidden border-none bg-(--sl-color-black) pr-7 pl-3 text-left font-mono text-[0.82rem] font-medium text-ellipsis whitespace-nowrap text-(--sl-color-white) transition-colors duration-150 ease-in-out outline-none"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-label="Select endpoint"
+              type="button"
+            >
+              <span class="explorer-select-label">pokemon</span>
+            </button>
+            <div
+              class="explorer-dropdown-panel fixed z-99999 max-h-90 min-w-60 scrollbar-thin scrollbar-thumb-(--sl-color-gray-5) scrollbar-track-transparent overflow-y-auto rounded-lg border-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-gray-6) py-1 shadow-[0_12px_40px_rgba(0,0,0,0.45),0_4px_12px_rgba(0,0,0,0.3)]"
+              role="listbox"
+              aria-label="API Endpoints"
+            >
+              {endpoints.map(({group, icon, options}) => (
+                <>
+                  <span class="dropdown-group-label box-border inline-flex w-full items-center gap-1.5 border-t border-(--sl-color-gray-5) px-3 pt-2 pb-0.75 text-[0.68rem] font-bold tracking-[0.08em] text-(--sl-color-gray-3) uppercase select-none first:border-none first:pt-2">
+                    <img
+                      src={endpointImages[`../../assets/endpoint-categories/${icon}`]?.default.src}
+                      alt=""
+                      class="dropdown-group-icon h-4 w-4 shrink-0 object-contain"
+                    />
+                    {group}
+                  </span>
+                  {options.map((opt) => (
+                    <button
+                      class={`dropdown-option${opt === "pokemon" ? " selected" : ""} ease mx-1 my-0 block w-[calc(100%-8px)] cursor-pointer rounded-sm border-none bg-transparent px-3.5 py-1.25 text-left font-mono text-[0.8rem] text-(--sl-color-gray-1) transition-all duration-120 hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white) focus:bg-(--sl-color-gray-5) focus:text-(--sl-color-white) focus:outline-none [&.selected]:bg-[color-mix(in_srgb,var(--sl-color-accent-low)_60%,transparent)] [&.selected]:font-semibold [&.selected]:text-(--sl-color-accent-high)`}
+                      role="option"
+                      aria-selected={opt === "pokemon" ? "true" : "false"}
+                      data-value={opt}
+                      type="button"
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <span
+        class="explorer-divider flex shrink-0 items-center bg-(--sl-color-black) px-1.25 font-mono text-base font-light text-(--sl-color-gray-4) select-none"
+        aria-hidden="true">/</span
+      >
+
+      <input
+        class="explorer-param-input min-w-15 flex-1 border-none bg-(--sl-color-black) px-3 py-2.75 font-mono text-[0.85rem] text-(--sl-color-white) outline-none placeholder:text-(--sl-color-gray-3) placeholder:opacity-100"
+        type="text"
+        placeholder="name or id"
+        value={defaultParam}
+        aria-label="Resource name or ID"
+        autocomplete="off"
+        spellcheck="false"
+      />
+
+      <button
+        class="explorer-send-btn flex shrink-0 cursor-pointer items-center gap-1.75 rounded-r-lg border-none bg-(--sl-color-accent) px-5 text-[0.85rem] font-semibold tracking-wide whitespace-nowrap text-white transition-colors duration-180 ease-in-out hover:bg-[color-mix(in_srgb,var(--sl-color-accent)_75%,#fff_25%)] active:scale-98 disabled:cursor-not-allowed disabled:opacity-50"
+        type="button"
+        aria-label="Send API request"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-3.25 w-3.25 shrink-0"
+          aria-hidden="true"
+        >
+          <line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+        Send
+      </button>
+    </div>
+
+    <div class="explorer-meta-row ml-1 flex flex-wrap items-center gap-2 pt-2 text-[0.78rem] text-(--sl-color-gray-3)">
+      <span>Direct link:</span>
+      <a
+        class="explorer-direct-link font-mono text-[0.76rem] text-(--sl-color-accent-high) no-underline transition-colors duration-150 ease-in-out hover:text-(--sl-color-accent) hover:underline"
+        target="_blank"
+        rel="noopener"
+        href={`https://pokeapi.co/api/v2/${endpoint || "pokemon"}/${defaultParam}`}
+      >
+        https://pokeapi.co/api/v2/{endpoint || "pokemon"}/{defaultParam}
+      </a>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="explorer-out-link-icon"
+        style="display: inline-block; vertical-align: middle; margin-left: 4px; color: var(--sl-color-accent); transition: color 0.15s;"
+        ><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path><path d="m21 3-9 9"></path><path
+          d="M15 3h6v6"></path></svg
+      >
+    </div>
+
+    <div class="py-3"></div>
+
+    <div
+      class="koki-codeblock-wrapper overflow-hidden rounded-[10px] border-[1.5px] border-(--sl-color-gray-5) shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+    >
+      <div
+        class="koki-view-tabs box-border flex h-12 flex-row items-center border-b border-(--sl-color-gray-5) bg-(--sl-color-gray-6) px-3"
+        role="tablist"
+        aria-label="Response view"
+      >
+        <div
+          class="koki-tab-group inline-flex items-center rounded-lg border-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-black) p-0.75"
+        >
+          <button
+            class="koki-tab-btn active tab-raw inline-flex h-6 cursor-pointer items-center gap-1.5 rounded-md border-none bg-transparent px-3 py-0.75 text-[0.74rem] leading-none font-semibold tracking-wide whitespace-nowrap text-(--sl-color-gray-3) transition-all duration-150 ease-in-out hover:text-(--sl-color-white) [&.active]:bg-(--sl-color-gray-5) [&.active]:text-(--sl-color-white) [&.active]:shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+            role="tab"
+            aria-selected="true"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="tab-icon h-3.25 w-3.25 shrink-0"
+              aria-hidden="true"
+              ><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"></path><path
+                d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"></path></svg
+            >
+            Raw
+          </button>
+          <button
+            class="koki-tab-btn tab-tree inline-flex h-6 cursor-pointer items-center gap-1.5 rounded-md border-none bg-transparent px-3 py-0.75 text-[0.74rem] leading-none font-semibold tracking-wide whitespace-nowrap text-(--sl-color-gray-3) transition-all duration-150 ease-in-out hover:text-(--sl-color-white) [&.active]:bg-(--sl-color-gray-5) [&.active]:text-(--sl-color-white) [&.active]:shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+            role="tab"
+            aria-selected="false"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="tab-icon h-3.25 w-3.25 shrink-0"
+              aria-hidden="true"
+              ><path d="M8 5h13"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path
+                d="M3 10a2 2 0 0 0 2 2h3"></path><path d="M3 5v12a2 2 0 0 0 2 2h3"></path></svg
+            >
+            Tree
+          </button>
+        </div>
+        <button
+          class="koki-copy-btn ml-auto inline-flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center rounded-md border-[1.5px] border-(--sl-color-gray-5) bg-transparent p-0 text-(--sl-color-gray-3) transition-all duration-150 ease-in-out hover:border-(--sl-color-accent) hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white) [&.copied]:border-[#34d399] [&.copied]:text-[#34d399]"
+          aria-label="Copy JSON to clipboard"
+          type="button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-3.5 w-3.5 shrink-0"
+            aria-hidden="true"
+            ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path
+              d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg
+          >
+        </button>
+      </div>
+
+      <div class="panel-raw" role="tabpanel">
+        <div class="koki-code-area-wrapper">
+          <div class="koki-code-area koki-raw-view">
+            <div class="koki-gutter koki-raw-gutter" aria-hidden="true"></div>
+            <div class="koki-raw-content" aria-label="Raw JSON response"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-tree" role="tabpanel" style="display:none">
+        <div class="koki-code-area-wrapper">
+          <div class="koki-code-area koki-tree-view">
+            <div class="koki-gutter koki-tree-gutter" aria-hidden="true"></div>
+            <div class="koki-tree-content">
+              <div class="koki-tree-inner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="koki-initial-json" style="display:none" aria-hidden="true">
+  {JSON.stringify(exampleResponse || ditto)}
+</div>
+
+<script src="./api-explorer-client.js"></script>

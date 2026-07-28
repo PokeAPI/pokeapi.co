@@ -27,6 +27,6 @@
     {
         "level": "important",
         "active": true,
-        "message": "Starting August 4th the `cost` property of [items](https://pokeapi.co/api/v2/item/poke-ball/) is going to transition from a simple integer to a complex object linked with a new property called _currency_. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1431)"
+        "message": "Starting August 4th the `cost` property of [items](https://pokeapi.co/api/v2/item/poke-ball/) is going to transition from a simple integer to a new `prices` property, a complex object linked with a new property called _currency_. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1431)"
     }
 ]

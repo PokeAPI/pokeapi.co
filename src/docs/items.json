@@ -6,72 +6,99 @@
         "exampleResponse": {
             "id": 1,
             "name": "master-ball",
-            "cost": 0,
             "fling_power": 10,
             "fling_effect": {
-                "name":"flinch",
-                "url":"$BASE_URL/v2/item-fling-effect/7/"
+                "name": "flinch",
+                "url": "$BASE_URL/v2/item-fling-effect/7/"
             },
-            "attributes": [{
-                "name": "holdable",
-                "url": "$BASE_URL/v2/item-attribute/5/"
-            }],
+            "attributes": [
+                {
+                    "name": "holdable",
+                    "url": "$BASE_URL/v2/item-attribute/5/"
+                }
+            ],
             "category": {
                 "name": "standard-balls",
                 "url": "$BASE_URL/v2/item-category/34/"
             },
-            "effect_entries": [{
-                "effect": "Used in battle\n:   [Catches]{mechanic:catch} a wild Pokémon without fail.\n\n    If used in a trainer battle, nothing happens and the ball is lost.",
-                "short_effect": "Catches a wild Pokémon every time.",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            "effect_entries": [
+                {
+                    "effect": "Used in battle\n:   [Catches]{mechanic:catch} a wild Pokémon without fail.\n\n    If used in a trainer battle, nothing happens and the ball is lost.",
+                    "short_effect": "Catches a wild Pokémon every time.",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
                 }
-            }],
-            "flavor_text_entries": [{
-                "text": "The best Poké Ball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail.",
-                "version_group": {
-                    "name": "x-y",
-                    "url": "$BASE_URL/v2/version-group/15/"
-                },
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            ],
+            "flavor_text_entries": [
+                {
+                    "text": "The best Poké Ball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail.",
+                    "version_group": {
+                        "name": "x-y",
+                        "url": "$BASE_URL/v2/version-group/15/"
+                    },
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
                 }
-            }],
-            "game_indices": [{
-                "game_index": 1,
-                "generation": {
-                    "name": "generation-vi",
-                    "url": "$BASE_URL/v2/generation/6/"
+            ],
+            "game_indices": [
+                {
+                    "game_index": 1,
+                    "generation": {
+                        "name": "generation-vi",
+                        "url": "$BASE_URL/v2/generation/6/"
+                    }
                 }
-            }],
-            "names": [{
-                "name": "Master Ball",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            ],
+            "names": [
+                {
+                    "name": "Master Ball",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
                 }
-            }],
+            ],
             "sprites": {
                 "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png"
             },
-            "held_by_pokemon": [{
-                "pokemon": {
-                    "name": "chansey",
-                    "url": "$BASE_URL/v2/pokemon/113/"
-                },
-                "version_details": [{
-                    "rarity": 50,
-                    "version": {
-                        "name": "soulsilver",
-                        "url": "$BASE_URL/v2/version/16/"
-                    }
-                }]
-            }],
+            "held_by_pokemon": [
+                {
+                    "pokemon": {
+                        "name": "chansey",
+                        "url": "$BASE_URL/v2/pokemon/113/"
+                    },
+                    "version_details": [
+                        {
+                            "rarity": 50,
+                            "version": {
+                                "name": "soulsilver",
+                                "url": "$BASE_URL/v2/version/16/"
+                            }
+                        }
+                    ]
+                }
+            ],
             "baby_trigger_for": {
-                "url":"$BASE_URL/v2/evolution-chain/1/"
-            }
+                "url": "$BASE_URL/v2/evolution-chain/1/"
+            },
+            "prices": [
+                {
+                    "currency": {
+                        "name": "poke-dollar",
+                        "url": "$BASE_URL/v2/currency/1/"
+                    },
+                    "purchase_price": 0,
+                    "sell_price": 0,
+                    "version_group": {
+                        "name": "red-blue",
+                        "url": "$BASE_URL/v2/version-group/1/"
+                    }
+                }
+            ]
         },
         "responseModels": [
             {
@@ -88,9 +115,12 @@
                         "type": "string"
                     },
                     {
-                        "name": "cost",
-                        "description": "The price of this item in stores.",
-                        "type": "integer"
+                        "name": "prices",
+                        "description": "The purchase and sell prices of this item for each version group.",
+                        "type": {
+                            "type": "list",
+                            "of": "ItemPrice"
+                        }
                     },
                     {
                         "name": "fling_power",
@@ -235,6 +265,37 @@
                         }
                     }
                 ]
+            },
+            {
+                "name": "ItemPrice",
+                "fields": [
+                    {
+                        "name": "currency",
+                        "description": "The currency used for this price.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Currency"
+                        }
+                    },
+                    {
+                        "name": "purchase_price",
+                        "description": "The purchase price of this item in this version group. Null if the item cannot be purchased.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sell_price",
+                        "description": "The sell price of this item in this version group. Null if the item cannot be sold.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "version_group",
+                        "description": "The version group these prices apply to.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "VersionGroup"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -245,24 +306,30 @@
         "exampleResponse": {
             "id": 1,
             "name": "countable",
-            "descriptions": [{
-                "description": "Has a count in the bag",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            "descriptions": [
+                {
+                    "description": "Has a count in the bag",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
                 }
-            }],
-            "items": [{
-                "name": "master-ball",
-                "url": "$BASE_URL/v2/item/1/"
-            }],
-            "names": [{
-                "name": "Countable",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            ],
+            "items": [
+                {
+                    "name": "master-ball",
+                    "url": "$BASE_URL/v2/item/1/"
                 }
-            }]
+            ],
+            "names": [
+                {
+                    "name": "Countable",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
+                }
+            ]
         },
         "responseModels": [
             {
@@ -316,17 +383,21 @@
         "exampleResponse": {
             "id": 1,
             "name": "stat-boosts",
-            "items": [{
-                "name": "guard-spec",
-                "url": "$BASE_URL/v2/item/55/"
-            }],
-            "names": [{
-                "name": "Stat boosts",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            "items": [
+                {
+                    "name": "guard-spec",
+                    "url": "$BASE_URL/v2/item/55/"
                 }
-            }],
+            ],
+            "names": [
+                {
+                    "name": "Stat boosts",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
+                }
+            ],
             "pocket": {
                 "name": "battle",
                 "url": "$BASE_URL/v2/item-pocket/7/"
@@ -384,17 +455,21 @@
         "exampleResponse": {
             "id": 1,
             "name": "badly-poison",
-            "effect_entries": [{
-                "effect": "Badly poisons the target.",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            "effect_entries": [
+                {
+                    "effect": "Badly poisons the target.",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
                 }
-            }],
-            "items": [{
-                "name": "toxic-orb",
-                "url": "$BASE_URL/v2/item/249/"
-            }]
+            ],
+            "items": [
+                {
+                    "name": "toxic-orb",
+                    "url": "$BASE_URL/v2/item/249/"
+                }
+            ]
         },
         "responseModels": [
             {
@@ -440,17 +515,21 @@
         "exampleResponse": {
             "id": 1,
             "name": "misc",
-            "categories": [{
-                "name": "collectibles",
-                "url": "$BASE_URL/v2/item-category/9/"
-            }],
-            "names": [{
-                "name": "Items",
-                "language": {
-                    "name": "en",
-                    "url": "$BASE_URL/v2/language/9/"
+            "categories": [
+                {
+                    "name": "collectibles",
+                    "url": "$BASE_URL/v2/item-category/9/"
                 }
-            }]
+            ],
+            "names": [
+                {
+                    "name": "Items",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
+                }
+            ]
         },
         "responseModels": [
             {

@@ -23,5 +23,10 @@
         "level": "success",
         "active": false,
         "message": "PokeAPI turned 10 on December 4th! Discover the entire source code over at [PokeAPI/pokeapi](https://github.com/PokeAPI/pokeapi)!"
+    },
+    {
+        "level": "important",
+        "active": true,
+        "message": "Starting August 4th the `cost` property of [items](https://pokeapi.co/api/v2/item/poke-ball/) is going to transition from a simple integer to a complex object linked with a new property called _currency_. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1431)"
     }
 ]

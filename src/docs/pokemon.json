@@ -1800,6 +1800,42 @@
                             "type": "list",
                             "of": "Name"
                         }
+                    },
+                    {
+                        "name": "trigger_conditions",
+                        "description": "A list of the conditions that trigger this (usually battle-only) form, such as holding a Mega Stone or having a specific Ability. Empty for forms that are not triggered.",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonFormCondition"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "PokemonFormCondition",
+                "fields": [
+                    {
+                        "name": "trigger",
+                        "description": "The kind of trigger that produces this form (for example \"held-item\", \"ability\" or \"gigantamax-factor\").",
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name of the item, ability or move that triggers this form, if any.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "url",
+                        "description": "The URL of the item, ability or move that triggers this form, if any.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "base_form",
+                        "description": "The specific sibling form the Pokémon must already be in for this transformation, or null if it applies from the default form. For example, Ultra Necrozma lists Dusk Mane and Dawn Wings here, whereas Mega Charizard X (reached from the default form) is null.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "PokemonForm"
+                        }
                     }
                 ]
             },

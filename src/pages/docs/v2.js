@@ -35,6 +35,18 @@ const wrapperLibraries = [
         author: 'Paul Hallett',
     },
     {
+        description: 'Asynchronous Python wrapper with auto caching',
+        name: 'aiopokeapi',
+        link: 'https://github.com/beastmatser/aiopokeapi',
+        author: 'beastmatser',
+    },
+    {
+        description: 'Async Python wrapper with typed models, smart caching, and auto endpoint discovery',
+        name: 'PokeLance',
+        link: 'https://github.com/FallenDeity/PokeLance',
+        author: 'FallenDeity',
+    },
+    {
         description: 'Kotlin Multiplatform (JVM, Native, Browser, and Node) with auto caching',
         name: 'PokeKotlin',
         link: 'https://github.com/PokeAPI/pokekotlin',
@@ -111,12 +123,6 @@ const wrapperLibraries = [
         name: 'Rustemon',
         link: 'https://crates.io/crates/rustemon',
         author: 'mlemesle',
-    },
-    {
-        description: 'Asynchronous Python wrapper with auto caching',
-        name: 'aiopokeapi',
-        link: 'https://github.com/beastmatser/aiopokeapi',
-        author: 'beastmatser',
     },
     {
         description: 'Scala 3 with auto caching',

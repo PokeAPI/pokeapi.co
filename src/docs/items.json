@@ -509,6 +509,56 @@
         ]
     },
     {
+        "name": "Item Prices",
+        "description": "The purchase and sell prices of items across different version groups and currencies.",
+        "exampleRequest": "/v2/item-price/{id or name}/",
+        "exampleResponse": {
+            "currency": {
+                "name": "poke-dollar",
+                "url": "$BASE_URL/v2/currency/1/"
+            },
+            "purchase_price": 0,
+            "sell_price": 0,
+            "version_group": {
+                "name": "red-blue",
+                "url": "$BASE_URL/v2/version-group/1/"
+            }
+        },
+        "responseModels": [
+            {
+                "name": "ItemPrice",
+                "fields": [
+                    {
+                        "name": "currency",
+                        "description": "The currency used for this price.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Currency"
+                        }
+                    },
+                    {
+                        "name": "purchase_price",
+                        "description": "The purchase price of this item in this version group. Null if the item cannot be purchased.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "sell_price",
+                        "description": "The sell price of this item in this version group. Null if the item cannot be sold.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "version_group",
+                        "description": "The version group these prices apply to.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "VersionGroup"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Item Pockets",
         "description": "Pockets within the players bag used for storing items by category.",
         "exampleRequest": "/v2/item-pocket/{id or name}/",

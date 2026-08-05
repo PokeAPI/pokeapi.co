@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Currencies",
+        "description": "Currencies are forms of money used throughout the Pokémon games to purchase items, services, and participate in various game mechanics.",
+        "exampleRequest": "/v2/currency/{id or name}/",
+        "exampleResponse": {
+            "id": 1,
+            "name": "poke-dollar",
+            "names": [
+                {
+                    "name": "Poké Dollar",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
+                }
+            ]
+        },
+        "responseModels": [
+            {
+                "name": "Currency",
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": "The identifier for this resource.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "description": "The name for this resource.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "names",
+                        "description": "The name of this currency listed in different languages.",
+                        "type": {
+                            "type": "list",
+                            "of": "Name"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

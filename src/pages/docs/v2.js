@@ -144,7 +144,6 @@ export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
         {name: 'Fair Use Policy', id: 'fairuse'},
-        {name: 'Slack', id: 'slack'},
         {name: 'Wrapper Libraries', id: 'wrap', endOfSection: true},
         ...docs.map(doc => ({
             name: doc.name,
@@ -184,15 +183,6 @@ export default function Documentation() {
                     removed entirely, but we still encourage you to limit the
                     frequency of requests to limit our hosting costs.
                 </p>
-                {/* <p>
-                    If you are going to be regularly using the API, we recommend
-                    caching data on your service or deploying your own instance
-                    of the API (jump on{' '}
-                    <a href="https://pokeapi-slack-invite.herokuapp.com/">
-                        Slack
-                    </a>{' '}
-                    for help with this).
-                </p> */}
 
                 <h2 id="fairuse">Fair Use Policy</h2>
                 <p>
@@ -216,17 +206,6 @@ export default function Documentation() {
                         If you spot security vulnerabilities act and <a href="https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability">report them</a> responsibly.
                     </li>
                 </ul>
-
-                <h2 id="slack">Slack and community</h2>
-                <p>
-                    Currently no maintainer has enough free time to support the community on Slack. Our Slack is in an unmaintained status.
-                    You can still sign up right{' '}
-                    <a href="https://join.slack.com/t/pokeapi/shared_invite/zt-2ampo6her-_tHSI3uOS65WzGypt7Y96w">
-                        here
-                    </a>{' '}
-                    then visit our <a href="https://pokeapi.slack.com">Slack</a>{' '}
-                    page.
-                </p>
 
                 <h2 id="wrap">Wrapper Libraries</h2>
                 <ul>

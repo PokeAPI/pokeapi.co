@@ -114,15 +114,31 @@ export default function About() {
                     During summer 2018, Paul decided to hand over the project to the community. This is where Tim Malone, Mark Tse, Sargun Vohra, Charles Marttinen, Alessandro Pezzé, Alberto Oliveira da Silva, and Lucio Merotta came together and started planning how to change the infrastructure in order to improve performance and cut down on hosting costs. An important step was to convert the API to serve static JSON files, which was made possible by Sargun and his excellent <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a> tool. The frontend website was also re-built by Charles at the same time. The whole process was completed in October 2018.
                 </p>
                 <p>
-                    After this massive redesign, PokéAPI gained many new consumers due to its new blazing fast performance. To give a quick reference, the loading of the infamous <a href="https://pokeapi.co/api/v2/pokemon/magikarp">Magikarp pokemon resouce</a> passed from seconds to ~80ms. 
-                    
+                    After this massive redesign, PokéAPI gained many new consumers due to its new blazing fast performance. To give a quick reference, the loading of the infamous <a href="https://pokeapi.co/api/v2/pokemon/magikarp">Magikarp pokemon resouce</a> passed from seconds to ~80ms.
+
                     An important milestone for the PokéAPI project happened shortly after in summer 2020, when its GitHub repository reached <strong>2000 stargazers</strong> and in a single month fulfilled <strong>100 million</strong> API calls.
                 </p>
                 <p>
                     In August 2020 the PokéAPI community decided <a href="https://github.com/PokeAPI/pokeapi/issues/520">to temporarily fork</a> <a href="https://github.com/veekun/pokedex">veekun/pokedex</a>, which was the primary and only source of data. This operation was planned in order to add new generation-8 data, which Veekun lacked. The following people contributed to fetching and formatting generation-8 and newer data: <a href="https://github.com/Naramsim">Alessandro Pezzé</a>, <a href="https://github.com/ichbinfrog">Hoang Quoc Trung</a>, <a href="https://github.com/CMahk">Chandler Mahkorn</a>, <a href="https://github.com/AndreArrebola">André Sousa</a>, <a href="https://github.com/alex-whan">Alexander Whan</a>, <a href="https://github.com/myoKun345">Austin Jones</a>, <a href="https://github.com/tomi-912">tomi-912</a>, <a href="https://github.com/ercdndrs">Eric Donders</a>, <a href="https://github.com/pifopi">Gaël Dottel</a>, <a href="https://github.com/Parnassius">Parnassius</a> and <a href="https://github.com/anhthang">Anh Thang</a>.
                 </p>
                 <p>
-                In January 2023 <a href="https://github.com/bitomic">bitomic</a>, <a href="https://github.com/giginet">Kohki Miki</a>, <a href="https://github.com/pebou">Paul-Émile</a>, <a href="https://github.com/tillfox">tillfox</a> scraped generation 9 data from the web and added it here. 
+                In January 2023 <a href="https://github.com/bitomic">bitomic</a>, <a href="https://github.com/giginet">Kohki Miki</a>, <a href="https://github.com/pebou">Paul-Émile</a>, <a href="https://github.com/tillfox">tillfox</a> scraped generation 9 data from the web and added it here.
+                </p>
+                <p>
+                In 2024 we were able to programmatically generate OpenAPI schemas thanks to <a href="https://github.com/Indyandie">Indyandie</a>.
+                </p>
+                <p>
+                In 2025 we released a new GraphQL endpoint that supports an easier syntax for building queries.
+                </p>
+                <p>
+                    In 2026 a surge in contributors brought:
+                    <ul>
+                        <li>some notable schema changes and additions to make the API data more reliable and understandable</li>
+                        <li>a much needed Django upgrade</li>
+                        <li>code cleaning</li>
+                        <li>the filling of many missing encounters' information</li>
+                    </ul>
+                    <a href="https://github.com/jemarq04">jemarq04</a>, <a href="https://github.com/FallenDeity">FallenDeity</a>, <a href="https://github.com/notblisy">notblisy</a>, <a href="https://github.com/MiquelRForgeFlow">MiquelRForgeFlow</a>, <a href="https://github.com/anhthang">anhthang</a>, <a href="https://github.com/ItsMeJoji">ItsMeJoji</a>, and <a href="https://github.com/Machine-Maker">Machine-Maker</a> were among the most active contributors and we thank them for their dedication.
                 </p>
                 <p>
                 The current owners of the PokéAPI project are <a href="https://github.com/phalt">Paul Hallett</a>, <a href="https://github.com/tdmalone">Tim Malone</a> and <a href="https://github.com/Naramsim">Alessandro Pezzé</a>. Alongside them other core maintainers include <a href="https://github.com/cmmartti">Charles Marttinen</a> and <a href="https://github.com/sargunv">Sargun Vohra</a>.
@@ -161,19 +177,6 @@ export default function About() {
                         Generation 8 data is scraped from <a href="https://bulbapedia.bulbagarden.net/wiki/Generation_VIII">different resources</a> which are considered to be trustful. Later on the data was integrated with the official one released by Veekun.
                     </li>
                 </ul>
-                <p>We'd also like to thank:</p>
-                <ul>
-                    <li>
-                        Laven Pillay, who scraped together most of the sprites
-                        used on the site.
-                    </li>
-                    <li>
-                        <a href="https://github.com/Naramsim">
-                            Alessandro Pezzé
-                        </a>
-                        , who worked tirelessly to add the Sun/Moon updates.
-                    </li>
-                </ul>
             </Faq>
             <Faq title="What's the technology stack?">
                 <p>
@@ -205,13 +208,13 @@ export default function About() {
                     files in a fully backwards compatible manner. This allowed
                     PokéAPI to move its hosting to a cheap static hosting
                     solution (<a href="https://firebase.google.com/">Firebase</a> Hosting + <a href="https://www.cloudflare.com/">Cloudflare</a> Caching), which
-                    increased performance and stability by a huge margin. 
+                    increased performance and stability by a huge margin.
                 </p>
-                
+
                 <p>
-                    The move to static hosting was solved by introducing a build step before deployment performed by <a href="https://circleci.com/">CircleCI</a>, our build system. This build step starts a local Django copy of <a href="https://github.com/PokeAPI/pokeapi">PokeAPI/pokeapi</a> and saves each possible endpoint as a JSON file using <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a>. All these JSON files are then uploaded to Firebase and served to the public through a <a href="https://github.com/PokeAPI/deploy">Firebase function</a> actioned by CircleCI.  
+                    The move to static hosting was solved by introducing a build step before deployment performed by <a href="https://circleci.com/">CircleCI</a>, our build system. This build step starts a local Django copy of <a href="https://github.com/PokeAPI/pokeapi">PokeAPI/pokeapi</a> and saves each possible endpoint as a JSON file using <a href="https://github.com/PokeAPI/ditto">PokeAPI/ditto</a>. All these JSON files are then uploaded to Firebase and served to the public through a <a href="https://github.com/PokeAPI/deploy">Firebase function</a> actioned by CircleCI.
                 </p>
-                
+
                 <p>
                 This website now uses <a href="https://github.com/react-static/react-static">React Static</a> and the code lives in its own GitHub project at <a href="https://github.com/PokeAPI/pokeapi.co">PokeAPI/pokeapi.co</a>. Again, CircleCI takes care of deploying it on Firebase as static files.
                 </p>

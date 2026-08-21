@@ -144,6 +144,7 @@ export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
         {name: 'Fair Use Policy', id: 'fairuse'},
+        {name: 'Chat', id: 'chat'},
         {name: 'Wrapper Libraries', id: 'wrap', endOfSection: true},
         ...docs.map(doc => ({
             name: doc.name,
@@ -206,6 +207,11 @@ export default function Documentation() {
                         If you spot security vulnerabilities act and <a href="https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability">report them</a> responsibly.
                     </li>
                 </ul>
+
+                <h2 id="chat">Chat</h2>
+                <p>
+                    We have <a href="https://discord.gg/tTGKJxtb8S">a Discord server</a>. It is a simple place where people can chat with each other in a respecful manner. Not all maintainers/code contributors are signed up and your questions might not be answered. Consider opening a Github <a href="https://github.com/PokeAPI/pokeapi/issues">issue</a> if you want more visibility or you want to talk to the maintainers.
+                </p>
 
                 <h2 id="wrap">Wrapper Libraries</h2>
                 <ul>

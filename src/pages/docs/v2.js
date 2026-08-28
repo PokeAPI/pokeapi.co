@@ -210,7 +210,7 @@ export default function Documentation() {
 
                 <h2 id="chat">Chat</h2>
                 <p>
-                    We have <a href="https://discord.gg/tTGKJxtb8S">a Discord server</a>. It is a simple place where people can chat with each other in a respecful manner. Not all maintainers/code contributors are signed up and your questions might not be answered. Consider opening a Github <a href="https://github.com/PokeAPI/pokeapi/issues">issue</a> if you want more visibility or you want to talk to the maintainers.
+                    We have <a href="https://discord.gg/BpjJcKK4TC">a Discord server</a>. It is a simple place where people can chat with each other in a respecful manner. Not all maintainers/code contributors are signed up and your questions might not be answered. Consider opening a Github <a href="https://github.com/PokeAPI/pokeapi/issues">issue</a> if you want more visibility or you want to talk to the maintainers.
                 </p>
 
                 <h2 id="wrap">Wrapper Libraries</h2>

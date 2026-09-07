@@ -1,0 +1,104 @@
+@layer starlight, explorer;
+
+@layer explorer {
+  .api-explorer-root :is(.font-mono, pre, code, input, button) {
+    font-family: var(--__sl-font-mono) !important;
+  }
+
+  .explorer-base-url {
+    letter-spacing: 0.01em !important;
+  }
+
+  .api-explorer-root pre {
+    margin: 0 !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  .explorer-select-trigger::after {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    translate: 0 -50%;
+    transition:
+      transform 0.2s ease,
+      border-top-color 0.2s ease;
+    border-top: 5px solid var(--sl-color-gray-3);
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    width: 0;
+    height: 0;
+    content: "";
+  }
+
+  .explorer-select-trigger[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+    border-top-color: var(--sl-color-accent);
+  }
+
+  .explorer-dropdown-panel {
+    display: none;
+  }
+
+  .explorer-select-wrap.open .explorer-dropdown-panel {
+    display: block;
+  }
+  .explorer-select-wrap.open .explorer-select-trigger {
+    background: var(--sl-color-gray-6);
+  }
+
+  .explorer-direct-link:hover + .explorer-out-link-icon {
+    color: var(--sl-color-white) !important;
+  }
+
+  .api-explorer-root .starlight-aside {
+    --sl-color-asides-text-accent: #ffcb05 !important;
+    --sl-color-asides-border: #ffcb05 !important;
+    background-color: color-mix(in srgb, #ffcb05 8%, var(--sl-color-black)) !important;
+  }
+  [data-theme="light"] .api-explorer-root .starlight-aside {
+    --sl-color-asides-text-accent: #8c6200 !important;
+    --sl-color-asides-border: #ffcb05 !important;
+    background-color: color-mix(in srgb, #ffcb05 8%, var(--sl-color-black)) !important;
+  }
+
+  .explorer-json-viewer {
+    display: block;
+    --background-color: transparent;
+    --font-family: var(--__sl-font-mono);
+    --font-size: 0.84rem;
+    --line-height: 1.5rem;
+    --indent-size: 0.6rem;
+    --indentguide-color: rgba(255, 255, 255, 0.12);
+    --indentguide-color-active: var(--sl-color-accent);
+    --outline-style: none;
+    --outline-width: 0px;
+  }
+
+  :root[data-theme="light"] .explorer-json-viewer {
+    --background-color: transparent;
+    --color: #1f2937;
+    --property-color: #0369a1;
+    --string-color: #15803d;
+    --number-color: #b45309;
+    --boolean-color: #2563eb;
+    --null-color: #dc2626;
+    --preview-color: #6b7280;
+    --indentguide-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .explorer-codemirror-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .explorer-codemirror-container .cm-editor {
+    height: 100%;
+  }
+
+  [data-theme="light"] .explorer-copy-btn.copied {
+    border-color: #15803d !important;
+    color: #15803d !important;
+  }
+}

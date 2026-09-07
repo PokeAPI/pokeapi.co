@@ -1,0 +1,244 @@
+/* Clean & polished guide styling for Starlight */
+
+/* Completely eliminate link underlines/bottom-borders on cards under all states */
+.sl-markdown-content :is(.sl-link-card, .card, .card-grid) a,
+.sl-markdown-content a:is(.sl-link-card, .card),
+.sl-markdown-content :is(.sl-link-card, .card) :is(a, .title, span, svg),
+.sl-link-card,
+.sl-link-card a,
+.sl-link-card .title,
+.sl-link-card .stack,
+.sl-link-card .description {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-color: transparent !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+}
+
+.sl-markdown-content :is(.sl-link-card, .card, .card-grid) a:hover,
+.sl-markdown-content a:is(.sl-link-card, .card):hover,
+.sl-markdown-content :is(.sl-link-card, .card):hover :is(a, .title, span, svg),
+.sl-link-card:hover,
+.sl-link-card:hover a,
+.sl-link-card:hover .title,
+.sl-link-card:hover .stack,
+.sl-link-card:hover .description {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-color: transparent !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+}
+
+.sl-link-card {
+  position: relative !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(59, 130, 246, 0.25) !important;
+  border-radius: 14px !important;
+  background: rgba(15, 23, 42, 0.45) !important;
+  padding: 1.5rem !important;
+}
+
+.sl-link-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 12px 24px -10px rgba(59, 130, 246, 0.45),
+    0 0 0 1px var(--sl-color-accent) !important;
+  border-color: var(--sl-color-accent) !important;
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+.sl-link-card .title {
+  transition: color 0.2s ease !important;
+  color: var(--sl-color-white) !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  line-height: 1.4 !important;
+}
+
+.sl-link-card:hover .title {
+  color: var(--sl-color-white) !important;
+}
+
+.sl-link-card .title svg,
+.sl-link-card > svg {
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s ease !important;
+  color: var(--sl-color-gray-3) !important;
+}
+
+.sl-link-card:hover .title svg,
+.sl-link-card:hover > svg {
+  transform: translateX(4px) !important;
+  color: var(--sl-color-accent) !important;
+}
+
+.sl-link-card .description {
+  margin-top: 0.5rem !important;
+  color: var(--sl-color-gray-2) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+}
+
+/* Steps styling */
+.sl-steps {
+  border-inline-start: 1px solid rgba(59, 130, 246, 0.18) !important;
+  padding-inline-start: 1.5rem !important;
+}
+
+.sl-steps > li {
+  margin-top: 1.5rem !important;
+}
+
+.sl-steps > li::before {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-inline-start: -2.4rem !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2) !important;
+  border: 2px solid color-mix(in srgb, var(--sl-color-accent) 70%, transparent) !important;
+  border-radius: 6px !important;
+  background-color: var(--sl-color-accent-low) !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  color: var(--sl-color-accent-high) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+}
+
+/* Asides / Callouts */
+.starlight-aside,
+.aside {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  border: 2px solid color-mix(in srgb, var(--aside-color, #ff9100) 40%, transparent) !important;
+  border-radius: 8px !important;
+  background-color: color-mix(in srgb, var(--aside-color, #ff9100) 4%, transparent) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.starlight-aside__title,
+.aside__title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  border-radius: 6px 6px 0 0 !important;
+  background-color: color-mix(in srgb, var(--aside-color, #ff9100) 8%, transparent) !important;
+  padding: 0.75rem 1rem !important;
+  color: var(--sl-color-white) !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+}
+
+.starlight-aside__content,
+.aside__content {
+  padding: 0.8rem 1rem !important;
+  color: var(--sl-color-gray-1) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.6 !important;
+}
+
+.aside--note {
+  --aside-color: #447feb;
+}
+.aside--tip {
+  --aside-color: #00e676;
+}
+.aside--caution {
+  --aside-color: #ff9100;
+}
+.aside--danger {
+  --aside-color: #ff5252;
+}
+
+/* Tabs */
+starlight-tabs [role="tablist"] {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+starlight-tabs [role="tab"][aria-selected="true"] {
+  border-bottom: 2px solid var(--sl-color-accent) !important;
+  color: var(--sl-color-white) !important;
+}
+
+/* Badges */
+.sl-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  margin-right: 0.25rem !important;
+  border: 1px solid !important;
+  border-radius: 4px !important;
+  padding: 0.1rem 0.45rem !important;
+  font-weight: 600 !important;
+  font-size: 0.72rem !important;
+}
+
+.sl-badge.default {
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  background-color: rgba(99, 102, 241, 0.1) !important;
+  color: #818cf8 !important;
+}
+
+.sl-badge.note {
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #60a5fa !important;
+}
+
+.sl-badge.success {
+  border-color: rgba(16, 185, 129, 0.25) !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #34d399 !important;
+}
+
+.sl-badge.caution {
+  border-color: rgba(245, 158, 11, 0.25) !important;
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  color: #fbbf24 !important;
+}
+
+.sl-badge.danger {
+  border-color: rgba(244, 63, 94, 0.25) !important;
+  background-color: rgba(244, 63, 94, 0.1) !important;
+  color: #fb7185 !important;
+}
+
+/* Keyboard keys */
+kbd {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 4px !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  padding: 0.15rem 0.35rem !important;
+  color: var(--sl-color-white) !important;
+  font-size: 0.775em !important;
+  font-family: var(--sl-font-mono) !important;
+}
+
+/* Light Mode Adaptations */
+:root[data-theme="light"] {
+  .sl-link-card {
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+  }
+  .sl-link-card:hover {
+    background: rgba(59, 130, 246, 0.04) !important;
+  }
+  .sl-link-card .title {
+    color: var(--sl-color-black) !important;
+  }
+  .starlight-aside__title,
+  .aside__title {
+    color: var(--sl-color-black) !important;
+  }
+  kbd {
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: var(--sl-color-black) !important;
+  }
+}

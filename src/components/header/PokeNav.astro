@@ -1,0 +1,63 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const thisUrl = Astro.url.pathname;
+const about = baseUrl + "about/";
+const v2 = baseUrl + "v2/";
+const graphql = baseUrl + "graphql/";
+---
+
+<nav class="flex items-center">
+  <ul class="m-0 flex list-none gap-0.5 pl-0">
+    <li>
+      {
+        thisUrl !== about ? (
+          <a
+            href={about}
+            class="relative inline-block rounded-md px-2.75 py-1.25 text-sm font-medium tracking-wide whitespace-nowrap text-(--sl-color-gray-2) no-underline transition-all duration-180 ease-in-out hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white) hover:no-underline focus-visible:text-(--sl-color-white) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--sl-color-accent)"
+          >
+            About
+          </a>
+        ) : (
+          <span class="pointer-events-none relative inline-block cursor-default rounded-md bg-transparent px-2.75 py-1.25 text-sm font-semibold tracking-wide whitespace-nowrap text-(--sl-color-white) no-underline select-none">
+            About
+            <span class="absolute right-2.75 bottom-0.5 left-2.75 h-0.5 rounded-[1px] bg-(--sl-color-accent)" />
+          </span>
+        )
+      }
+    </li>
+    <li>
+      {
+        thisUrl !== v2 ? (
+          <a
+            href={v2}
+            class="relative inline-block rounded-md px-2.75 py-1.25 text-sm font-medium tracking-wide whitespace-nowrap text-(--sl-color-gray-2) no-underline transition-all duration-180 ease-in-out hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white) hover:no-underline focus-visible:text-(--sl-color-white) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--sl-color-accent)"
+          >
+            API v2
+          </a>
+        ) : (
+          <span class="pointer-events-none relative inline-block cursor-default rounded-md bg-transparent px-2.75 py-1.25 text-sm font-semibold tracking-wide whitespace-nowrap text-(--sl-color-white) no-underline select-none">
+            API v2
+            <span class="absolute right-2.75 bottom-0.5 left-2.75 h-0.5 rounded-[1px] bg-(--sl-color-accent)" />
+          </span>
+        )
+      }
+    </li>
+    <li>
+      {
+        thisUrl !== graphql ? (
+          <a
+            href={graphql}
+            class="relative inline-block rounded-md px-2.75 py-1.25 text-sm font-medium tracking-wide whitespace-nowrap text-(--sl-color-gray-2) no-underline transition-all duration-180 ease-in-out hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white) hover:no-underline focus-visible:text-(--sl-color-white) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--sl-color-accent)"
+          >
+            GraphQL v1Beta
+          </a>
+        ) : (
+          <span class="pointer-events-none relative inline-block cursor-default rounded-md bg-transparent px-2.75 py-1.25 text-sm font-semibold tracking-wide whitespace-nowrap text-(--sl-color-white) no-underline select-none">
+            GraphQL v1Beta
+            <span class="absolute right-2.75 bottom-0.5 left-2.75 h-0.5 rounded-[1px] bg-(--sl-color-accent)" />
+          </span>
+        )
+      }
+    </li>
+  </ul>
+</nav>

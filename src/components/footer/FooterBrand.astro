@@ -1,0 +1,38 @@
+---
+import {Icon} from "@astrojs/starlight/components";
+---
+
+<div class="flex flex-col gap-4">
+  <div class="flex items-center gap-2.5">
+    <img
+      src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"
+      alt="PokéAPI"
+      width="40"
+      height="40"
+      class="h-10 w-10 rounded-lg object-contain"
+    />
+    <span class="text-[1.25rem] font-bold tracking-tight text-(--sl-color-white)">PokéAPI</span>
+  </div>
+  <p class="m-0 max-w-75 text-[0.85rem] leading-relaxed text-(--sl-color-gray-2)">
+    A free, open and community-driven REST API for Pokémon data, serving <strong
+      class="font-bold text-(--sl-color-gray-1)">millions</strong
+    > of requests daily.
+  </p>
+  <div class="flex flex-wrap items-center gap-2.5">
+    <a
+      href="https://pokeapi.statuspage.io/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center overflow-hidden rounded-md no-underline transition duration-150 ease-in-out hover:-translate-y-0.5 hover:opacity-85"
+      aria-label="PokéAPI System Status"
+    >
+      <img
+        src="https://img.shields.io/badge/dynamic/json?style=flat&color=brightgreen&label=status&query=%24.status.description&url=https%3A%2F%2Fzlfyqp3hlvly.statuspage.io%2Fapi%2Fv2%2Fsummary.json"
+        alt="PokéAPI System Status"
+        class="block w-auto"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </div>
+</div>

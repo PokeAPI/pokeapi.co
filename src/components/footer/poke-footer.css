@@ -1,0 +1,75 @@
+@keyframes blobFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  33% {
+    transform: translateY(-18px) scale(1.04);
+  }
+  66% {
+    transform: translateY(10px) scale(0.97);
+  }
+}
+
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-blob {
+  position: absolute;
+  opacity: 0.06;
+  filter: blur(80px);
+  animation: blobFloat 12s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+.bg-blob-1 {
+  top: -120px;
+  left: -80px;
+  animation-delay: 0s;
+  background: var(--sl-color-accent);
+  width: 400px;
+  height: 400px;
+}
+
+.bg-blob-2 {
+  right: 10%;
+  bottom: -100px;
+  animation-delay: -4s;
+  background: var(--pokemon-yellow);
+  width: 350px;
+  height: 350px;
+}
+
+.bg-blob-3 {
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: -8s;
+  background: #a855f7;
+  width: 280px;
+  height: 280px;
+}
+
+.github-pill {
+  border-color: #444;
+  background: #24292e;
+  color: #c9d1d9;
+}
+
+.github-pill:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .github-pill {
+  border-color: #d0d7de;
+  background: #f6f8fa;
+  color: #24292e;
+}
+
+[data-theme="light"] .bg-blob {
+  opacity: 0.03;
+}

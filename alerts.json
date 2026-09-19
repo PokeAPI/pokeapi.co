@@ -26,7 +26,13 @@
     },
     {
         "level": "important",
-        "active": true,
+        "active": false,
         "message": "Starting August 4th the `cost` property of [items](https://pokeapi.co/api/v2/item/poke-ball/) is going to transition from a simple integer to a new `prices` property, a complex object linked with a new property called _currency_. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1431)"
+    },
+    {
+        "level": "important",
+        "active": true,
+        "message": "The `base_form` and `evolved_form` properties on [evolution details](https://pokeapi.co/docs/v2#evolution-section) have been renamed to `required_pokemon_form` and `evolved_pokemon_form`. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1656)."
     }
 ]
+

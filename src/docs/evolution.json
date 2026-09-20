@@ -12,7 +12,7 @@
           "name": "rattata",
           "url": "$BASE_URL/v2/pokemon-species/19/"
         },
-        "evolution_details": null,
+        "evolution_details": [],
         "evolves_to": [
           {
             "is_baby": false,
@@ -22,6 +22,11 @@
             },
             "evolution_details": [
               {
+                "version_group": {
+                  "name": "red-blue",
+                  "url": "$BASE_URL/v2/version-group/1/"
+                },
+                "is_default": true,
                 "item": null,
                 "trigger": {
                   "name": "level-up",
@@ -37,13 +42,68 @@
                 "min_beauty": null,
                 "min_affection": null,
                 "near_special_rock": false,
+                "needs_multiplayer": false,
                 "needs_overworld_rain": false,
                 "party_species": null,
                 "party_type": null,
                 "relative_physical_stats": null,
                 "time_of_day": "",
                 "trade_species": null,
-                "turn_upside_down": false
+                "turn_upside_down": false,
+                "region": null,
+                "required_pokemon_form": null,
+                "evolved_pokemon_form": null,
+                "used_move": null,
+                "min_move_count": null,
+                "min_steps": null,
+                "min_damage_taken": null,
+                "allowed_natures": null,
+                "condition_expression": null
+              },
+              {
+                "version_group": {
+                  "name": "sun-moon",
+                  "url": "$BASE_URL/v2/version-group/17/"
+                },
+                "is_default": true,
+                "item": null,
+                "trigger": {
+                  "name": "level-up",
+                  "url": "$BASE_URL/v2/evolution-trigger/1/"
+                },
+                "gender": null,
+                "held_item": null,
+                "known_move": null,
+                "known_move_type": null,
+                "location": null,
+                "min_level": 20,
+                "min_happiness": null,
+                "min_beauty": null,
+                "min_affection": null,
+                "near_special_rock": false,
+                "needs_multiplayer": false,
+                "needs_overworld_rain": false,
+                "party_species": null,
+                "party_type": null,
+                "relative_physical_stats": null,
+                "time_of_day": "night",
+                "trade_species": null,
+                "turn_upside_down": false,
+                "region": null,
+                "required_pokemon_form": {
+                  "name": "rattata-alola",
+                  "url": "$BASE_URL/v2/pokemon-form/10193/"
+                },
+                "evolved_pokemon_form": {
+                  "name": "raticate-alola",
+                  "url": "$BASE_URL/v2/pokemon-form/10194/"
+                },
+                "used_move": null,
+                "min_move_count": null,
+                "min_steps": null,
+                "min_damage_taken": null,
+                "allowed_natures": null,
+                "condition_expression": null
               }
             ],
             "evolves_to": []
@@ -113,7 +173,7 @@
         "name": "EvolutionDetail",
         "fields": [
           {
-            "name": "version_group_id",
+            "name": "version_group",
             "description": "The version group in which the evolution was introduced.",
             "type": {
               "type": "NamedAPIResource",
@@ -261,19 +321,19 @@
             }
           },
           {
-            "name": "base_form",
+            "name": "required_pokemon_form",
             "description": "The required form for which this evolution can occur.",
             "type": {
               "type": "NamedAPIResource",
-              "of": "Pokemon"
+              "of": "PokemonForm"
             }
           },
           {
-            "name": "evolved_form",
+            "name": "evolved_pokemon_form",
             "description": "The form to which this evolution occurs.",
             "type": {
               "type": "NamedAPIResource",
-              "of": "Pokemon"
+              "of": "PokemonForm"
             }
           },
           {
@@ -298,6 +358,48 @@
             "name": "min_damage_taken",
             "description": "The minimum amount of damage taken during the evolution trigger event in order to evolve into this Pokémon species.",
             "type": "integer"
+          },
+          {
+            "name": "allowed_natures",
+            "description": "A list of natures the evolving Pokémon species must have to evolve into this Pokémon species.",
+            "type": {
+              "type": "list",
+              "of": {
+                "type": "NamedAPIResource",
+                "of": "Nature"
+              }
+            }
+          },
+          {
+            "name": "condition_expression",
+            "description": "An expression detailing variable-dependent conditional evolution requirements (such as encryption constant or personality value calculations).",
+            "type": "EvolutionConditionExpression"
+          }
+        ]
+      },
+      {
+        "name": "EvolutionConditionExpression",
+        "fields": [
+          {
+            "name": "expression",
+            "description": "Evaluatable RPN condition expression using evolution variables (e.g. 'EC 100 % 0 ==').",
+            "type": "string"
+          },
+          {
+            "name": "percentage_chance",
+            "description": "Percentage chance of evolution under this condition (0-100).",
+            "type": "number"
+          },
+          {
+            "name": "variables",
+            "description": "Evolution variables referenced in the expression.",
+            "type": {
+              "type": "list",
+              "of": {
+                "type": "NamedAPIResource",
+                "of": "EvolutionVariable"
+              }
+            }
           }
         ]
       }
@@ -362,5 +464,90 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Evolution Variables",
+    "description": "Evolution variables represent parameters (such as Encryption Constant and Personality Value) used in boolean expressions for form-branching evolutions. Check out [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Personality_value) for greater detail.",
+    "exampleRequest": "/v2/evolution-variable/{id or name}/",
+    "exampleResponse": {
+      "id": 1,
+      "name": "encryption-constant",
+      "symbol": "EC",
+      "data_type": "uint32",
+      "version_group": {
+        "name": "x-y",
+        "url": "$BASE_URL/v2/version-group/15/"
+      },
+      "names": [
+        {
+          "name": "Encryption Constant",
+          "language": {
+            "name": "en",
+            "url": "$BASE_URL/v2/language/9/"
+          }
+        }
+      ],
+      "descriptions": [
+        {
+          "description": "An unsigned 32-bit integer introduced in Generation VI that is generated alongside a Pokémon's personality value. It is used to calculate internal form variations (such as Dudunsparce, Maushold, and Wurmple), determine Spinda spot patterns, break ties in characteristic calculations, and structure Pokémon data.",
+          "language": {
+            "name": "en",
+            "url": "$BASE_URL/v2/language/9/"
+          }
+        }
+      ]
+    },
+    "responseModels": [
+      {
+        "name": "EvolutionVariable",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The identifier for this resource.",
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "description": "The name for this resource.",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "description": "The symbol used to represent this variable in condition expressions.",
+            "type": "string"
+          },
+          {
+            "name": "data_type",
+            "description": "The data type of the variable.",
+            "type": "string"
+          },
+          {
+            "name": "version_group",
+            "description": "The version group in which this evolution variable was introduced.",
+            "type": {
+              "type": "NamedAPIResource",
+              "of": "VersionGroup"
+            }
+          },
+          {
+            "name": "names",
+            "description": "The name of this resource listed in different languages.",
+            "type": {
+              "type": "list",
+              "of": "Name"
+            }
+          },
+          {
+            "name": "descriptions",
+            "description": "The description of this resource listed in different languages.",
+            "type": {
+              "type": "list",
+              "of": "Description"
+            }
+          }
+        ]
+      }
+    ]
   }
 ]
+

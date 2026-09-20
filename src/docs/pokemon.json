@@ -1678,7 +1678,7 @@
         "exampleResponse": {
             "id": 10041,
             "name": "arceus-bug",
-            "order": 631,
+            "order": 666,
             "form_order": 7,
             "is_default": false,
             "is_battle_only": false,
@@ -1686,7 +1686,7 @@
             "form_name": "bug",
             "pokemon": {
                 "name": "arceus",
-                "url": "https://pokeapi.co/api/v2/pokemon/493/"
+                "url": "$BASE_URL/v2/pokemon/493/"
             },
             "sprites": {
                 "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/493-bug.png",
@@ -1696,21 +1696,61 @@
                 "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png",
                 "front_female": null,
                 "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/493-bug.png",
-                "front_shiny_female": null
+                "front_shiny_female": null,
+                "versions": {
+                    "generation-ix": {
+                        "scarlet-violet": {
+                            "front_female": null,
+                            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ix/scarlet-violet/493-bug.png"
+                        }
+                    },
+                    "generation-viii": {
+                        "brilliant-diamond-shining-pearl": {
+                            "front_female": null,
+                            "front_default": null
+                        }
+                    }
+                }
             },
+            "version_group": {
+                "name": "diamond-pearl",
+                "url": "$BASE_URL/v2/version-group/8/"
+            },
+            "form_names": [
+                {
+                    "name": "Bug Type",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
+                }
+            ],
+            "names": [
+                {
+                    "name": "Bug Arceus",
+                    "language": {
+                        "name": "en",
+                        "url": "$BASE_URL/v2/language/9/"
+                    }
+                }
+            ],
             "types": [
                 {
                     "slot": 1,
                     "type": {
                         "name": "bug",
-                        "url": "https://pokeapi.co/api/v2/type/7/"
+                        "url": "$BASE_URL/v2/type/7/"
                     }
                 }
             ],
-            "version_group": {
-                "name": "diamond-pearl",
-                "url": "https://pokeapi.co/api/v2/version-group/8/"
-            }
+            "trigger_conditions": [
+                {
+                    "trigger": "held-item",
+                    "name": "insect-plate",
+                    "url": "$BASE_URL/v2/item/285/"
+                }
+            ],
+            "flavor_text_entries": []
         },
         "responseModels": [
             {
@@ -1808,6 +1848,14 @@
                             "type": "list",
                             "of": "PokemonFormCondition"
                         }
+                    },
+                    {
+                        "name": "flavor_text_entries",
+                        "description": "A list of flavor text entries for this Pokémon form.",
+                        "type": {
+                            "type": "list",
+                            "of": "PokemonFormFlavorTextEntry"
+                        }
                     }
                 ]
             },
@@ -1853,6 +1901,16 @@
                         "type": "string"
                     },
                     {
+                        "name": "front_female",
+                        "description": "The female depiction of this Pokémon form from the front in battle.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "front_shiny_female",
+                        "description": "The shiny female depiction of this Pokémon form from the front in battle.",
+                        "type": "string"
+                    },
+                    {
                         "name": "back_default",
                         "description": "The default depiction of this Pokémon form from the back in battle.",
                         "type": "string"
@@ -1861,6 +1919,42 @@
                         "name": "back_shiny",
                         "description": "The shiny depiction of this Pokémon form from the back in battle.",
                         "type": "string"
+                    },
+                    {
+                        "name": "back_female",
+                        "description": "The female depiction of this Pokémon form from the back in battle.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "back_shiny_female",
+                        "description": "The shiny female depiction of this Pokémon form from the back in battle.",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "name": "PokemonFormFlavorTextEntry",
+                "fields": [
+                    {
+                        "name": "flavor_text",
+                        "description": "The localized flavor text for this Pokémon form in a specific language.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "language",
+                        "description": "The language this flavor text is in.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Language"
+                        }
+                    },
+                    {
+                        "name": "version",
+                        "description": "The game version this flavor text is extracted from.",
+                        "type": {
+                            "type": "NamedAPIResource",
+                            "of": "Version"
+                        }
                     }
                 ]
             }

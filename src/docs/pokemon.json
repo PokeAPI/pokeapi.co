@@ -2532,6 +2532,16 @@
                     }
                 ]
             },
+            "affecting_items": [
+                {
+                    "name": "protein",
+                    "url": "$BASE_URL/v2/item/46/"
+                },
+                {
+                    "name": "x-attack",
+                    "url": "$BASE_URL/v2/item/57/"
+                }
+            ],
             "characteristics": [
                 {
                     "url": "$BASE_URL/v2/characteristic/2/"
@@ -2584,6 +2594,17 @@
                         "name": "affecting_natures",
                         "description": "A detail of natures which affect this stat positively or negatively.",
                         "type": "NatureStatAffectSets"
+                    },
+                    {
+                        "name": "affecting_items",
+                        "description": "A list of items that affect this stat.",
+                        "type": {
+                            "type": "list",
+                            "of": {
+                                "type": "NamedAPIResource",
+                                "of": "Item"
+                            }
+                        }
                     },
                     {
                         "name": "characteristics",

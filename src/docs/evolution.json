@@ -296,7 +296,7 @@
           },
           {
             "name": "time_of_day",
-            "description": "The required time of day. Day or night.",
+            "description": "The required time of day. One of `day`, `night`, `dusk` or `full-moon`.",
             "type": "string"
           },
           {
@@ -467,13 +467,14 @@
   },
   {
     "name": "Evolution Variables",
-    "description": "Evolution variables represent parameters (such as Encryption Constant and Personality Value) used in boolean expressions for form-branching evolutions. Check out [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Personality_value) for greater detail.",
+    "description": "Evolution variables represent parameters used in boolean expressions for form-branching evolutions. They are either values stored on the Pokémon itself (such as Encryption Constant and Personality Value) or input given by the player while evolving (such as the direction and duration of the spin that evolves Milcery). Check out [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Personality_value) for greater detail.",
     "exampleRequest": "/v2/evolution-variable/{id or name}/",
     "exampleResponse": {
       "id": 1,
       "name": "encryption-constant",
       "symbol": "EC",
       "data_type": "uint32",
+      "source": "pokemon",
       "version_group": {
         "name": "x-y",
         "url": "$BASE_URL/v2/version-group/15/"
@@ -519,6 +520,11 @@
           {
             "name": "data_type",
             "description": "The data type of the variable.",
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "description": "Where the value of this variable comes from: `pokemon` for data stored on the Pokémon itself, or `player-input` for an action performed by the player while the evolution takes place.",
             "type": "string"
           },
           {

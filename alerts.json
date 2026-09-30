@@ -33,6 +33,11 @@
         "level": "important",
         "active": true,
         "message": "The `base_form` and `evolved_form` properties on [evolution details](https://pokeapi.co/docs/v2#evolution-section) have been renamed to `required_pokemon_form` and `evolved_pokemon_form`. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1656)."
+    },
+    {
+        "level": "important",
+        "active": true,
+        "message": "Sprites for the version group omega-ruby-alpha-sapphire will be moved from the path `../omegaruby-alphasapphire/..` to `../omega-ruby-alpha-sapphire/..` starting October 7th. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1689#discussion_r4141570993)."
     }
 ]
 

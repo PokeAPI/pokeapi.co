@@ -211,15 +211,15 @@ export default function Documentation() {
                     <ul>
                         <li>
                             All HTTP requests made with methods other than GET and HEAD are blocked.
-                            <a href="https://github.com/PokeAPI/deploy/blob/master/cludflare/block-non-GET.txt" target="_blank" rel="noopener noreferrer">View source</a>
+                             <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-non-GET.txt" target="_blank" rel="noopener noreferrer">View rule</a>
                         </li>
                         <li>
                             All requests containing any of the following characters are blocked: <code>.,*%;:'!@+[</code>.
-                            <a href="https://github.com/PokeAPI/deploy/blob/master/cludflare/block-symbols.txt" target="_blank" rel="noopener noreferrer">View source</a>
+                             <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-symbols.txt" target="_blank" rel="noopener noreferrer">View rule</a>
                         </li>
                         <li>
                             Requests with a malformed query string are blocked.
-                            <a href="https://github.com/PokeAPI/deploy/blob/master/cludflare/block-malformed-querystring.txt" target="_blank" rel="noopener noreferrer">View source</a>
+                             <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-malformed-querystring.txt" target="_blank" rel="noopener noreferrer">View rule</a>
                         </li>
                     </ul>
                 </p>

@@ -144,6 +144,7 @@ export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
         {name: 'Fair Use Policy', id: 'fairuse'},
+        {name: 'Active policies', id: 'policies'},
         {name: 'Chat', id: 'chat'},
         {name: 'Wrapper Libraries', id: 'wrap', endOfSection: true},
         ...docs.map(doc => ({
@@ -162,10 +163,6 @@ export default function Documentation() {
     return (
         <Page title="Documentation">
             <DocsContainer toc={toc}>
-                <p>
-                    If you were using v1 of this API, please switch to v2 (this
-                    page). <Link to="/docs/v1">Read more…</Link>
-                </p>
 
                 <p>
                     <strong>Quick tip:</strong> Use your browser's "find on
@@ -208,9 +205,28 @@ export default function Documentation() {
                     </li>
                 </ul>
 
+                <h2 id="policies">Active policies</h2>
+                <p>
+                    The following policies are set in place to limit abuse and cut down costs:
+                    <ul>
+                        <li>
+                            All HTTP requests made with methods other than GET and HEAD are blocked.
+                            <a href="https://github.com/PokeAPI/deploy/blob/master/cludflare/block-non-GET.txt" target="_blank" rel="noopener noreferrer">View source</a>
+                        </li>
+                        <li>
+                            All requests containing any of the following characters are blocked: <code>.,*%;:'!@+[</code>.
+                            <a href="https://github.com/PokeAPI/deploy/blob/master/cludflare/block-symbols.txt" target="_blank" rel="noopener noreferrer">View source</a>
+                        </li>
+                        <li>
+                            Requests with a malformed query string are blocked.
+                            <a href="https://github.com/PokeAPI/deploy/blob/master/cludflare/block-malformed-querystring.txt" target="_blank" rel="noopener noreferrer">View source</a>
+                        </li>
+                    </ul>
+                </p>
+
                 <h2 id="chat">Chat</h2>
                 <p>
-                    We have <a href="https://discord.gg/BpjJcKK4TC">a Discord server</a>. It is a simple place where people can chat with each other in a respecful manner. Not all maintainers/code contributors are signed up and your questions might not be answered. Consider opening a Github <a href="https://github.com/PokeAPI/pokeapi/issues">issue</a> if you want more visibility or you want to talk to the maintainers.
+                    We have <a href="https://discord.gg/tTGKJxtb8S">a Discord server</a>. It is a simple place where people can chat with each other in a respecful manner. Not all maintainers/code contributors are signed up and your questions might not be answered. Consider opening a Github <a href="https://github.com/PokeAPI/pokeapi/issues">issue</a> if you want more visibility or you want to talk to the maintainers.
                 </p>
 
                 <h2 id="wrap">Wrapper Libraries</h2>

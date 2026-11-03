@@ -1,6 +1,7 @@
 ---
 import Default from "@astrojs/starlight/components/PageFrame.astro";
 import Pagination from "@astrojs/starlight/components/Pagination.astro";
+import SiteAlerts from "../header/SiteAlerts.astro";
 // Starlight supplies the header slot only to its PageFrame hook, never its Footer hook.
 const isPageFrame = Astro.slots.has("header");
 const currentYear = new Date().getFullYear();
@@ -10,7 +11,10 @@ const currentYear = new Date().getFullYear();
   isPageFrame ? (
     <>
       <Default>
-        <slot name="header" slot="header" />
+        <Fragment slot="header">
+          <slot name="header" />
+          <SiteAlerts />
+        </Fragment>
         <slot name="sidebar" slot="sidebar" />
         <slot />
       </Default>

@@ -581,6 +581,11 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   margin-top: 3rem !important;
 }
 
+.sl-openapi-example div.expressive-code .frame pre {
+  margin-block: 0 !important;
+  background: var(--code-background) !important;
+}
+
 .sl-openapi-example div.expressive-code pre > code {
   text-wrap: nowrap !important;
   white-space: pre !important;
@@ -1125,59 +1130,6 @@ button[data-open-modal]:hover svg {
 button[data-open-modal]:hover kbd {
   border-color: color-mix(in srgb, var(--sl-color-accent) 30%, transparent) !important;
   color: color-mix(in srgb, var(--sl-color-white) 85%, transparent) !important;
-}
-
-#starlight__search .pagefind-ui__search-input {
-  transition:
-    border-color 0.22s ease,
-    box-shadow 0.22s ease !important;
-}
-
-#starlight__search .pagefind-ui__search-input:focus {
-  outline: none !important;
-  border-color: var(--sl-color-accent) !important;
-  --pagefind-ui-border: var(--sl-color-accent) !important;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-color-accent) 25%, transparent) !important;
-}
-
-#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)),
-#starlight__search .pagefind-ui__result-nested {
-  transition:
-    outline-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  outline: 1px solid transparent !important;
-}
-
-#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):hover,
-#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):focus-within,
-#starlight__search .pagefind-ui__result-nested:hover,
-#starlight__search .pagefind-ui__result-nested:focus-within {
-  outline-color: color-mix(in srgb, var(--sl-color-accent) 65%, transparent) !important;
-}
-
-#starlight__search .pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)):hover,
-#starlight__search .pagefind-ui__result-nested:hover {
-  background-color: color-mix(in srgb, var(--sl-color-accent) 4%, var(--sl-color-black)) !important;
-}
-
-#starlight__search .pagefind-ui__button {
-  transition:
-    background-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-#starlight__search .pagefind-ui__button:hover {
-  border-color: color-mix(in srgb, var(--sl-color-accent) 45%, transparent) !important;
-  background-color: color-mix(in srgb, var(--sl-color-accent) 6%, transparent) !important;
-  color: color-mix(in srgb, var(--sl-color-white) 85%, transparent) !important;
-}
-
-#starlight__search .pagefind-ui__button:focus {
-  outline: none !important;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-color-accent) 25%, transparent) !important;
-  border-color: var(--sl-color-accent) !important;
 }
 
 /* Shared theme, typography, and surfaces */

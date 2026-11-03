@@ -186,6 +186,16 @@ nav a:hover {
 }
 
 @media (min-width: 72rem) {
+  .right-sidebar-container {
+    --sl-sidebar-width: 15rem;
+    flex-shrink: 0;
+  }
+
+  [data-has-sidebar][data-has-toc] .main-pane {
+    flex: 1;
+    min-width: 0;
+  }
+
   :root {
     --sl-content-width: 58rem !important;
   }

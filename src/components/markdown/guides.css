@@ -210,7 +210,7 @@ starlight-tabs [role="tab"][aria-selected="true"] {
 }
 
 /* Keyboard keys */
-kbd {
+.sl-markdown-content kbd {
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 4px !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
@@ -236,7 +236,7 @@ kbd {
   .aside__title {
     color: var(--sl-color-black) !important;
   }
-  kbd {
+  .sl-markdown-content kbd {
     border: 1px solid rgba(0, 0, 0, 0.12) !important;
     background-color: rgba(0, 0, 0, 0.04) !important;
     color: var(--sl-color-black) !important;

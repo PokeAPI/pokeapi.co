@@ -15,6 +15,15 @@
   color: var(--sl-color-gray-3);
 }
 
+.header-search button[data-open-modal] > kbd > kbd:first-child {
+  font-size: 0;
+}
+
+.header-search button[data-open-modal] > kbd > kbd:first-child::after {
+  content: "⌘";
+  font-size: 0.75rem;
+}
+
 site-search dialog {
   margin: min(12vh, 6rem) auto auto;
   box-shadow: 0 24px 80px rgb(0 0 0 / 25%);
@@ -103,9 +112,12 @@ site-search button[data-close-modal] {
 
 #starlight__search .pagefind-ui__search-clear {
   top: 0.875rem;
+  inset-inline-end: 0.875rem !important;
   border-radius: 0.375rem;
   width: 2rem;
   height: 2rem;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #starlight__search .pagefind-ui__search-clear::before {

@@ -278,7 +278,6 @@ import {tags as t} from "@lezer/highlight";
     }
 
     const originalSendHtml = sendBtn ? sendBtn.innerHTML : "";
-    const originalCopyHtml = copyBtn ? copyBtn.innerHTML : "";
 
     function sendRequest() {
       const url = getRequestUrl();
@@ -315,21 +314,28 @@ import {tags as t} from "@lezer/highlight";
 
     function initCopy() {
       if (!copyBtn) return;
-      copyBtn.addEventListener("click", function () {
+      const control = copyBtn.closest(".explorer-copy-control");
+      const status = control?.querySelector(".explorer-copy-status");
+      let resetTimer;
+      copyBtn.addEventListener("click", async function () {
         if (!currentJsonData) return;
         const text = JSON.stringify(currentJsonData, null, 2);
-        navigator.clipboard
-          .writeText(text)
-          .then(function () {
-            copyBtn.classList.add("copied");
-            setTimeout(function () {
-              copyBtn.classList.remove("copied");
-              copyBtn.innerHTML = originalCopyHtml;
-            }, 2000);
-          })
-          .catch(function (e) {
-            console.warn("copy failed", e);
-          });
+        clearTimeout(resetTimer);
+        try {
+          await navigator.clipboard.writeText(text);
+          copyBtn.classList.add("copied");
+          if (status) status.textContent = "Copied!";
+        } catch (e) {
+          copyBtn.classList.remove("copied");
+          if (status) status.textContent = "Could not copy";
+          console.warn("copy failed", e);
+        }
+        control?.classList.add("copy-feedback");
+        resetTimer = setTimeout(() => {
+          copyBtn.classList.remove("copied");
+          control?.classList.remove("copy-feedback");
+          if (status) status.textContent = "Copy JSON";
+        }, 2000);
       });
     }
 

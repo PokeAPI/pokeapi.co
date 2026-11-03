@@ -5,6 +5,7 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 :root {
+  --site-toc-width: 15rem;
   --pokemon-blue-low: #1e40af;
   --pokemon-blue: #3b82f6;
   --pokemon-blue-high: #bfdbfe;
@@ -17,14 +18,14 @@
   --sl-color-accent: var(--pokemon-blue);
   --sl-color-accent-high: var(--pokemon-blue-high);
 
-  --sl-color-white: #ffffff;
-  --sl-color-gray-1: #cbd5e1;
-  --sl-color-gray-2: #94a3b8;
-  --sl-color-gray-3: #64748b;
-  --sl-color-gray-4: #334155;
-  --sl-color-gray-5: #1e293b;
-  --sl-color-gray-6: #0f172a;
-  --sl-color-black: #0b0f19;
+  --sl-color-white: #e8ebf0;
+  --sl-color-gray-1: #cdd2da;
+  --sl-color-gray-2: #a8aeb8;
+  --sl-color-gray-3: #838a94;
+  --sl-color-gray-4: #4a515c;
+  --sl-color-gray-5: #2d333d;
+  --sl-color-gray-6: #191e27;
+  --sl-color-black: #10151d;
 
   --sl-color-bg-sidebar: color-mix(in srgb, var(--sl-color-gray-6) 40%, transparent);
   --sl-color-hairline: color-mix(in srgb, var(--sl-color-gray-4) 30%, transparent);
@@ -33,6 +34,10 @@
   --sl-color-hero-tagline-highlight: var(--pokemon-yellow);
 
   --ec-frm-inlBtnBg: var(--sl-color-accent);
+  --sl-font: "Inter";
+  --sl-color-bg-nav: var(--sl-color-black);
+  --site-card-bg: color-mix(in srgb, var(--sl-color-gray-6) 45%, var(--sl-color-black));
+  --site-card-hover: color-mix(in srgb, var(--sl-color-accent) 5%, var(--site-card-bg));
 }
 
 :root[data-theme="light"] {
@@ -43,15 +48,15 @@
   --sl-color-accent: var(--pokemon-yellow);
   --sl-color-accent-high: var(--pokemon-yellow-high);
 
-  --sl-color-white: #0f172a;
-  --sl-color-gray-1: #1e293b;
-  --sl-color-gray-2: #334155;
-  --sl-color-gray-3: #64748b;
-  --sl-color-gray-4: #94a3b8;
-  --sl-color-gray-5: #cbd5e1;
-  --sl-color-gray-6: #f1f5f9;
-  --sl-color-gray-7: #f8fafc;
-  --sl-color-black: #ffffff;
+  --sl-color-white: #202b3e;
+  --sl-color-gray-1: #34415a;
+  --sl-color-gray-2: #52617a;
+  --sl-color-gray-3: #697992;
+  --sl-color-gray-4: #a1aec1;
+  --sl-color-gray-5: #d6deea;
+  --sl-color-gray-6: #f0f4f9;
+  --sl-color-gray-7: #f6f8fc;
+  --sl-color-black: #fafbfd;
 
   --sl-color-bg-sidebar: color-mix(in srgb, var(--sl-color-gray-6) 20%, transparent);
 
@@ -187,7 +192,7 @@ nav a:hover {
 
 @media (min-width: 72rem) {
   .right-sidebar-container {
-    --sl-sidebar-width: 15rem;
+    --sl-sidebar-width: var(--site-toc-width);
     flex-shrink: 0;
   }
 
@@ -354,18 +359,6 @@ sl-openapi-snippet-picker {
   align-items: center !important;
 }
 
-sl-openapi-snippet-picker label.sl-openapi-snippet-picker {
-  display: flex !important;
-  position: relative !important;
-  align-items: center !important;
-  gap: 0.2rem !important;
-  cursor: pointer !important;
-  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 40%, transparent) !important;
-  border-radius: 4px !important;
-  background-color: color-mix(in srgb, var(--sl-color-gray-6) 80%, transparent) !important;
-  padding: 0.18rem 1.4rem 0.18rem 0.5rem !important;
-}
-
 sl-openapi-snippet-picker select {
   appearance: none !important;
   -webkit-appearance: none !important;
@@ -407,17 +400,6 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
 
 .sl-openapi-snippets .expressive-code {
   margin: 0 !important;
-}
-
-.sl-openapi-snippets .expressive-code figure {
-  margin: 0 !important;
-  border: none !important;
-  border-radius: 0 !important;
-}
-
-.sl-openapi-snippets .expressive-code pre {
-  border-radius: 0 !important;
-  background-color: transparent !important;
 }
 
 .not-content.sl-openapi-content-picker-select {
@@ -593,17 +575,6 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   font-family: var(--__sl-font-mono) !important;
   letter-spacing: 0.03em !important;
   text-transform: uppercase !important;
-}
-
-.sl-openapi-tag {
-  margin-inline-start: 0.3rem !important;
-  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 40%, transparent) !important;
-  border-radius: 3px !important;
-  background-color: color-mix(in srgb, var(--sl-color-gray-6) 60%, transparent) !important;
-  padding: 0.05rem 0.3rem !important;
-  color: var(--sl-color-gray-2) !important;
-  font-size: 0.68rem !important;
-  font-family: var(--__sl-font-mono) !important;
 }
 
 .sl-openapi-examples {
@@ -811,18 +782,14 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
     background-color 0.15s ease !important;
   cursor: pointer !important;
   outline: none !important;
-  border: 1px solid color-mix(in srgb, var(--sl-color-gray-4) 30%, transparent) !important;
+  border: 1px solid var(--sl-color-gray-5) !important;
   border-radius: 6px !important;
-  background-color: color-mix(in srgb, var(--sl-color-gray-6) 80%, transparent) !important;
+  background-color: var(--sl-color-gray-6) !important;
   padding: 0.28rem 0.65rem !important;
   min-width: 110px !important;
   color: var(--sl-color-white) !important;
-  font-weight: 600 !important;
-  font-size: 0.72rem !important;
-}
-
-:root[data-theme="dark"] .custom-select-trigger {
-  border-color: color-mix(in srgb, var(--sl-color-gray-3) 30%, transparent) !important;
+  font-weight: 500 !important;
+  font-size: 0.8125rem !important;
 }
 
 .custom-select-trigger:hover {
@@ -836,33 +803,17 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   color: var(--sl-color-gray-3) !important;
 }
 
-.custom-select-menu {
-  display: none !important;
-  position: absolute !important;
-  top: calc(100% + 4px) !important;
-  right: 0 !important;
-  z-index: 1000 !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 6px !important;
-  background: rgba(15, 23, 42, 0.92) !important;
-  padding: 0.25rem !important;
-  min-width: 140px !important;
-}
-
 .custom-select-menu.is-open {
   display: block !important;
 }
 
 .custom-select-group-title {
-  padding: 0.3rem 0.5rem 0.15rem 0.5rem !important;
-  color: var(--sl-color-gray-4) !important;
-  font-weight: 700 !important;
-  font-size: 0.62rem !important;
-  letter-spacing: 0.05em !important;
-  text-transform: uppercase !important;
+  padding: 0.35rem 0.5rem !important;
+  color: var(--sl-color-gray-1) !important;
+  font-weight: 600 !important;
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
 }
 
 .custom-select-item {
@@ -875,22 +826,22 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   border: none !important;
   border-radius: 4px !important;
   background: transparent !important;
-  padding: 0.28rem 0.5rem !important;
+  padding: 0.375rem 0.5rem !important;
   width: 100% !important;
   color: var(--sl-color-gray-2) !important;
-  font-weight: 500 !important;
-  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+  font-size: 0.8125rem !important;
   text-align: left !important;
 }
 
 .custom-select-item:hover {
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: var(--sl-color-gray-5) !important;
   color: var(--sl-color-white) !important;
 }
 
 .custom-select-item.is-active {
-  background-color: var(--sl-color-accent) !important;
-  color: var(--sl-color-white) !important;
+  background-color: color-mix(in srgb, var(--sl-color-accent) 15%, var(--sl-color-gray-6)) !important;
+  color: var(--sl-color-accent-high) !important;
 }
 
 .sl-openapi-key-header {
@@ -937,6 +888,13 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
 }
 
 .sl-openapi-tag {
+  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 40%, transparent) !important;
+  border-radius: 3px !important;
+  background-color: color-mix(in srgb, var(--sl-color-gray-6) 60%, transparent) !important;
+  padding: 0.05rem 0.3rem !important;
+  color: var(--sl-color-gray-2) !important;
+  font-size: 0.68rem !important;
+  font-family: var(--__sl-font-mono) !important;
   display: inline-flex !important;
   align-items: center !important;
   margin: 0 !important;
@@ -998,37 +956,10 @@ sl-openapi-snippet-picker label.sl-openapi-snippet-picker {
   margin: 0 !important;
 }
 
-.sl-openapi-example .expressive-code figure {
-  margin: 0 !important;
-  box-shadow: none !important;
-  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 40%, transparent) !important;
-  border-radius: 8px !important;
-  background-color: color-mix(in srgb, var(--sl-color-gray-6) 20%, transparent) !important;
-  overflow: hidden !important;
-}
-
-:root[data-theme="dark"] .sl-openapi-example .expressive-code figure {
-  box-shadow: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  background-color: rgba(13, 17, 23, 0.75) !important;
-}
-
-.sl-openapi-example .expressive-code pre {
-  margin: 0 !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background-color: transparent !important;
-}
-
-.sl-openapi-example .expressive-code figcaption.header {
-  border: none !important;
-}
-
 .sidebar-content a[aria-current="page"] {
   border-radius: 6px !important;
   background-color: color-mix(in srgb, var(--sl-color-accent) 22%, transparent) !important;
   color: var(--sl-color-accent-high) !important;
-  font-weight: 600 !important;
 }
 
 :root[data-theme="light"] .sidebar-content a[aria-current="page"] {
@@ -1038,21 +969,12 @@ sl-openapi-snippet-picker label.sl-openapi-snippet-picker {
 
 .sidebar-content ul ul summary {
   color: var(--sl-color-gray-2) !important;
-  font-weight: 500 !important;
 }
 
 .sidebar-content ul ul summary:hover,
-.sidebar-content ul ul li span,
+.sidebar-content ul ul a:hover,
 .sidebar-content ul ul details[open] > summary {
   color: color-mix(in srgb, var(--sl-color-white) 85%, transparent) !important;
-}
-
-.sidebar-content details > ul > li > a > span {
-  font-weight: 600;
-}
-
-.sidebar-content details details > ul > li > a > span {
-  font-weight: 400;
 }
 
 .sl-markdown-content a:not(.not-content a):not(.sl-link-card):not(.sl-link-card a):not(.card a) {
@@ -1172,6 +1094,7 @@ starlight-toc li:has(a[aria-current="true"]) > ul {
   max-height: 500px;
 }
 
+
 button[data-open-modal] {
   transition:
     border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -1255,4 +1178,406 @@ button[data-open-modal]:hover kbd {
   outline: none !important;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-color-accent) 25%, transparent) !important;
   border-color: var(--sl-color-accent) !important;
+}
+
+/* Shared theme, typography, and surfaces */
+:root[data-theme="dark"] .poke-footer {
+  background: var(--sl-color-black);
+}
+
+h1,
+.sl-markdown-content :is(h2, h3, h4) {
+  font-weight: 500;
+  line-height: 1.25;
+  font-family: var(--__sl-font);
+  letter-spacing: -0.02em;
+}
+
+.sl-markdown-content strong {
+  font-weight: 500;
+}
+
+.sl-markdown-content :not(pre) > code {
+  border-radius: 0.25rem;
+  padding: 0.15em 0.35em;
+}
+
+.sidebar-content :is(summary, a, a[aria-current="page"], a > span, summary .large) {
+  font-weight: 400 !important;
+}
+
+.sidebar-content .top-level > li > :is(a, details > summary),
+.sidebar-content .top-level > li > a > span,
+.sidebar-content .top-level > li > details > summary .large {
+  color: var(--sl-color-gray-1);
+  font-weight: 500 !important;
+  font-size: 0.9375rem;
+}
+
+.sidebar-content .top-level ul summary .large {
+  color: var(--sl-color-gray-2);
+  font-size: 0.875rem;
+}
+
+.sidebar-content .top-level ul a {
+  font-size: 0.8125rem;
+}
+
+.sidebar-content a[aria-current="page"] > span {
+  font-weight: 500 !important;
+}
+
+starlight-toc > ul > li > a {
+  font-weight: 500;
+}
+
+starlight-toc ul ul a {
+  color: var(--sl-color-gray-2);
+  font-weight: 400;
+}
+
+starlight-toc a[aria-current="true"] {
+  color: var(--sl-color-accent-high);
+}
+
+.sl-markdown-content .sl-link-card,
+.pagination-links a {
+  transform: none !important;
+  transition:
+    border-color 0.25s ease-out,
+    background-color 0.25s ease-out !important;
+  box-shadow: none !important;
+  border: 1px solid var(--sl-color-gray-5) !important;
+  border-radius: 0.75rem !important;
+  background: var(--site-card-bg) !important;
+  padding: 1.25rem !important;
+}
+
+.sl-link-card .title,
+.pagination-links .link-title,
+.pagination-links a > svg {
+  transition: color 0.25s ease-out;
+}
+
+.sidebar-content .top-level .api-version-badge {
+  border-color: color-mix(in srgb, var(--sl-color-accent) 20%, var(--sl-color-gray-5));
+  border-radius: 0.2rem;
+  background: color-mix(in srgb, var(--sl-color-accent) 5%, var(--sl-color-gray-6));
+  padding: 0.0625rem 0.25rem;
+  color: var(--sl-color-accent-high);
+  font-family: var(--__sl-font);
+  font-size: 0.6875rem;
+  font-weight: 400 !important;
+  line-height: 1.1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-markdown-content .sl-link-card,
+  .pagination-links a,
+  .sl-link-card .title,
+  .pagination-links .link-title,
+  .pagination-links a > svg {
+    transition: none !important;
+  }
+}
+
+.sl-markdown-content .sl-link-card:is(:hover, :focus-within),
+.pagination-links a:is(:hover, :focus-visible) {
+  outline-offset: 3px;
+  box-shadow: none !important;
+  border-color: var(--sl-color-accent) !important;
+  background: var(--site-card-hover) !important;
+}
+
+.sl-markdown-content .sl-link-card .title,
+.pagination-links a .link-title,
+.sl-markdown-content .card .title {
+  color: var(--sl-color-white) !important;
+  font-weight: 500 !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.5;
+  font-family: var(--__sl-font);
+}
+
+.sl-markdown-content .card {
+  border-radius: 0.75rem;
+  background: var(--site-card-bg);
+  padding: 1.5rem;
+}
+
+.sl-markdown-content .card .title {
+  gap: 0.75rem;
+}
+
+.sl-markdown-content .card .icon {
+  flex: none;
+  box-sizing: content-box;
+  border: 0 !important;
+  background: transparent;
+  padding: 0;
+  width: 1.375rem;
+  height: 1.375rem;
+  overflow: visible;
+  color: var(--sl-color-accent-high);
+}
+
+@media (min-width: 50rem) {
+  .sidebar-pane {
+    inset-block-end: var(--site-footer-overlap, 0px);
+  }
+}
+
+@media (min-width: 72rem) {
+  .right-sidebar {
+    height: max(var(--sl-nav-height), calc(100dvh - var(--site-footer-overlap, 0px)));
+  }
+}
+
+#back-to-top {
+  bottom: clamp(2rem, calc(var(--site-footer-overlap, 0px) + 1rem), calc(100dvh - 8rem));
+}
+
+.explorer-request-bar,
+.explorer-codeblock-wrapper {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+}
+
+.explorer-request-bar:focus-within {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sl-color-accent) 18%, transparent);
+}
+
+.custom-select-dropdown,
+.custom-select-menu {
+  font-family: var(--__sl-font);
+}
+
+.custom-select-group + .custom-select-group {
+  margin-top: 0.375rem;
+  border-top: 1px solid var(--sl-color-gray-5);
+  padding-top: 0.375rem;
+}
+
+.expressive-code .copy .feedback {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.375rem;
+  background: var(--sl-color-gray-6);
+  padding: 0.2rem 0.5rem;
+  color: var(--sl-color-gray-2);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  font-family: var(--__sl-font);
+}
+
+.expressive-code .copy .feedback::after {
+  display: none;
+}
+
+.custom-select-menu {
+  display: none !important;
+  position: absolute !important;
+  top: calc(100% + 4px) !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 12%) !important;
+  border: 1px solid var(--sl-color-gray-5) !important;
+  border-radius: 6px !important;
+  background: var(--sl-color-gray-6) !important;
+  padding: 0.375rem !important;
+  min-width: 10rem !important;
+  max-width: calc(100vw - 2rem);
+  max-height: min(18rem, 45vh);
+  overflow-y: auto;
+}
+
+.custom-select-trigger:focus-visible,
+.custom-select-item:focus-visible {
+  outline: 2px solid var(--sl-color-accent) !important;
+  outline-offset: 2px;
+}
+
+/* Admonitions */
+.starlight-aside {
+  --admonition-color: #448aff;
+  margin-block: 1.25rem;
+  box-shadow: none;
+  border: 1px solid color-mix(in srgb, var(--admonition-color) 65%, transparent);
+  border-radius: 0.375rem;
+  background: var(--sl-color-black);
+  padding: 0;
+  overflow: hidden;
+  color: var(--sl-color-gray-1);
+  font-size: 0.875rem;
+}
+
+.starlight-aside--tip {
+  --admonition-color: #14b8a6;
+}
+
+.starlight-aside--caution {
+  --admonition-color: #f59e0b;
+}
+
+.starlight-aside--danger {
+  --admonition-color: #ef4444;
+}
+
+.api-explorer-root .starlight-aside--tip {
+  --admonition-color: #eab308;
+}
+
+.starlight-aside .starlight-aside__title {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0;
+  background: color-mix(in srgb, var(--admonition-color) 10%, transparent);
+  padding: 0.625rem 1rem;
+  color: var(--sl-color-white);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.starlight-aside__icon {
+  flex: none;
+  color: var(--admonition-color);
+}
+
+.starlight-aside .starlight-aside__content {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  line-height: 1.7;
+}
+
+.starlight-aside__content > :first-child {
+  margin-top: 0;
+}
+
+.starlight-aside__content > :last-child {
+  margin-bottom: 0;
+}
+
+.starlight-aside .starlight-aside__content a {
+  color: var(--sl-color-accent-high);
+}
+
+/* Site footer */
+.poke-footer {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid var(--sl-color-hairline);
+  background: color-mix(in srgb, var(--sl-color-gray-6) 55%, var(--sl-color-black));
+  color: var(--sl-color-gray-2);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.footer-inner {
+  margin-inline: auto;
+  padding: 2.5rem 1.5rem 1.5rem;
+  max-width: 75rem;
+}
+
+.footer-columns {
+  display: grid;
+  gap: 2rem;
+}
+
+.footer-brand p {
+  margin-block: 0.75rem;
+  max-width: 28ch;
+}
+
+.poke-footer a {
+  transition: color 0.15s ease;
+  color: inherit;
+  text-decoration: none;
+}
+
+.poke-footer a:hover {
+  color: var(--sl-color-accent-high);
+}
+
+.poke-footer a:focus-visible {
+  outline: 2px solid var(--sl-color-accent);
+  outline-offset: 4px;
+}
+
+.poke-footer .footer-title {
+  font-weight: 600;
+  font-family: var(--__sl-font);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--sl-color-white);
+  font-size: 1rem;
+}
+
+.footer-title img {
+  flex: none;
+  object-fit: contain;
+}
+
+.footer-status {
+  display: inline-flex;
+  margin-top: 0.25rem;
+}
+
+.footer-status img {
+  display: block;
+  width: auto;
+  height: 20px;
+}
+
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.footer-nav h3 {
+  margin: 0 0 0.75rem;
+  color: var(--sl-color-gray-2);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-nav ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--sl-color-hairline);
+  padding-top: 1.25rem;
+  font-size: 0.75rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+@media (min-width: 40rem) {
+  .footer-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  .footer-columns {
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
 }

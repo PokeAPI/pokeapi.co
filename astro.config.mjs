@@ -54,19 +54,30 @@ export default defineConfig({
         maxHeadingLevel: 4,
       },
       routeMiddleware: "./src/routeData.ts",
+      lastUpdated: true,
+      editLink: {baseUrl: "https://github.com/FallenDeity/pokeapi.co/edit/feat/astro-starlight/"},
       components: {
-        Footer: "./src/components/footer/PokeFooter.astro",
+        PageTitle: "./src/components/markdown/DocPageTitle.astro",
+        Sidebar: "./src/components/header/PokeSidebar.astro",
+        Footer: "./src/components/footer/PokePageFrame.astro",
+        PageFrame: "./src/components/footer/PokePageFrame.astro",
         Header: "./src/components/header/PokeHeader.astro",
         SocialIcons: "./src/components/header/SocialIcons.astro",
         ThemeSelect: "./src/components/header/ThemeToggle.astro",
         MarkdownContent: "./src/components/markdown/PokeMarkdownContent.astro",
       },
+      head: [{tag: "link", attrs: {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"}}],
       customCss: ["./src/styles/global.css"],
       logo: {
         src: "./public/pokeapi_256.png",
         replacesTitle: true,
       },
       social: [
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/BpjJcKK4TC",
+        },
         {
           icon: "github",
           label: "Github",
@@ -122,7 +133,7 @@ export default defineConfig({
         {
           label: "GraphQL",
           link: "graphql",
-          badge: "v1beta",
+          badge: {text: "v1beta", variant: "default", class: "api-version-badge"},
         },
         {
           label: "How-To Guides",

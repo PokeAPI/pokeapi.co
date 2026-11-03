@@ -71,10 +71,14 @@
       var groups = select.querySelectorAll("optgroup");
       if (groups.length > 0) {
         groups.forEach(function (group) {
+          var section = document.createElement("div");
+          section.className = "custom-select-group";
+          section.setAttribute("role", "group");
+          section.setAttribute("aria-label", group.label);
           var groupTitle = document.createElement("div");
           groupTitle.className = "custom-select-group-title";
           groupTitle.textContent = group.label;
-          menu.appendChild(groupTitle);
+          section.appendChild(groupTitle);
 
           group.querySelectorAll("option").forEach(function (opt) {
             var item = document.createElement("button");
@@ -101,8 +105,9 @@
               menu.classList.remove("is-open");
             });
 
-            menu.appendChild(item);
+            section.appendChild(item);
           });
+          menu.appendChild(section);
         });
       } else {
         select.querySelectorAll("option").forEach(function (opt) {

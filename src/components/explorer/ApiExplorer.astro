@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import ditto from "../../data/ditto.json";
 
 import {Aside, Icon} from "@astrojs/starlight/components";
+import {Check, Copy} from "@lucide/astro";
 
 interface Props {
   endpoint?: string;
@@ -290,13 +291,20 @@ import "./api-explorer.css";
           </button>
         </div>
 
-        <button
-          class="explorer-copy-btn ml-auto inline-flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center rounded-md border-[1.5px] border-(--sl-color-gray-5) bg-transparent p-0 text-(--sl-color-gray-3) transition-all duration-150 ease-in-out hover:border-(--sl-color-accent) hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white) [&.copied]:border-[#34d399] [&.copied]:text-[#34d399]"
-          aria-label="Copy JSON to clipboard"
-          type="button"
-        >
-          <Icon name="copy" class="h-3.5 w-3.5 shrink-0" />
-        </button>
+        <div class="explorer-copy-control">
+          <button
+            class="explorer-copy-btn inline-flex h-7.5 w-7.5 shrink-0 cursor-pointer items-center justify-center rounded-md border-[1.5px] border-(--sl-color-gray-5) bg-transparent p-0 text-(--sl-color-gray-3) transition-colors duration-150 hover:border-(--sl-color-accent) hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-white)"
+            aria-label="Copy JSON to clipboard"
+            aria-describedby={`${instanceId}-copy-status`}
+            type="button"
+          >
+            <Copy class="copy-icon" size={16} aria-hidden="true" />
+            <Check class="copy-success" size={16} aria-hidden="true" />
+          </button>
+          <span id={`${instanceId}-copy-status`} class="explorer-copy-status" role="status" aria-live="polite"
+            >Copy JSON</span
+          >
+        </div>
       </div>
 
       <div class="panel-raw h-[560px] overflow-hidden bg-(--sl-color-black)" role="tabpanel">

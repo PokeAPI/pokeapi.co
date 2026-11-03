@@ -52,17 +52,6 @@
     color: var(--sl-color-white) !important;
   }
 
-  .api-explorer-root .starlight-aside {
-    --sl-color-asides-text-accent: #ffcb05 !important;
-    --sl-color-asides-border: #ffcb05 !important;
-    background-color: color-mix(in srgb, #ffcb05 8%, var(--sl-color-black)) !important;
-  }
-  [data-theme="light"] .api-explorer-root .starlight-aside {
-    --sl-color-asides-text-accent: #8c6200 !important;
-    --sl-color-asides-border: #ffcb05 !important;
-    background-color: color-mix(in srgb, #ffcb05 8%, var(--sl-color-black)) !important;
-  }
-
   .explorer-json-viewer {
     display: block;
     --background-color: transparent;
@@ -97,8 +86,41 @@
     height: 100%;
   }
 
-  [data-theme="light"] .explorer-copy-btn.copied {
-    border-color: #15803d !important;
-    color: #15803d !important;
+  .explorer-copy-control {
+    position: relative;
+    margin-inline-start: auto;
+  }
+
+  .explorer-copy-btn .copy-success,
+  .explorer-copy-btn.copied .copy-icon {
+    display: none;
+  }
+
+  .explorer-copy-btn.copied .copy-success {
+    display: block;
+  }
+
+  .explorer-copy-btn.copied {
+    color: var(--sl-color-accent-high);
+  }
+
+  .explorer-copy-status {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+    opacity: 0;
+    inset-inline-end: calc(100% + 0.5rem);
+    padding: 0.125rem 0;
+    pointer-events: none;
+    color: var(--sl-color-gray-2);
+    font-size: 0.6875rem;
+    font-family: var(--__sl-font);
+    white-space: nowrap;
+  }
+
+  .explorer-copy-control:is(:hover, :focus-within, .copy-feedback) .explorer-copy-status {
+    visibility: visible;
+    opacity: 1;
   }
 }

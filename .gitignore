@@ -51,3 +51,6 @@ artifacts
 
 # Generated OpenAPI schema
 public/openapi.yml
+
+# Playwright test artifacts
+.playwright-*/

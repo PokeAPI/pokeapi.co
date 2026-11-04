@@ -2,6 +2,7 @@ import {defineRouteMiddleware} from "@astrojs/starlight/route-data";
 import {readFileSync, existsSync} from "node:fs";
 import {resolve} from "node:path";
 import {parse} from "yaml";
+import {endpointAnchor} from "./utils/resource-anchors";
 import resourceLists from "./data/operations/resource-lists.json";
 import berries from "./data/operations/berries.json";
 import contests from "./data/operations/contests.json";
@@ -106,8 +107,6 @@ try {
 export const onRequest = defineRouteMiddleware((context) => {
   const { starlightRoute } = context.locals;
 
-  const ogImageUrl = "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png";
-
   const routeId = starlightRoute.id || "";
   let calculatedCategory: PageCategoryType = PageCategory.DOCUMENTATION;
   if (routeId.startsWith("v2/openapi")) {
@@ -164,18 +163,6 @@ export const onRequest = defineRouteMiddleware((context) => {
   starlightRoute.head.push(
     {
       tag: "meta",
-      attrs: {property: "og:image", content: ogImageUrl.href},
-    },
-    {
-      tag: "meta",
-      attrs: {name: "twitter:image", content: ogImageUrl.href},
-    },
-    {
-      tag: "meta",
-      attrs: {name: "twitter:card", content: "summary_large_image"},
-    },
-    {
-      tag: "meta",
       attrs: {name: "theme-color", content: "#ef4444", media: "(prefers-color-scheme: light)"},
     },
     {
@@ -212,7 +199,7 @@ export const onRequest = defineRouteMiddleware((context) => {
         if (endpoints) {
           const children = endpoints.map((endpoint) => ({
             depth: 3,
-            slug: endpoint.name,
+            slug: endpointAnchor(endpoint),
             text: endpoint.name,
             children: [],
           }));

@@ -194,7 +194,7 @@
   },
   {
     "name": "Berry Flavors",
-    "description": "Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their [nature](#natures). Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Flavor) for greater detail.",
+    "description": "Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their [nature](#nature). Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Flavor) for greater detail.",
     "exampleRequest": "/v2/berry-flavor/{id or name}/",
     "exampleResponse": {
       "id": 1,

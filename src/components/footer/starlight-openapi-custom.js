@@ -1,8 +1,17 @@
 (function () {
   "use strict";
 
-  var themeOpenAPIBadges = function () {
-    var types = document.querySelectorAll(".sl-openapi-type");
+  var content = document.querySelector(".sl-markdown-content");
+  if (!content || !content.querySelector(".sl-openapi-section, sl-openapi-snippet-picker, .sl-openapi-keys")) return;
+
+  var findWithin = function (root, selector) {
+    var matches = Array.from(root.querySelectorAll(selector));
+    if (root.matches(selector)) matches.unshift(root);
+    return matches;
+  };
+
+  var themeOpenAPIBadges = function (root) {
+    var types = findWithin(root, ".sl-openapi-type");
     var validTypes = ["integer", "string", "boolean", "object", "array"];
 
     types.forEach(function (el) {
@@ -36,12 +45,12 @@
       }
     });
 
-    document.querySelectorAll("sl-openapi-snippet-picker").forEach(function (picker) {
+    findWithin(root, "sl-openapi-snippet-picker").forEach(function (picker) {
       if (picker.dataset.customized) return;
-      picker.dataset.customized = "true";
 
       var select = picker.querySelector("select");
       if (!select) return;
+      picker.dataset.customized = "true";
 
       var label = picker.querySelector("label");
       if (label) {
@@ -159,7 +168,7 @@
       picker.appendChild(wrapper);
     });
 
-    document.querySelectorAll(".sl-openapi-keys").forEach(function (keysContainer) {
+    findWithin(root, ".sl-openapi-keys").forEach(function (keysContainer) {
       if (keysContainer.closest(".sl-openapi-key-description")) return;
       if (keysContainer.querySelector(".sl-openapi-key-header")) return;
 
@@ -171,8 +180,15 @@
     });
   };
 
-  themeOpenAPIBadges();
-  new MutationObserver(themeOpenAPIBadges).observe(document.body, {
+  themeOpenAPIBadges(content);
+  var observer = new MutationObserver(function (records) {
+    records.forEach(function (record) {
+      record.addedNodes.forEach(function (node) {
+        if (node instanceof Element) themeOpenAPIBadges(node);
+      });
+    });
+  });
+  observer.observe(content, {
     childList: true,
     subtree: true,
   });

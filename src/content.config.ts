@@ -8,6 +8,7 @@ export const collections = {
         loader: docsLoader(),
         schema: docsSchema({
             extend: z.object({
+                keywords: z.union([z.string(), z.array(z.string())]).optional(),
                 publishDate: z.string().or(z.date()).optional(),
             }),
         }),

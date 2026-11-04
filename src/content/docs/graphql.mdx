@@ -14,11 +14,12 @@ To ease learning and developing, a [GraphiQL](https://github.com/graphql/graphiq
 
 ```sh
 # This curl retrieves all items and relative costs
-curl 'https://beta.pokeapi.co/graphql/v1beta'\\ -
-  H 'content-type: application/json'\\ -
-  H 'accept: */*'\\
-  --compressed\\
-  --data - binary @ - << EOF {
+curl 'https://beta.pokeapi.co/graphql/v1beta' \
+  -H 'content-type: application/json' \
+  -H 'accept: */*' \
+  --compressed \
+  --data-binary @- <<'EOF'
+  {
     "query": "query getItems{pokemon_v2_item{name,cost}}",
     "variables": null,
     "operationName": "getItems"

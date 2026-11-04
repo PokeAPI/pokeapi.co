@@ -1,7 +1,9 @@
 ---
 import {Code} from "@astrojs/starlight/components";
+import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
 import {marked} from "marked";
 import ApiExplorer from "../explorer/ApiExplorer.astro";
+import {endpointAnchor} from "../../utils/resource-anchors";
 const {data, playground = true} = Astro.props;
 type PrimitiveType = "string" | "integer" | "number" | "boolean" | "array" | "object";
 
@@ -43,15 +45,21 @@ interface EndpointData {
 function isPrimitive(t: FieldType): t is PrimitiveType {
   return typeof t === "string" && (validTypes as string[]).includes(t);
 }
+
+function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
+  return t.type === "list";
+}
 ---
 
 {
   data.map((obj: EndpointData) => (
     <section>
-      <h3 class="mt-12" id={obj.name}>
-        {obj.name}
-        <span class="font-light opacity-80"> (Endpoint)</span>
-      </h3>
+      <div class="mt-12">
+        <AnchorHeading level={3} id={endpointAnchor(obj)}>
+          {obj.name}
+          <span class="font-light opacity-80"> (Endpoint)</span>
+        </AnchorHeading>
+      </div>
 
       {obj.description && <p set:html={marked.parse(obj.description)} />}
 
@@ -79,10 +87,10 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
 
       {obj.responseModels.map((model) => (
         <>
-          <h4 id={model.name}>
+          <AnchorHeading level={4} id={model.name.trim()}>
             {model.name}
             <span class="font-light opacity-80"> (Type)</span>
-          </h4>
+          </AnchorHeading>
           <table class="table [&_tr:hover]:bg-[unset]">
             <thead>
               <tr>
@@ -112,7 +120,7 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
                           <div class="type-badge type-badge--schema">
                             <span class="type-badge-icon type-badge-icon--schema" />
                             <a
-                              href={`#${field.type}`}
+                              href={`#${field.type.trim()}`}
                               class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                             >
                               {field.type}
@@ -120,7 +128,7 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
                           </div>
                         </span>
                       )
-                    ) : field.type.type === "list" ? (
+                    ) : isListField(field.type) ? (
                       typeof field.type.of === "object" ? (
                         <span class="inline-flex flex-wrap items-center gap-1.5">
                           <span class="type-badge type-badge--list">
@@ -131,13 +139,13 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
                           <div class="type-badge type-badge--object">
                             <span class="type-badge-icon type-badge-icon--object" />
                             <a
-                              href={`#${field.type.of.type}`}
+                              href={`#${field.type.of.type.trim()}`}
                               class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                             >
                               {field.type.of.type}
                             </a>
                             <a
-                              href={`#${field.type.of.of}`}
+                              href={`#${field.type.of.of.trim()}`}
                               class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                             >
                               [{field.type.of.of}]
@@ -151,12 +159,22 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
                             <span class="mt-px">list</span>
                           </span>
                           <span class="text-xs text-slate-400 dark:text-slate-500">of</span>
-                          <a
-                            href={`#${field.type.of}`}
-                            class="mb-0.5 border-b-0! text-sm font-semibold! text-(--sl-color-accent)! no-underline! transition-colors duration-150 hover:text-(--sl-color-accent-high)! hover:underline!"
-                          >
-                            {field.type.of}
-                          </a>
+                          {isPrimitive(field.type.of) ? (
+                            <span class={`type-badge type-badge--${field.type.of}`}>
+                              <span class={`type-badge-icon type-badge-icon--${field.type.of}`} />
+                              {field.type.of}
+                            </span>
+                          ) : (
+                            <span class="type-badge type-badge--schema">
+                              <span class="type-badge-icon type-badge-icon--schema" />
+                              <a
+                                href={`#${field.type.of.trim()}`}
+                                class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                              >
+                                {field.type.of}
+                              </a>
+                            </span>
+                          )}
                         </span>
                       )
                     ) : (
@@ -164,13 +182,13 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
                         <div class="type-badge type-badge--object">
                           <span class="type-badge-icon type-badge-icon--object" />
                           <a
-                            href={`#${field.type.type}`}
+                            href={`#${field.type.type.trim()}`}
                             class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                           >
                             {field.type.type}
                           </a>
                           <a
-                            href={`#${field.type.of}`}
+                            href={`#${field.type.of.trim()}`}
                             class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                           >
                             [{field.type.of}]

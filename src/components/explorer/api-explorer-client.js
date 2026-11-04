@@ -14,8 +14,12 @@ import {tags as t} from "@lezer/highlight";
     return document.documentElement.dataset.theme !== "light";
   }
 
-  const themeCompartment = new Compartment();
   const highlightCompartment = new Compartment();
+  const themeUpdates = new Set();
+  const themeObserver = new MutationObserver(() => {
+    themeUpdates.forEach((update) => update());
+  });
+  themeObserver.observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
 
   const pokeTheme = EditorView.theme({
     "&": {
@@ -161,8 +165,7 @@ import {tags as t} from "@lezer/highlight";
       }
     }
 
-    const observer = new MutationObserver(updateTheme);
-    observer.observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+    themeUpdates.add(updateTheme);
 
     tabRaw?.addEventListener("click", () => {
       tabRaw.classList.add("active");
@@ -278,8 +281,11 @@ import {tags as t} from "@lezer/highlight";
     }
 
     const originalSendHtml = sendBtn ? sendBtn.innerHTML : "";
+    let requestPending = false;
 
     function sendRequest() {
+      if (requestPending) return;
+      requestPending = true;
       const url = getRequestUrl();
       if (directLink) {
         directLink.href = url;
@@ -305,6 +311,7 @@ import {tags as t} from "@lezer/highlight";
           applyJsonData({error: String(err), url: url});
         })
         .finally(function () {
+          requestPending = false;
           if (sendBtn) {
             sendBtn.disabled = false;
             sendBtn.innerHTML = originalSendHtml;
@@ -343,6 +350,7 @@ import {tags as t} from "@lezer/highlight";
       widget.querySelectorAll(".input-hints").forEach(function (link) {
         link.addEventListener("click", function (e) {
           e.preventDefault();
+          if (requestPending) return;
           if (link.dataset.endpoint) selectEndpoint(link.dataset.endpoint);
           if (link.dataset.param !== undefined && paramInput) paramInput.value = link.dataset.param;
           sendRequest();
@@ -360,11 +368,26 @@ import {tags as t} from "@lezer/highlight";
     sendBtn?.addEventListener("click", sendRequest);
   }
 
+  const visibilityObserver =
+    "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach(({target, isIntersecting}) => {
+              if (!isIntersecting) return;
+              visibilityObserver.unobserve(target);
+              initWidget(target);
+            });
+          },
+          {rootMargin: "400px"}
+        )
+      : null;
+
   function main() {
     document.querySelectorAll(".api-explorer-widget").forEach(function (widget) {
       if (widget.dataset.explorerInitialized === "true") return;
       widget.dataset.explorerInitialized = "true";
-      initWidget(widget);
+      if (visibilityObserver) visibilityObserver.observe(widget);
+      else initWidget(widget);
     });
   }
 
@@ -373,5 +396,4 @@ import {tags as t} from "@lezer/highlight";
   } else {
     main();
   }
-  document.addEventListener("astro:after-swap", main);
 })();

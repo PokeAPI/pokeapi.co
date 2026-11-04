@@ -42,7 +42,7 @@ We currently have **tens of thousands** of individual items in our database, inc
 - `Pokédexes`
 - `Pokémon Evolution Chains`
 
-And that's just scratching the surface! To see all the different types of data we have, check out [the docs](../docs/v2).
+And that's just scratching the surface! To see all the different types of data we have, check out [the docs](../v2/).
 
 ### The API is missing stuff!
 

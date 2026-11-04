@@ -3,48 +3,6 @@
     "name": "Generations",
     "description": "A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.",
     "exampleRequest": "/v2/generation/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "generation-i",
-      "abilities": [],
-      "main_region": {
-        "name": "kanto",
-        "url": "$BASE_URL/v2/region/1/"
-      },
-      "moves": [
-        {
-          "name": "pound",
-          "url": "$BASE_URL/v2/move/1/"
-        }
-      ],
-      "names": [
-        {
-          "name": "Generation I",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "bulbasaur",
-          "url": "$BASE_URL/v2/pokemon-species/1/"
-        }
-      ],
-      "types": [
-        {
-          "name": "normal",
-          "url": "$BASE_URL/v2/type/1/"
-        }
-      ],
-      "version_groups": [
-        {
-          "name": "red-blue",
-          "url": "$BASE_URL/v2/version-group/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Generation",
@@ -132,54 +90,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/generation/1/"
   },
   {
     "name": "Pokedexes",
     "description": "A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Pokedex) for greater detail.",
     "exampleRequest": "/v2/pokedex/{id or name}/",
-    "exampleResponse": {
-      "id": 2,
-      "name": "kanto",
-      "is_main_series": true,
-      "descriptions": [
-        {
-          "description": "Rot/Blau/Gelb Kanto Dex",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "names": [
-        {
-          "name": "Kanto",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "pokemon_entries": [
-        {
-          "entry_number": 1,
-          "pokemon_species": {
-            "name": "bulbasaur",
-            "url": "$BASE_URL/v2/pokemon-species/1/"
-          }
-        }
-      ],
-      "region": {
-        "name": "kanto",
-        "url": "$BASE_URL/v2/region/1/"
-      },
-      "version_groups": [
-        {
-          "name": "red-blue",
-          "url": "$BASE_URL/v2/version-group/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Pokedex",
@@ -262,29 +179,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokedex/2/"
   },
   {
     "name": "Version",
     "description": "Versions of the games, e.g., Red, Blue or Yellow.",
     "exampleRequest": "/v2/version/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "red",
-      "names": [
-        {
-          "name": "Rot",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "version_group": {
-        "name": "red-blue",
-        "url": "$BASE_URL/v2/version-group/1/"
-      }
-    },
     "responseModels": [
       {
         "name": "Version",
@@ -317,45 +218,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/version/1/"
   },
   {
     "name": "Version Groups",
     "description": "Version groups categorize highly similar versions of the games.",
     "exampleRequest": "/v2/version-group/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "red-blue",
-      "order": 1,
-      "generation": {
-        "name": "generation-i",
-        "url": "$BASE_URL/v2/generation/1/"
-      },
-      "move_learn_methods": [
-        {
-          "name": "level-up",
-          "url": "$BASE_URL/v2/move-learn-method/1/"
-        }
-      ],
-      "pokedexes": [
-        {
-          "name": "kanto",
-          "url": "$BASE_URL/v2/pokedex/2/"
-        }
-      ],
-      "regions": [
-        {
-          "name": "kanto",
-          "url": "$BASE_URL/v2/region/1/"
-        }
-      ],
-      "versions": [
-        {
-          "name": "red",
-          "url": "$BASE_URL/v2/version/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "VersionGroup",
@@ -429,6 +298,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/version-group/1/"
   }
 ]

@@ -44,7 +44,9 @@ The OpenAPI documentation is dynamically generated from the official [PokeAPI Op
 
 ## Resource Lists/Pagination <span class="font-light opacity-80">(Group)</span>
 
-Calling any API endpoint without a resource ID or name will return a paginated list of available resources for that API. By default, a list "page" will contain up to 20 resources.
+Calling a resource endpoint without a resource ID or name will return a paginated list of available resources for that API. By default, a list "page" will contain up to 20 resources. The [`meta`](#meta) endpoint returns deployment metadata instead of a resource list.
+
+Response examples are fetched when the site is built. Long arrays and sprite collections are abbreviated to keep the page small. The live API returns the complete payloads. Fields described as nullable may contain `null`; form trigger fields described as conditional may be absent.
 
 If you would like to change this, just add a `limit` query parameter to the `GET` request, e.g. `?limit=60`. You can use `offset` to move to the next page, e.g. `?limit=60&offset=60`.
 
@@ -55,7 +57,7 @@ If you would like to change this, just add a `limit` query parameter to the `GET
     - [`machine`](#machine)
     - [`super-contest-effect`](#super-contest-effect)
 - **Named Endpoints** (which return a `NamedAPIResource` list):
-    - All other endpoints listed below (e.g. [`berry`](#berry), [`pokemon`](#pokemon), [`move`](#move), [`item`](#item), etc.).
+    - All other resource endpoints listed below (e.g. [`berry`](#berry), [`pokemon`](#pokemon), [`move`](#move), [`item`](#item), etc.).
 
 <Resource data={resourceLists} playground={false} />
 

@@ -54,11 +54,20 @@ import {tags as t} from "@lezer/highlight";
       fontSize: "0.82rem",
     },
     ".cm-foldGutter .cm-gutterElement": {
+      position: "relative",
       padding: "0 4px",
       cursor: "pointer",
       color: "var(--sl-color-gray-4)",
       transition: "color 0.15s ease",
       fontSize: "0.75rem",
+    },
+    ".cm-foldGutter .explorer-fold-marker": {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      width: "12px",
+      height: "12px",
+      transform: "translate(-50%, -50%)",
     },
     ".cm-foldGutter .cm-gutterElement:hover": {
       color: "var(--sl-color-white)",
@@ -140,7 +149,21 @@ import {tags as t} from "@lezer/highlight";
           doc: currentJsonData ? JSON.stringify(currentJsonData, null, 2) : "{}",
           extensions: [
             lineNumbers(),
-            foldGutter(),
+            foldGutter({
+              markerDOM(open) {
+                const marker = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                marker.classList.add("explorer-fold-marker");
+                marker.setAttribute("viewBox", "0 0 12 12");
+                marker.setAttribute("aria-label", open ? "Fold line" : "Unfold line");
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", open ? "M3 4.5 6 7.5 9 4.5" : "M4.5 3 7.5 6 4.5 9");
+                path.setAttribute("fill", "none");
+                path.setAttribute("stroke", "currentColor");
+                path.setAttribute("stroke-width", "1.25");
+                marker.append(path);
+                return marker;
+              },
+            }),
             json(),
             bracketMatching(),
             highlightCompartment.of(getHighlightExtension()),

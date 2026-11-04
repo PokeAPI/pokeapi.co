@@ -3,24 +3,6 @@
     "name": "Contest Types",
     "description": "Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Contest_condition) for greater detail.",
     "exampleRequest": "/v2/contest-type/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "cool",
-      "berry_flavor": {
-        "name": "spicy",
-        "url": "$BASE_URL/v2/berry-flavor/1/"
-      },
-      "names": [
-        {
-          "name": "Cool",
-          "color": "Red",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "ContestType",
@@ -76,35 +58,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/contest-type/1/"
   },
   {
     "name": "Contest Effects",
     "description": "Contest effects refer to the effects of moves when used in contests.",
     "exampleRequest": "/v2/contest-effect/{id}/",
-    "exampleResponse": {
-      "id": 1,
-      "appeal": 4,
-      "jam": 0,
-      "effect_entries": [
-        {
-          "effect": "Gives a high number of appeal points wth no other effects.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "flavor_text_entries": [
-        {
-          "flavor_text": "A highly appealing move.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "ContestEffect",
@@ -160,31 +120,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/contest-effect/1/"
   },
   {
     "name": "Super Contest Effects",
     "description": "Super contest effects refer to the effects of moves when used in super contests.",
     "exampleRequest": "/v2/super-contest-effect/{id}/",
-    "exampleResponse": {
-      "id": 1,
-      "appeal": 2,
-      "flavor_text_entries": [
-        {
-          "flavor_text": "Enables the user to perform first in the next turn.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "moves": [
-        {
-          "name": "agility",
-          "url": "$BASE_URL/v2/move/97/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "SuperContestEffect",
@@ -238,6 +180,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/super-contest-effect/1/"
   }
 ]

@@ -3,54 +3,6 @@
     "name": "Evolution Chains",
     "description": "Evolution chains are essentially family trees. They start with the lowest stage within a family and detail evolution conditions for each as well as Pokémon they can evolve into up through the hierarchy.",
     "exampleRequest": "/v2/evolution-chain/{id}/",
-    "exampleResponse": {
-      "id": 7,
-      "baby_trigger_item": null,
-      "chain": {
-        "is_baby": false,
-        "species": {
-          "name": "rattata",
-          "url": "$BASE_URL/v2/pokemon-species/19/"
-        },
-        "evolution_details": null,
-        "evolves_to": [
-          {
-            "is_baby": false,
-            "species": {
-              "name": "raticate",
-              "url": "$BASE_URL/v2/pokemon-species/20/"
-            },
-            "evolution_details": [
-              {
-                "item": null,
-                "trigger": {
-                  "name": "level-up",
-                  "url": "$BASE_URL/v2/evolution-trigger/1/"
-                },
-                "gender": null,
-                "held_item": null,
-                "known_move": null,
-                "known_move_type": null,
-                "location": null,
-                "min_level": 20,
-                "min_happiness": null,
-                "min_beauty": null,
-                "min_affection": null,
-                "near_special_rock": false,
-                "needs_overworld_rain": false,
-                "party_species": null,
-                "party_type": null,
-                "relative_physical_stats": null,
-                "time_of_day": "",
-                "trade_species": null,
-                "turn_upside_down": false
-              }
-            ],
-            "evolves_to": []
-          }
-        ]
-      }
-    },
     "responseModels": [
       {
         "name": "EvolutionChain",
@@ -113,8 +65,8 @@
         "name": "EvolutionDetail",
         "fields": [
           {
-            "name": "version_group_id",
-            "description": "The version group in which the evolution was introduced.",
+            "name": "version_group",
+            "description": "The version group in which these evolution requirements apply.",
             "type": {
               "type": "NamedAPIResource",
               "of": "VersionGroup"
@@ -261,19 +213,19 @@
             }
           },
           {
-            "name": "base_form",
-            "description": "The required form for which this evolution can occur.",
+            "name": "required_pokemon_form",
+            "description": "The Pokémon form required before evolving, or null if unrestricted.",
             "type": {
               "type": "NamedAPIResource",
-              "of": "Pokemon"
+              "of": "PokemonForm"
             }
           },
           {
-            "name": "evolved_form",
-            "description": "The form to which this evolution occurs.",
+            "name": "evolved_pokemon_form",
+            "description": "The Pokémon form produced by this evolution, or null if unspecified.",
             "type": {
               "type": "NamedAPIResource",
-              "of": "Pokemon"
+              "of": "PokemonForm"
             }
           },
           {
@@ -298,34 +250,58 @@
             "name": "min_damage_taken",
             "description": "The minimum amount of damage taken during the evolution trigger event in order to evolve into this Pokémon species.",
             "type": "integer"
+          },
+          {
+            "name": "allowed_natures",
+            "description": "The natures that allow this evolution, or null if unrestricted.",
+            "type": {
+              "type": "list",
+              "of": {
+                "type": "NamedAPIResource",
+                "of": "Nature"
+              }
+            }
+          },
+          {
+            "name": "condition_expression",
+            "description": "An additional evolution condition expressed in reverse Polish notation, or null if none.",
+            "type": "EvolutionConditionExpression"
+          }
+        ]
+      },
+      {
+        "name": "EvolutionConditionExpression",
+        "fields": [
+          {
+            "name": "expression",
+            "description": "An evaluatable reverse Polish notation expression using evolution variable symbols.",
+            "type": "string"
+          },
+          {
+            "name": "percentage_chance",
+            "description": "The percentage chance of evolution under this condition, or null if unspecified.",
+            "type": "number"
+          },
+          {
+            "name": "variables",
+            "description": "The evolution variables referenced in this expression.",
+            "type": {
+              "type": "list",
+              "of": {
+                "type": "NamedAPIResource",
+                "of": "EvolutionVariable"
+              }
+            }
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/evolution-chain/7/"
   },
   {
     "name": "Evolution Triggers",
     "description": "Evolution triggers are the events and conditions that cause a Pokémon to evolve. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Methods_of_evolution) for greater detail.",
     "exampleRequest": "/v2/evolution-trigger/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "level-up",
-      "names": [
-        {
-          "name": "Level up",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "ivysaur",
-          "url": "$BASE_URL/v2/pokemon-species/2/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "EvolutionTrigger",
@@ -361,6 +337,69 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+  },
+  {
+    "name": "Evolution Variables",
+    "description": "Variables referenced by evolution condition expressions.",
+    "exampleRequest": "/v2/evolution-variable/{id or name}/",
+    "responseModels": [
+      {
+        "name": "EvolutionVariable",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The identifier for this resource.",
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "description": "The name for this resource.",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "description": "The symbol used for this variable in evolution condition expressions.",
+            "type": "string"
+          },
+          {
+            "name": "data_type",
+            "description": "The data type of this variable.",
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "description": "The source of the variable value.",
+            "type": "string"
+          },
+          {
+            "name": "version_group",
+            "description": "The version group in which this variable was introduced.",
+            "type": {
+              "type": "NamedAPIResource",
+              "of": "VersionGroup"
+            }
+          },
+          {
+            "name": "names",
+            "description": "The name of this resource listed in different languages.",
+            "type": {
+              "type": "list",
+              "of": "Name"
+            }
+          },
+          {
+            "name": "descriptions",
+            "description": "The description of this resource listed in different languages.",
+            "type": {
+              "type": "list",
+              "of": "Description"
+            }
+          }
+        ]
+      }
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/evolution-variable/1/"
   }
 ]

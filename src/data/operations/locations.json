@@ -3,38 +3,6 @@
     "name": "Locations",
     "description": "Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.",
     "exampleRequest": "/v2/location/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "canalave-city",
-      "region": {
-        "name": "sinnoh",
-        "url": "$BASE_URL/v2/region/4/"
-      },
-      "names": [
-        {
-          "name": "Canalave City",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "game_indices": [
-        {
-          "game_index": 7,
-          "generation": {
-            "name": "generation-iv",
-            "url": "$BASE_URL/v2/generation/4/"
-          }
-        }
-      ],
-      "areas": [
-        {
-          "name": "canalave-city-area",
-          "url": "$BASE_URL/v2/location-area/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Location",
@@ -53,7 +21,7 @@
             "name": "region",
             "description": "The region this location can be found in.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "Region"
             }
           },
@@ -86,76 +54,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/location/1/"
   },
   {
     "name": "Location Areas",
     "description": "Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.",
     "exampleRequest": "/v2/location-area/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "canalave-city-area",
-      "game_index": 1,
-      "encounter_method_rates": [
-        {
-          "encounter_method": {
-            "name": "old-rod",
-            "url": "$BASE_URL/v2/encounter-method/2/"
-          },
-          "version_details": [
-            {
-              "rate": 25,
-              "version": {
-                "name": "platinum",
-                "url": "$BASE_URL/v2/version/14/"
-              }
-            }
-          ]
-        }
-      ],
-      "location": {
-        "name": "canalave-city",
-        "url": "$BASE_URL/v2/location/1/"
-      },
-      "names": [
-        {
-          "name": "",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "pokemon_encounters": [
-        {
-          "pokemon": {
-            "name": "tentacool",
-            "url": "$BASE_URL/v2/pokemon/72/"
-          },
-          "version_details": [
-            {
-              "version": {
-                "name": "diamond",
-                "url": "$BASE_URL/v2/version/12/"
-              },
-              "max_chance": 60,
-              "encounter_details": [
-                {
-                  "min_level": 20,
-                  "max_level": 30,
-                  "condition_values": [],
-                  "chance": 60,
-                  "method": {
-                    "name": "surf",
-                    "url": "$BASE_URL/v2/encounter-method/5/"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "LocationArea",
@@ -216,7 +121,7 @@
             "name": "encounter_method",
             "description": "The method in which Pokémon may be encountered in an area..",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "EncounterMethod"
             }
           },
@@ -242,7 +147,7 @@
             "name": "version",
             "description": "The version of the game in which the encounter can occur with the given chance.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "Version"
             }
           }
@@ -255,7 +160,7 @@
             "name": "pokemon",
             "description": "The Pokémon being encountered.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "Pokemon"
             }
           },
@@ -269,35 +174,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/location-area/1/"
   },
   {
     "name": "Pal Park Areas",
     "description": "Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to [Pal Park](https://bulbapedia.bulbagarden.net/wiki/Pal_Park).",
     "exampleRequest": "/v2/pal-park-area/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "forest",
-      "names": [
-        {
-          "name": "Forest",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "pokemon_encounters": [
-        {
-          "base_score": 30,
-          "rate": 50,
-          "pokemon_species": {
-            "name": "caterpie",
-            "url": "$BASE_URL/v2/pokemon-species/10/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "PalParkArea",
@@ -347,53 +230,19 @@
             "name": "pokemon_species",
             "description": "The Pokémon species being encountered.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "PokemonSpecies"
             }
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pal-park-area/1/"
   },
   {
     "name": "Regions",
     "description": "A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.",
     "exampleRequest": "/v2/region/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "kanto",
-      "locations": [
-        {
-          "name": "celadon-city",
-          "url": "$BASE_URL/v2/location/67/"
-        }
-      ],
-      "main_generation": {
-        "name": "generation-i",
-        "url": "$BASE_URL/v2/generation/1/"
-      },
-      "names": [
-        {
-          "name": "Kanto",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "pokedexes": [
-        {
-          "name": "kanto",
-          "url": "$BASE_URL/v2/pokedex/2/"
-        }
-      ],
-      "version_groups": [
-        {
-          "name": "red-blue",
-          "url": "$BASE_URL/v2/version-group/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Region",
@@ -431,7 +280,7 @@
             "name": "main_generation",
             "description": "The generation this region was introduced in.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "Generation"
             }
           },
@@ -459,6 +308,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/region/1/"
   }
 ]

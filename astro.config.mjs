@@ -89,9 +89,7 @@ export default defineConfig({
           {
             base: `/v2/openapi`,
             label: "OpenAPI",
-            schema: await processOpenAPISchema(
-              "https://raw.githubusercontent.com/FallenDeity/pokeapi/refs/heads/metadata-api-schema/openapi.yml"
-            ),
+            schema: await processOpenAPISchema("https://raw.githubusercontent.com/PokeAPI/pokeapi/master/openapi.yml"),
             sidebar: {
               tags: {
                 sort: "alphabetical",

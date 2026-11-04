@@ -3,21 +3,6 @@
     "name": "Machines",
     "description": "Machines are the representation of items that teach moves to Pokémon. They vary from version to version, so it is not certain that one specific TM or HM corresponds to a single Machine.",
     "exampleRequest": "/v2/machine/{id}/",
-    "exampleResponse": {
-      "id": 1,
-      "item": {
-        "name": "tm01",
-        "url": "$BASE_URL/v2/item/305/"
-      },
-      "move": {
-        "name": "mega-punch",
-        "url": "$BASE_URL/v2/move/5/"
-      },
-      "version_group": {
-        "name": "red-blue",
-        "url": "$BASE_URL/v2/version/1/"
-      }
-    },
     "responseModels": [
       {
         "name": "Machine",
@@ -53,6 +38,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/machine/1/"
   }
 ]

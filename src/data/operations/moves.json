@@ -3,125 +3,6 @@
     "name": "Moves",
     "description": "Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.",
     "exampleRequest": "/v2/move/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "pound",
-      "accuracy": 100,
-      "effect_chance": null,
-      "pp": 35,
-      "priority": 0,
-      "power": 40,
-      "contest_combos": {
-        "normal": {
-          "use_before": [
-            {
-              "name": "double-slap",
-              "url": "$BASE_URL/v2/move/3/"
-            },
-            {
-              "name": "headbutt",
-              "url": "$BASE_URL/v2/move/29/"
-            },
-            {
-              "name": "feint-attack",
-              "url": "$BASE_URL/v2/move/185/"
-            }
-          ],
-          "use_after": null
-        },
-        "super": {
-          "use_before": null,
-          "use_after": null
-        }
-      },
-      "contest_type": {
-        "name": "tough",
-        "url": "$BASE_URL/v2/contest-type/5/"
-      },
-      "contest_effect": {
-        "url": "$BASE_URL/v2/contest-effect/1/"
-      },
-      "damage_class": {
-        "name": "physical",
-        "url": "$BASE_URL/v2/move-damage-class/2/"
-      },
-      "effect_entries": [
-        {
-          "effect": "Inflicts [regular damage]{mechanic:regular-damage}.",
-          "short_effect": "Inflicts regular damage with no additional effect.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "effect_changes": [],
-      "generation": {
-        "name": "generation-i",
-        "url": "$BASE_URL/v2/generation/1/"
-      },
-      "meta": {
-        "ailment": {
-          "name": "none",
-          "url": "$BASE_URL/v2/move-ailment/0/"
-        },
-        "category": {
-          "name": "damage",
-          "url": "$BASE_URL/v2/move-category/0/"
-        },
-        "min_hits": null,
-        "max_hits": null,
-        "min_turns": null,
-        "max_turns": null,
-        "drain": 0,
-        "healing": 0,
-        "crit_rate": 0,
-        "ailment_chance": 0,
-        "flinch_chance": 0,
-        "stat_chance": 0
-      },
-      "names": [
-        {
-          "name": "Pound",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "past_values": [],
-      "stat_changes": [],
-      "super_contest_effect": {
-        "url": "$BASE_URL/v2/super-contest-effect/5/"
-      },
-      "target": {
-        "name": "selected-pokemon",
-        "url": "$BASE_URL/v2/move-target/10/"
-      },
-      "type": {
-        "name": "normal",
-        "url": "$BASE_URL/v2/type/1/"
-      },
-      "learned_by_pokemon": [
-        {
-          "name": "clefairy",
-          "url": "$BASE_URL/v2/pokemon/35/"
-        }
-      ],
-      "flavor_text_entries": [
-        {
-          "flavor_text": "Pounds with fore­\nlegs or tail.",
-          "language": {
-            "url": "$BASE_URL/v2/language/9/",
-            "name": "en"
-          },
-          "version_group": {
-            "url": "$BASE_URL/v2/version-group/3/",
-            "name": "gold-silver"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Move",
@@ -158,7 +39,7 @@
           },
           {
             "name": "power",
-            "description": "The base power of this move with a value of 0 if it does not have a base power.",
+            "description": "The base power of this move, or null if it has no fixed base power.",
             "type": "integer"
           },
           {
@@ -229,7 +110,7 @@
             "name": "generation",
             "description": "The generation in which this move was introduced.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "Generation"
             }
           },
@@ -274,7 +155,7 @@
             "name": "super_contest_effect",
             "description": "The effect the move has when used in a super contest.",
             "type": {
-              "type": "APIResource ",
+              "type": "APIResource",
               "of": "SuperContestEffect"
             }
           },
@@ -282,7 +163,7 @@
             "name": "target",
             "description": "The type of target that will receive the effects of the attack.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "MoveTarget"
             }
           },
@@ -290,7 +171,7 @@
             "name": "type",
             "description": "The elemental type of this move.",
             "type": {
-              "type": "NamedAPIResource  ",
+              "type": "NamedAPIResource",
               "of": "Type"
             }
           }
@@ -371,7 +252,7 @@
             "name": "ailment",
             "description": "The status ailment this move inflicts on its target.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "MoveAilment"
             }
           },
@@ -379,7 +260,7 @@
             "name": "category",
             "description": "The category of move this move falls under, e.g. damage or ailment.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "MoveCategory"
             }
           },
@@ -447,7 +328,7 @@
             "name": "stat",
             "description": "The stat being affected.",
             "type": {
-              "type": "NamedAPIResource  ",
+              "type": "NamedAPIResource",
               "of": "Stat"
             }
           }
@@ -468,7 +349,7 @@
           },
           {
             "name": "power",
-            "description": "The base power of this move with a value of 0 if it does not have a base power.",
+            "description": "The base power before the listed version group, or null if power did not change.",
             "type": "integer"
           },
           {
@@ -488,7 +369,7 @@
             "name": "type",
             "description": "The elemental type of this move.",
             "type": {
-              "type": "NamedAPIResource  ",
+              "type": "NamedAPIResource",
               "of": "Type"
             }
           },
@@ -496,37 +377,19 @@
             "name": "version_group",
             "description": "The version group in which these move stat values were in effect.",
             "type": {
-              "type": "NamedAPIResource ",
+              "type": "NamedAPIResource",
               "of": "VersionGroup"
             }
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move/1/"
   },
   {
     "name": "Move Ailments",
     "description": "Move Ailments are status conditions caused by moves used during battle. See [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Status_condition) for greater detail.",
     "exampleRequest": "/v2/move-ailment/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "paralysis",
-      "moves": [
-        {
-          "name": "thunder-punch",
-          "url": "$BASE_URL/v2/move/9/"
-        }
-      ],
-      "names": [
-        {
-          "name": "Paralysis",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "MoveAilment",
@@ -562,25 +425,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move-ailment/1/"
   },
   {
     "name": "Move Battle Styles",
     "description": "Styles of moves when used in the Battle Palace. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Battle_Frontier_(Generation_III)) for greater detail.",
     "exampleRequest": "/v2/move-battle-style/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "attack",
-      "names": [
-        {
-          "name": "Attack",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "MoveBattleStyle",
@@ -605,31 +456,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move-battle-style/1/"
   },
   {
     "name": "Move Categories",
     "description": "Very general categories that loosely group move effects.",
     "exampleRequest": "/v2/move-category/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "ailment",
-      "descriptions": [
-        {
-          "description": "No damage; inflicts status ailment",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "moves": [
-        {
-          "name": "sing",
-          "url": "$BASE_URL/v2/move/47/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "MoveCategory",
@@ -665,31 +498,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move-category/1/"
   },
   {
     "name": "Move Damage Classes",
     "description": "Damage classes moves can have, e.g. physical, special, or non-damaging.",
     "exampleRequest": "/v2/move-damage-class/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "status",
-      "descriptions": [
-        {
-          "description": "ãƒ€ãƒ¡ãƒ¼ã‚¸ãªã„",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/1/"
-          }
-        }
-      ],
-      "moves": [
-        {
-          "name": "swords-dance",
-          "url": "$BASE_URL/v2/move/14/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "MoveDamageClass",
@@ -733,40 +548,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move-damage-class/1/"
   },
   {
     "name": "Move Learn Methods",
     "description": "Methods by which Pokémon can learn moves.",
     "exampleRequest": "/v2/move-learn-method/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "level-up",
-      "names": [
-        {
-          "name": "Level up",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "descriptions": [
-        {
-          "description": "Wird gelernt, wenn ein Pokémon ein bestimmtes Level erreicht.",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "version_groups": [
-        {
-          "name": "red-blue",
-          "url": "$BASE_URL/v2/version-group/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "MoveLearnMethod",
@@ -810,40 +598,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move-learn-method/1/"
   },
   {
     "name": "Move Targets",
     "description": "Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.",
     "exampleRequest": "/v2/move-target/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "specific-move",
-      "descriptions": [
-        {
-          "description": "Eine spezifische Fähigkeit. Wie diese Fähigkeit genutzt wird, hängt von den genutzten Fähigkeiten ab.",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "moves": [
-        {
-          "name": "counter",
-          "url": "$BASE_URL/v2/move/68/"
-        }
-      ],
-      "names": [
-        {
-          "name": "Spezifische Fähigkeit",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "MoveTarget",
@@ -887,6 +648,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/move-target/1/"
   }
 ]

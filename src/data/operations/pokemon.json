@@ -3,74 +3,6 @@
     "name": "Abilities",
     "description": "Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have multiple possible abilities but can have only one ability at a time. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Ability) for greater detail.",
     "exampleRequest": "/v2/ability/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "stench",
-      "is_main_series": true,
-      "generation": {
-        "name": "generation-iii",
-        "url": "$BASE_URL/v2/generation/3/"
-      },
-      "names": [
-        {
-          "name": "Stench",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "effect_entries": [
-        {
-          "effect": "This Pokémon's damaging moves have a 10% chance to make the target [flinch]{mechanic:flinch} with each hit if they do not already cause flinching as a secondary effect.\n\nThis ability does not stack with a held item.\n\nOverworld: The wild encounter rate is halved while this Pokémon is first in the party.",
-          "short_effect": "Has a 10% chance of making target Pokémon [flinch]{mechanic:flinch} with each hit.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "effect_changes": [
-        {
-          "version_group": {
-            "name": "black-white",
-            "url": "$BASE_URL/v2/version-group/11/"
-          },
-          "effect_entries": [
-            {
-              "effect": "Has no effect in battle.",
-              "language": {
-                "name": "en",
-                "url": "$BASE_URL/v2/language/9/"
-              }
-            }
-          ]
-        }
-      ],
-      "flavor_text_entries": [
-        {
-          "flavor_text": "臭くて　相手が\nひるむ　ことがある。",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/11/"
-          },
-          "version_group": {
-            "name": "x-y",
-            "url": "$BASE_URL/v2/version-group/15/"
-          }
-        }
-      ],
-      "pokemon": [
-        {
-          "is_hidden": true,
-          "slot": 3,
-          "pokemon": {
-            "name": "gloom",
-            "url": "$BASE_URL/v2/pokemon/44/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Ability",
@@ -210,30 +142,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/ability/1/"
   },
   {
     "name": "Characteristics",
     "description": "Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Characteristic) for greater detail.",
     "exampleRequest": "/v2/characteristic/{id}/",
-    "exampleResponse": {
-      "id": 1,
-      "gene_modulo": 0,
-      "possible_values": [0, 5, 10, 15, 20, 25, 30],
-      "highest_stat": {
-        "name": "hp",
-        "url": "$BASE_URL/v2/stat/1/"
-      },
-      "descriptions": [
-        {
-          "description": "Loves to eat",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Characteristic",
@@ -274,31 +189,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/characteristic/1/"
   },
   {
     "name": "Egg Groups",
     "description": "Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Egg_Group) for greater detail.",
     "exampleRequest": "/v2/egg-group/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "monster",
-      "names": [
-        {
-          "name": "かいじゅう",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/1/"
-          }
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "bulbasaur",
-          "url": "$BASE_URL/v2/pokemon-species/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "EggGroup",
@@ -334,31 +231,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/egg-group/1/"
   },
   {
     "name": "Genders",
     "description": "Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Gender) for greater detail.",
     "exampleRequest": "/v2/gender/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "female",
-      "pokemon_species_details": [
-        {
-          "rate": 1,
-          "pokemon_species": {
-            "name": "bulbasaur",
-            "url": "$BASE_URL/v2/pokemon-species/1/"
-          }
-        }
-      ],
-      "required_for_evolution": [
-        {
-          "name": "wormadam",
-          "url": "$BASE_URL/v2/pokemon-species/413/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Gender",
@@ -412,38 +291,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/gender/1/"
   },
   {
     "name": "Growth Rates",
     "description": "Growth rates are the speed with which Pokémon gain levels through experience. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Experience) for greater detail.",
     "exampleRequest": "/v2/growth-rate/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "slow",
-      "formula": "\\frac{5x^3}{4}",
-      "descriptions": [
-        {
-          "description": "langsam",
-          "language": {
-            "name": "de",
-            "url": "$BASE_URL/v2/language/6/"
-          }
-        }
-      ],
-      "levels": [
-        {
-          "level": 100,
-          "experience": 1250000
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "growlithe",
-          "url": "$BASE_URL/v2/pokemon-species/58/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "GrowthRate",
@@ -507,60 +361,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/growth-rate/1/"
   },
   {
     "name": "Natures",
     "description": "Natures influence how a Pokémon's stats grow. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Nature) for greater detail.",
     "exampleRequest": "/v2/nature/{id or name}/",
-    "exampleResponse": {
-      "id": 2,
-      "name": "bold",
-      "decreased_stat": {
-        "name": "attack",
-        "url": "$BASE_URL/v2/stat/2/"
-      },
-      "increased_stat": {
-        "name": "defense",
-        "url": "$BASE_URL/v2/stat/3/"
-      },
-      "likes_flavor": {
-        "name": "sour",
-        "url": "$BASE_URL/v2/berry-flavor/5/"
-      },
-      "hates_flavor": {
-        "name": "spicy",
-        "url": "$BASE_URL/v2/berry-flavor/1/"
-      },
-      "pokeathlon_stat_changes": [
-        {
-          "max_change": -2,
-          "pokeathlon_stat": {
-            "name": "speed",
-            "url": "$BASE_URL/v2/pokeathlon-stat/1/"
-          }
-        }
-      ],
-      "move_battle_style_preferences": [
-        {
-          "low_hp_preference": 32,
-          "high_hp_preference": 30,
-          "move_battle_style": {
-            "name": "attack",
-            "url": "$BASE_URL/v2/move-battle-style/1/"
-          }
-        }
-      ],
-      "names": [
-        {
-          "name": "がんばりや",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/1/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Nature",
@@ -674,45 +481,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/nature/2/"
   },
   {
     "name": "Pokeathlon Stats",
     "description": "Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9athlon) for greater detail.",
     "exampleRequest": "/v2/pokeathlon-stat/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "speed",
-      "affecting_natures": {
-        "increase": [
-          {
-            "max_change": 2,
-            "nature": {
-              "name": "timid",
-              "url": "$BASE_URL/v2/nature/5/"
-            }
-          }
-        ],
-        "decrease": [
-          {
-            "max_change": -1,
-            "nature": {
-              "name": "hardy",
-              "url": "$BASE_URL/v2/nature/1/"
-            }
-          }
-        ]
-      },
-      "names": [
-        {
-          "name": "Speed",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "PokeathlonStat",
@@ -781,321 +556,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokeathlon-stat/1/"
   },
   {
     "name": "Pokemon",
     "description": "Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon.  Each Pokémon belongs to a specific species but may take on a variant which makes it differ from other Pokémon of the same species, such as base stats, available abilities and typings. See [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_(species)) for greater detail.",
     "exampleRequest": "/v2/pokemon/{id or name}/",
-    "exampleResponse": {
-      "id": 35,
-      "name": "clefairy",
-      "base_experience": 113,
-      "height": 6,
-      "is_default": true,
-      "order": 56,
-      "weight": 75,
-      "abilities": [
-        {
-          "is_hidden": true,
-          "slot": 3,
-          "ability": {
-            "name": "friend-guard",
-            "url": "$BASE_URL/v2/ability/132/"
-          }
-        }
-      ],
-      "forms": [
-        {
-          "name": "clefairy",
-          "url": "$BASE_URL/v2/pokemon-form/35/"
-        }
-      ],
-      "game_indices": [
-        {
-          "game_index": 35,
-          "version": {
-            "name": "white-2",
-            "url": "$BASE_URL/v2/version/22/"
-          }
-        }
-      ],
-      "held_items": [
-        {
-          "item": {
-            "name": "moon-stone",
-            "url": "$BASE_URL/v2/item/81/"
-          },
-          "version_details": [
-            {
-              "rarity": 5,
-              "version": {
-                "name": "ruby",
-                "url": "$BASE_URL/v2/version/7/"
-              }
-            }
-          ]
-        }
-      ],
-      "location_area_encounters": "/api/v2/pokemon/35/encounters",
-      "moves": [
-        {
-          "move": {
-            "name": "pound",
-            "url": "$BASE_URL/v2/move/1/"
-          },
-          "version_group_details": [
-            {
-              "level_learned_at": 1,
-              "version_group": {
-                "name": "red-blue",
-                "url": "$BASE_URL/v2/version-group/1/"
-              },
-              "move_learn_method": {
-                "name": "level-up",
-                "url": "$BASE_URL/v2/move-learn-method/1/"
-              },
-              "order": 1
-            }
-          ]
-        }
-      ],
-      "species": {
-        "name": "clefairy",
-        "url": "$BASE_URL/v2/pokemon-species/35/"
-      },
-      "sprites": {
-        "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/35.png",
-        "back_female": null,
-        "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/35.png",
-        "back_shiny_female": null,
-        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png",
-        "front_female": null,
-        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/35.png",
-        "front_shiny_female": null,
-        "other": {
-          "dream_world": {
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/35.svg",
-            "front_female": null
-          },
-          "home": {
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/35.png",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/35.png",
-            "front_shiny_female": null
-          },
-          "official-artwork": {
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png",
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/35.png"
-          },
-          "showdown": {
-            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/35.gif",
-            "back_female": null,
-            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/35.gif",
-            "back_shiny_female": null,
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/35.gif",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/35.gif",
-            "front_shiny_female": null
-          }
-        },
-        "versions": {
-          "generation-i": {
-            "red-blue": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/35.png",
-              "back_gray": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/gray/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/35.png",
-              "front_gray": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/gray/35.png"
-            },
-            "yellow": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/yellow/back/35.png",
-              "back_gray": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/yellow/back/gray/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/yellow/35.png",
-              "front_gray": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/yellow/gray/35.png"
-            }
-          },
-          "generation-ii": {
-            "crystal": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/back/35.png",
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/back/shiny/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/35.png",
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/crystal/shiny/35.png"
-            },
-            "gold": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/back/35.png",
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/back/shiny/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/35.png",
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/gold/shiny/35.png"
-            },
-            "silver": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/back/35.png",
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/back/shiny/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/35.png",
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/silver/shiny/35.png"
-            }
-          },
-          "generation-iii": {
-            "emerald": {
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/35.png",
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/shiny/35.png"
-            },
-            "firered-leafgreen": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/back/35.png",
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/back/shiny/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/35.png",
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/shiny/35.png"
-            },
-            "ruby-sapphire": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/back/35.png",
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/back/shiny/35.png",
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/35.png",
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/ruby-sapphire/shiny/35.png"
-            }
-          },
-          "generation-iv": {
-            "diamond-pearl": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/back/35.png",
-              "back_female": null,
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/back/shiny/35.png",
-              "back_shiny_female": null,
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/diamond-pearl/shiny/35.png",
-              "front_shiny_female": null
-            },
-            "heartgold-soulsilver": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/back/35.png",
-              "back_female": null,
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/back/shiny/35.png",
-              "back_shiny_female": null,
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/shiny/35.png",
-              "front_shiny_female": null
-            },
-            "platinum": {
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/back/35.png",
-              "back_female": null,
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/back/shiny/35.png",
-              "back_shiny_female": null,
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/platinum/shiny/35.png",
-              "front_shiny_female": null
-            }
-          },
-          "generation-v": {
-            "black-white": {
-              "animated": {
-                "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/35.gif",
-                "back_female": null,
-                "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/35.gif",
-                "back_shiny_female": null,
-                "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/35.gif",
-                "front_female": null,
-                "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/35.gif",
-                "front_shiny_female": null
-              },
-              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/back/35.png",
-              "back_female": null,
-              "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/back/shiny/35.png",
-              "back_shiny_female": null,
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/35.png",
-              "front_shiny_female": null
-            }
-          },
-          "generation-vi": {
-            "omegaruby-alphasapphire": {
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vi/omegaruby-alphasapphire/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vi/omegaruby-alphasapphire/shiny/35.png",
-              "front_shiny_female": null
-            },
-            "x-y": {
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vi/x-y/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vi/x-y/shiny/35.png",
-              "front_shiny_female": null
-            }
-          },
-          "generation-vii": {
-            "icons": {
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/35.png",
-              "front_female": null
-            },
-            "ultra-sun-ultra-moon": {
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/35.png",
-              "front_female": null,
-              "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/shiny/35.png",
-              "front_shiny_female": null
-            }
-          },
-          "generation-viii": {
-            "icons": {
-              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/35.png",
-              "front_female": null
-            }
-          }
-        }
-      },
-      "cries": {
-        "latest": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/35.ogg",
-        "legacy": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/35.ogg"
-      },
-      "stats": [
-        {
-          "base_stat": 35,
-          "effort": 0,
-          "stat": {
-            "name": "speed",
-            "url": "$BASE_URL/v2/stat/6/"
-          }
-        }
-      ],
-      "types": [
-        {
-          "slot": 1,
-          "type": {
-            "name": "fairy",
-            "url": "$BASE_URL/v2/type/18/"
-          }
-        }
-      ],
-      "past_types": [
-        {
-          "generation": {
-            "name": "generation-v",
-            "url": "$BASE_URL/v2/generation/5/"
-          },
-          "types": [
-            {
-              "slot": 1,
-              "type": {
-                "name": "normal",
-                "url": "$BASE_URL/v2/type/1/"
-              }
-            }
-          ]
-        }
-      ],
-      "past_abilities": [
-        {
-          "generation": {
-            "name": "generation-iv",
-            "url": "$BASE_URL/v2/generation/4/"
-          },
-          "abilities": [
-            {
-              "ability": null,
-              "is_hidden": true,
-              "slot": 3
-            }
-          ]
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Pokemon",
@@ -1521,6 +988,16 @@
             "name": "back_shiny_female",
             "description": "The shiny female depiction of this Pokémon from the back in battle.",
             "type": "string"
+          },
+          {
+            "name": "other",
+            "description": "Additional sprites grouped by source, such as official artwork, HOME, and Showdown. Available keys vary by resource.",
+            "type": "object"
+          },
+          {
+            "name": "versions",
+            "description": "Sprites grouped by generation and game. Available keys vary by resource.",
+            "type": "object"
           }
         ]
       },
@@ -1539,46 +1016,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon/35/"
   },
   {
     "name": "Pokemon Location Areas",
     "description": "Pokémon Location Areas are ares where Pokémon can be found.",
     "exampleRequest": "/v2/pokemon/{id or name}/encounters",
-    "exampleResponse": [
-      {
-        "location_area": {
-          "name": "kanto-route-2-south-towards-viridian-city",
-          "url": "$BASE_URL/v2/location-area/296/"
-        },
-        "version_details": [
-          {
-            "max_chance": 10,
-            "encounter_details": [
-              {
-                "min_level": 7,
-                "max_level": 7,
-                "condition_values": [
-                  {
-                    "name": "time-morning",
-                    "url": "$BASE_URL/v2/encounter-condition-value/3/"
-                  }
-                ],
-                "chance": 5,
-                "method": {
-                  "name": "walk",
-                  "url": "$BASE_URL/v2/encounter-method/1/"
-                }
-              }
-            ],
-            "version": {
-              "name": "heartgold",
-              "url": "$BASE_URL/v2/version/15/"
-            }
-          }
-        ]
-      }
-    ],
     "responseModels": [
       {
         "name": "LocationAreaEncounter",
@@ -1601,31 +1045,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon/1/encounters"
   },
   {
     "name": "Pokemon Colors",
     "description": "Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.",
     "exampleRequest": "/v2/pokemon-color/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "black",
-      "names": [
-        {
-          "name": "é»’ã„",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/1/"
-          }
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "snorlax",
-          "url": "$BASE_URL/v2/pokemon-species/143/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "PokemonColor",
@@ -1661,49 +1087,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon-color/1/"
   },
   {
     "name": "Pokemon Forms",
     "description": "Some Pokémon may appear in one of multiple, visually different forms. These differences are purely cosmetic. For variations within a Pokémon species, which do differ in more than just visuals, the 'Pokémon' entity is used to represent such a variety.",
     "exampleRequest": "/v2/pokemon-form/{id or name}/",
-    "exampleResponse": {
-      "id": 10041,
-      "name": "arceus-bug",
-      "order": 631,
-      "form_order": 7,
-      "is_default": false,
-      "is_battle_only": false,
-      "is_mega": false,
-      "form_name": "bug",
-      "pokemon": {
-        "name": "arceus",
-        "url": "https://pokeapi.co/api/v2/pokemon/493/"
-      },
-      "sprites": {
-        "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/493-bug.png",
-        "back_female": null,
-        "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/493-bug.png",
-        "back_shiny_female": null,
-        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493-bug.png",
-        "front_female": null,
-        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/493-bug.png",
-        "front_shiny_female": null
-      },
-      "types": [
-        {
-          "slot": 1,
-          "type": {
-            "name": "bug",
-            "url": "https://pokeapi.co/api/v2/type/7/"
-          }
-        }
-      ],
-      "version_group": {
-        "name": "diamond-pearl",
-        "url": "https://pokeapi.co/api/v2/version-group/8/"
-      }
-    },
     "responseModels": [
       {
         "name": "PokemonForm",
@@ -1792,6 +1182,22 @@
               "type": "list",
               "of": "Name"
             }
+          },
+          {
+            "name": "trigger_conditions",
+            "description": "The conditions that trigger this form. Resource names and URLs are included when the trigger requires a resource.",
+            "type": {
+              "type": "list",
+              "of": "PokemonFormTriggerCondition"
+            }
+          },
+          {
+            "name": "flavor_text_entries",
+            "description": "The flavor text of this form listed in different languages and versions.",
+            "type": {
+              "type": "list",
+              "of": "FlavorText"
+            }
           }
         ]
       },
@@ -1817,34 +1223,74 @@
             "name": "back_shiny",
             "description": "The shiny depiction of this Pokémon form from the back in battle.",
             "type": "string"
+          },
+          {
+            "name": "front_female",
+            "description": "The URL of this sprite variant, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_shiny_female",
+            "description": "The URL of this sprite variant, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "back_female",
+            "description": "The URL of this sprite variant, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "back_shiny_female",
+            "description": "The URL of this sprite variant, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "other",
+            "description": "Additional sprites grouped by source, such as official artwork, HOME, and Showdown. Available keys vary by resource.",
+            "type": "object"
+          },
+          {
+            "name": "versions",
+            "description": "Sprites grouped by generation and game. Available keys vary by resource.",
+            "type": "object"
+          }
+        ]
+      },
+      {
+        "name": "PokemonFormTriggerCondition",
+        "fields": [
+          {
+            "name": "trigger",
+            "description": "The trigger for this form change.",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "description": "The name of the required item, ability, or move. Only present for a resource-based trigger.",
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "description": "The URL of the required item, ability, or move. Only present for a resource-based trigger.",
+            "type": "string"
+          },
+          {
+            "name": "base_form",
+            "description": "The required base form. Only present when the trigger specifies one.",
+            "type": {
+              "type": "NamedAPIResource",
+              "of": "PokemonForm"
+            }
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon-form/10041/"
   },
   {
     "name": "Pokemon Habitats",
     "description": "Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.",
     "exampleRequest": "/v2/pokemon-habitat/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "cave",
-      "names": [
-        {
-          "name": "grottes",
-          "language": {
-            "name": "fr",
-            "url": "$BASE_URL/v2/language/5/"
-          }
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "zubat",
-          "url": "$BASE_URL/v2/pokemon-species/41/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "PokemonHabitat",
@@ -1880,40 +1326,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon-habitat/1/"
   },
   {
     "name": "Pokemon Shapes",
     "description": "Shapes used for sorting Pokémon in a Pokédex.",
     "exampleRequest": "/v2/pokemon-shape/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "ball",
-      "awesome_names": [
-        {
-          "awesome_name": "Pomaceous",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "names": [
-        {
-          "name": "Ball",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "pokemon_species": [
-        {
-          "name": "shellder",
-          "url": "$BASE_URL/v2/pokemon-species/90/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "PokemonShape",
@@ -1975,114 +1394,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon-shape/1/"
   },
   {
     "name": "Pokemon Species",
     "description": "A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.",
     "exampleRequest": "/v2/pokemon-species/{id or name}/",
-    "exampleResponse": {
-      "id": 413,
-      "name": "wormadam",
-      "order": 441,
-      "gender_rate": 8,
-      "capture_rate": 45,
-      "base_happiness": 70,
-      "is_baby": false,
-      "is_legendary": false,
-      "is_mythical": false,
-      "hatch_counter": 15,
-      "has_gender_differences": false,
-      "forms_switchable": false,
-      "growth_rate": {
-        "name": "medium",
-        "url": "$BASE_URL/v2/growth-rate/2/"
-      },
-      "pokedex_numbers": [
-        {
-          "entry_number": 45,
-          "pokedex": {
-            "name": "kalos-central",
-            "url": "$BASE_URL/v2/pokedex/12/"
-          }
-        }
-      ],
-      "egg_groups": [
-        {
-          "name": "bug",
-          "url": "$BASE_URL/v2/egg-group/3/"
-        }
-      ],
-      "color": {
-        "name": "gray",
-        "url": "$BASE_URL/v2/pokemon-color/4/"
-      },
-      "shape": {
-        "name": "squiggle",
-        "url": "$BASE_URL/v2/pokemon-shape/2/"
-      },
-      "evolves_from_species": {
-        "name": "burmy",
-        "url": "$BASE_URL/v2/pokemon-species/412/"
-      },
-      "evolution_chain": {
-        "url": "$BASE_URL/v2/evolution-chain/213/"
-      },
-      "habitat": null,
-      "generation": {
-        "name": "generation-iv",
-        "url": "$BASE_URL/v2/generation/4/"
-      },
-      "names": [
-        {
-          "name": "Wormadam",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "flavor_text_entries": [
-        {
-          "flavor_text": "When the bulb on\nits back grows\nlarge, it appears\fto lose the\nability to stand\non its hind legs.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          },
-          "version": {
-            "name": "red",
-            "url": "$BASE_URL/v2/version/1/"
-          }
-        }
-      ],
-      "form_descriptions": [
-        {
-          "description": "Forms have different stats and movepools.  During evolution, Burmy's current cloak becomes Wormadam's form, and can no longer be changed.",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "genera": [
-        {
-          "genus": "Bagworm",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ],
-      "varieties": [
-        {
-          "is_default": true,
-          "pokemon": {
-            "name": "wormadam-plant",
-            "url": "$BASE_URL/v2/pokemon/413/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "PokemonSpecies",
@@ -2349,70 +1667,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/pokemon-species/413/"
   },
   {
     "name": "Stats",
     "description": "Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.",
     "exampleRequest": "/v2/stat/{id or name}/",
-    "exampleResponse": {
-      "id": 2,
-      "name": "attack",
-      "game_index": 2,
-      "is_battle_only": false,
-      "affecting_moves": {
-        "increase": [
-          {
-            "change": 2,
-            "move": {
-              "name": "swords-dance",
-              "url": "$BASE_URL/v2/move/14/"
-            }
-          }
-        ],
-        "decrease": [
-          {
-            "change": -1,
-            "move": {
-              "name": "growl",
-              "url": "$BASE_URL/v2/move/45/"
-            }
-          }
-        ]
-      },
-      "affecting_natures": {
-        "increase": [
-          {
-            "name": "lonely",
-            "url": "$BASE_URL/v2/nature/6/"
-          }
-        ],
-        "decrease": [
-          {
-            "name": "bold",
-            "url": "$BASE_URL/v2/nature/2/"
-          }
-        ]
-      },
-      "characteristics": [
-        {
-          "url": "$BASE_URL/v2/characteristic/2/"
-        }
-      ],
-      "move_damage_class": {
-        "name": "physical",
-        "url": "$BASE_URL/v2/move-damage-class/2/"
-      },
-      "names": [
-        {
-          "name": "ã“ã†ã’ã",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/1/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Stat",
@@ -2472,6 +1733,17 @@
             "type": {
               "type": "list",
               "of": "Name"
+            }
+          },
+          {
+            "name": "affecting_items",
+            "description": "Items that affect this stat, such as vitamins and battle items.",
+            "type": {
+              "type": "list",
+              "of": {
+                "type": "NamedAPIResource",
+                "of": "Item"
+              }
             }
           }
         ]
@@ -2542,141 +1814,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/stat/2/"
   },
   {
     "name": "Types",
     "description": "Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.",
     "exampleRequest": "/v2/type/{id or name}/",
-    "exampleResponse": {
-      "id": 5,
-      "name": "ground",
-      "damage_relations": {
-        "no_damage_to": [
-          {
-            "name": "flying",
-            "url": "$BASE_URL/v2/type/3/"
-          }
-        ],
-        "half_damage_to": [
-          {
-            "name": "bug",
-            "url": "$BASE_URL/v2/type/7/"
-          }
-        ],
-        "double_damage_to": [
-          {
-            "name": "poison",
-            "url": "$BASE_URL/v2/type/4/"
-          }
-        ],
-        "no_damage_from": [
-          {
-            "name": "electric",
-            "url": "$BASE_URL/v2/type/13/"
-          }
-        ],
-        "half_damage_from": [
-          {
-            "name": "poison",
-            "url": "$BASE_URL/v2/type/4/"
-          }
-        ],
-        "double_damage_from": [
-          {
-            "name": "water",
-            "url": "$BASE_URL/v2/type/11/"
-          }
-        ]
-      },
-      "past_damage_relations": [
-        {
-          "generation": {
-            "name": "generation-v",
-            "url": "$BASE_URL/v2/generation/5/"
-          },
-          "damage_relations": {
-            "no_damage_to": [
-              {
-                "name": "normal",
-                "url": "$BASE_URL/v2/type/1/"
-              }
-            ],
-            "half_damage_to": [
-              {
-                "name": "steel",
-                "url": "$BASE_URL/v2/type/9/"
-              }
-            ],
-            "double_damage_to": [
-              {
-                "name": "ghost",
-                "url": "$BASE_URL/v2/type/8/"
-              }
-            ],
-            "no_damage_from": [
-              {
-                "name": "normal",
-                "url": "$BASE_URL/v2/type/1/"
-              }
-            ],
-            "half_damage_from": [
-              {
-                "name": "poison",
-                "url": "$BASE_URL/v2/type/4/"
-              }
-            ],
-            "double_damage_from": [
-              {
-                "name": "ghost",
-                "url": "$BASE_URL/v2/type/8/"
-              }
-            ]
-          }
-        }
-      ],
-      "game_indices": [
-        {
-          "game_index": 4,
-          "generation": {
-            "name": "generation-i",
-            "url": "$BASE_URL/v2/generation/1/"
-          }
-        }
-      ],
-      "generation": {
-        "name": "generation-i",
-        "url": "$BASE_URL/v2/generation/1/"
-      },
-      "move_damage_class": {
-        "name": "physical",
-        "url": "$BASE_URL/v2/move-damage-class/2/"
-      },
-      "names": [
-        {
-          "name": "ã˜ã‚ã‚“",
-          "language": {
-            "name": "ja",
-            "url": "$BASE_URL/v2/language/1/"
-          }
-        }
-      ],
-      "pokemon": [
-        {
-          "slot": 1,
-          "pokemon": {
-            "name": "sandshrew",
-            "url": "$BASE_URL/v2/pokemon/27/"
-          }
-        }
-      ],
-      "moves": [
-        {
-          "name": "sand-attack",
-          "url": "$BASE_URL/v2/move/28/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Type",
@@ -2701,10 +1845,7 @@
             "description": "A list of details of how effective this type was toward others and vice versa in previous generations",
             "type": {
               "type": "list",
-              "of": {
-                "type": "TypeRelationsPast",
-                "of": "Type"
-              }
+              "of": "TypeRelationsPast"
             }
           },
           {
@@ -2757,6 +1898,11 @@
                 "of": "Move"
               }
             }
+          },
+          {
+            "name": "sprites",
+            "description": "Type icons grouped by generation and game, with name_icon and symbol_icon URLs. Unavailable icons are null.",
+            "type": "object"
           }
         ]
       },
@@ -2867,6 +2013,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/type/5/"
   }
 ]

@@ -1,6 +1,6 @@
 ---
 import crypto from "node:crypto";
-import ditto from "../../data/ditto.json";
+import {getExampleResponse} from "../../utils/api-examples.mjs";
 
 import {Aside, Icon} from "@astrojs/starlight/components";
 import {Check, Copy} from "@lucide/astro";
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const {endpoint, exampleRequest, exampleResponse} = Astro.props;
+const initialResponse = exampleResponse ?? (await getExampleResponse("https://pokeapi.co/api/v2/pokemon/ditto/"));
 
 let defaultParam = "ditto";
 if (exampleRequest) {
@@ -50,7 +51,7 @@ const endpoints = [
   },
   {
     group: "Evolution",
-    options: ["evolution-chain", "evolution-trigger"],
+    options: ["evolution-chain", "evolution-trigger", "evolution-variable"],
   },
   {
     group: "Games",
@@ -58,7 +59,7 @@ const endpoints = [
   },
   {
     group: "Items",
-    options: ["item", "item-attribute", "item-category", "item-fling-effect", "item-pocket"],
+    options: ["item", "item-attribute", "item-category", "item-fling-effect", "item-pocket", "currency"],
   },
   {
     group: "Locations",
@@ -308,11 +309,11 @@ import "./api-explorer.css";
         </div>
       </div>
 
-      <div class="panel-raw h-[560px] overflow-hidden bg-(--sl-color-black)" role="tabpanel">
+      <div class="panel-raw h-140 overflow-hidden bg-(--sl-color-black)" role="tabpanel">
         <div class="explorer-codemirror-container h-full w-full"></div>
       </div>
 
-      <div class="panel-tree h-[560px] overflow-auto bg-(--sl-color-black) p-4" role="tabpanel" style="display:none">
+      <div class="panel-tree h-140 overflow-auto bg-(--sl-color-black) p-4" role="tabpanel" style="display:none">
         <json-viewer class="explorer-json-viewer"></json-viewer>
       </div>
     </div>
@@ -320,7 +321,7 @@ import "./api-explorer.css";
 </section>
 
 <div class="explorer-initial-json" style="display:none" aria-hidden="true">
-  {JSON.stringify(exampleResponse || ditto)}
+  {JSON.stringify(initialResponse)}
 </div>
 
 <script>

@@ -3,22 +3,6 @@
     "name": "Languages",
     "description": "Languages for translations of API resource information.",
     "exampleRequest": "/v2/language/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "ja",
-      "official": true,
-      "iso639": "ja",
-      "iso3166": "jp",
-      "names": [
-        {
-          "name": "Japanese",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "Language",
@@ -58,7 +42,8 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/language/1/"
   },
   {
     "name": "Common Models",
@@ -145,6 +130,11 @@
               "type": "NamedAPIResource",
               "of": "EncounterMethod"
             }
+          },
+          {
+            "name": "pokemon_details",
+            "description": "Additional properties of the encountered Pokémon, or null if unspecified.",
+            "type": "EncounterPokemonDetail"
           }
         ]
       },
@@ -199,7 +189,7 @@
             "name": "machine",
             "description": "The machine that teaches a move from an item.",
             "type": {
-              "type": "APIResource ",
+              "type": "APIResource",
               "of": "Machine"
             }
           },
@@ -338,7 +328,60 @@
             }
           }
         ]
+      },
+      {
+        "name": "EncounterPokemonDetail",
+        "fields": [
+          {
+            "name": "min_perfect_ivs",
+            "description": "The minimum number of perfect IVs, or null if unspecified.",
+            "type": "integer"
+          },
+          {
+            "name": "always_shiny",
+            "description": "Whether the encountered Pokémon is always shiny.",
+            "type": "boolean"
+          },
+          {
+            "name": "never_shiny",
+            "description": "Whether the encountered Pokémon can never be shiny.",
+            "type": "boolean"
+          },
+          {
+            "name": "is_alpha",
+            "description": "Whether the encountered Pokémon is an alpha Pokémon.",
+            "type": "boolean"
+          }
+        ]
       }
     ]
+  },
+  {
+    "name": "API Metadata",
+    "description": "Deployment metadata for the API. This endpoint returns a single object and does not support resource IDs or pagination.",
+    "exampleRequest": "/v2/meta/",
+    "responseModels": [
+      {
+        "name": "APIMetadata",
+        "fields": [
+          {
+            "name": "deploy_date",
+            "description": "The deployment time as a Unix timestamp string.",
+            "type": "string"
+          },
+          {
+            "name": "hash",
+            "description": "The source commit hash used for this deployment.",
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "description": "The deployment tag, or null if the deployment has no tag.",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/meta/"
   }
 ]

@@ -4,6 +4,7 @@ import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
 import {marked} from "marked";
 import ApiExplorer from "../explorer/ApiExplorer.astro";
 import {endpointAnchor} from "../../utils/resource-anchors";
+import {getExampleResponse} from "../../utils/api-examples.mjs";
 const {data, playground = true} = Astro.props;
 type PrimitiveType = "string" | "integer" | "number" | "boolean" | "array" | "object";
 
@@ -38,7 +39,7 @@ interface EndpointData {
   name: string;
   description?: string;
   exampleRequest?: string;
-  exampleResponse?: unknown;
+  exampleUrl?: string;
   responseModels: ResponseModel[];
 }
 
@@ -49,10 +50,17 @@ function isPrimitive(t: FieldType): t is PrimitiveType {
 function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
   return t.type === "list";
 }
+
+const resources = await Promise.all(
+  (data as EndpointData[]).map(async (obj) => ({
+    ...obj,
+    exampleResponse: obj.exampleUrl ? await getExampleResponse(obj.exampleUrl) : undefined,
+  }))
+);
 ---
 
 {
-  data.map((obj: EndpointData) => (
+  resources.map((obj) => (
     <section>
       <div class="mt-12">
         <AnchorHeading level={3} id={endpointAnchor(obj)}>
@@ -64,22 +72,16 @@ function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
       {obj.description && <p set:html={marked.parse(obj.description)} />}
 
       <div>
-        {obj.exampleResponse && obj.exampleRequest ? (
+        {obj.exampleUrl ? (
           playground ? (
             <ApiExplorer
-              endpoint={obj.exampleRequest.split("/")[2]}
-              exampleRequest={obj.exampleRequest}
-              exampleResponse={JSON.parse(
-                JSON.stringify(obj.exampleResponse, null, 2).replaceAll("$BASE_URL", "https://pokeapi.co/api")
-              )}
+              endpoint={new URL(obj.exampleUrl).pathname.split("/")[3]}
+              exampleRequest={obj.exampleUrl.replace("https://pokeapi.co/api", "")}
+              exampleResponse={obj.exampleResponse}
             />
           ) : (
             <div class="sl-openapi-example">
-              <Code
-                code={JSON.stringify(obj.exampleResponse, null, 2).replaceAll("$BASE_URL", "https://pokeapi.co/api")}
-                lang="json"
-                title={"GET https://pokeapi.co/api" + obj.exampleRequest}
-              />
+              <Code code={JSON.stringify(obj.exampleResponse, null, 2)} lang="json" title={"GET " + obj.exampleUrl} />
             </div>
           )
         ) : null}
@@ -121,7 +123,7 @@ function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
                             <span class="type-badge-icon type-badge-icon--schema" />
                             <a
                               href={`#${field.type.trim()}`}
-                              class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                              class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                             >
                               {field.type}
                             </a>
@@ -133,20 +135,20 @@ function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
                         <span class="inline-flex flex-wrap items-center gap-1.5">
                           <span class="type-badge type-badge--list">
                             <span class="type-badge-icon type-badge-icon--list" />
-                            <span class="mt-px">list</span>
+                            <span>list</span>
                           </span>
                           <span class="text-xs text-slate-400 dark:text-slate-500">of</span>
                           <div class="type-badge type-badge--object">
                             <span class="type-badge-icon type-badge-icon--object" />
                             <a
                               href={`#${field.type.of.type.trim()}`}
-                              class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                              class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                             >
                               {field.type.of.type}
                             </a>
                             <a
                               href={`#${field.type.of.of.trim()}`}
-                              class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                              class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                             >
                               [{field.type.of.of}]
                             </a>
@@ -156,7 +158,7 @@ function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
                         <span class="inline-flex flex-wrap items-center gap-1.5">
                           <span class="type-badge type-badge--list">
                             <span class="type-badge-icon type-badge-icon--list" />
-                            <span class="mt-px">list</span>
+                            <span>list</span>
                           </span>
                           <span class="text-xs text-slate-400 dark:text-slate-500">of</span>
                           {isPrimitive(field.type.of) ? (
@@ -169,7 +171,7 @@ function isListField(t: ListFieldType | NestedObjectType): t is ListFieldType {
                               <span class="type-badge-icon type-badge-icon--schema" />
                               <a
                                 href={`#${field.type.of.trim()}`}
-                                class="mt-px border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
+                                class="border-b-0! font-semibold! text-inherit! no-underline! transition-opacity duration-150 hover:text-inherit! hover:underline! hover:opacity-80"
                               >
                                 {field.type.of}
                               </a>

@@ -3,37 +3,6 @@
     "name": "Berries",
     "description": "Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Berry) for greater detail.",
     "exampleRequest": "/v2/berry/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "cheri",
-      "growth_time": 3,
-      "max_harvest": 5,
-      "natural_gift_power": 60,
-      "size": 20,
-      "smoothness": 25,
-      "soil_dryness": 15,
-      "firmness": {
-        "name": "soft",
-        "url": "$BASE_URL/v2/berry-firmness/2/"
-      },
-      "flavors": [
-        {
-          "potency": 10,
-          "flavor": {
-            "name": "spicy",
-            "url": "$BASE_URL/v2/berry-flavor/1/"
-          }
-        }
-      ],
-      "item": {
-        "name": "cheri-berry",
-        "url": "$BASE_URL/v2/item/126/"
-      },
-      "natural_gift_type": {
-        "name": "fire",
-        "url": "$BASE_URL/v2/type/10/"
-      }
-    },
     "responseModels": [
       {
         "name": "Berry",
@@ -130,31 +99,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/berry/1/"
   },
   {
     "name": "Berry Firmnesses",
     "description": "Berries can be soft or hard. Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Category:Berries_by_firmness) for greater detail.",
     "exampleRequest": "/v2/berry-firmness/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "very-soft",
-      "berries": [
-        {
-          "name": "pecha",
-          "url": "$BASE_URL/v2/berry/3/"
-        }
-      ],
-      "names": [
-        {
-          "name": "Very Soft",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "BerryFirmness",
@@ -190,38 +141,13 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/berry-firmness/1/"
   },
   {
     "name": "Berry Flavors",
     "description": "Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their [nature](#nature). Check out [Bulbapedia](http://bulbapedia.bulbagarden.net/wiki/Flavor) for greater detail.",
     "exampleRequest": "/v2/berry-flavor/{id or name}/",
-    "exampleResponse": {
-      "id": 1,
-      "name": "spicy",
-      "berries": [
-        {
-          "potency": 10,
-          "berry": {
-            "name": "rowap",
-            "url": "$BASE_URL/v2/berry/64/"
-          }
-        }
-      ],
-      "contest_type": {
-        "name": "cool",
-        "url": "$BASE_URL/v2/contest-type/1/"
-      },
-      "names": [
-        {
-          "name": "Spicy",
-          "language": {
-            "name": "en",
-            "url": "$BASE_URL/v2/language/9/"
-          }
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "BerryFlavor",
@@ -280,6 +206,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/berry-flavor/1/"
   }
 ]

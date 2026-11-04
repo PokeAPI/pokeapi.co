@@ -2,17 +2,6 @@
   {
     "name": "Named",
     "exampleRequest": "/v2/{endpoint}/",
-    "exampleResponse": {
-      "count": 248,
-      "next": "$BASE_URL/v2/ability/?limit=20&offset=20",
-      "previous": null,
-      "results": [
-        {
-          "name": "stench",
-          "url": "$BASE_URL/v2/ability/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "NamedAPIResourceList",
@@ -42,21 +31,12 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/ability/?limit=2"
   },
   {
     "name": "Unnamed",
     "exampleRequest": "/v2/{endpoint}/",
-    "exampleResponse": {
-      "count": 541,
-      "next": "$BASE_URL/v2/evolution-chain?offset=20&limit=20",
-      "previous": null,
-      "results": [
-        {
-          "url": "$BASE_URL/v2/evolution-chain/1/"
-        }
-      ]
-    },
     "responseModels": [
       {
         "name": "APIResourceList",
@@ -86,6 +66,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/machine/?limit=2"
   }
 ]

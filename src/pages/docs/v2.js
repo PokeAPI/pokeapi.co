@@ -144,6 +144,7 @@ export default function Documentation() {
     const toc = [
         {name: 'Information', id: 'info'},
         {name: 'Fair Use Policy', id: 'fairuse'},
+        {name: 'Active policies', id: 'policies'},
         {name: 'Chat', id: 'chat'},
         {name: 'Wrapper Libraries', id: 'wrap', endOfSection: true},
         ...docs.map(doc => ({
@@ -162,10 +163,6 @@ export default function Documentation() {
     return (
         <Page title="Documentation">
             <DocsContainer toc={toc}>
-                <p>
-                    If you were using v1 of this API, please switch to v2 (this
-                    page). <Link to="/docs/v1">Read more…</Link>
-                </p>
 
                 <p>
                     <strong>Quick tip:</strong> Use your browser's "find on
@@ -207,6 +204,22 @@ export default function Documentation() {
                         If you spot security vulnerabilities act and <a href="https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability">report them</a> responsibly.
                     </li>
                 </ul>
+
+                <h2 id="policies">Active policies</h2>
+                <p>
+                    The following policies are set in place to limit abuse and cut down costs:
+                    <ul>
+                        <li>
+                            All HTTP requests made with methods other than GET, HEAD or OPTIONS are blocked. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-non-GET.txt" target="_blank" rel="noopener noreferrer">View rule</a>
+                        </li>
+                        <li>
+                            All HTTP requests containing any of the following characters in the URL path or query string are blocked: <code>.,*%;:'!@+[</code>. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-symbols.txt" target="_blank" rel="noopener noreferrer">View rule</a>
+                        </li>
+                        <li>
+                            HTTP Requests with a malformed query string are blocked. Only <code>limit</code> and <code>offset</code> parameters are allowed. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-malformed-querystring.txt" target="_blank" rel="noopener noreferrer">View rule</a>
+                        </li>
+                    </ul>
+                </p>
 
                 <h2 id="chat">Chat</h2>
                 <p>

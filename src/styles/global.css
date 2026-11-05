@@ -96,9 +96,9 @@ nav a:hover {
 
 .hero h1 {
   color: #ffcb05;
-  font-family: "Pokemon Solid", var(--sl-font), sans-serif;
   font-weight: 400;
   line-height: 1.45;
+  font-family: "Pokemon Solid", var(--sl-font), sans-serif;
   letter-spacing: 0.025em;
   -webkit-text-stroke: 1px var(--pokemon-blue-low);
   paint-order: stroke fill;
@@ -311,11 +311,11 @@ nav a:hover {
 
   .sl-markdown-content .resource-table tbody tr {
     display: grid;
-    margin: 0;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
     grid-template-rows: min-content 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
     align-items: start;
     gap: 0.375rem 0.75rem;
+    margin: 0;
     border-bottom: 1px solid var(--sl-color-gray-5);
     padding-block: 0.875rem;
   }
@@ -340,8 +340,8 @@ nav a:hover {
 
   .resource-table td:first-child code {
     display: inline-block;
-    margin: 0;
     vertical-align: top;
+    margin: 0;
   }
 
   .resource-table td:nth-child(2) {
@@ -352,10 +352,10 @@ nav a:hover {
 
   .resource-table td:nth-child(3) {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
     grid-row: 1;
     grid-column: 2;
+    flex-wrap: wrap;
+    align-items: flex-start;
     max-width: 100%;
   }
 
@@ -603,22 +603,22 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
 
   .sl-openapi-key-description .sl-openapi-keys {
     grid-template-columns: minmax(0, 1fr) !important;
+    box-sizing: border-box;
     width: 100% !important;
     min-width: 0;
-    box-sizing: border-box;
   }
 
   .sl-openapi-key-description details {
+    box-sizing: border-box;
     width: 100% !important;
     min-width: 0;
-    box-sizing: border-box;
   }
 
   .sl-openapi-key-description .sl-openapi-keys > .sl-openapi-key {
     display: flex !important;
+    row-gap: 0.375rem;
     flex-direction: column !important;
     align-items: stretch !important;
-    row-gap: 0.375rem;
     min-width: 0;
   }
 
@@ -633,9 +633,9 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   }
 
   .sl-openapi-key-description .sl-openapi-keys > .sl-openapi-key > .sl-openapi-key-description > details {
+    box-sizing: border-box;
     width: 100% !important;
     min-width: 0;
-    box-sizing: border-box;
   }
 
   .sl-openapi-key-description .sl-openapi-keys > .sl-openapi-key:has(> .sl-openapi-key-description > details[open]) {
@@ -645,7 +645,11 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
     min-width: 0;
   }
 
-  .sl-openapi-key-description .sl-openapi-keys > .sl-openapi-key:has(> .sl-openapi-key-description > details[open]) > .sl-openapi-key-description > * {
+  .sl-openapi-key-description
+    .sl-openapi-keys
+    > .sl-openapi-key:has(> .sl-openapi-key-description > details[open])
+    > .sl-openapi-key-description
+    > * {
     grid-column: 1 !important;
     min-width: 0;
   }
@@ -1161,8 +1165,8 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
     grid-template-columns: subgrid;
     grid-column: 2 / -1;
     align-items: start !important;
-    width: auto !important;
     gap: 0.375rem 1rem !important;
+    width: auto !important;
   }
 
   .sl-openapi-parameter-keys > .sl-openapi-key > .sl-openapi-key-description > :is(div, details) {
@@ -1178,8 +1182,8 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
 
   .sl-openapi-parameter-keys > .sl-openapi-key > .sl-openapi-key-description > .sl-openapi-markdown {
     display: block !important;
-    grid-column: 1;
     grid-row: 1 / span 2;
+    grid-column: 1;
   }
 
   .sl-openapi-parameter-keys > .sl-openapi-key > .sl-openapi-key-description > details {
@@ -1197,6 +1201,9 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
 }
 
 .sl-openapi-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
   border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 40%, transparent) !important;
   border-radius: 3px !important;
   background-color: color-mix(in srgb, var(--sl-color-gray-6) 60%, transparent) !important;
@@ -1204,9 +1211,6 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   color: var(--sl-color-gray-2) !important;
   font-size: 0.68rem !important;
   font-family: var(--__sl-font-mono) !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  margin: 0 !important;
   white-space: nowrap !important;
 }
 
@@ -1299,7 +1303,9 @@ sl-openapi-snippet-picker label.sl-openapi-snippet-picker {
 }
 
 .sl-markdown-content
-  a:not(.not-content a):not(.sl-link-card):not(.sl-link-card a):not(.card a):not(.sl-anchor-link):not(.type-badge a):hover {
+  a:not(.not-content a):not(.sl-link-card):not(.sl-link-card a):not(.card a):not(.sl-anchor-link):not(
+    .type-badge a
+  ):hover {
   border-bottom-color: var(--sl-color-accent-high) !important;
   color: var(--sl-color-accent-high) !important;
 }
@@ -1429,7 +1435,6 @@ starlight-toc li:has(a[aria-current="true"]) > ul {
   max-height: 500px;
 }
 
-
 button[data-open-modal] {
   transition:
     border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -1552,10 +1557,10 @@ starlight-toc a[aria-current="true"] {
   background: color-mix(in srgb, var(--sl-color-accent) 5%, var(--sl-color-gray-6));
   padding: 0.0625rem 0.25rem;
   color: var(--sl-color-accent-high);
-  font-family: var(--__sl-font);
-  font-size: 0.6875rem;
   font-weight: 400 !important;
+  font-size: 0.6875rem;
   line-height: 1.1;
+  font-family: var(--__sl-font);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1654,6 +1659,9 @@ starlight-toc a[aria-current="true"] {
 .api-explorer-root .explorer-copy-btn {
   align-self: center;
   opacity: 1 !important;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
   border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 60%, transparent);
   border-radius: 0.5rem;
   background: var(--sl-color-gray-6);
@@ -1661,7 +1669,6 @@ starlight-toc a[aria-current="true"] {
   width: 2.25rem;
   height: 2.25rem;
   color: var(--sl-color-gray-3);
-  transition: background-color 0.15s, color 0.15s;
 }
 
 .expressive-code .frame .copy button::before,
@@ -1686,8 +1693,8 @@ starlight-toc a[aria-current="true"] {
 }
 
 .expressive-code .frame .copy button::after {
-  background-color: currentColor;
   margin: auto;
+  background-color: currentColor;
   width: 1rem;
   height: 1rem;
 }
@@ -1807,9 +1814,9 @@ starlight-toc a[aria-current="true"] {
 /* Site footer */
 .poke-footer {
   position: relative;
-  width: 100%;
   border-top: 1px solid var(--sl-color-hairline);
   background: color-mix(in srgb, var(--sl-color-gray-6) 55%, var(--sl-color-black));
+  width: 100%;
   color: var(--sl-color-gray-2);
   font-size: 0.875rem;
   line-height: 1.6;
@@ -1847,13 +1854,13 @@ starlight-toc a[aria-current="true"] {
 }
 
 .poke-footer .footer-title {
-  font-weight: 600;
-  font-family: var(--__sl-font);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   color: var(--sl-color-white);
+  font-weight: 600;
   font-size: 1rem;
+  font-family: var(--__sl-font);
 }
 
 .footer-title img {

@@ -72,7 +72,13 @@ export default defineConfig({
         MarkdownContent: "./src/components/markdown/PokeMarkdownContent.astro",
       },
       head: [
-        {tag: "link", attrs: {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"}},
+        {
+          tag: "link",
+          attrs: {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap",
+          },
+        },
         {tag: "style", content: editorThemeCss},
       ],
       customCss: ["./src/styles/global.css"],

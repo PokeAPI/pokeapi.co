@@ -1,3 +1,5 @@
+import {getExampleResponse} from "./api-examples.mjs";
+
 // Normalize legacy OpenAPI 3.0 nullability for our OpenAPI 3.1 document.
 export function normalizeOpenAPINullability(document) {
   const seen = new WeakSet();
@@ -43,7 +45,6 @@ export function normalizeOpenAPINullability(document) {
 
   visitDocument(document);
 }
-import {getExampleResponse} from "./api-examples.mjs";
 
 // Supply complete response examples before Starlight tries to synthesize partial ones.
 export async function injectOpenAPIExamples(schema, loadExample = getExampleResponse) {

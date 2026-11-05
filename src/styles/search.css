@@ -112,12 +112,12 @@ site-search button[data-close-modal] {
 
 #starlight__search .pagefind-ui__search-clear {
   top: 0.875rem;
+  box-sizing: border-box;
   inset-inline-end: 0.875rem !important;
   border-radius: 0.375rem;
+  padding: 0;
   width: 2rem;
   height: 2rem;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 #starlight__search .pagefind-ui__search-clear::before {

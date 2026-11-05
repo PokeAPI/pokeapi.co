@@ -32,7 +32,7 @@
     }
 
     var types = findWithin(root, ".sl-openapi-type");
-    var validTypes = ["integer", "string", "boolean", "object", "array"];
+    var validTypes = ["integer", "number", "string", "boolean", "object", "array"];
 
     types.forEach(function (el) {
       if (el.dataset.themed) return;
@@ -70,6 +70,26 @@
       } else if (nullable) {
         el.textContent = txt + "?";
       }
+    });
+
+    findWithin(root, ".sl-openapi-schema-objects").forEach(function (heading) {
+      var tabs = heading.nextElementSibling;
+      if (tabs?.tagName !== "STARLIGHT-TABS") return;
+
+      var labels = Array.from(tabs.querySelectorAll('[role="tab"]')).map(function (tab) {
+        return tab.textContent.trim().toLowerCase();
+      });
+      if (labels.length !== 2 || !labels.includes("object") || !labels.includes("null")) return;
+
+      var objectPanel = tabs.querySelector('[role="tabpanel"]:not([hidden])');
+      var objectDetails = objectPanel?.querySelector(":scope > details");
+      if (!objectDetails) return;
+
+      var typeLabel = objectDetails.querySelector("summary .type-badge > span:last-child");
+      if (typeLabel && !typeLabel.textContent.endsWith("?")) typeLabel.append("?");
+      tabs.parentElement.insertBefore(objectDetails, tabs);
+      heading.remove();
+      tabs.remove();
     });
 
     findWithin(root, "sl-openapi-snippet-picker").forEach(function (picker) {

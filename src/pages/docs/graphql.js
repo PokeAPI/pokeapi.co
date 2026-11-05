@@ -34,14 +34,14 @@ export default function Documentation() {
                 </p>
 
                 <code className="code"  dangerouslySetInnerHTML={ {__html:`
-# This curl retrieves all items and relative costs
+# This curl retrieves all items
 curl 'https://graphql.pokeapi.co/v1beta2' \\
 -H 'content-type: application/json' \\
 -H 'accept: */*' \\
 --compressed \\
 --data-binary @- << EOF
 {
-    "query": "query getItems{item{name,cost}}",
+    "query": "query getItems{item{name}}",
     "variables": null,
     "operationName":"getItems"
 }
@@ -59,7 +59,7 @@ EOF
 
                 <h2 id="v1beta">v1beta</h2>
                 <p>
-                    This <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> specification is sun-setting and scheduled to be removed in summer 2025. A GraphiQL console can still be found at <a href="https://beta.pokeapi.co/graphql/console">beta.pokeapi.co/graphql/console</a>
+                    This <a href="https://beta.pokeapi.co/graphql/v1beta">v1beta</a> specification has been removed as of November 2026.
                 </p>
 
                 <h2 id="fairuse">Fair Use</h2>

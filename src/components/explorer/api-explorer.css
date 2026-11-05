@@ -55,6 +55,13 @@
   .explorer-json-viewer {
     display: block;
     --background-color: transparent;
+    --color: var(--poke-code-foreground);
+    --property-color: var(--poke-code-property);
+    --string-color: var(--poke-code-string);
+    --number-color: var(--poke-code-number);
+    --boolean-color: var(--poke-code-boolean);
+    --null-color: var(--poke-code-null);
+    --preview-color: var(--poke-code-muted);
     --font-family: var(--__sl-font-mono);
     --font-size: 0.84rem;
     --line-height: 1.5rem;
@@ -66,14 +73,6 @@
   }
 
   :root[data-theme="light"] .explorer-json-viewer {
-    --background-color: transparent;
-    --color: #1f2937;
-    --property-color: #0369a1;
-    --string-color: #15803d;
-    --number-color: #b45309;
-    --boolean-color: #2563eb;
-    --null-color: #dc2626;
-    --preview-color: #6b7280;
     --indentguide-color: rgba(0, 0, 0, 0.12);
   }
 

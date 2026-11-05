@@ -1,30 +1,20 @@
 import "@alenaksu/json-viewer";
 import {getRandomHeroPokemon} from "../../utils/random-hero-pokemon.js";
 import {EditorView, lineNumbers} from "@codemirror/view";
-import {EditorState, Compartment} from "@codemirror/state";
+import {EditorState} from "@codemirror/state";
 import {json} from "@codemirror/lang-json";
 import {foldGutter, syntaxHighlighting, bracketMatching, HighlightStyle} from "@codemirror/language";
 import {tags as t} from "@lezer/highlight";
+import {editorHighlightColors as colors} from "../../utils/editor-theme.mjs";
 
 (function () {
   "use strict";
 
   const BASE_URL = "https://pokeapi.co/api/v2/";
 
-  function isDarkTheme() {
-    return document.documentElement.dataset.theme !== "light";
-  }
-
-  const highlightCompartment = new Compartment();
-  const themeUpdates = new Set();
-  const themeObserver = new MutationObserver(() => {
-    themeUpdates.forEach((update) => update());
-  });
-  themeObserver.observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
-
   const pokeTheme = EditorView.theme({
     "&": {
-      color: "var(--sl-color-gray-1)",
+      color: "var(--poke-code-foreground)",
       backgroundColor: "transparent",
       fontFamily: "var(--__sl-font-mono)",
       fontSize: "0.82rem",
@@ -44,19 +34,19 @@ import {tags as t} from "@lezer/highlight";
       backgroundColor: "var(--sl-color-gray-6)",
       color: "var(--sl-color-gray-4)",
       borderRight: "1.5px solid var(--sl-color-gray-5)",
-      paddingRight: "2px",
+      paddingRight: "4px",
       fontFamily: "var(--__sl-font-mono)",
       userSelect: "none",
     },
     ".cm-lineNumbers .cm-gutterElement": {
-      padding: "0 8px 0 12px",
-      minWidth: "32px",
+      padding: "0 6px 0 12px",
+      minWidth: "28px",
       textAlign: "right",
       fontSize: "0.82rem",
     },
     ".cm-foldGutter .cm-gutterElement": {
       position: "relative",
-      padding: "0 4px",
+      padding: "0 6px",
       cursor: "pointer",
       color: "var(--sl-color-gray-4)",
       transition: "color 0.15s ease",
@@ -91,29 +81,15 @@ import {tags as t} from "@lezer/highlight";
     },
   });
 
-  const pokeDarkHighlighting = HighlightStyle.define([
-    {tag: t.propertyName, color: "#f59e0b"},
-    {tag: t.string, color: "#86efac"},
-    {tag: t.number, color: "#c084fc"},
-    {tag: t.bool, color: "#60a5fa"},
-    {tag: t.null, color: "#f87171"},
-    {tag: t.punctuation, color: "var(--sl-color-gray-3)"},
-    {tag: t.bracket, color: "var(--sl-color-gray-3)"},
+  const pokeHighlighting = HighlightStyle.define([
+    {tag: t.propertyName, color: colors.property},
+    {tag: t.string, color: colors.string},
+    {tag: t.number, color: colors.number},
+    {tag: t.bool, color: colors.boolean},
+    {tag: t.null, color: colors.null},
+    {tag: t.punctuation, color: colors.muted},
+    {tag: t.bracket, color: colors.muted},
   ]);
-
-  const pokeLightHighlighting = HighlightStyle.define([
-    {tag: t.propertyName, color: "#b45309"},
-    {tag: t.string, color: "#15803d"},
-    {tag: t.number, color: "#7c3aed"},
-    {tag: t.bool, color: "#2563eb"},
-    {tag: t.null, color: "#dc2626"},
-    {tag: t.punctuation, color: "var(--sl-color-gray-3)"},
-    {tag: t.bracket, color: "var(--sl-color-gray-3)"},
-  ]);
-
-  function getHighlightExtension() {
-    return syntaxHighlighting(isDarkTheme() ? pokeDarkHighlighting : pokeLightHighlighting);
-  }
 
   function initWidget(widget) {
     if (widget.dataset.explorerInitialized === "true") return;
@@ -157,7 +133,6 @@ import {tags as t} from "@lezer/highlight";
           });
         }
         responseChanged = false;
-        updateTheme();
         return;
       }
       cmEditor = new EditorView({
@@ -182,7 +157,7 @@ import {tags as t} from "@lezer/highlight";
             }),
             json(),
             bracketMatching(),
-            highlightCompartment.of(getHighlightExtension()),
+            syntaxHighlighting(pokeHighlighting),
             pokeTheme,
             EditorState.readOnly.of(true),
             EditorView.editable.of(false),
@@ -206,16 +181,6 @@ import {tags as t} from "@lezer/highlight";
     if (jsonViewer && currentJsonData) {
       jsonViewer.data = currentJsonData;
     }
-
-    function updateTheme() {
-      if (cmEditor && rawVisible) {
-        cmEditor.dispatch({
-          effects: highlightCompartment.reconfigure(getHighlightExtension()),
-        });
-      }
-    }
-
-    themeUpdates.add(updateTheme);
 
     const tabs = [
       [tabRaw, panelRaw],

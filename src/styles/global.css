@@ -1570,6 +1570,16 @@ starlight-toc a[aria-current="true"] {
   padding-top: 0.375rem;
 }
 
+.expressive-code .frame.is-terminal .header::before {
+  opacity: 1;
+  background: linear-gradient(to right, #ff5f57 0 33.33%, #febc2e 33.33% 66.67%, #28c840 66.67% 100%);
+}
+
+.expressive-code .frame.is-terminal > pre {
+  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 25%) !important;
+  border-top: 0 !important;
+}
+
 .expressive-code .frame .copy button,
 .api-explorer-root .explorer-copy-btn {
   align-self: center;

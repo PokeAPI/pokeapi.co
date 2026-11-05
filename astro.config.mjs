@@ -6,9 +6,12 @@ import {stringify} from "yaml";
 import {bundle} from "@readme/openapi-parser";
 import {mkdir, writeFile} from "node:fs/promises";
 import {resolve} from "node:path";
+import {injectOpenAPIExamples} from "./src/utils/openapi-examples.mjs";
+import {editorThemeCss} from "./src/utils/editor-theme.mjs";
 
 async function processOpenAPISchema(schemaUrl) {
   const schema = await bundle(schemaUrl);
+  await injectOpenAPIExamples(schema);
 
   for (const operations of Object.values(schema.paths ?? {})) {
     for (const operation of Object.values(operations)) {
@@ -67,7 +70,10 @@ export default defineConfig({
         ThemeSelect: "./src/components/header/ThemeToggle.astro",
         MarkdownContent: "./src/components/markdown/PokeMarkdownContent.astro",
       },
-      head: [{tag: "link", attrs: {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"}}],
+      head: [
+        {tag: "link", attrs: {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"}},
+        {tag: "style", content: editorThemeCss},
+      ],
       customCss: ["./src/styles/global.css"],
       logo: {
         src: "./public/pokeapi_256.png",

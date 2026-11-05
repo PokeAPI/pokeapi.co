@@ -1,7 +1,11 @@
 import {pluginLineNumbers} from "@expressive-code/plugin-line-numbers";
+import {applyEditorTheme, jsonNullTransformer} from "./src/utils/editor-theme.mjs";
 
 /** @type {import('@astrojs/starlight/expressive-code').StarlightExpressiveCodeOptions} */
 export default {
+  customizeTheme: applyEditorTheme,
+  minSyntaxHighlightingColorContrast: 4.5,
+  shiki: {transformers: [jsonNullTransformer]},
   plugins: [
     pluginLineNumbers(),
     {

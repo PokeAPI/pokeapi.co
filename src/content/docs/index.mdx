@@ -4,9 +4,6 @@ description: The RESTful Pokémon API
 hero:
   title: The RESTful Pokémon API
   tagline: "Serving over <strong style='color: var(--sl-color-hero-tagline-highlight);'>50 billion</strong> API calls each month!<span style='display: block; margin-top: 0.85rem; font-size: 1.15rem; line-height: 1.6;'>All the Pokémon data you’ll ever need in one place, easily accessible through a modern free open-source RESTful API.</span>"
-  image:
-    file: ../../../public/pokeapi_256.png
-    alt: PokéAPI Hero Image
   actions:
     - text: Check out the docs!
       link: ./v2/
@@ -26,7 +23,7 @@ tableOfContents: false
 import ApiExplorer from '../../components/explorer/ApiExplorer.astro';
 import { Card, CardGrid } from '@astrojs/starlight/components'
 
-<ApiExplorer />
+<ApiExplorer randomPokemon />
 
 <div style={{ marginTop: '3rem' }}>
   <CardGrid>

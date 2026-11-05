@@ -1,4 +1,5 @@
 import "@alenaksu/json-viewer";
+import {getRandomHeroPokemon} from "../../utils/random-hero-pokemon.js";
 import {EditorView, lineNumbers} from "@codemirror/view";
 import {EditorState, Compartment} from "@codemirror/state";
 import {json} from "@codemirror/lang-json";
@@ -115,6 +116,8 @@ import {tags as t} from "@lezer/highlight";
   }
 
   function initWidget(widget) {
+    if (widget.dataset.explorerInitialized === "true") return;
+    widget.dataset.explorerInitialized = "true";
     const selectWrap = widget.querySelector(".explorer-select-wrap");
     const selectTrigger = widget.querySelector(".explorer-select-trigger");
     const selectLabel = widget.querySelector(".explorer-select-label");
@@ -143,7 +146,20 @@ import {tags as t} from "@lezer/highlight";
     }
 
     let cmEditor = null;
-    if (cmContainer) {
+    let rawVisible = !("IntersectionObserver" in window);
+    let responseChanged = true;
+    function renderRawResponse() {
+      if (!cmContainer || !rawVisible) return;
+      if (cmEditor) {
+        if (responseChanged) {
+          cmEditor.dispatch({
+            changes: {from: 0, to: cmEditor.state.doc.length, insert: JSON.stringify(currentJsonData ?? {}, null, 2)},
+          });
+        }
+        responseChanged = false;
+        updateTheme();
+        return;
+      }
       cmEditor = new EditorView({
         state: EditorState.create({
           doc: currentJsonData ? JSON.stringify(currentJsonData, null, 2) : "{}",
@@ -174,6 +190,17 @@ import {tags as t} from "@lezer/highlight";
         }),
         parent: cmContainer,
       });
+      responseChanged = false;
+    }
+
+    if (cmContainer && "IntersectionObserver" in window) {
+      const rawObserver = new IntersectionObserver(([entry]) => {
+        rawVisible = entry.isIntersecting;
+        if (rawVisible) renderRawResponse();
+      });
+      rawObserver.observe(cmContainer);
+    } else {
+      renderRawResponse();
     }
 
     if (jsonViewer && currentJsonData) {
@@ -181,7 +208,7 @@ import {tags as t} from "@lezer/highlight";
     }
 
     function updateTheme() {
-      if (cmEditor) {
+      if (cmEditor && rawVisible) {
         cmEditor.dispatch({
           effects: highlightCompartment.reconfigure(getHighlightExtension()),
         });
@@ -190,32 +217,25 @@ import {tags as t} from "@lezer/highlight";
 
     themeUpdates.add(updateTheme);
 
-    tabRaw?.addEventListener("click", () => {
-      tabRaw.classList.add("active");
-      tabRaw.setAttribute("aria-selected", "true");
-      tabTree?.classList.remove("active");
-      tabTree?.setAttribute("aria-selected", "false");
-      if (panelRaw) panelRaw.style.display = "";
-      if (panelTree) panelTree.style.display = "none";
-    });
-
-    tabTree?.addEventListener("click", () => {
-      tabTree.classList.add("active");
-      tabTree.setAttribute("aria-selected", "true");
-      tabRaw?.classList.remove("active");
-      tabRaw?.setAttribute("aria-selected", "false");
-      if (panelTree) panelTree.style.display = "";
-      if (panelRaw) panelRaw.style.display = "none";
+    const tabs = [
+      [tabRaw, panelRaw],
+      [tabTree, panelTree],
+    ];
+    tabs.forEach(([tab]) => {
+      tab?.addEventListener("click", () => {
+        tabs.forEach(([button, panel]) => {
+          const active = button === tab;
+          button?.classList.toggle("active", active);
+          button?.setAttribute("aria-selected", String(active));
+          if (panel) panel.style.display = active ? "" : "none";
+        });
+      });
     });
 
     function applyJsonData(parsed) {
       currentJsonData = parsed;
-      if (cmEditor) {
-        const text = JSON.stringify(parsed, null, 2);
-        cmEditor.dispatch({
-          changes: {from: 0, to: cmEditor.state.doc.length, insert: text},
-        });
-      }
+      responseChanged = true;
+      renderRawResponse();
       if (jsonViewer) {
         jsonViewer.data = parsed;
       }
@@ -235,41 +255,32 @@ import {tags as t} from "@lezer/highlight";
         }
       });
 
-      dropdownPanel.addEventListener("click", function (e) {
+      function selectOption(e) {
         const btn = e.target.closest(".dropdown-option");
         if (!btn) return;
         selectEndpoint(btn.dataset.value);
         closeDropdown();
-      });
+      }
+
+      dropdownPanel.addEventListener("click", selectOption);
 
       dropdownPanel.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
           closeDropdown();
           selectTrigger.focus();
         }
-        if (e.key === "Enter") {
-          const btn = e.target.closest(".dropdown-option");
-          if (btn) {
-            selectEndpoint(btn.dataset.value);
-            closeDropdown();
-          }
-        }
+        if (e.key === "Enter") selectOption(e);
       });
 
       document.addEventListener("click", function (e) {
         if (selectWrap && !selectWrap.contains(e.target)) closeDropdown();
       });
 
-      window.addEventListener(
-        "scroll",
-        function () {
-          if (selectWrap.classList.contains("open")) positionDropdown();
-        },
-        true
-      );
-      window.addEventListener("resize", function () {
+      function repositionDropdown() {
         if (selectWrap.classList.contains("open")) positionDropdown();
-      });
+      }
+      window.addEventListener("scroll", repositionDropdown, true);
+      window.addEventListener("resize", repositionDropdown);
     }
 
     function positionDropdown() {
@@ -306,7 +317,7 @@ import {tags as t} from "@lezer/highlight";
     const originalSendHtml = sendBtn ? sendBtn.innerHTML : "";
     let requestPending = false;
 
-    function sendRequest() {
+    async function sendRequest() {
       if (requestPending) return;
       requestPending = true;
       const url = getRequestUrl();
@@ -320,26 +331,18 @@ import {tags as t} from "@lezer/highlight";
         sendBtn.innerHTML = '<span style="opacity:.6;font-size:1.1em">\u22EF</span>';
       }
 
-      fetch(url)
-        .then(function (res) {
-          if (res.ok) {
-            return res.json().then(function (data) {
-              applyJsonData(data);
-            });
-          } else {
-            applyJsonData({error: "HTTP " + res.status, url: url});
-          }
-        })
-        .catch(function (err) {
-          applyJsonData({error: String(err), url: url});
-        })
-        .finally(function () {
-          requestPending = false;
-          if (sendBtn) {
-            sendBtn.disabled = false;
-            sendBtn.innerHTML = originalSendHtml;
-          }
-        });
+      try {
+        const res = await fetch(url);
+        applyJsonData(res.ok ? await res.json() : {error: "HTTP " + res.status, url});
+      } catch (err) {
+        applyJsonData({error: String(err), url});
+      } finally {
+        requestPending = false;
+        if (sendBtn) {
+          sendBtn.disabled = false;
+          sendBtn.innerHTML = originalSendHtml;
+        }
+      }
     }
 
     function initCopy() {
@@ -389,6 +392,16 @@ import {tags as t} from "@lezer/highlight";
       if (e.key === "Enter") sendRequest();
     });
     sendBtn?.addEventListener("click", sendRequest);
+
+    if (widget.dataset.randomPokemonMax) {
+      const result = getRandomHeroPokemon(Number(widget.dataset.randomPokemonMax));
+      if (!result) return;
+      const id = String(result.id);
+      selectEndpoint("pokemon");
+      if (paramInput) paramInput.value = id;
+      widget.dataset.param = id;
+      sendRequest();
+    }
   }
 
   const visibilityObserver =
@@ -408,9 +421,15 @@ import {tags as t} from "@lezer/highlight";
   function main() {
     document.querySelectorAll(".api-explorer-widget").forEach(function (widget) {
       if (widget.dataset.explorerInitialized === "true") return;
-      widget.dataset.explorerInitialized = "true";
-      if (visibilityObserver) visibilityObserver.observe(widget);
-      else initWidget(widget);
+      if (visibilityObserver && !widget.dataset.randomPokemonMax) {
+        const initialize = () => {
+          visibilityObserver.unobserve(widget);
+          initWidget(widget);
+        };
+        widget.addEventListener("click", initialize, {capture: true, once: true});
+        widget.addEventListener("keydown", initialize, {capture: true, once: true});
+        visibilityObserver.observe(widget);
+      } else initWidget(widget);
     });
   }
 

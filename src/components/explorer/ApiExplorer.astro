@@ -9,30 +9,21 @@ interface Props {
   endpoint?: string;
   exampleRequest?: string;
   exampleResponse?: any;
+  randomPokemon?: boolean;
 }
 
-const {endpoint, exampleRequest, exampleResponse} = Astro.props;
-const initialResponse = exampleResponse ?? (await getExampleResponse("https://pokeapi.co/api/v2/pokemon/ditto/"));
+const {endpoint, exampleRequest, exampleResponse, randomPokemon = false} = Astro.props;
+const randomPokemonMax = randomPokemon
+  ? (await getExampleResponse("https://pokeapi.co/api/v2/pokemon-species/?limit=1")).count
+  : undefined;
 
-let defaultParam = "ditto";
-if (exampleRequest) {
-  const prefix = `/v2/${endpoint}/`;
-  if (exampleRequest.startsWith(prefix)) {
-    defaultParam = exampleRequest.slice(prefix.length);
-    if (defaultParam.endsWith("/")) {
-      defaultParam = defaultParam.slice(0, -1);
-    }
-  } else {
-    const rootPrefix = `/v2/${endpoint}`;
-    if (exampleRequest.startsWith(rootPrefix)) {
-      defaultParam = exampleRequest.slice(rootPrefix.length);
-    } else {
-      defaultParam = "";
-    }
-  }
-} else if (endpoint) {
-  defaultParam = "1";
-}
+const requestUrl = exampleRequest ? new URL(exampleRequest, "https://pokeapi.co") : undefined;
+const defaultParam = requestUrl
+  ? requestUrl.pathname.split("/").slice(3).join("/").replace(/\/$/, "") + requestUrl.search
+  : "1";
+const initialRequest = exampleRequest ?? `/v2/${endpoint || "pokemon"}/1/`;
+const initialResponse =
+  exampleResponse ?? (randomPokemon ? {} : await getExampleResponse("https://pokeapi.co/api" + initialRequest));
 
 const instanceId = "explorer-" + crypto.randomUUID();
 
@@ -110,6 +101,7 @@ import "./api-explorer.css";
   data-instance-id={instanceId}
   data-endpoint={endpoint || "pokemon"}
   data-param={defaultParam}
+  data-random-pokemon-max={randomPokemonMax}
 >
   <div class="api-explorer-root not-content">
     {
@@ -166,12 +158,12 @@ import "./api-explorer.css";
     <div class="py-3"></div>
 
     <div
-      class="explorer-request-bar relative flex h-12 items-stretch overflow-visible rounded-[10px] border-[1.5px] border-(--sl-color-gray-5) shadow-[0_2px_10px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-200 ease-out focus-within:border-(--sl-color-accent) focus-within:shadow-[0_2px_12px_rgba(0,0,0,0.2)] focus-within:ring-[3px] focus-within:ring-[rgba(59,130,246,0.18)]"
+      class="explorer-request-bar relative flex h-12 items-stretch overflow-hidden rounded-[10px] border-[1.5px] border-(--sl-color-gray-5) shadow-[0_2px_10px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-200 ease-out focus-within:border-(--sl-color-accent) focus-within:shadow-[0_2px_12px_rgba(0,0,0,0.2)] focus-within:ring-[3px] focus-within:ring-[rgba(59,130,246,0.18)]"
       role="group"
       aria-label="API request builder"
     >
       <span
-        class="explorer-base-url flex shrink-0 items-center rounded-l-lg border-r-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-gray-6) pr-2.5 pl-3.5 font-mono text-[0.76rem] font-semibold whitespace-nowrap text-(--sl-color-accent-high) select-none max-[600px]:pr-2 max-[600px]:pl-2.5"
+        class="explorer-base-url flex shrink-0 items-center border-r-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-gray-6) pr-2.5 pl-3.5 font-mono text-[0.76rem] font-semibold whitespace-nowrap text-(--sl-color-accent-high) select-none max-[600px]:pr-2 max-[600px]:pl-2.5"
         aria-label="Base URL"
       >
         <span class="explorer-base-url-full inline max-[600px]:hidden">https://pokeapi.co/api/v2/</span>
@@ -238,7 +230,7 @@ import "./api-explorer.css";
       />
 
       <button
-        class="explorer-send-btn flex shrink-0 cursor-pointer items-center gap-1.75 rounded-r-lg border-none bg-(--sl-color-accent) px-5 text-[0.85rem] font-semibold tracking-wide whitespace-nowrap text-white transition-colors duration-180 ease-in-out hover:bg-[color-mix(in_srgb,var(--sl-color-accent)_75%,#fff_25%)] active:scale-98 disabled:cursor-not-allowed disabled:opacity-50"
+        class="explorer-send-btn flex shrink-0 cursor-pointer items-center gap-1.75 border-none bg-(--sl-color-accent) px-5 text-[0.85rem] font-semibold tracking-wide whitespace-nowrap text-white transition-colors duration-180 ease-in-out hover:bg-[color-mix(in_srgb,var(--sl-color-accent)_75%,#fff_25%)] active:scale-98 disabled:cursor-not-allowed disabled:opacity-50"
         type="button"
         aria-label="Send API request"
       >

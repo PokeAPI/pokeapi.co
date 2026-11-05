@@ -57,6 +57,7 @@ export default defineConfig({
       lastUpdated: true,
       editLink: {baseUrl: "https://github.com/FallenDeity/pokeapi.co/edit/feat/astro-starlight/"},
       components: {
+        Hero: "./src/components/hero/Hero.astro",
         PageTitle: "./src/components/markdown/DocPageTitle.astro",
         Sidebar: "./src/components/header/PokeSidebar.astro",
         Footer: "./src/components/footer/PokePageFrame.astro",

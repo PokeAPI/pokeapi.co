@@ -4,6 +4,14 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  src: url("/pokemon-solid.woff2") format("woff2");
+  font-family: "Pokemon Solid";
+  font-display: swap;
+}
+
 :root {
   --site-toc-width: 15rem;
   --pokemon-blue-low: #1e40af;
@@ -81,9 +89,26 @@ nav a:hover {
 
 .hero > img {
   aspect-ratio: auto !important;
-  max-width: 256px;
+  max-width: 320px;
   height: auto !important;
   object-fit: contain;
+}
+
+.hero h1 {
+  color: #ffcb05;
+  font-family: "Pokemon Solid", var(--sl-font), sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.025em;
+  -webkit-text-stroke: 1px var(--pokemon-blue-low);
+  paint-order: stroke fill;
+  text-shadow: 0 3px 0 var(--pokemon-blue-low);
+}
+
+:root[data-theme="light"] .hero h1 {
+  color: #ffcb05;
+  -webkit-text-stroke: 3px #2a75bb;
+  text-shadow: 0 3px 0 #1d4c8d;
 }
 
 @media (min-width: 50rem) {
@@ -117,6 +142,7 @@ nav a:hover {
 .hero .hero-html img {
   display: block !important;
   margin: 0 auto !important;
+  width: 320px;
   max-width: 100% !important;
   height: auto !important;
 }

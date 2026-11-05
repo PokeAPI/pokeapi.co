@@ -7,27 +7,29 @@ This repository contains the source code and documentation for [pokeapi.co](http
 
 ## Getting Started
 
-### Prerequisities
+### Prerequisites
 
 -   Git
--   [Node](https://nodejs.org/en/): (v16 or higher)
+-   [Node](https://nodejs.org/en/): version 26, as specified in `.nvmrc`
+-   Yarn Classic (1.x), matching CI and the committed `yarn.lock`
 -   A GitHub fork of the repo (for any contributions)
 -   A clone of the [pokeapi.co repo](https://github.com/pokeapi/pokeapi.co) on your local machine
 
 ### Installation
 
 1. `cd pokeapi.co` to go into the project root.
-2. `npm install` to install project dependencies.
+2. If you use nvm, run `nvm install` and `nvm use` to select the version in `.nvmrc`.
+3. `yarn install --frozen-lockfile` to install the locked project dependencies.
 
 ### Running locally
 
-1. `npm run dev` to start the [Astro’s development server](https://docs.astro.build/en/reference/cli-reference/#astro-dev).
+1. `yarn dev` to start the [Astro’s development server](https://docs.astro.build/en/reference/cli-reference/#astro-dev).
 2. This will log a message to your terminal with the URL of your local preview. Open this URL to start browsing your site.
 
 ### Building for production
 
-1. `npm run build` to build the production site.
-2. `npm run preview` to serve the production version of the site on a local test server.
+1. `yarn build` to build the production site.
+2. `yarn preview` to serve the production version of the site on a local test server.
 
 Production files are located in the `dist` directory.
 

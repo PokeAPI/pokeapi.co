@@ -614,23 +614,29 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   border-bottom: none !important;
 }
 
-.sl-openapi-key:has(> .sl-openapi-key-description > details[open]) {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 0.3rem !important;
+.sl-openapi-key:has(> .sl-openapi-key-description > details[open]) > .sl-openapi-key-description {
+  display: contents !important;
 }
 
-.sl-openapi-key:has(> .sl-openapi-key-description > details[open]) > .sl-openapi-key-description {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 0.3rem !important;
-  width: 100% !important;
+.sl-openapi-key:has(> .sl-openapi-key-description > details[open]) > .sl-openapi-key-description > * {
+  grid-column: 2;
+}
+
+.sl-openapi-key:has(> .sl-openapi-key-description > details[open]) > .sl-openapi-key-description > details[open] {
+  grid-column: 1 / -1;
 }
 
 .sl-openapi-key-description > details[open] {
+  margin-top: 0.5rem !important;
   width: 100% !important;
+}
+
+.sl-openapi-key-description > details[open] > summary {
+  margin-bottom: 0.5rem !important;
+}
+
+.sl-openapi-key-description > details[open] > .sl-openapi-keys {
+  margin-block: 0.5rem 0.25rem !important;
 }
 
 .sl-openapi-key-description details:not(:first-child) {

@@ -6,11 +6,12 @@ import {stringify} from "yaml";
 import {bundle} from "@readme/openapi-parser";
 import {mkdir, writeFile} from "node:fs/promises";
 import {resolve} from "node:path";
-import {injectOpenAPIExamples} from "./src/utils/openapi-examples.mjs";
+import {injectOpenAPIExamples, normalizeOpenAPINullability} from "./src/utils/openapi-schema.mjs";
 import {editorThemeCss} from "./src/utils/editor-theme.mjs";
 
 async function processOpenAPISchema(schemaUrl) {
   const schema = await bundle(schemaUrl);
+  normalizeOpenAPINullability(schema);
   await injectOpenAPIExamples(schema);
 
   for (const operations of Object.values(schema.paths ?? {})) {

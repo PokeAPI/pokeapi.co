@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  // Set to true to show numeric bounds and character limits in OpenAPI docs.
+  var showOpenAPILimits = false;
+
   var content = document.querySelector(".sl-markdown-content");
   if (!content || !content.querySelector(".sl-openapi-section, sl-openapi-snippet-picker, .sl-openapi-keys")) return;
 
@@ -11,6 +14,23 @@
   };
 
   var themeOpenAPIBadges = function (root) {
+    if (!showOpenAPILimits) {
+      findWithin(root, ".sl-openapi-tag").forEach(function (tag) {
+        if (/^(?:>=?|<=?)\s*-?\d+(?:\.\d+)?(?: characters)?$/.test(tag.textContent.trim())) {
+          tag.style.setProperty("display", "none", "important");
+          var group = tag.closest(".sl-openapi-tags");
+          if (
+            group &&
+            Array.from(group.querySelectorAll(".sl-openapi-tag")).every(function (item) {
+              return item.style.display === "none";
+            })
+          ) {
+            group.style.setProperty("display", "none", "important");
+          }
+        }
+      });
+    }
+
     var types = findWithin(root, ".sl-openapi-type");
     var validTypes = ["integer", "string", "boolean", "object", "array"];
 
@@ -18,15 +38,20 @@
       if (el.dataset.themed) return;
       el.dataset.themed = "true";
       var txt = el.textContent.trim().toLowerCase();
-      var nullable = false;
+      var typeParts = txt.split("|").map(function (part) {
+        return part.trim();
+      });
+      var nullable = typeParts.includes("null");
+      if (nullable) {
+        txt = typeParts
+          .filter(function (part) {
+            return part !== "null";
+          })
+          .join(" | ");
+      }
 
       if (txt === "array<object>") {
         txt = "array";
-      }
-
-      if (txt.includes("null")) {
-        txt = txt.split("|")[0].trim();
-        nullable = true;
       }
 
       if (validTypes.includes(txt)) {
@@ -42,6 +67,8 @@
         el.style.color = "inherit";
         el.style.fontWeight = "inherit";
         el.style.marginInlineEnd = "0";
+      } else if (nullable) {
+        el.textContent = txt + "?";
       }
     });
 

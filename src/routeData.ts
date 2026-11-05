@@ -179,7 +179,7 @@ export const onRequest = defineRouteMiddleware((context) => {
     },
     {
       tag: "meta",
-      attrs: {name: "robots", content: "index, follow"},
+      attrs: {name: "robots", content: routeId === "404" ? "noindex, follow" : "index, follow"},
     },
   );
 

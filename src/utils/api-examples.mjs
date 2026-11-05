@@ -40,8 +40,13 @@ async function loadExample(url) {
   }
 }
 
-// Reuse the same request across every page/component in this build.
 export function getExampleResponse(url) {
-  if (!requests.has(url)) requests.set(url, loadExample(url));
+  if (!requests.has(url)) {
+    const request = loadExample(url).catch((error) => {
+      requests.delete(url);
+      throw error;
+    });
+    requests.set(url, request);
+  }
   return requests.get(url);
 }

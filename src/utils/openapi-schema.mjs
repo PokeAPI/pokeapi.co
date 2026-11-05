@@ -49,6 +49,12 @@ import {getExampleResponse} from "./api-examples.mjs";
 export async function injectOpenAPIExamples(schema, loadExample = getExampleResponse) {
   await Promise.all(
     Object.entries(schema.paths ?? {}).map(async ([path, item]) => {
+      for (const parameter of [...(item.parameters ?? []), ...(item.get?.parameters ?? [])]) {
+        if (parameter.in === "path") {
+          parameter.example = parameter.schema?.type === "string" ? "1" : 1;
+        }
+      }
+
       const media = item.get?.responses?.["200"]?.content?.["application/json"];
       if (!media || media.example !== undefined || media.examples !== undefined) return;
 

@@ -699,7 +699,7 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   margin-block: 0.5rem 0.25rem !important;
 }
 
-.sl-openapi-key-description details:not(:first-child) {
+.sl-openapi-key-description details:not(:first-child):not([open]) {
   margin-block-start: 0 !important;
 }
 
@@ -781,6 +781,10 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
 
 .sl-openapi-examples {
   margin-top: 3rem !important;
+}
+
+.sl-openapi-section:has(> .sl-heading-wrapper > .sl-openapi-heading[id$="-parameters"]) .sl-openapi-examples {
+  display: none !important;
 }
 
 .sl-openapi-example div.expressive-code .frame pre {

@@ -172,10 +172,16 @@
       if (keysContainer.closest(".sl-openapi-key-description")) return;
       if (keysContainer.querySelector(".sl-openapi-key-header")) return;
 
+      var section = keysContainer.closest(".sl-openapi-section");
+      var heading = section?.querySelector(":scope > .sl-heading-wrapper > .sl-openapi-heading");
+      var isParameters = /^(Path|Query|Header|Cookie) Parameters$/.test(heading?.textContent.trim() || "");
+      if (isParameters) keysContainer.classList.add("sl-openapi-parameter-keys");
+
       var header = document.createElement("div");
       header.className = "sl-openapi-key-header";
-      header.innerHTML =
-        '\n        <div class="sl-openapi-key-header-name">Field / Parameter</div>\n        <div class="sl-openapi-key-header-description">Type & Description</div>\n      ';
+      header.innerHTML = isParameters
+        ? '\n        <div class="sl-openapi-key-header-name">Field / Parameter</div>\n        <div class="sl-openapi-key-header-description"><span class="mobile-type-label">Type & </span>Description</div>\n        <div class="sl-openapi-key-header-type">Type</div>\n      '
+        : '\n        <div class="sl-openapi-key-header-name">Field / Parameter</div>\n        <div class="sl-openapi-key-header-description">Type & Description</div>\n      ';
       keysContainer.prepend(header);
     });
   };

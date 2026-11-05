@@ -61,8 +61,8 @@ const resources = await Promise.all(
 
 {
   resources.map((obj) => (
-    <section>
-      <div class="mt-12">
+    <section class="resource-section">
+      <div class="resource-endpoint-title">
         <AnchorHeading level={3} id={endpointAnchor(obj)}>
           {obj.name}
           <span class="font-light opacity-80"> (Endpoint)</span>
@@ -93,24 +93,33 @@ const resources = await Promise.all(
             {model.name}
             <span class="font-light opacity-80"> (Type)</span>
           </AnchorHeading>
-          <table class="table [&_tr:hover]:bg-[unset]">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Type</th>
+          <table class="resource-table table [&_tr:hover]:bg-[unset]" role="table">
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">
+                  Name
+                </th>
+                <th scope="col" role="columnheader">
+                  Description
+                </th>
+                <th scope="col" role="columnheader">
+                  Type
+                </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody role="rowgroup">
               {model.fields.map((field: ResponseField) => (
-                <tr class="border-b border-gray-200 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800/30">
-                  <td class="text-xs sm:text-sm">
+                <tr
+                  role="row"
+                  class="border-b border-gray-200 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800/30"
+                >
+                  <td role="cell" class="text-xs sm:text-sm">
                     <strong>
                       <code>{field.name}</code>
                     </strong>
                   </td>
-                  <td class="text-xs sm:text-sm" set:html={marked.parseInline(field.description)} />
-                  <td class="text-xs sm:text-sm">
+                  <td role="cell" class="text-xs sm:text-sm" set:html={marked.parseInline(field.description)} />
+                  <td role="cell" class="text-xs sm:text-sm">
                     {typeof field.type === "string" ? (
                       isPrimitive(field.type) ? (
                         <span class={`type-badge type-badge--${field.type}`}>

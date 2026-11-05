@@ -210,13 +210,13 @@ export default function Documentation() {
                     The following policies are set in place to limit abuse and cut down costs:
                     <ul>
                         <li>
-                            All HTTP requests made with methods other than GET and HEAD are blocked. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-non-GET.txt" target="_blank" rel="noopener noreferrer">View rule</a>
+                            All HTTP requests made with methods other than GET, HEAD or OPTIONS are blocked. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-non-GET.txt" target="_blank" rel="noopener noreferrer">View rule</a>
                         </li>
                         <li>
-                            All requests containing any of the following characters are blocked: <code>.,*%;:'!@+[</code>. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-symbols.txt" target="_blank" rel="noopener noreferrer">View rule</a>
+                            All HTTP requests containing any of the following characters in the URL path or query string are blocked: <code>.,*%;:'!@+[</code>. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-symbols.txt" target="_blank" rel="noopener noreferrer">View rule</a>
                         </li>
                         <li>
-                            Requests with a malformed query string are blocked. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-malformed-querystring.txt" target="_blank" rel="noopener noreferrer">View rule</a>
+                            HTTP Requests with a malformed query string are blocked. Only <code>limit</code> and <code>offset</code> parameters are allowed. <a href="https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-malformed-querystring.txt" target="_blank" rel="noopener noreferrer">View rule</a>
                         </li>
                     </ul>
                 </p>

@@ -176,15 +176,15 @@ import "./api-explorer.css";
             {endpoint}
           </span>
         ) : (
-          <div class="explorer-select-wrap relative flex shrink-0 items-stretch border-r-[1.5px] border-(--sl-color-gray-5)">
+          <div class="explorer-select-wrap relative flex shrink-0 items-stretch border-r-[1.5px] border-(--sl-color-gray-5) max-[600px]:min-w-0 max-[600px]:shrink">
             <button
-              class="explorer-select-trigger relative flex max-w-60 min-w-35 cursor-pointer items-center gap-1.5 overflow-hidden border-none bg-(--sl-color-black) pr-7 pl-3 text-left font-mono text-[0.82rem] font-medium text-ellipsis whitespace-nowrap text-(--sl-color-white) transition-colors duration-150 ease-in-out outline-none"
+              class="explorer-select-trigger relative flex max-w-60 min-w-35 cursor-pointer items-center gap-1.5 overflow-hidden border-none bg-(--sl-color-black) pr-7 pl-3 text-left font-mono text-[0.82rem] font-medium text-ellipsis whitespace-nowrap text-(--sl-color-white) transition-colors duration-150 ease-in-out outline-none max-[600px]:max-w-24 max-[600px]:min-w-0 max-[400px]:max-w-20"
               aria-haspopup="listbox"
               aria-expanded="false"
               aria-label="Select endpoint"
               type="button"
             >
-              <span class="explorer-select-label">pokemon</span>
+              <span class="explorer-select-label truncate">pokemon</span>
             </button>
             <div
               class="explorer-dropdown-panel fixed z-99999 max-h-90 min-w-60 scrollbar-thin scrollbar-thumb-(--sl-color-gray-5) scrollbar-track-transparent overflow-y-auto rounded-lg border-[1.5px] border-(--sl-color-gray-5) bg-(--sl-color-gray-6) py-1 shadow-[0_12px_40px_rgba(0,0,0,0.45),0_4px_12px_rgba(0,0,0,0.3)]"
@@ -220,22 +220,26 @@ import "./api-explorer.css";
       >
 
       <input
-        class="explorer-param-input min-w-15 flex-1 border-none bg-(--sl-color-black) px-3 py-2.75 font-mono text-[0.85rem] text-(--sl-color-white) outline-none placeholder:text-(--sl-color-gray-3) placeholder:opacity-100"
+        class="explorer-param-input min-w-15 flex-1 border-none bg-(--sl-color-black) px-3 py-2.75 font-mono text-[0.85rem] text-(--sl-color-white) outline-none placeholder:text-(--sl-color-gray-3) placeholder:opacity-100 max-[600px]:min-w-12"
         type="text"
-        placeholder="resource's name or numerical id"
-        value={defaultParam}
+        placeholder={defaultParam}
         aria-label="Resource name or ID"
         autocomplete="off"
         spellcheck="false"
       />
 
       <button
-        class="explorer-send-btn flex shrink-0 cursor-pointer items-center gap-1.75 border-none bg-(--sl-color-accent) px-5 text-[0.85rem] font-semibold tracking-wide whitespace-nowrap text-white transition-colors duration-180 ease-in-out hover:bg-[color-mix(in_srgb,var(--sl-color-accent)_75%,#fff_25%)] active:scale-98 disabled:cursor-not-allowed disabled:opacity-50"
+        class="explorer-send-btn group relative flex shrink-0 cursor-pointer items-center justify-center gap-1.75 border-none bg-(--sl-color-accent) px-5 text-[0.85rem] font-semibold tracking-wide whitespace-nowrap text-white transition-colors duration-180 ease-in-out hover:bg-[color-mix(in_srgb,var(--sl-color-accent)_75%,#fff_25%)] disabled:cursor-not-allowed disabled:opacity-50 max-[600px]:px-3"
         type="button"
         aria-label="Send API request"
       >
-        <Icon name="rocket" class="h-3.25 w-3.25 shrink-0" />
-        Send
+        <span class="inline-flex items-center gap-1.75 group-aria-busy:invisible">
+          <Icon name="rocket" class="h-3.25 w-3.25 shrink-0" />
+          Send
+        </span>
+        <span class="invisible absolute text-[1.1em] opacity-60 group-aria-busy:visible" aria-hidden="true"
+          >&ctdot;</span
+        >
       </button>
     </div>
 

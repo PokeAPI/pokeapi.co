@@ -11,6 +11,7 @@ import {editorHighlightColors as colors} from "../../utils/editor-theme.mjs";
   "use strict";
 
   const BASE_URL = "https://pokeapi.co/api/v2/";
+  const REQUEST_TIMEOUT_MS = 10_000;
 
   const pokeTheme = EditorView.theme({
     "&": {
@@ -40,7 +41,7 @@ import {editorHighlightColors as colors} from "../../utils/editor-theme.mjs";
     },
     ".cm-lineNumbers .cm-gutterElement": {
       padding: "0 6px 0 12px",
-      minWidth: "28px",
+      minWidth: "calc(4ch + 18px)",
       textAlign: "right",
       fontSize: "0.82rem",
     },
@@ -272,20 +273,19 @@ import {editorHighlightColors as colors} from "../../utils/editor-theme.mjs";
       });
     }
 
-    function getRequestUrl() {
-      const param = paramInput?.value.trim().replace(/&amp;/g, "&") || "";
+    function getRequestUrl(param) {
       if (param.startsWith("?")) return BASE_URL + selectedEndpoint + param;
       if (param) return BASE_URL + selectedEndpoint + "/" + param;
       return BASE_URL + selectedEndpoint + "/";
     }
 
-    const originalSendHtml = sendBtn ? sendBtn.innerHTML : "";
     let requestPending = false;
 
-    async function sendRequest() {
-      if (requestPending) return;
+    async function sendRequest(value = paramInput?.value || "") {
+      const param = value.trim().replace(/&amp;/g, "&");
+      if (requestPending || !param) return;
       requestPending = true;
-      const url = getRequestUrl();
+      const url = getRequestUrl(param);
       if (directLink) {
         directLink.href = url;
         directLink.textContent = url;
@@ -293,19 +293,22 @@ import {editorHighlightColors as colors} from "../../utils/editor-theme.mjs";
 
       if (sendBtn) {
         sendBtn.disabled = true;
-        sendBtn.innerHTML = '<span style="opacity:.6;font-size:1.1em">\u22EF</span>';
+        sendBtn.setAttribute("aria-busy", "true");
       }
 
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, {signal: controller.signal});
         applyJsonData(res.ok ? await res.json() : {error: "HTTP " + res.status, url});
       } catch (err) {
-        applyJsonData({error: String(err), url});
+        applyJsonData({error: controller.signal.aborted ? "Request timed out. Please try again." : String(err), url});
       } finally {
+        clearTimeout(timeout);
         requestPending = false;
         if (sendBtn) {
           sendBtn.disabled = false;
-          sendBtn.innerHTML = originalSendHtml;
+          sendBtn.removeAttribute("aria-busy");
         }
       }
     }
@@ -356,16 +359,16 @@ import {editorHighlightColors as colors} from "../../utils/editor-theme.mjs";
     paramInput?.addEventListener("keypress", function (e) {
       if (e.key === "Enter") sendRequest();
     });
-    sendBtn?.addEventListener("click", sendRequest);
+    sendBtn?.addEventListener("click", () => sendRequest());
 
     if (widget.dataset.randomPokemonMax) {
       const result = getRandomHeroPokemon(Number(widget.dataset.randomPokemonMax));
       if (!result) return;
       const id = String(result.id);
       selectEndpoint("pokemon");
-      if (paramInput) paramInput.value = id;
+      if (paramInput) paramInput.placeholder = id;
       widget.dataset.param = id;
-      sendRequest();
+      sendRequest(id);
     }
   }
 

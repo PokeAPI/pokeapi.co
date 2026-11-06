@@ -1,0 +1,166 @@
+/* Clean & polished guide styling for Starlight */
+
+/* Completely eliminate link underlines/bottom-borders on cards under all states */
+.guide-page .sl-markdown-content :is(.sl-link-card, .card, .card-grid) a,
+.guide-page .sl-markdown-content a:is(.sl-link-card, .card),
+.guide-page .sl-markdown-content :is(.sl-link-card, .card) :is(a, .title, span),
+.guide-page .sl-link-card,
+.guide-page .sl-link-card a,
+.guide-page .sl-link-card .title,
+.guide-page .sl-link-card .stack,
+.guide-page .sl-link-card .description {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+}
+
+.guide-page .sl-markdown-content :is(.sl-link-card, .card, .card-grid) a:hover,
+.guide-page .sl-markdown-content a:is(.sl-link-card, .card):hover,
+.guide-page .sl-markdown-content :is(.sl-link-card, .card):hover :is(a, .title, span),
+.guide-page .sl-link-card:hover,
+.guide-page .sl-link-card:hover a,
+.guide-page .sl-link-card:hover .title,
+.guide-page .sl-link-card:hover .stack,
+.guide-page .sl-link-card:hover .description {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+}
+
+.guide-page .sl-link-card .title {
+  color: var(--sl-color-white) !important;
+  font-weight: 500 !important;
+  font-size: 1.15rem !important;
+  line-height: 1.4 !important;
+}
+
+.guide-page .sl-link-card:hover .title {
+  color: var(--sl-color-white) !important;
+}
+
+.guide-page .sl-link-card .title svg,
+.guide-page .sl-link-card > svg {
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s ease !important;
+  color: var(--sl-color-gray-3) !important;
+}
+
+.guide-page .sl-link-card:hover .title svg,
+.guide-page .sl-link-card:hover > svg {
+  transform: translateX(4px) !important;
+  color: var(--sl-color-accent) !important;
+}
+
+.guide-page .sl-link-card .description {
+  margin-top: 0.5rem !important;
+  color: var(--sl-color-gray-2) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+}
+
+/* Steps styling */
+.guide-page .sl-steps {
+  --bullet-size: 1.75rem;
+  border-inline-start: 0;
+  padding-inline-start: 0 !important;
+}
+
+.guide-page .sl-steps > li {
+  margin-top: 1.5rem !important;
+  padding-inline-start: 2.75rem;
+}
+
+.guide-page .sl-steps > li::before {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-inline-start: 0;
+  box-shadow: none;
+  border: 2px solid color-mix(in srgb, var(--sl-color-accent) 70%, transparent) !important;
+  border-radius: 6px !important;
+  background-color: var(--sl-color-accent-low) !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  color: var(--sl-color-accent-high) !important;
+  font-weight: 500 !important;
+  font-size: 0.85rem !important;
+}
+
+/* Asides / Callouts */
+
+/* Tabs */
+.guide-page starlight-tabs [role="tablist"] {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.guide-page starlight-tabs [role="tab"][aria-selected="true"] {
+  border-bottom: 2px solid var(--sl-color-accent) !important;
+  color: var(--sl-color-white) !important;
+}
+
+/* Badges */
+.guide-page .sl-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  margin-right: 0.25rem !important;
+  border: 1px solid !important;
+  border-radius: 4px !important;
+  padding: 0.1rem 0.45rem !important;
+  font-weight: 500 !important;
+  font-size: 0.72rem !important;
+}
+
+.guide-page .sl-badge.default {
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  background-color: rgba(99, 102, 241, 0.1) !important;
+  color: #818cf8 !important;
+}
+
+.guide-page .sl-badge.note {
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #60a5fa !important;
+}
+
+.guide-page .sl-badge.success {
+  border-color: rgba(16, 185, 129, 0.25) !important;
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #34d399 !important;
+}
+
+.guide-page .sl-badge.caution {
+  border-color: rgba(245, 158, 11, 0.25) !important;
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  color: #fbbf24 !important;
+}
+
+.guide-page .sl-badge.danger {
+  border-color: rgba(244, 63, 94, 0.25) !important;
+  background-color: rgba(244, 63, 94, 0.1) !important;
+  color: #fb7185 !important;
+}
+
+/* Keyboard keys */
+.guide-page .sl-markdown-content kbd {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 4px !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  padding: 0.15rem 0.35rem !important;
+  color: var(--sl-color-white) !important;
+  font-size: 0.775em !important;
+  font-family: var(--sl-font-mono) !important;
+}
+
+/* Light Mode Adaptations */
+:root[data-theme="light"] {
+  .guide-page .sl-link-card .title {
+    color: var(--sl-color-white) !important;
+  }
+  .guide-page .sl-markdown-content kbd {
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: var(--sl-color-white) !important;
+  }
+}

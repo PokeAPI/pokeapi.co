@@ -1,0 +1,97 @@
+---
+import DefaultHero from "@astrojs/starlight/components/Hero.astro";
+import {getExampleResponse} from "../../utils/api-examples.mjs";
+const {count} = await getExampleResponse("https://pokeapi.co/api/v2/pokemon-species/?limit=1");
+---
+
+<div class="rotating-hero-layout">
+  <DefaultHero />
+  <rotating-hero-image data-max={count}>
+    <img alt="" width="475" height="475" decoding="async" />
+  </rotating-hero-image>
+</div>
+
+<script>
+  import {getRandomHeroPokemon} from "../../utils/random-hero-pokemon.js";
+
+  class RotatingHeroImage extends HTMLElement {
+    async connectedCallback() {
+      if (this.dataset.ready) return;
+      const result = getRandomHeroPokemon(Number(this.dataset.max));
+      if (!this.isConnected) return;
+      if (!result) return;
+      const image = this.querySelector("img")!;
+      image.src = result.url;
+      let shiny = result.shiny;
+      try {
+        try {
+          await image.decode();
+        } catch (error) {
+          if (!shiny) throw error;
+          shiny = false;
+          image.src = result.url.replace("/shiny/", "/");
+          await image.decode();
+        }
+        if (!this.isConnected) return;
+        image.alt = `Official artwork of ${shiny ? "shiny " : ""}Pokémon #${result.id}`;
+        this.dataset.ready = "true";
+      } catch (error) {
+        console.warn("Could not load hero artwork.", error);
+      }
+    }
+  }
+  if (!customElements.get("rotating-hero-image")) customElements.define("rotating-hero-image", RotatingHeroImage);
+</script>
+
+<style>
+  .rotating-hero-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  .rotating-hero-layout > :global(.hero) {
+    grid-template-columns: 100%;
+    padding: 0;
+    width: 100%;
+  }
+  @media (min-width: 50rem) {
+    .rotating-hero-layout {
+      display: grid;
+      grid-template-columns: 7fr 4fr;
+      gap: 3%;
+      padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
+    }
+  }
+
+  rotating-hero-image {
+    display: block;
+    position: relative;
+    order: -1;
+    margin-inline: auto;
+    aspect-ratio: 1;
+    width: min(100%, 320px);
+  }
+  img {
+    display: block;
+    opacity: 0;
+    transition: opacity 250ms ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  [data-ready="true"] img {
+    opacity: 1;
+  }
+  @media (min-width: 50rem) {
+    rotating-hero-image {
+      order: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    img {
+      transition: none;
+    }
+  }
+</style>

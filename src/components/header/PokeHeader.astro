@@ -1,0 +1,125 @@
+---
+import LanguageSelect from "@astrojs/starlight/components/LanguageSelect.astro";
+import Search from "@astrojs/starlight/components/Search.astro";
+import SiteTitle from "@astrojs/starlight/components/SiteTitle.astro";
+import {Icon} from "@astrojs/starlight/components";
+import ThemeToggle from "./ThemeToggle.astro";
+import SocialIcons from "./SocialIcons.astro";
+
+import PokeNav from "./PokeNav.astro";
+import "../../styles/search.css";
+---
+
+<div class="header">
+  <div class="-m-1 flex min-w-0 overflow-clip p-1">
+    <SiteTitle />
+  </div>
+  <div class="header-search print:hidden">
+    <Search />
+  </div>
+  <div class="header-actions print:hidden">
+    <div class="flex items-center gap-4 after:h-8 after:border-r after:border-(--sl-color-gray-5) after:content-['']">
+      <PokeNav />
+    </div>
+    <div class="flex items-center gap-4 after:h-8 after:border-r after:border-(--sl-color-gray-5) after:content-['']">
+      <SocialIcons />
+    </div>
+    <ThemeToggle />
+    <LanguageSelect />
+  </div>
+</div>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sl-nav-gap);
+    height: 100%;
+  }
+
+  .header-search {
+    display: flex;
+    margin-inline-start: auto;
+    min-width: 0;
+  }
+
+  .header-actions {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  @media (min-width: 50rem) {
+    .header {
+      display: grid;
+      --brand-column: clamp(7rem, calc(100vw - 62rem), 17.25rem);
+      grid-template-columns: var(--brand-column) minmax(0, 1fr) auto;
+    }
+
+    .header-search {
+      margin-inline-start: 0;
+    }
+
+    .header-actions {
+      display: flex;
+    }
+
+    :global([data-has-hero]) .header {
+      grid-template-columns:
+        max(7rem, calc((100vw - var(--sl-content-width)) / 2 - var(--sl-nav-pad-x) - var(--sl-nav-gap)))
+        minmax(0, 1fr) auto;
+    }
+  }
+
+  @media (min-width: 72rem) {
+    /* Follow the content's inset between the navigation and table of contents. */
+    :global([data-has-sidebar][data-has-toc]:not([data-has-hero])) .header {
+      grid-template-columns:
+        max(
+          var(--brand-column),
+          calc(
+            (100vw + var(--sl-sidebar-width) - var(--sl-content-width) - var(--site-toc-width)) / 2 -
+              var(--sl-content-pad-x) - var(--sl-nav-pad-x) - var(--sl-nav-gap)
+          )
+        )
+        minmax(0, 1fr) auto;
+    }
+  }
+
+  @media print {
+    .header-search,
+    .header-actions {
+      display: none;
+    }
+  }
+</style>
+
+<button
+  id="back-to-top"
+  class="back-to-top invisible fixed right-8 bottom-8 z-99999 flex h-11 w-11 translate-y-2.5 cursor-pointer items-center justify-center rounded-lg border border-(--sl-color-gray-5) bg-(--sl-color-gray-6) text-(--sl-color-white) opacity-0 shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-(--sl-color-accent) hover:bg-(--sl-color-gray-5) hover:text-(--sl-color-accent-high) hover:shadow-[0_6px_16px_rgba(59,130,246,0.25)] active:translate-y-0 [&.visible]:visible [&.visible]:translate-y-0 [&.visible]:opacity-100"
+  aria-label="Back to top"
+  type="button"
+>
+  <Icon name="up-caret" size="1.25rem" />
+</button>
+
+<script>
+  const btn = document.getElementById("back-to-top");
+  if (btn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        btn.classList.add("visible");
+      } else {
+        btn.classList.remove("visible");
+      }
+    });
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+</script>

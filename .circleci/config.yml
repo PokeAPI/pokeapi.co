@@ -10,22 +10,32 @@ commands:
     description: Install dependencies and build the project
     steps:
       - run:
-          name: Use NVM
+          name: Setup NVM
           command: |
-            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
-            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> "$BASH_ENV"
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> "$BASH_ENV"
+            echo 'nvm use >/dev/null 2>&1 || true' >> "$BASH_ENV"
+
       - run:
-          name: Use Node LTS
+          name: Install Node
           command: |
-            nvm install 'lts/*'
-            nvm use 'lts/*'
-            nvm alias default 'lts/*'
+            nvm install
+            nvm use
+
+      - run:
+          name: Install Yarn
+          command: |
+            npm install -g yarn
+
       - run:
           name: Install exact dependencies
-          command: npm ci
+          command: |
+            yarn install --frozen-lockfile
+
       - run:
           name: Build the website
-          command: npm run build
+          command: |
+            yarn build
 
 jobs:
   build-and-test:

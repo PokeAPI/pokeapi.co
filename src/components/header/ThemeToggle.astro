@@ -1,0 +1,121 @@
+<pokemon-theme-toggle>
+  <button type="button" class="pokemon-theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode">
+    <img
+      class="theme-solrock"
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/338.svg"
+      width="20"
+      height="20"
+      alt=""
+      aria-hidden="true"
+    />
+    <img
+      class="theme-lunatone"
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/337.svg"
+      width="20"
+      height="20"
+      alt=""
+      aria-hidden="true"
+    />
+  </button>
+</pokemon-theme-toggle>
+
+<style>
+  .pokemon-theme-toggle {
+    display: block;
+    position: relative;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.2s ease;
+    cursor: pointer;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 50%;
+    background: var(--sl-color-gray-6);
+    padding: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    overflow: hidden;
+  }
+  .pokemon-theme-toggle:hover {
+    transform: translateY(-1px) rotate(15deg) scale(1.05);
+    border-color: var(--sl-color-accent);
+    background: var(--sl-color-gray-5);
+  }
+  .pokemon-theme-toggle:active {
+    transform: scale(0.94);
+  }
+  .pokemon-theme-toggle:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 3px;
+  }
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 0.8, 0.3, 1),
+      opacity 0.25s ease;
+    image-rendering: pixelated;
+    width: 1.25rem;
+    max-width: none;
+    height: 1.25rem;
+    pointer-events: none;
+  }
+  .theme-lunatone {
+    transform: translate(-50%, -15%) rotate(-60deg) scale(0.6);
+    opacity: 0;
+  }
+  :global([data-theme="dark"]) .theme-solrock {
+    transform: translate(-50%, -85%) rotate(60deg) scale(0.6);
+    opacity: 0;
+  }
+  :global([data-theme="dark"]) .theme-lunatone {
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pokemon-theme-toggle,
+    img {
+      transition: none;
+    }
+    .pokemon-theme-toggle:hover,
+    .pokemon-theme-toggle:active {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  class PokemonThemeToggle extends HTMLElement {
+    private observer?: MutationObserver;
+    private button?: HTMLButtonElement;
+    private sync = () => {
+      const dark = document.documentElement.dataset.theme === "dark";
+      this.button?.setAttribute("aria-checked", String(dark));
+      this.button?.setAttribute("title", dark ? "Switch to light mode" : "Switch to dark mode");
+    };
+    private toggle = () => {
+      const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = theme;
+      try {
+        localStorage.setItem("starlight-theme", theme);
+      } catch {}
+    };
+    connectedCallback() {
+      this.button = this.querySelector("button") ?? undefined;
+      this.button?.addEventListener("click", this.toggle);
+      this.observer = new MutationObserver(this.sync);
+      this.observer.observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+      this.sync();
+    }
+    disconnectedCallback() {
+      this.button?.removeEventListener("click", this.toggle);
+      this.observer?.disconnect();
+    }
+  }
+  if (!customElements.get("pokemon-theme-toggle")) {
+    customElements.define("pokemon-theme-toggle", PokemonThemeToggle);
+  }
+</script>

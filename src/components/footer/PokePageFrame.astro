@@ -1,0 +1,144 @@
+---
+import Default from "@astrojs/starlight/components/PageFrame.astro";
+import Pagination from "@astrojs/starlight/components/Pagination.astro";
+import SiteAlerts from "../header/SiteAlerts.astro";
+// Starlight supplies the header slot only to its PageFrame hook, never its Footer hook.
+const isPageFrame = Astro.slots.has("header");
+const currentYear = new Date().getFullYear();
+---
+
+{
+  isPageFrame ? (
+    <>
+      <Default>
+        <Fragment slot="header">
+          <slot name="header" />
+          <SiteAlerts />
+        </Fragment>
+        <slot name="sidebar" slot="sidebar" />
+        <slot />
+      </Default>
+      <footer class="poke-footer">
+        <div class="footer-inner">
+          <div class="footer-columns">
+            <div class="footer-brand">
+              <a class="footer-title" href={import.meta.env.BASE_URL}>
+                <img src={`${import.meta.env.BASE_URL}favicon.svg`} width="32" height="32" alt="" />
+                <span>PokéAPI</span>
+              </a>
+              <p>A free, open and community-driven REST API for Pokémon data.</p>
+              <a class="footer-status" href="https://pokeapi.statuspage.io/" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="https://img.shields.io/badge/dynamic/json?style=flat&color=brightgreen&label=status&query=%24.status.description&url=https%3A%2F%2Fzlfyqp3hlvly.statuspage.io%2Fapi%2Fv2%2Fsummary.json"
+                  alt="PokéAPI system status"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+              <div>
+                <h3>Documentation</h3>
+                <ul>
+                  <li>
+                    <a href={`${import.meta.env.BASE_URL}about/`}>About</a>
+                  </li>
+                  <li>
+                    <a href={`${import.meta.env.BASE_URL}v2/`}>API v2</a>
+                  </li>
+                  <li>
+                    <a href={`${import.meta.env.BASE_URL}v2/openapi/`}>OpenAPI</a>
+                  </li>
+                  <li>
+                    <a href={`${import.meta.env.BASE_URL}graphql/`}>GraphQL v1Beta</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3>Community</h3>
+                <ul>
+                  <li>
+                    <a href="https://github.com/PokeAPI/pokeapi" target="_blank" rel="noopener">
+                      Source Code
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/PokeAPI/pokeapi/graphs/contributors" target="_blank" rel="noopener">
+                      Contributors
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/PokeAPI/pokeapi/discussions" target="_blank" rel="noopener">
+                      Discussions
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/PokeAPI/pokeapi/issues" target="_blank" rel="noopener">
+                      Report Issues
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3>Resources</h3>
+                <ul>
+                  <li>
+                    <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener">
+                      Sprites
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/PokeAPI/cries" target="_blank" rel="noopener">
+                      API Data
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/PokeAPI/pokeapi/blob/master/LICENSE.md" target="_blank" rel="noopener">
+                      License
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="footer-bottom">
+            <p>
+              &copy; {currentYear}{" "}
+              <a href="https://github.com/PokeAPI/pokeapi/graphs/contributors">PokéAPI contributors</a>
+            </p>
+            <p>Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+          </div>
+        </div>
+      </footer>
+    </>
+  ) : (
+    <nav class="py-12 pb-4" aria-label="Page navigation">
+      <Pagination />
+    </nav>
+  )
+}
+
+<script src="./starlight-openapi-custom.js"></script>
+
+<script>
+  const footer = document.querySelector<HTMLElement>(".poke-footer");
+  if (footer) {
+    let pending = false;
+    const update = () => {
+      const overlap = Math.max(0, window.innerHeight - footer.getBoundingClientRect().top);
+      document.documentElement.style.setProperty("--site-footer-overlap", `${overlap}px`);
+      pending = false;
+    };
+    const schedule = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", schedule, {passive: true});
+    window.addEventListener("resize", schedule);
+    new ResizeObserver(schedule).observe(document.body);
+    update();
+  }
+</script>

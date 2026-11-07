@@ -992,12 +992,142 @@
           {
             "name": "other",
             "description": "Additional sprites grouped by source, such as official artwork, HOME, and Showdown. Available keys vary by resource.",
-            "type": "object"
+            "type": "PokemonSpritesOther"
           },
           {
             "name": "versions",
             "description": "Sprites grouped by generation and game. Available keys vary by resource.",
             "type": "object"
+          }
+        ]
+      },
+      {
+        "name": "PokemonSpritesOther",
+        "fields": [
+          {
+            "name": "dream_world",
+            "description": "Pokémon Dream World artwork URLs.",
+            "type": "PokemonSpritesOtherDreamWorld"
+          },
+          {
+            "name": "home",
+            "description": "Pokémon HOME sprite URLs.",
+            "type": "PokemonSpritesOtherHome"
+          },
+          {
+            "name": "showdown",
+            "description": "Pokémon Showdown sprite URLs.",
+            "type": "PokemonSpritesOtherShowdown"
+          },
+          {
+            "name": "official-artwork",
+            "description": "Official Pokémon artwork URLs, including shiny artwork and version-specific variants.",
+            "type": "PokemonSpritesOtherOfficialArtwork"
+          }
+        ]
+      },
+      {
+        "name": "PokemonSpritesOtherDreamWorld",
+        "fields": [
+          {
+            "name": "front_default",
+            "description": "The URL of the default Pokémon Dream World front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_female",
+            "description": "The URL of the female Pokémon Dream World front image, or null if unavailable.",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "PokemonSpritesOtherHome",
+        "fields": [
+          {
+            "name": "front_default",
+            "description": "The URL of the default Pokémon HOME front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_female",
+            "description": "The URL of the female Pokémon HOME front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_shiny",
+            "description": "The URL of the shiny Pokémon HOME front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_shiny_female",
+            "description": "The URL of the shiny female Pokémon HOME front image, or null if unavailable.",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "PokemonSpritesOtherOfficialArtwork",
+        "fields": [
+          {
+            "name": "front_default",
+            "description": "The URL of the default front official artwork, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_shiny",
+            "description": "The URL of the shiny front official artwork, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "versions",
+            "description": "Additional official artwork grouped by version. Available keys vary by resource.",
+            "type": "object"
+          }
+        ]
+      },
+      {
+        "name": "PokemonSpritesOtherShowdown",
+        "fields": [
+          {
+            "name": "front_default",
+            "description": "The URL of the default Pokémon Showdown front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_female",
+            "description": "The URL of the female Pokémon Showdown front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_shiny",
+            "description": "The URL of the shiny Pokémon Showdown front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "front_shiny_female",
+            "description": "The URL of the shiny female Pokémon Showdown front image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "back_default",
+            "description": "The URL of the default Pokémon Showdown back image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "back_female",
+            "description": "The URL of the female Pokémon Showdown back image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "back_shiny",
+            "description": "The URL of the shiny Pokémon Showdown back image, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "back_shiny_female",
+            "description": "The URL of the shiny female Pokémon Showdown back image, or null if unavailable.",
+            "type": "string"
           }
         ]
       },
@@ -1247,7 +1377,7 @@
           {
             "name": "other",
             "description": "Additional sprites grouped by source, such as official artwork, HOME, and Showdown. Available keys vary by resource.",
-            "type": "object"
+            "type": "PokemonSpritesOther"
           },
           {
             "name": "versions",
@@ -2010,6 +2140,21 @@
             "name": "damage_relations",
             "description": "The damage relations the referenced type had up to and including the listed generation",
             "type": "TypeRelations"
+          }
+        ]
+      },
+      {
+        "name": "TypeGameSprite",
+        "fields": [
+          {
+            "name": "name_icon",
+            "description": "The URL of the icon displaying the type name in this game, or null if unavailable.",
+            "type": "string"
+          },
+          {
+            "name": "symbol_icon",
+            "description": "The URL of the type symbol icon in this game, or null if unavailable.",
+            "type": "string"
           }
         ]
       }

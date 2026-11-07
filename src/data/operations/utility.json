@@ -24,12 +24,12 @@
           },
           {
             "name": "iso639",
-            "description": "The two-letter code of the country where this language is spoken. Note that it is not unique.",
+            "description": "The two-letter ISO 639-1 language code. Multiple PokéAPI language records may share this code.",
             "type": "string"
           },
           {
             "name": "iso3166",
-            "description": "The two-letter code of the language. Note that it is not unique.",
+            "description": "The two-letter ISO 3166-1 alpha-2 code of the country or region associated with this language record. Multiple PokéAPI language records may share this code.",
             "type": "string"
           },
           {
@@ -308,7 +308,7 @@
         "fields": [
           {
             "name": "text",
-            "description": "The localized name for an API resource in a specific language.",
+            "description": "The localized flavor text for an API resource in a specific language.",
             "type": "string"
           },
           {

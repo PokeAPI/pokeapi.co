@@ -38,6 +38,11 @@
         "level": "important",
         "active": false,
         "message": "Sprites for the version group omega-ruby-alpha-sapphire will be moved from the path `../omegaruby-alphasapphire/..` to `../omega-ruby-alpha-sapphire/..` starting October 7th. Read more about it [here](https://github.com/PokeAPI/pokeapi/pull/1689#discussion_r4141570993)."
+    },
+    {
+        "level": "success",
+        "active": true,
+        "message": "A new UI is available [here](https://fallendeity.github.io/pokeapi.co/) for testing. Suggestions are welcome in our [Discord](https://discord.gg/BpjJcKK4TC)."
     }
 ]
 

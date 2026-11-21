@@ -1,35 +1,41 @@
 ---
-title: GraphQL v1beta
-description: Beta support for PokéAPI GraphQL queries and explorer console.
+title: GraphQL
+description: PokéAPI GraphQL queries and explorer console.
 keywords: [graphql, query, console]
 ---
 
 ## Information
 
-Beta support for [GraphQL](https://graphql.org/) is rolling out starting April 2021
+A free rate-limited endpoint is available at [graphql.pokeapi.co/v1beta2](https://graphql.pokeapi.co/v1beta2). This endpoint can be subject to changes in the future. Only POST requests are allowed.
 
-A free rate-limited endpoint is available at [beta.pokeapi.co/graphql/v1beta](https://beta.pokeapi.co/graphql/v1beta). This endpoint can be subject to changes in future. Only POST requests are allowed.
-
-To ease learning and developing, a [GraphiQL](https://github.com/graphql/graphiql) interface is hosted at [beta.pokeapi.co/graphql/console/](https://beta.pokeapi.co/graphql/console/). This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
+To ease learning and developing, a [GraphiQL](https://github.com/graphql/graphiql) interface is hosted at [graphql.pokeapi.co/v1beta2/console/](https://graphql.pokeapi.co/v1beta2/console/). This console loads PokeAPI's GraphQL schema and offers a handy Explorer that can be used to create GraphQL queries. GraphQL queries are still HTTP queries so you can use your favorite tool/library to query the GraphQL endpoint. Follows an example using Curl.
 
 ```sh
-# This curl retrieves all items and relative costs
-curl 'https://beta.pokeapi.co/graphql/v1beta' \
+# This curl retrieves all items
+curl 'https://graphql.pokeapi.co/v1beta2' \
   -H 'content-type: application/json' \
   -H 'accept: */*' \
   --compressed \
   --data-binary @- <<'EOF'
-  {
-    "query": "query getItems{pokemon_v2_item{name,cost}}",
+{
+    "query": "query getItems{item{name}}",
     "variables": null,
     "operationName": "getItems"
-  }
+}
 EOF
 ```
 
-Some code examples and GQL queries are available [here](https://github.com/PokeAPI/pokeapi/tree/master/graphql/examples).
+A Node example and some GQL queries are available [here](https://github.com/PokeAPI/pokeapi/tree/master/graphql/v1beta2/examples).
 
-### Fair Use Policy
+## v1beta2
+
+A new specification [v1beta2](https://graphql.pokeapi.co/v1beta2) has been released on June 2025. The major change is that the prefix *pokemon_v2_* has been stripped away from all types so to have a clearer way to build GQL queries. A GraphiQL console can be found at [graphql.pokeapi.co/v1beta2/console](https://graphql.pokeapi.co/v1beta2/console).
+
+## v1beta
+
+This [v1beta](https://beta.pokeapi.co/graphql/v1beta) specification has been removed as of November 2026.
+
+## Fair Use Policy
 
 PokéAPI is free and open to use. It is also very popular. Because of this, we ask every developer to abide by our fair use policy. People not complying with the fair use policy will have their IP address permanently banned.
 
@@ -41,7 +47,7 @@ PokéAPI is primarily an educational tool, and we will not tolerate denial of se
 - Be nice and friendly to your fellow PokéAPI developers.
 - If you spot security vulnerabilities act and [report them](https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability) responsibly.
 
-### Beta status
+## Beta status
 
 To reduce costs we are hosting the GraphQL API on a GCP e2-micro free instance. The machine can hardly support all the load of Hasura and Postgres thanks to some ingenious tweaks.
 

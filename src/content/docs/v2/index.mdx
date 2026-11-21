@@ -36,6 +36,14 @@ PokéAPI is primarily an educational tool, and we will not tolerate denial of se
 - Be nice and friendly to your fellow PokéAPI developers.
 - If you spot security vulnerabilities act and [report them](https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability) responsibly.
 
+## Active policies
+
+The following policies are set in place to limit abuse and cut down costs:
+
+- All HTTP requests made with methods other than GET, HEAD or OPTIONS are blocked. [View rule](https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-non-GET.txt)
+- All HTTP requests containing any of the following characters in the URL path or query string are blocked: `.,*%;:'!@+[`. [View rule](https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-symbols.txt)
+- HTTP Requests with a malformed query string are blocked. Only `limit` and `offset` parameters are allowed. [View rule](https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-malformed-querystring.txt)
+
 ## OpenAPI
 
 The OpenAPI documentation is dynamically generated from the official [PokeAPI OpenAPI specification](https://github.com/PokeAPI/pokeapi/blob/master/openapi.yml).

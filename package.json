@@ -18,7 +18,6 @@
     "dev": "astro dev --host",
     "start": "astro dev",
     "build": "cross-env SITE_URL=https://pokeapi.co astro build",
-    "build:ghpages": "cross-env SITE_URL=https://fallendeity.github.io BASE_URL=/pokeapi.co/ astro build",
     "preview": "astro preview --host",
     "astro": "astro",
     "format": "prettier --write \"{src,.}/**/*.{astro,js,mjs,css,json}\"",

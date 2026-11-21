@@ -50,7 +50,7 @@ export default defineConfig({
       },
       routeMiddleware: "./src/routeData.ts",
       lastUpdated: true,
-      editLink: {baseUrl: "https://github.com/FallenDeity/pokeapi.co/edit/feat/astro-starlight/"},
+      editLink: {baseUrl: "https://github.com/PokeAPI/pokeapi.co/edit/master/"},
       components: {
         Hero: "./src/components/hero/Hero.astro",
         PageTitle: "./src/components/markdown/DocPageTitle.astro",

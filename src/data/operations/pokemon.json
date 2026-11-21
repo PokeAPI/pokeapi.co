@@ -920,6 +920,11 @@
             "name": "order",
             "description": "Order by which the pokemon will learn the move. A newly learnt move will replace the move with lowest order.",
             "type": "integer"
+          },
+          {
+            "name": "enhancement_level",
+            "description": "The level at which move styles unlock in Pokémon Legends: Arceus or Plus Moves unlock in Pokémon Legends: Z-A. Null when no natural unlock level is recorded.",
+            "type": "integer"
           }
         ]
       },

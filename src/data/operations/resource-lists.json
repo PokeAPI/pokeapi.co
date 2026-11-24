@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Named",
+    "exampleRequest": "/v2/{endpoint}/",
+    "responseModels": [
+      {
+        "name": "NamedAPIResourceList",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The total number of resources available from this API.",
+            "type": "integer"
+          },
+          {
+            "name": "next",
+            "description": "The URL for the next page in the list.",
+            "type": "string"
+          },
+          {
+            "name": "previous",
+            "description": "The URL for the previous page in the list.",
+            "type": "string"
+          },
+          {
+            "name": "results",
+            "description": "A list of named API resources.",
+            "type": {
+              "type": "list",
+              "of": "NamedAPIResource"
+            }
+          }
+        ]
+      }
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/ability/?limit=2"
+  },
+  {
+    "name": "Unnamed",
+    "exampleRequest": "/v2/{endpoint}/",
+    "responseModels": [
+      {
+        "name": "APIResourceList",
+        "fields": [
+          {
+            "name": "count",
+            "description": "The total number of resources available from this API.",
+            "type": "integer"
+          },
+          {
+            "name": "next",
+            "description": "The URL for the next page in the list.",
+            "type": "string"
+          },
+          {
+            "name": "previous",
+            "description": "The URL for the previous page in the list.",
+            "type": "string"
+          },
+          {
+            "name": "results",
+            "description": "A list of unnamed API resources.",
+            "type": {
+              "type": "list",
+              "of": "APIResource"
+            }
+          }
+        ]
+      }
+    ],
+    "exampleUrl": "https://pokeapi.co/api/v2/machine/?limit=2"
+  }
+]

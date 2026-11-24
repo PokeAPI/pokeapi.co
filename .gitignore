@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# generated types
+.astro/
+
 # node-waf configuration
 .lock-wscript
 
@@ -43,7 +46,11 @@ yarn-error.log
 .vscode
 .firebase/
 
-yarn.lock
-
 tmp
 artifacts
+
+# Generated OpenAPI schema
+public/openapi.yml
+
+# Playwright test artifacts
+.playwright-*/

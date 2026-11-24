@@ -3,33 +3,59 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![build status](https://img.shields.io/circleci/build/github/PokeAPI/pokeapi.co/master.svg)](https://circleci.com/gh/PokeAPI/pokeapi.co)
 
-This repository contains the source code and documentation for [pokeapi.co](https://pokeapi.co/). This website is built on [React-Static](https://react-static.js.org), a static site generator similar to [Gatsby](https://www.gatsbyjs.org/), except unopinionated and with less magic.
+This repository contains the source code and documentation for [pokeapi.co](https://pokeapi.co/). This website is built with [starlight](https://starlight.astro.build/).
 
 ## Getting Started
 
-### Prerequisities
+### Prerequisites
 
 -   Git
--   [Node](https://nodejs.org/en/): 10.11.0 or greater
+-   [Node](https://nodejs.org/en/): version 26, as specified in `.nvmrc`
+-   Yarn Classic (1.x), matching CI and the committed `yarn.lock`
 -   A GitHub fork of the repo (for any contributions)
 -   A clone of the [pokeapi.co repo](https://github.com/pokeapi/pokeapi.co) on your local machine
 
 ### Installation
 
 1. `cd pokeapi.co` to go into the project root.
-2. `npm install` to install project dependencies.
+2. If you use nvm, run `nvm install` and `nvm use` to select the version in `.nvmrc`.
+3. `yarn install --frozen-lockfile` to install the locked project dependencies.
 
 ### Running locally
 
-1. `npm run start` to start the hot-reloading development server (powered by [React-Static](https://react-static.js.org)).
-2. Go to `http://localhost:3000` to view the site in your browser.
+1. `yarn dev` to start the [Astro’s development server](https://docs.astro.build/en/reference/cli-reference/#astro-dev).
+2. This will log a message to your terminal with the URL of your local preview. Open this URL to start browsing your site.
 
 ### Building for production
 
-1. `npm run build` to build the production site.
-2. `npm run serve` to serve the production version of the site on a local test server.
+1. `yarn build` to build the production site.
+2. `yarn preview` to serve the production version of the site on a local test server.
 
 Production files are located in the `dist` directory.
+
+## Site announcements
+
+Edit `src/data/alerts.json` to show announcements below the navbar on every page:
+
+```json
+[
+  {
+    "level": "warning",
+    "active": true,
+    "message": "A major API update is coming. Review the documentation before upgrading."
+  }
+]
+```
+
+Supported levels are `info`, `success`, `warning`, and `error`. Each level has a distinct color and label.
+Only entries with `active: true` appear, in file order. Messages support inline Markdown, including
+`**bold**`, `*italics*`, backtick code spans, and `[links](https://example.com)`.
+For example: `"message": "A **major update** is coming. Read the [documentation](https://pokeapi.co/docs/v2/)."`
+Set `active: false` to hide an announcement, or use an empty array to hide all announcements.
+Visitors can dismiss each announcement for the current browser tab session. Changing its level or message makes it visible again.
+Invalid levels, missing fields, and empty messages fail the build.
+
+Run `yarn build` and deploy the site to publish announcement changes.
 
 ## Contributing
 
@@ -46,7 +72,7 @@ Production files are located in the `dist` directory.
 1. Follow the "Running locally" instructions.
 2. Save the files and check results in the browser.
 
-Changes to React components in `/src` will hot-reload. If modifying the `/alerts.json` file or files in the `/src/docs/` directory, you will need to restart the dev server before changes will be visible.
+Changes to components, documentation, and `src/data/alerts.json` hot-reload during `yarn dev`. When using `yarn preview`, run `yarn build` again to see changes.
 
 ### Test the change
 

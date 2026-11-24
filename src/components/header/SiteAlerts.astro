@@ -1,0 +1,202 @@
+---
+import {z} from "astro/zod";
+import {marked} from "marked";
+import alertsData from "../../data/alerts.json";
+
+const alerts = z
+  .array(
+    z.object({
+      level: z.enum(["info", "success", "warning", "error"]),
+      active: z.boolean(),
+      message: z.string().trim().min(1),
+    })
+  )
+  .parse(alertsData)
+  .filter((alert) => alert.active);
+
+const labels = {info: "Announcement", success: "Update", warning: "Warning", error: "Alert"};
+---
+
+{
+  alerts.length > 0 && (
+    <>
+      <section class="site-alerts" aria-label="Site announcements" data-pagefind-ignore>
+        {alerts.map(({level, message}) => (
+          <div class:list={["site-alert", `site-alert--${level}`]} data-alert-key={JSON.stringify([level, message])}>
+            <div class="site-alert-message">
+              <strong>{labels[level]}:</strong> <span set:html={marked.parseInline(message)} />
+            </div>
+            <button
+              class="site-alert-dismiss"
+              type="button"
+              aria-label={`Dismiss ${labels[level].toLowerCase()}`}
+              hidden
+            >
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="m4 4 8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+        ))}
+      </section>
+    </>
+  )
+}
+
+<script is:inline>
+  // Keep content, menus, and anchor targets below wrapped or stacked alerts.
+  const siteAlerts = document.querySelector(".site-alerts");
+  if (siteAlerts) {
+    for (const alert of siteAlerts.querySelectorAll(".site-alert")) {
+      const storageKey = `site-alert-dismissed:${alert.dataset.alertKey}`;
+      try {
+        if (sessionStorage.getItem(storageKey)) {
+          alert.remove();
+          continue;
+        }
+      } catch {
+        // Dismissal still works when browser storage is unavailable.
+      }
+      const button = alert.querySelector(".site-alert-dismiss");
+      button.hidden = false;
+      button.addEventListener("click", () => {
+        try {
+          sessionStorage.setItem(storageKey, "true");
+        } catch {
+          // Dismissal still works when browser storage is unavailable.
+        }
+        alert.remove();
+        updateAlertHeight();
+      });
+    }
+    const updateAlertHeight = () => {
+      document.documentElement.style.setProperty(
+        "--site-alert-height",
+        `${siteAlerts.getBoundingClientRect().height}px`
+      );
+    };
+    updateAlertHeight();
+    new ResizeObserver(updateAlertHeight).observe(siteAlerts);
+  }
+</script>
+
+<style>
+  .site-alerts {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .site-alert {
+    --alert-color: #3b82f6;
+    position: relative;
+    border-bottom: 1px solid color-mix(in srgb, var(--alert-color) 40%, transparent);
+    background: color-mix(in srgb, var(--alert-color) 12%, var(--sl-color-bg-nav));
+    padding: 0.625rem 3rem;
+    color: var(--sl-color-white);
+    overflow-wrap: anywhere;
+  }
+
+  .site-alert--success {
+    --alert-color: #14b8a6;
+  }
+  .site-alert--warning {
+    --alert-color: #f59e0b;
+  }
+  .site-alert--error {
+    --alert-color: #ef4444;
+  }
+
+  .site-alert strong {
+    font-weight: 600;
+  }
+
+  .site-alert-message :global(a) {
+    color: inherit;
+    text-decoration: underline !important;
+    text-underline-offset: 0.15em;
+  }
+
+  .site-alert-message :global(a:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .site-alert-message :global(strong) {
+    font-weight: 600;
+  }
+
+  .site-alert-message :global(code) {
+    border-radius: 0.25rem;
+    background: color-mix(in srgb, var(--alert-color) 15%, transparent);
+    padding: 0.1em 0.3em;
+    font-size: 0.9em;
+  }
+
+  .site-alert-dismiss {
+    display: grid;
+    position: absolute;
+    top: 50%;
+    place-items: center;
+    transform: translateY(-50%);
+    opacity: 0.65;
+    cursor: pointer;
+    inset-inline-end: 0.25rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: transparent;
+    padding: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: inherit;
+  }
+
+  .site-alert-dismiss[hidden] {
+    display: none;
+  }
+
+  .site-alert-dismiss:hover {
+    opacity: 1;
+  }
+
+  .site-alert-dismiss:focus-visible {
+    opacity: 1;
+    outline: 2px solid currentColor;
+    outline-offset: -4px;
+  }
+
+  :global(html:has(.site-alerts)) {
+    scroll-padding-top: calc(
+      1.5rem + var(--sl-nav-height) + var(--site-alert-height, 0px) + var(--sl-mobile-toc-height)
+    );
+  }
+
+  :global(html:has(.site-alerts) .main-frame) {
+    padding-top: calc(var(--sl-nav-height) + var(--site-alert-height, 0px) + var(--sl-mobile-toc-height));
+  }
+
+  :global(html:has(.site-alerts) .sidebar-pane) {
+    inset-block-start: calc(var(--sl-nav-height) + var(--site-alert-height, 0px));
+  }
+
+  :global(html:has(.site-alerts) mobile-starlight-toc nav) {
+    top: calc(var(--sl-nav-height) + var(--site-alert-height, 0px) - 1px);
+  }
+
+  :global(html:has(.site-alerts) mobile-starlight-toc .dropdown) {
+    max-height: calc(85vh - var(--sl-nav-height) - var(--site-alert-height, 0px) - var(--sl-mobile-toc-height));
+  }
+
+  @media (min-width: 72rem) {
+    :global(html:has(.site-alerts)) {
+      scroll-padding-top: calc(1.5rem + var(--sl-nav-height) + var(--site-alert-height, 0px));
+    }
+
+    :global(html:has(.site-alerts) .right-sidebar) {
+      padding-top: calc(var(--sl-nav-height) + var(--site-alert-height, 0px));
+    }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+import Default from "@astrojs/starlight/components/Sidebar.astro";
+
+const {starlightRoute} = Astro.locals;
+const titleCaseGroups = (
+  entries: typeof starlightRoute.sidebar,
+  insideOpenAPI = false
+): typeof starlightRoute.sidebar =>
+  entries.map((entry: any) => {
+    if (entry.type !== "group") return entry;
+    return {
+      ...entry,
+      label: insideOpenAPI ? entry.label.replace(/\b[a-z]/g, (letter: string) => letter.toUpperCase()) : entry.label,
+      entries: titleCaseGroups(entry.entries, insideOpenAPI || entry.label === "OpenAPI"),
+    };
+  });
+starlightRoute.sidebar = titleCaseGroups(starlightRoute.sidebar);
+---
+
+<Default {...Astro.props}><slot /></Default>

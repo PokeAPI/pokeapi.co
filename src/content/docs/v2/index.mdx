@@ -1,0 +1,114 @@
+---
+title: API V2
+description: PokéAPI API v2 Resource documentation and interactive API explorer console.
+---
+
+import Resource from '../../../components/markdown/ResourceSection.astro';
+
+import resourceLists from '../../../data/operations/resource-lists.json';
+import berries from '../../../data/operations/berries.json';
+import contests from '../../../data/operations/contests.json';
+import encounters from '../../../data/operations/encounters.json';
+import evolution from '../../../data/operations/evolution.json';
+import games from '../../../data/operations/games.json';
+import items from '../../../data/operations/items.json';
+import locations from '../../../data/operations/locations.json';
+import machines from '../../../data/operations/machines.json';
+import moves from '../../../data/operations/moves.json';
+import pokemon from '../../../data/operations/pokemon.json';
+import utility from '../../../data/operations/utility.json';
+
+## Information
+
+This is a **consumption-only** API — only the `HTTP` `GET` method is available on resources.
+
+No authentication is required to access this API, and all resources are fully open and available. Since the move to static hosting in November 2018, rate limiting has been removed entirely, but we still encourage you to limit the frequency of requests to limit our hosting costs.
+
+## Fair Use Policy
+
+PokéAPI is free and open to use. It is also very popular. Because of this, we ask every developer to abide by our fair use policy. People not complying with the fair use policy will have their IP address permanently banned.
+
+PokéAPI is primarily an educational tool, and we will not tolerate denial of service attacks preventing people from learning.
+
+### Rules
+
+- Locally cache resources whenever you request them.
+- Be nice and friendly to your fellow PokéAPI developers.
+- If you spot security vulnerabilities act and [report them](https://github.com/PokeAPI/pokeapi/blob/master/SECURITY.md#reporting-a-vulnerability) responsibly.
+
+## Active policies
+
+The following policies are set in place to limit abuse and cut down costs:
+
+- All HTTP requests made with methods other than GET, HEAD or OPTIONS are blocked. [View rule](https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-non-GET.txt)
+- All HTTP requests containing any of the following characters in the URL path or query string are blocked: `.,*%;:'!@+[`. [View rule](https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-symbols.txt)
+- HTTP Requests with a malformed query string are blocked. Only `limit` and `offset` parameters are allowed. [View rule](https://github.com/PokeAPI/deploy/blob/master/cloudflare/rules/block-malformed-querystring.txt)
+
+## OpenAPI
+
+The OpenAPI documentation is dynamically generated from the official [PokeAPI OpenAPI specification](https://github.com/PokeAPI/pokeapi/blob/master/openapi.yml).
+
+---
+
+## Resource Lists/Pagination <span class="font-light opacity-80">(Group)</span>
+
+Calling a resource endpoint without a resource ID or name will return a paginated list of available resources for that API. By default, a list "page" will contain up to 20 resources. The [`meta`](#meta) endpoint returns deployment metadata instead of a resource list.
+
+Response examples are fetched when the site is built. Long arrays and sprite collections are abbreviated to keep the page small. The live API returns the complete payloads. Fields described as nullable may contain `null`; form trigger fields described as conditional may be absent.
+
+If you would like to change this, just add a `limit` query parameter to the `GET` request, e.g. `?limit=60`. You can use `offset` to move to the next page, e.g. `?limit=60&offset=60`.
+
+- **Unnamed Endpoints** (which return an `APIResource` list):
+    - [`characteristic`](#characteristic)
+    - [`contest-effect`](#contest-effect)
+    - [`evolution-chain`](#evolution-chain)
+    - [`machine`](#machine)
+    - [`super-contest-effect`](#super-contest-effect)
+- **Named Endpoints** (which return a `NamedAPIResource` list):
+    - All other resource endpoints listed below (e.g. [`berry`](#berry), [`pokemon`](#pokemon), [`move`](#move), [`item`](#item), etc.).
+
+<Resource data={resourceLists} playground={false} />
+
+## Berries <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={berries} />
+
+## Contests <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={contests} />
+
+## Encounters <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={encounters} />
+
+## Evolution <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={evolution} />
+
+## Games <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={games} />
+
+## Items <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={items} />
+
+## Locations <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={locations} />
+
+## Machines <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={machines} />
+
+## Moves <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={moves} />
+
+## Pokemon <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={pokemon} />
+
+## Utility <span class="font-light opacity-80">(Group)</span>
+
+<Resource data={utility} />

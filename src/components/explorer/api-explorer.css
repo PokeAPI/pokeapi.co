@@ -1,0 +1,125 @@
+@layer starlight, explorer;
+
+@layer explorer {
+  .api-explorer-root :is(.font-mono, pre, code, input, button) {
+    font-family: var(--__sl-font-mono) !important;
+  }
+
+  .explorer-base-url {
+    letter-spacing: 0.01em !important;
+  }
+
+  .api-explorer-root pre {
+    margin: 0 !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  .explorer-select-trigger::after {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    translate: 0 -50%;
+    transition:
+      transform 0.2s ease,
+      border-top-color 0.2s ease;
+    border-top: 5px solid var(--sl-color-gray-3);
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    width: 0;
+    height: 0;
+    content: "";
+  }
+
+  .explorer-select-trigger[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+    border-top-color: var(--sl-color-accent);
+  }
+
+  .explorer-dropdown-panel {
+    display: none;
+  }
+
+  .explorer-select-wrap.open .explorer-dropdown-panel {
+    display: block;
+  }
+  .explorer-select-wrap.open .explorer-select-trigger {
+    background: var(--sl-color-gray-6);
+  }
+
+  .explorer-direct-link:hover + .explorer-out-link-icon {
+    color: var(--sl-color-white) !important;
+  }
+
+  .explorer-json-viewer {
+    display: block;
+    --background-color: transparent;
+    --color: var(--poke-code-foreground);
+    --property-color: var(--poke-code-property);
+    --string-color: var(--poke-code-string);
+    --number-color: var(--poke-code-number);
+    --boolean-color: var(--poke-code-boolean);
+    --null-color: var(--poke-code-null);
+    --preview-color: var(--poke-code-muted);
+    --font-family: var(--__sl-font-mono);
+    --font-size: 0.84rem;
+    --line-height: 1.5rem;
+    --indent-size: 0.6rem;
+    --indentguide-color: rgba(255, 255, 255, 0.12);
+    --indentguide-color-active: var(--sl-color-accent);
+    --outline-style: none;
+    --outline-width: 0px;
+  }
+
+  :root[data-theme="light"] .explorer-json-viewer {
+    --indentguide-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .explorer-codemirror-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .explorer-codemirror-container .cm-editor {
+    height: 100%;
+  }
+
+  .explorer-copy-control {
+    position: relative;
+    margin-inline-start: auto;
+  }
+
+  .explorer-copy-btn .copy-success,
+  .explorer-copy-btn.copied .copy-icon {
+    display: none;
+  }
+
+  .explorer-copy-btn.copied .copy-success {
+    display: block;
+  }
+
+  .explorer-copy-btn.copied {
+    color: var(--sl-color-accent-high);
+  }
+
+  .explorer-copy-status {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    visibility: hidden;
+    opacity: 0;
+    inset-inline-end: calc(100% + 0.5rem);
+    padding: 0.125rem 0;
+    pointer-events: none;
+    color: var(--sl-color-gray-2);
+    font-size: 0.6875rem;
+    font-family: var(--__sl-font);
+    white-space: nowrap;
+  }
+
+  .explorer-copy-control:is(:hover, :focus-within, .copy-feedback) .explorer-copy-status {
+    visibility: visible;
+    opacity: 1;
+  }
+}

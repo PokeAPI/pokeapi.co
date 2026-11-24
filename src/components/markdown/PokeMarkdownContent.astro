@@ -1,0 +1,20 @@
+---
+import Default from "@astrojs/starlight/components/MarkdownContent.astro";
+
+const {starlightRoute} = Astro.locals;
+const isHowTo = starlightRoute.id.startsWith("how-tos/") || starlightRoute.id === "how-tos";
+---
+
+{
+  isHowTo ? (
+    <div class="guide-page">
+      <Default {...Astro.props}>
+        <slot />
+      </Default>
+    </div>
+  ) : (
+    <Default {...Astro.props}>
+      <slot />
+    </Default>
+  )
+}

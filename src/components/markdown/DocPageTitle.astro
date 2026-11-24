@@ -1,0 +1,59 @@
+---
+import Default from "@astrojs/starlight/components/PageTitle.astro";
+import {Pencil} from "@lucide/astro";
+
+const {editUrl, lastUpdated, lang, id} = Astro.locals.starlightRoute;
+const isGuide = id === "how-tos" || id.startsWith("how-tos/");
+---
+
+<Default {...Astro.props}><slot /></Default>
+{
+  isGuide && (editUrl || lastUpdated) && (
+    <div class="doc-metadata">
+      {editUrl && (
+        <a href={editUrl} target="_blank" rel="noopener noreferrer">
+          <Pencil size={14} aria-hidden="true" />
+          Edit this page on GitHub
+        </a>
+      )}
+      {lastUpdated && (
+        <span>
+          Last updated{" "}
+          <time datetime={lastUpdated.toISOString()} title={lastUpdated.toISOString()}>
+            {lastUpdated.toLocaleDateString(lang, {dateStyle: "medium", timeZone: "UTC"})}
+          </time>
+        </span>
+      )}
+    </div>
+  )
+}
+
+<style>
+  .doc-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem 2rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--sl-color-hairline);
+    padding-top: 1rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--sl-color-accent-high);
+  }
+  a:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 3px;
+  }
+</style>

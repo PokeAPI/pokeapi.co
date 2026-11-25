@@ -2,7 +2,7 @@
   "use strict";
 
   // Set to true to show numeric bounds and character limits in OpenAPI docs.
-  var showOpenAPILimits = false;
+  var showOpenAPILimits = true;
 
   var content = document.querySelector(".sl-markdown-content");
   if (!content || !content.querySelector(".sl-openapi-section, sl-openapi-snippet-picker, .sl-openapi-keys")) return;

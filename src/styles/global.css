@@ -7,7 +7,7 @@
 @font-face {
   font-style: normal;
   font-weight: 400;
-  src: url("/pokemon-solid.woff2") format("woff2");
+  src: url("/pokemon-solid-subset.woff2") format("woff2");
   font-family: "Pokemon Solid";
   font-display: swap;
 }
@@ -42,7 +42,7 @@
   --sl-color-hero-tagline-highlight: var(--pokemon-yellow);
 
   --ec-frm-inlBtnBg: var(--sl-color-accent);
-  --sl-font: "Inter";
+  --sl-font: "system-ui";
   --sl-color-bg-nav: var(--sl-color-black);
   --site-card-bg: color-mix(in srgb, var(--sl-color-gray-6) 45%, var(--sl-color-black));
   --site-card-hover: color-mix(in srgb, var(--sl-color-accent) 5%, var(--site-card-bg));
@@ -810,11 +810,12 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   border: 1px solid !important;
   border-radius: 4px !important;
   padding: 0.1rem 0.45rem !important;
-  width: fit-content !important;
+  width: max-content !important;
   font-weight: 600 !important;
   font-size: 0.72rem !important;
   line-height: 1.4 !important;
   font-family: var(--__sl-font-mono) !important;
+  flex-wrap: wrap;
 }
 
 .type-badge > a {

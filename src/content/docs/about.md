@@ -64,7 +64,21 @@ In August 2020 the PokéAPI community decided [to temporarily fork](https://gith
 
 In January 2023 [bitomic](https://github.com/bitomic), [Kohki Miki](https://github.com/giginet), [Paul-Émile](https://github.com/pebou), [tillfox](https://github.com/tillfox) scraped `generation 9` data from the web and added it here.
 
-The current owners of the PokéAPI project are [Paul Hallet](https://github.com/phalt), [Tim Malone](https://github.com/tdmalone) and [Alessandro Pezzé](https://github.com/Naramsim). Alongside them other core maintainers include [Charles Marttinen](https://github.com/cmmartti) and [Sargun Vohra](https://github.com/sargunv).
+In 2024 we were able to programmatically generate OpenAPI schemas thanks to [Indyandie](https://github.com/Indyandie).
+
+In 2025 we released a new GraphQL endpoint that supports an easier syntax for building queries.
+
+In 2026 a surge in contributors brought:
+
+* some notable schema changes and additions to make the API data more reliable and understandable
+* a much needed Django upgrade
+* code cleaning
+* the filling of many missing encounters' information
+* a new redesign and implementation of our website
+
+[jemarq04](https://github.com/jemarq04), [FallenDeity](https://github.com/FallenDeity), [notblisy](https://github.com/notblisy), [MiquelRForgeFlow](https://github.com/MiquelRForgeFlow), [anhthang](https://github.com/anhthang), [ItsMeJoji](https://github.com/ItsMeJoji), and [Machine-Maker](https://github.com/Machine-Maker) were among the most active contributors and we thank them for their dedication.
+
+The current owners of the PokéAPI project are [Paul Hallet](https://github.com/phalt), [Tim Malone](https://github.com/tdmalone) and [Alessandro Pezzé](https://github.com/Naramsim). Alongside them other core maintainers include [FallenDeity](https://github.com/FallenDeity) and [jemarq04](https://github.com/jemarq04).
 
 We also have a [GitHub organization](https://github.com/pokeapi) of contributors that you are welcome to join!
 

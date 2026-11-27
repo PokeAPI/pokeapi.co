@@ -63,6 +63,26 @@ export default defineConfig({
         MarkdownContent: "./src/components/markdown/PokeMarkdownContent.astro",
       },
       head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'preload',
+            href: '/Inter.woff2',
+            as: 'font',
+            type: 'font/woff2',
+            crossorigin: true,
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'preload',
+            href: '/pokemon-solid-subset.woff2',
+            as: 'font',
+            type: 'font/woff2',
+            crossorigin: true,
+          },
+        },
         {tag: "style", content: editorThemeCss},
       ],
       customCss: ["./src/styles/global.css"],

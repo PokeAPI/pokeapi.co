@@ -7,9 +7,38 @@
 @font-face {
   font-style: normal;
   font-weight: 400;
-  src: url("/pokemon-solid.woff2") format("woff2");
+  src: url("/pokemon-solid-subset.woff2") format("woff2");
   font-family: "Pokemon Solid";
   font-display: swap;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/Inter.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/Inter.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/Inter.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
@@ -42,7 +71,8 @@
   --sl-color-hero-tagline-highlight: var(--pokemon-yellow);
 
   --ec-frm-inlBtnBg: var(--sl-color-accent);
-  --sl-font: "Inter";
+  --sl-font: "Inter", system-ui, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
   --sl-color-bg-nav: var(--sl-color-black);
   --site-card-bg: color-mix(in srgb, var(--sl-color-gray-6) 45%, var(--sl-color-black));
   --site-card-hover: color-mix(in srgb, var(--sl-color-accent) 5%, var(--site-card-bg));
@@ -810,11 +840,12 @@ sl-openapi-snippet-picker svg.sl-openapi-snippet-picker-caret {
   border: 1px solid !important;
   border-radius: 4px !important;
   padding: 0.1rem 0.45rem !important;
-  width: fit-content !important;
+  width: max-content !important;
   font-weight: 600 !important;
   font-size: 0.72rem !important;
   line-height: 1.4 !important;
   font-family: var(--__sl-font-mono) !important;
+  flex-wrap: wrap;
 }
 
 .type-badge > a {

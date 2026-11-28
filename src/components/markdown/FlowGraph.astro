@@ -1,0 +1,363 @@
+---
+export interface GraphNode {
+  id: string;
+  label: string;
+  sublabel?: string;
+  icon?: string;
+  bullets?: string[];
+  variant?: "default" | "accent" | "muted";
+}
+
+export interface GraphEdge {
+  from: string;
+  to: string;
+  label?: string;
+  sublabel?: string;
+  icon?: string;
+  bullets?: string[];
+  labelPos?: number;
+  style?: "inline" | "callout";
+}
+
+interface Props {
+  title?: string;
+  layers: GraphNode[][];
+  edges: GraphEdge[];
+  layerGap?: number;
+  frame?: boolean;
+  edgeStyle?: "inline" | "callout";
+}
+
+const {
+  title,
+  layers,
+  edges,
+  layerGap = 104,
+  frame = false,
+  edgeStyle = "inline",
+} = Astro.props;
+
+const resolvedEdges = edges.map((e) => ({
+  ...e,
+  style: e.style ?? edgeStyle,
+}));
+
+const uid = `fg-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<flow-graph
+  class:list={[
+    "not-content my-6 block overflow-x-auto",
+    frame
+      ? "rounded-xl border border-(--sl-color-hairline) bg-(--sl-color-gray-6)/55 p-5"
+      : "px-1 py-3",
+  ]}
+  data-edges={JSON.stringify(resolvedEdges)}
+>
+  {title && (
+    <div class="mb-4 text-xs font-semibold tracking-wider text-(--sl-color-gray-3) uppercase">
+      {title}
+    </div>
+  )}
+
+  <div class="fg-canvas relative w-max min-w-full">
+    <svg class="fg-svg pointer-events-none absolute inset-0 z-1 h-full w-full overflow-visible" aria-hidden="true">
+      <defs>
+        {[
+          { id: `${uid}-arrow`, cls: "fill-[var(--sl-color-gray-4)]" },
+          { id: `${uid}-arrow-active`, cls: "fill-[var(--sl-color-accent)]" },
+        ].map((m) => (
+          <marker id={m.id} viewBox="0 0 10 10" refX="1" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path d="M 1 1.5 L 9 5 L 1 8.5 z" class={m.cls} />
+          </marker>
+        ))}
+      </defs>
+      <g class="fg-paths" data-marker-id={`${uid}-arrow`} data-marker-active-id={`${uid}-arrow-active`} />
+    </svg>
+
+    <div class="fg-labels pointer-events-none absolute inset-0 z-3" aria-hidden="true" />
+
+    <div class="relative z-2 flex flex-col" style={`gap: ${layerGap}px;`}>
+      {layers.map((layer) => (
+        <div class="flex flex-nowrap items-stretch justify-evenly gap-3">
+          {layer.map((node) => (
+            <div
+              data-node-id={node.id}
+              class:list={[
+                "fg-node group flex min-w-19.5 max-w-[320px] flex-col items-center justify-center rounded-xl border px-2.5 py-2 shadow-sm transition hover:-translate-y-0.5 hover:border-(--sl-color-accent)",
+                node.variant === "accent"
+                  ? "border-(--sl-color-accent)/60"
+                  : "border-(--sl-color-gray-4)/45",
+              ]}
+            >
+              {node.icon && (
+                <img
+                  src={node.icon}
+                  alt={node.sublabel ? `${node.label} (${node.sublabel})` : node.label}
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  class="h-14 w-14 object-contain [image-rendering:pixelated] transition-transform group-hover:scale-105"
+                />
+              )}
+              <span class="mt-0.5 text-center font-mono text-xs font-semibold leading-tight text-(--sl-color-white)">
+                {node.label}
+              </span>
+              {node.sublabel && (
+                <span class="mt-0.5 text-center text-[11px] leading-tight text-(--sl-color-gray-3)">
+                  {node.sublabel}
+                </span>
+              )}
+              {node.bullets?.length ? (
+                <ul class="mt-1.5 list-disc pl-4 text-left text-[11px] leading-snug text-(--sl-color-gray-2)">
+                  {node.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</flow-graph>
+
+<style>
+  .fg-canvas :global(.fg-node) { background: var(--sl-color-gray-6); }
+  :root[data-theme="light"] .fg-canvas :global(.fg-node) { background: var(--sl-color-bg); }
+  .fg-svg :global(.fg-path) {
+    fill: none;
+    stroke: var(--sl-color-gray-3);
+    stroke-width: 1.75;
+    transition: stroke 0.15s, stroke-width 0.15s;
+  }
+  :root[data-theme="light"] .fg-svg :global(.fg-path) { stroke: var(--sl-color-gray-4); }
+  .fg-svg :global(.fg-path.on) { stroke: var(--sl-color-accent); stroke-width: 2.25; }
+  .fg-svg :global(.fg-dot) {
+    fill: var(--sl-color-gray-6);
+    stroke: var(--sl-color-gray-3);
+    stroke-width: 1.75;
+  }
+  :root[data-theme="light"] .fg-svg :global(.fg-dot) { fill: var(--sl-color-bg); stroke: var(--sl-color-gray-4); }
+  .fg-svg :global(.fg-dot.on) { stroke: var(--sl-color-accent); }
+  .fg-labels :global(.fg-pill) {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.22rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--sl-color-gray-4) 45%, transparent);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-gray-1);
+    font: 500 0.67rem/1.25 var(--sl-font-mono);
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+  }
+  :root[data-theme="light"] .fg-labels :global(.fg-pill) {
+    background: var(--sl-color-bg);
+    color: var(--sl-color-gray-2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  }
+  .fg-labels :global(.fg-pill.on) { z-index: 20; border-color: var(--sl-color-accent); color: var(--sl-color-white); }
+  .fg-labels :global(.fg-pill.callout) { transform: translate(16px, -50%); }
+  .fg-labels :global(.fg-pill.callout::before) {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 9px;
+    height: 9px;
+    background: var(--sl-color-gray-6);
+    border-left: 1px solid color-mix(in srgb, var(--sl-color-gray-4) 45%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--sl-color-gray-4) 45%, transparent);
+  }
+  :root[data-theme="light"] .fg-labels :global(.fg-pill.callout::before) { background: var(--sl-color-bg); }
+  .fg-labels :global(.fg-pill.callout.on::before) { border-color: var(--sl-color-accent); }
+  .fg-labels :global(.fg-pill.card) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 0.75rem;
+    white-space: normal;
+    max-width: 320px;
+    font-family: var(--sl-font-sans);
+    font-size: 0.72rem;
+  }
+</style>
+
+<script>
+  type Edge = { from: string; to: string; label?: string; sublabel?: string; icon?: string; bullets?: string[]; labelPos?: number; style?: "inline" | "callout" };
+  type Box = { l: number; r: number; t: number; b: number };
+  const NS = "http://www.w3.org/2000/svg";
+  const h = (tag: string, cls: string, text?: string) => {
+    const el = document.createElement(tag);
+    el.className = cls;
+    if (text) el.textContent = text;
+    return el;
+  };
+  const bezier = (t: number, x1: number, y1: number, cy1: number, cy2: number, x2: number, y2: number) => {
+    const m = 1 - t;
+    return {
+      x: m ** 3 * x1 + 3 * m ** 2 * t * x1 + 3 * m * t ** 2 * x2 + t ** 3 * x2,
+      y: m ** 3 * y1 + 3 * m ** 2 * t * cy1 + 3 * m * t ** 2 * cy2 + t ** 3 * y2,
+    };
+  };
+
+  class FlowGraph extends HTMLElement {
+    private ro?: ResizeObserver;
+    private edges: Edge[] = [];
+    private selectedId: string | null = null;
+
+    connectedCallback() {
+      try { this.edges = JSON.parse(this.dataset.edges || "[]"); } catch { this.edges = []; }
+      this.ro = new ResizeObserver(() => this.draw());
+      this.ro.observe(this);
+      this.querySelectorAll<HTMLElement>("[data-node-id]").forEach((n) => {
+        const id = n.dataset.nodeId!;
+        n.addEventListener("mouseenter", () => this.toggle(id, true));
+        n.addEventListener("mouseleave", () => { if (this.selectedId !== id) this.toggle(id, false); });
+        n.addEventListener("click", () => {
+          const prev = this.selectedId;
+          this.selectedId = prev === id ? null : id;
+          if (prev) this.toggle(prev, false);
+          if (this.selectedId) this.toggle(this.selectedId, true);
+        });
+      });
+      requestAnimationFrame(() => this.draw());
+    }
+    disconnectedCallback() { this.ro?.disconnect(); }
+
+    private toggle(id: string, on: boolean) {
+      this.querySelectorAll<Element>(".fg-path, .fg-dot, .fg-pill").forEach((el) => {
+        const d = (el as HTMLElement).dataset;
+        if (d.from !== id && d.to !== id) return;
+        el.classList.toggle("on", on);
+        if (el.classList.contains("fg-path")) {
+          const g = el.parentElement!.dataset;
+          el.setAttribute("marker-end", `url(#${on ? g.markerActiveId : g.markerId})`);
+        }
+      });
+    }
+
+    private draw() {
+      const canvas = this.querySelector<HTMLElement>(".fg-canvas");
+      const svg = this.querySelector<SVGSVGElement>(".fg-svg");
+      const paths = this.querySelector<SVGGElement>(".fg-paths");
+      const labels = this.querySelector<HTMLElement>(".fg-labels");
+      if (!canvas || !svg || !paths || !labels) return;
+
+      const cr = canvas.getBoundingClientRect();
+      if (!cr.width || !cr.height) return;
+      svg.setAttribute("viewBox", `0 0 ${cr.width} ${cr.height}`);
+      paths.innerHTML = "";
+      labels.innerHTML = "";
+
+      const rects = new Map<string, DOMRect>();
+      this.querySelectorAll<HTMLElement>("[data-node-id]").forEach((n) => rects.set(n.dataset.nodeId!, n.getBoundingClientRect()));
+
+      const out = new Map<string, Edge[]>(), inc = new Map<string, Edge[]>();
+      for (const e of this.edges) {
+        if (!rects.has(e.from) || !rects.has(e.to)) continue;
+        (out.get(e.from) ?? out.set(e.from, []).get(e.from)!).push(e);
+        (inc.get(e.to) ?? inc.set(e.to, []).get(e.to)!).push(e);
+      }
+      out.forEach((l) => l.sort((a, b) => rects.get(a.to)!.left - rects.get(b.to)!.left));
+      inc.forEach((l) => l.sort((a, b) => rects.get(a.from)!.left - rects.get(b.from)!.left));
+
+      const boxes: Box[] = [];
+      const marker = paths.dataset.markerId;
+
+      for (const e of this.edges) {
+        const r1 = rects.get(e.from), r2 = rects.get(e.to);
+        if (!r1 || !r2) continue;
+        const oL = out.get(e.from)!, iL = inc.get(e.to)!;
+        const port = (r: DOMRect, l: Edge[]) =>
+          r.left - cr.left + r.width / 2 + (l.length > 1 ? (l.indexOf(e) / (l.length - 1) - 0.5) * Math.min(r.width * 0.55, l.length * 8) : 0);
+
+        const x1 = port(r1, oL), y1 = r1.bottom - cr.top;
+        const x2 = port(r2, iL), y2 = r2.top - cr.top - 8;
+        const dy = Math.max(24, Math.abs(y2 - y1) * 0.5), cy1 = y1 + dy, cy2 = y2 - dy;
+
+        const path = document.createElementNS(NS, "path");
+        path.setAttribute("d", `M ${x1} ${y1} C ${x1} ${cy1}, ${x2} ${cy2}, ${x2} ${y2}`);
+        path.setAttribute("class", "fg-path");
+        if (marker) path.setAttribute("marker-end", `url(#${marker})`);
+        Object.assign(path.dataset, { from: e.from, to: e.to });
+        paths.appendChild(path);
+
+        if (!e.label && !e.icon && !e.bullets?.length) continue;
+        const isCallout = e.style === "callout" && cr.width >= 520;
+        const pill = h("div", `fg-pill${isCallout ? " callout" : ""}${e.bullets?.length ? " card" : ""}`);
+        Object.assign(pill.dataset, { from: e.from, to: e.to });
+
+        if (e.icon) {
+          const img = Object.assign(document.createElement("img"), { src: e.icon, alt: e.label || "", width: 20, height: 20 });
+          img.className = "h-5 w-5 shrink-0 object-contain [image-rendering:pixelated]";
+          if (!img.complete) img.addEventListener("load", () => requestAnimationFrame(() => this.draw()), { once: true });
+          pill.appendChild(img);
+        }
+        if (e.label || e.sublabel) {
+          const wrap = h("div", `flex flex-col ${e.bullets?.length ? "items-start" : "items-center"} gap-0.5`);
+          if (e.label) wrap.appendChild(h("span", "", e.label));
+          if (e.sublabel) wrap.appendChild(h("span", "font-mono text-[10px] text-[var(--sl-color-gray-3)]", e.sublabel));
+          pill.appendChild(wrap);
+        }
+        if (e.bullets?.length) {
+          const ul = h("ul", "mt-0.5 list-disc pl-4 text-[11px] leading-snug text-[var(--sl-color-gray-2)]");
+          e.bullets.forEach((b) => ul.appendChild(h("li", "", b)));
+          pill.appendChild(ul);
+        }
+
+        const baseT = e.labelPos ?? 0.62;
+        let pt = bezier(baseT, x1, y1, cy1, cy2, x2, y2);
+        labels.appendChild(pill);
+        const w = pill.offsetWidth, ph = pill.offsetHeight;
+        const clampX = (x: number) => isCallout ? x : Math.min(Math.max(x, w / 2 + 4), cr.width - w / 2 - 4);
+        const boxFor = (px: number, py: number): Box =>
+          isCallout ? { l: px + 16, r: px + 16 + w, t: py - ph / 2, b: py + ph / 2 } : { l: px - w / 2, r: px + w / 2, t: py - ph / 2, b: py + ph / 2 };
+        const overlapArea = (b: Box) => {
+          if (b.t < y1 + 2 || b.b > y2 - 2) return Infinity;
+          let area = 0;
+          for (const p of boxes) {
+            const ox = Math.max(0, Math.min(b.r + 8, p.r) - Math.max(b.l - 8, p.l));
+            const oy = Math.max(0, Math.min(b.b + 6, p.b) - Math.max(b.t - 6, p.t));
+            area += ox * oy;
+          }
+          return area;
+        };
+
+        pt.x = clampX(pt.x);
+        let bestScore = overlapArea(boxFor(pt.x, pt.y));
+        if (bestScore > 0) {
+          for (let step = 0.04; step <= 0.45; step += 0.04) {
+            for (const dir of [1, -1]) {
+              const t = Math.min(0.88, Math.max(0.12, baseT + dir * step));
+              const c = bezier(t, x1, y1, cy1, cy2, x2, y2);
+              c.x = clampX(c.x);
+              const score = overlapArea(boxFor(c.x, c.y));
+              if (score < bestScore) { bestScore = score; pt = c; }
+              if (bestScore === 0) break;
+            }
+            if (bestScore === 0) break;
+          }
+        }
+        pill.style.left = `${pt.x}px`;
+        pill.style.top = `${pt.y}px`;
+        boxes.push(boxFor(pt.x, pt.y));
+
+        if (isCallout) {
+          const dot = document.createElementNS(NS, "circle");
+          dot.setAttribute("cx", `${pt.x}`);
+          dot.setAttribute("cy", `${pt.y}`);
+          dot.setAttribute("r", "3.5");
+          dot.setAttribute("class", "fg-dot");
+          Object.assign(dot.dataset, { from: e.from, to: e.to });
+          paths.appendChild(dot);
+        }
+      }
+    }
+  }
+
+  if (!customElements.get("flow-graph")) customElements.define("flow-graph", FlowGraph);
+</script>

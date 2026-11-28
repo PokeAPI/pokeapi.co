@@ -1,0 +1,639 @@
+---
+title: Evolution Chains
+description: Learn how to parse PokeAPI evolution chains, handle form-preserving branches, regional variants, and evaluate Reverse Polish Notation (RPN) condition expressions.
+sidebar:
+  order: 2
+publishDate: 2026-11-28
+keywords: [evolution, evolution-chain, dsa, tree, dag, python, rpn, parsing]
+authors:
+  - https://github.com/FallenDeity
+---
+
+import "../../../components/markdown/guides.css";
+import { Steps, Tabs, TabItem, Aside, Card, CardGrid, LinkCard, Badge } from '@astrojs/starlight/components';
+import FlowGraph from "../../../components/markdown/FlowGraph.astro";
+
+export const POKEMON_SPRITES = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+export const ITEM_SPRITES = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/";
+export const FAIRY_ICON = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/18.png";
+export const CONDITION_ICONS = {
+  day: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-3 -3 30 30' fill='none' stroke='%23fbbf24' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4' fill='%23fbbf24'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E",
+  night: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-3 -3 30 30' fill='%23818cf8' stroke='%23818cf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E",
+  dusk: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-3 -3 30 30' fill='none' stroke='%23fb923c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 10V2M4.93 10.93l1.41 1.41M2 18h2M20 18h2M19.07 10.93l-1.41 1.41M22 22H2M16 18a4 4 0 0 0-8 0'/%3E%3C/svg%3E",
+  male: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 34 34' fill='none' stroke='%2360a5fa' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='14' r='5'/%3E%3Cpath d='M19 5l-5.4 5.4M19 5h-5M19 5v5'/%3E%3C/svg%3E",
+  female: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -5 34 34' fill='none' stroke='%23f472b6' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='9' r='5'/%3E%3Cpath d='M12 14v7M9 18h6'/%3E%3C/svg%3E",
+};
+
+PokéAPI's `evolution-chain` endpoint returns a species' full evolutionary tree, including triggers, item/level requirements, form rules, regional variants, and formula-based splits.
+
+This guide covers the data model, common branching patterns, a parsing algorithm, and how to evaluate RPN condition expressions.
+
+---
+
+## 1. How Chains Work
+
+Each chain is a recursive tree of `ChainLink` objects with a `species` and an `evolves_to` list. Inside each child link, `evolution_details` lists the conditions required to evolve:
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `required_pokemon_form` | `object` <Badge text="nullable" variant="caution" /> | Specific form required to trigger this evolution (`{name, url}`). Defaults to the base species if not set. |
+| `evolved_pokemon_form` | `object` <Badge text="nullable" variant="caution" /> | Specific form resulting from this evolution (`{name, url}`). Defaults to the base species if not set. |
+| `condition_expression` | `object` <Badge text="nullable" variant="caution" /> | Postfix / Reverse Polish Notation (RPN) formula for data-driven form branching (`{expression, percentage_chance}`). |
+
+**Standard condition keys**: `trigger`, `min_level`, `item`, `held_item`, `time_of_day`, `location`, `gender`, `known_move`, `region`, etc.
+
+<FlowGraph
+  layerGap={220}
+  edgeStyle="callout"
+  layers={[
+    [
+      {
+        id: "source",
+        label: "Source Node",
+        sublabel: "required_pokemon_form OR parent species",
+        variant: "accent",
+      },
+    ],
+    [
+      {
+        id: "target",
+        label: "Target Node",
+        sublabel: "evolved_pokemon_form OR child species",
+        variant: "accent",
+      },
+    ],
+  ]}
+  edges={[
+    {
+      from: "source",
+      to: "target",
+      label: "Directed Edge Conditions",
+      labelPos: 0.5,
+      bullets: [
+        "trigger (level-up, use-item, trade)",
+        "min_level, item, gender, time_of_day, location, region",
+        "condition_expression (RPN formula)",
+        "version_group",
+      ],
+    },
+  ]}
+/>
+
+:::note[Evolution Chain Endpoint]
+Fetch any chain directly by ID: `GET https://pokeapi.co/api/v2/evolution-chain/{id}/` ([Evolution Chain API](../../v2/openapi/operations/evolution_chain_retrieve/)).
+
+Starting from a Pokémon? Follow the chain through its species:
+1. [Pokémon](../../v2/openapi/operations/pokemon_retrieve/) (`/api/v2/pokemon/{name}/`) &rarr; read `species.url`
+2. [Pokémon Species](../../v2/openapi/operations/pokemon_species_retrieve/) (`/api/v2/pokemon-species/{id}/`) &rarr; read `evolution_chain.url`
+3. [Evolution Chain](../../v2/openapi/operations/evolution_chain_retrieve/) (`/api/v2/evolution-chain/{id}/`)
+:::
+
+---
+
+## 2. Branching Patterns
+
+Most evolution chains are linear, but several Pokémon use form-specific, regional, or formula-driven branches:
+
+### 2.1 Form-Preserving (Burmy)
+
+The pre-evolution form determines the evolved form:
+
+<Tabs>
+  <TabItem label="Payload Structure">
+```text
+├── ChainLink (Species: Burmy)
+│   ├── evolves_to: Wormadam
+│   │   ├── detail: { required_pokemon_form: "burmy-plant", evolved_pokemon_form: "wormadam-plant", gender: female, min_level: 20 }
+│   │   ├── detail: { required_pokemon_form: "burmy-sandy", evolved_pokemon_form: "wormadam-sandy", gender: female, min_level: 20 }
+│   │   └── detail: { required_pokemon_form: "burmy-trash", evolved_pokemon_form: "wormadam-trash", gender: female, min_level: 20 }
+│   └── evolves_to: Mothim
+│       └── detail: { gender: male, min_level: 20 }
+```
+  </TabItem>
+  <TabItem label="JSON">
+```json
+{
+  "species": { "name": "burmy" },
+  "evolves_to": [
+    {
+      "species": { "name": "wormadam" },
+      "evolution_details": [
+        {
+          "required_pokemon_form": { "name": "burmy-plant" },
+          "evolved_pokemon_form": { "name": "wormadam-plant" },
+          "gender": 1,
+          "min_level": 20
+        },
+        {
+          "required_pokemon_form": { "name": "burmy-sandy" },
+          "evolved_pokemon_form": { "name": "wormadam-sandy" },
+          "gender": 1,
+          "min_level": 20
+        },
+        {
+          "required_pokemon_form": { "name": "burmy-trash" },
+          "evolved_pokemon_form": { "name": "wormadam-trash" },
+          "gender": 1,
+          "min_level": 20
+        }
+      ]
+    },
+    {
+      "species": { "name": "mothim" },
+      "evolution_details": [{ "gender": 2, "min_level": 20 }]
+    }
+  ]
+}
+```
+  </TabItem>
+</Tabs>
+
+<FlowGraph
+  layerGap={128}
+  layers={[
+    [
+      { id: "bp", label: "burmy", sublabel: "burmy-plant", icon: `${POKEMON_SPRITES}412.png` },
+      { id: "bs", label: "burmy", sublabel: "burmy-sandy", icon: `${POKEMON_SPRITES}412-sandy.png` },
+      { id: "bt", label: "burmy", sublabel: "burmy-trash", icon: `${POKEMON_SPRITES}412-trash.png` },
+    ],
+    [
+      { id: "wp", label: "wormadam", sublabel: "wormadam-plant", icon: `${POKEMON_SPRITES}413.png` },
+      { id: "ws", label: "wormadam", sublabel: "wormadam-sandy", icon: `${POKEMON_SPRITES}10004.png` },
+      { id: "wt", label: "wormadam", sublabel: "wormadam-trash", icon: `${POKEMON_SPRITES}10005.png` },
+      { id: "mothim", label: "mothim", icon: `${POKEMON_SPRITES}414.png` },
+    ],
+  ]}
+  edges={[
+    { from: "bp", to: "wp", icon: CONDITION_ICONS.female, label: "min_level: 20", sublabel: "gender: female", labelPos: 0.42 },
+    { from: "bs", to: "ws", icon: CONDITION_ICONS.female, label: "min_level: 20", sublabel: "gender: female", labelPos: 0.42 },
+    { from: "bt", to: "wt", icon: CONDITION_ICONS.female, label: "min_level: 20", sublabel: "gender: female", labelPos: 0.68 },
+    { from: "bp", to: "mothim" },
+    { from: "bs", to: "mothim" },
+    { from: "bt", to: "mothim", icon: CONDITION_ICONS.male, label: "min_level: 20", sublabel: "gender: male", labelPos: 0.50 },
+  ]}
+/>
+
+---
+
+### 2.2 Regional Variants (Pikachu)
+
+A species evolves into different regional forms depending on the region:
+
+<Tabs>
+  <TabItem label="Payload Structure">
+```text
+├── ChainLink (Species: Pikachu)
+│   └── evolves_to: Raichu
+│       ├── detail: { item: "thunder-stone" }
+│       └── detail: { item: "thunder-stone", region: "alola" }
+```
+  </TabItem>
+  <TabItem label="JSON">
+```json
+{
+  "species": { "name": "pikachu" },
+  "evolves_to": [
+    {
+      "species": { "name": "raichu" },
+      "evolution_details": [
+        { "item": { "name": "thunder-stone" } },
+        { "item": { "name": "thunder-stone" }, "region": { "name": "alola" } }
+      ]
+    }
+  ]
+}
+```
+  </TabItem>
+</Tabs>
+
+<FlowGraph
+  layerGap={112}
+  layers={[
+    [
+      { id: "pikachu", label: "pikachu", icon: `${POKEMON_SPRITES}25.png` },
+    ],
+    [
+      { id: "raichu", label: "raichu", sublabel: "Kantonian", icon: `${POKEMON_SPRITES}26.png` },
+      { id: "raichu-alola", label: "raichu", sublabel: "raichu-alola", icon: `${POKEMON_SPRITES}10100.png` },
+    ],
+  ]}
+  edges={[
+    { from: "pikachu", to: "raichu", icon: `${ITEM_SPRITES}thunder-stone.png`, label: "use-item", sublabel: "thunder-stone" },
+    { from: "pikachu", to: "raichu-alola", icon: `${ITEM_SPRITES}thunder-stone.png`, label: "use-item: thunder-stone", sublabel: "region: alola" },
+  ]}
+/>
+
+---
+
+### 2.3 Formula Splits (Tandemaus)
+
+Branching driven by [Encryption Constant](https://bulbapedia.bulbagarden.net/wiki/Personality_value#Encryption_constant) (`EC`) or [Personality ID](https://bulbapedia.bulbagarden.net/wiki/Personality_value) (`PID`) using Reverse Polish Notation (RPN):
+
+<Tabs>
+  <TabItem label="Payload Structure">
+```text
+├── ChainLink (Species: Tandemaus)
+│   └── evolves_to: Maushold
+│       ├── detail: { min_level: 25, condition_expression: { expression: "EC 100 % 0 !=" } }
+│       └── detail: { min_level: 25, condition_expression: { expression: "EC 100 % 0 ==" } }
+```
+  </TabItem>
+  <TabItem label="JSON">
+```json
+{
+  "species": { "name": "tandemaus" },
+  "evolves_to": [
+    {
+      "species": { "name": "maushold" },
+      "evolution_details": [
+        {
+          "min_level": 25,
+          "condition_expression": {
+            "expression": "EC 100 % 0 !=",
+            "percentage_chance": 99
+          }
+        },
+        {
+          "min_level": 25,
+          "condition_expression": {
+            "expression": "EC 100 % 0 ==",
+            "percentage_chance": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+  </TabItem>
+</Tabs>
+
+<FlowGraph
+  layerGap={112}
+  layers={[
+    [
+      { id: "tandemaus", label: "tandemaus", icon: `${POKEMON_SPRITES}924.png` },
+    ],
+    [
+      { id: "m4", label: "maushold", sublabel: "family-of-four", icon: `${POKEMON_SPRITES}925.png` },
+      { id: "m3", label: "maushold", sublabel: "family-of-three", icon: `${POKEMON_SPRITES}10257.png` },
+    ],
+  ]}
+  edges={[
+    { from: "tandemaus", to: "m4", icon: `${ITEM_SPRITES}rare-candy.png`, label: "min_level: 25 (99%)", sublabel: "EC 100 % 0 !=" },
+    { from: "tandemaus", to: "m3", icon: `${ITEM_SPRITES}rare-candy.png`, label: "min_level: 25 (1%)", sublabel: "EC 100 % 0 ==" },
+  ]}
+/>
+
+---
+
+### 2.4 Form-Exclusive (Rockruff)
+
+Only a specific pre-evolution form can evolve into the target form:
+
+<Tabs>
+  <TabItem label="Payload Structure">
+```text
+├── ChainLink (Species: Rockruff)
+│   └── evolves_to: Lycanroc
+│       ├── detail: { min_level: 25, time_of_day: "day" }
+│       ├── detail: { min_level: 25, time_of_day: "night", evolved_pokemon_form: "lycanroc-midnight" }
+│       └── detail: { required_pokemon_form: "rockruff-own-tempo", evolved_pokemon_form: "lycanroc-dusk", min_level: 25, time_of_day: "dusk" }
+```
+  </TabItem>
+  <TabItem label="JSON">
+```json
+{
+  "species": { "name": "rockruff" },
+  "evolves_to": [
+    {
+      "species": { "name": "lycanroc" },
+      "evolution_details": [
+        { "min_level": 25, "time_of_day": "day" },
+        {
+          "min_level": 25,
+          "time_of_day": "night",
+          "evolved_pokemon_form": { "name": "lycanroc-midnight" }
+        },
+        {
+          "required_pokemon_form": { "name": "rockruff-own-tempo" },
+          "evolved_pokemon_form": { "name": "lycanroc-dusk" },
+          "min_level": 25,
+          "time_of_day": "dusk"
+        }
+      ]
+    }
+  ]
+}
+```
+  </TabItem>
+</Tabs>
+
+<FlowGraph
+  layerGap={132}
+  layers={[
+    [
+      { id: "rockruff", label: "rockruff", sublabel: "base form", icon: `${POKEMON_SPRITES}744.png` },
+      { id: "tempo", label: "rockruff", sublabel: "rockruff-own-tempo", icon: `${POKEMON_SPRITES}10151.png` },
+    ],
+    [
+      { id: "midday", label: "lycanroc", sublabel: "lycanroc-midday", icon: `${POKEMON_SPRITES}745.png` },
+      { id: "midnight", label: "lycanroc", sublabel: "lycanroc-midnight", icon: `${POKEMON_SPRITES}10126.png` },
+      { id: "dusk", label: "lycanroc", sublabel: "lycanroc-dusk", icon: `${POKEMON_SPRITES}10152.png` },
+    ],
+  ]}
+  edges={[
+    { from: "rockruff", to: "midday", icon: CONDITION_ICONS.day, label: "min_level: 25", sublabel: "time_of_day: day", labelPos: 0.34 },
+    { from: "rockruff", to: "midnight", icon: CONDITION_ICONS.night, label: "min_level: 25", sublabel: "time_of_day: night", labelPos: 0.70 },
+    { from: "tempo", to: "dusk", icon: CONDITION_ICONS.dusk, label: "min_level: 25", sublabel: "time_of_day: dusk", labelPos: 0.50 },
+  ]}
+/>
+
+---
+
+## 3. Parsing Algorithm
+
+Convert an `evolution-chain` payload into directed edges:
+
+```text
+FUNCTION ParseEvolutionChain(chain_link):
+    parent_species = chain_link.species.name
+
+    FOR EACH child IN chain_link.evolves_to:
+        child_species = child.species.name
+
+        // Case 1: Child link has explicit evolution details
+        IF child.evolution_details IS NOT EMPTY:
+            FOR EACH detail IN child.evolution_details:
+
+                // 1. Determine Source Node (Form-specific OR Species fallback)
+                IF detail.required_pokemon_form IS SET:
+                    source_node = detail.required_pokemon_form.name
+                ELSE:
+                    source_node = parent_species
+
+                // 2. Determine Target Node (Form-specific OR Species fallback)
+                IF detail.evolved_pokemon_form IS SET:
+                    target_node = detail.evolved_pokemon_form.name
+                ELSE:
+                    target_node = child_species
+
+                // 3. Register Directed Edge
+                ADD_EDGE(
+                    source     = source_node,
+                    target     = target_node,
+                    conditions = detail
+                )
+
+        // Case 2: Base link with no specific conditions
+        ELSE:
+            ADD_EDGE(
+                source     = parent_species,
+                target     = child_species,
+                conditions = DEFAULT_CONDITIONS
+            )
+
+        // Recurse down the chain
+        ParseEvolutionChain(child)
+```
+
+**How it works:**
+1. **Read the current species** (`parent_species`) and loop through each child in `evolves_to`.
+2. **Resolve the source and target nodes**: use `required_pokemon_form` / `evolved_pokemon_form` when present, otherwise fall back to the base species name.
+3. **Emit a directed edge** for each entry in `evolution_details` (or a default edge if `evolution_details` is empty).
+4. **Recurse** into each `child` link to walk the entire chain.
+
+---
+
+## 4. Evaluating RPN Conditions
+
+When `condition_expression` is set, `expression` is a space-separated Reverse Polish Notation string:
+
+* **Variables**: `EC` ([Encryption Constant](https://bulbapedia.bulbagarden.net/wiki/Personality_value#Encryption_constant)), `PID` ([Personality ID](https://bulbapedia.bulbagarden.net/wiki/Personality_value))
+* **Operators**: `+`, `-`, `*`, `/`, `%`, `>>`, `<<`, `==`, `!=`, `<`, `<=`, `>`, `>=`
+
+```text showLineNumbers=false
+Example: "EC 100 % 0 =="
+
+Stack Execution:
+  1. Read "EC"    -> Push [ EC ]
+  2. Read "100"   -> Push [ EC, 100 ]
+  3. Read "%"     -> Pop 100, EC  -> Push [ (EC % 100) ]
+  4. Read "0"     -> Push [ (EC % 100), 0 ]
+  5. Read "=="    -> Pop 0, (EC % 100) -> Push [ (EC % 100) == 0 ]
+
+Result:
+  True  --> Branch to condition target
+  False --> Check next branch
+```
+
+:::tip[Pre-computed Probabilities]
+If you only need to display odds without evaluating `EC` or `PID`, use `condition_expression.percentage_chance` directly.
+:::
+
+---
+
+## 5. Python Example
+
+A self-contained script that parses evolution chains into directed edges and evaluates RPN expressions:
+
+```python title="parse_evolution.py"
+import json
+import urllib.request
+from typing import Any
+
+def rpn_to_infix(expr: str) -> str:
+    """Convert a space-separated RPN expression (e.g. 'EC 100 % 0 ==') to human-readable infix."""
+    operators = {"+", "-", "*", "/", "%", ">>", "<<", "==", "!=", "<", "<=", ">", ">="}
+    stack: list[str] = []
+    for token in expr.split():
+        if token in operators:
+            b, a = stack.pop(), stack.pop()
+            stack.append(f"({a} {token} {b})")
+        else:
+            stack.append(token)
+    return stack[0] if stack else expr
+
+def parse_evolution_chain(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """Traverse an evolution chain payload into a flat list of directed edges."""
+    edges: list[dict[str, Any]] = []
+
+    def traverse(link: dict[str, Any]):
+        parent_species = link["species"]["name"]
+        for child in link.get("evolves_to", []):
+            child_species = child["species"]["name"]
+            details = child.get("evolution_details", [])
+
+            if not details:
+                edges.append({
+                    "from": parent_species,
+                    "to": child_species,
+                    "conditions": {"trigger": "default"},
+                })
+                traverse(child)
+                continue
+
+            for d in details:
+                # 1. Resolve source node (Form -> Species fallback)
+                req_form = d.get("required_pokemon_form")
+                source = req_form["name"] if req_form else parent_species
+
+                # 2. Resolve target node (Form -> Species fallback)
+                evo_form = d.get("evolved_pokemon_form")
+                target = evo_form["name"] if evo_form else child_species
+
+                # 3. Clean and format conditions
+                conds: dict[str, Any] = {}
+                for k, v in d.items():
+                    if k in ("required_pokemon_form", "evolved_pokemon_form", "is_default", "version_group"):
+                        continue
+                    if k == "condition_expression" and v:
+                        conds["formula"] = rpn_to_infix(v.get("expression", ""))
+                        if v.get("percentage_chance") is not None:
+                            conds["chance"] = f"{v['percentage_chance']}%"
+                    elif isinstance(v, dict) and "name" in v:
+                        conds[k] = v["name"]
+                    elif v is not None and v is not False and v != "":
+                        conds[k] = v
+
+                edges.append({
+                    "from": source,
+                    "to": target,
+                    "conditions": conds,
+                    "version_group": d.get("version_group", {}).get("name"),
+                })
+
+            traverse(child)
+
+    traverse(data["chain"])
+    return edges
+
+def inspect_evolution_chain(chain_id: int):
+    """Fetch and print the parsed evolution tree for a given chain ID."""
+    url = f"https://pokeapi.co/api/v2/evolution-chain/{chain_id}/"
+    req = urllib.request.Request(url, headers={"User-Agent": "PokeAPI-Client"})
+    with urllib.request.urlopen(req) as resp:
+        payload = json.loads(resp.read().decode("utf-8"))
+
+    edges = parse_evolution_chain(payload)
+    print(f"\n{'='*20} Evolution Chain #{chain_id} {'='*20}")
+    for edge in edges:
+        cond_str = ", ".join(f"{k}: {v}" for k, v in edge["conditions"].items())
+        vg_str = f" ({edge['version_group']})" if edge.get("version_group") else ""
+        print(f"  {edge['from']} ──> {edge['to']} [{cond_str}]{vg_str}")
+
+if __name__ == "__main__":
+    # 1. Form-Preserving Evolution (Burmy -> Wormadam/Mothim)
+    inspect_evolution_chain(213)
+
+    # 2. Formulaic RPN Split (Tandemaus -> Maushold)
+    inspect_evolution_chain(485)
+
+    # 3. Form-Exclusive Split (Rockruff -> Lycanroc)
+    inspect_evolution_chain(383)
+
+    # 4. Regional Evolution Split (Pikachu -> Raichu / Raichu-Alola)
+    inspect_evolution_chain(10)
+```
+
+```text showLineNumbers=false
+==================== Evolution Chain #213 ====================
+  burmy-plant ──> wormadam-plant [trigger: level-up, gender: 1, min_level: 20] (diamond-pearl)
+  burmy-sandy ──> wormadam-sandy [trigger: level-up, gender: 1, min_level: 20] (diamond-pearl)
+  burmy-trash ──> wormadam-trash [trigger: level-up, gender: 1, min_level: 20] (diamond-pearl)
+  burmy ──> mothim [trigger: level-up, gender: 2, min_level: 20] (diamond-pearl)
+
+==================== Evolution Chain #485 ====================
+  tandemaus ──> maushold-family-of-four [trigger: in-battle-level-up, min_level: 25, formula: ((EC % 100) != 0), chance: 99%] (scarlet-violet)
+  tandemaus ──> maushold-family-of-three [trigger: in-battle-level-up, min_level: 25, formula: ((EC % 100) == 0), chance: 1%] (scarlet-violet)
+
+==================== Evolution Chain #383 ====================
+  rockruff ──> lycanroc-midday [trigger: level-up, min_level: 25, time_of_day: day] (sun-moon)
+  rockruff ──> lycanroc-midnight [trigger: level-up, min_level: 25, time_of_day: night] (sun-moon)
+  rockruff-own-tempo ──> lycanroc-dusk [trigger: level-up, min_level: 25, time_of_day: dusk] (sun-moon)
+
+==================== Evolution Chain #10 ====================
+  pichu ──> pikachu [trigger: level-up, min_happiness: 220] (gold-silver)
+  pikachu ──> raichu [item: thunder-stone, trigger: use-item] (red-blue)
+  pikachu ──> raichu-alola [item: thunder-stone, trigger: use-item, region: alola] (sun-moon)
+```
+
+---
+
+## 6. Data Structures: Tree vs. DAG
+
+PokéAPI sends evolution chains as a tree, while your application's parsed model is a DAG:
+
+### 6.1 Wire Format: N-ary Tree
+In JSON, the response is an **[N-ary Tree](https://en.wikipedia.org/wiki/M-ary_tree)** (Rose Tree) where each `ChainLink` has *N* &ge; 0 children in `evolves_to` (*N* = 1 for Charmander, *N* = 8 for Eevee, *N* = 0 for single-stage Pokémon), traversed with [Depth-First Search (DFS)](https://en.wikipedia.org/wiki/Depth-first_search) or [Breadth-First Search (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search).
+
+For example, Eevee's wire format is a 1-to-8 N-ary tree:
+
+<FlowGraph
+  layerGap={220}
+  layers={[
+    [
+      { id: "eevee", label: "eevee", sublabel: "Root", icon: `${POKEMON_SPRITES}133.png` },
+    ],
+    [
+      { id: "vaporeon", label: "vaporeon", icon: `${POKEMON_SPRITES}134.png` },
+      { id: "jolteon", label: "jolteon", icon: `${POKEMON_SPRITES}135.png` },
+      { id: "flareon", label: "flareon", icon: `${POKEMON_SPRITES}136.png` },
+      { id: "espeon", label: "espeon", icon: `${POKEMON_SPRITES}196.png` },
+      { id: "umbreon", label: "umbreon", icon: `${POKEMON_SPRITES}197.png` },
+      { id: "leafeon", label: "leafeon", icon: `${POKEMON_SPRITES}470.png` },
+      { id: "glaceon", label: "glaceon", icon: `${POKEMON_SPRITES}471.png` },
+      { id: "sylveon", label: "sylveon", icon: `${POKEMON_SPRITES}700.png` },
+    ],
+  ]}
+  edges={[
+    { from: "eevee", to: "vaporeon", icon: `${ITEM_SPRITES}water-stone.png`, label: "water-stone", labelPos: 0.64 },
+    { from: "eevee", to: "jolteon", icon: `${ITEM_SPRITES}thunder-stone.png`, label: "thunder-stone", labelPos: 0.64 },
+    { from: "eevee", to: "flareon", icon: `${ITEM_SPRITES}fire-stone.png`, label: "fire-stone", labelPos: 0.64 },
+    { from: "eevee", to: "espeon", icon: CONDITION_ICONS.day, label: "min_happiness: 160", sublabel: "time_of_day: day", labelPos: 0.64 },
+    { from: "eevee", to: "umbreon", icon: CONDITION_ICONS.night, label: "min_happiness: 160", sublabel: "time_of_day: night", labelPos: 0.64 },
+    { from: "eevee", to: "leafeon", icon: `${ITEM_SPRITES}leaf-stone.png`, label: "leaf-stone", labelPos: 0.60 },
+    { from: "eevee", to: "glaceon", icon: `${ITEM_SPRITES}ice-stone.png`, label: "ice-stone", labelPos: 0.50 },
+    { from: "eevee", to: "sylveon", icon: FAIRY_ICON, label: "min_affection: 2", sublabel: "known_move_type: fairy", labelPos: 0.95 },
+  ]}
+/>
+
+---
+
+### 6.2 Domain Model: Directed Acyclic Graph (DAG)
+Once you account for form-specific branches and alternative methods, the true model is an **Edge-Labeled [Directed Acyclic](https://en.wikipedia.org/wiki/Directed_acyclic_graph) [Multi-Graph](https://en.wikipedia.org/wiki/Multigraph) (DAG)**:
+
+* **Vertices (V)**: Forms (e.g. `burmy-plant`, `wormadam-sandy`) or base Species.
+* **Directed Edges (E)**: `u ──(conditions)──> v` transitions.
+* **Multi-Edges (Parallel Edges)**: Two nodes can have multiple distinct paths between them representing alternative methods (e.g. `Eevee ──(Moss Rock)──> Leafeon` vs. `Eevee ──(Leaf Stone)──> Leafeon`).
+* **Forest (Disjoint Subgraphs)**: Species with distinct pre-evolution varieties that never cross-breed/switch forms (like `Sinistea Phony` vs. `Antique`, or `Burmy Plant/Sandy/Trash`) project into a **Forest** of parallel trees sharing target nodes (like `Mothim`).
+* **[Topological Sort](https://en.wikipedia.org/wiki/Topological_sorting)**: Evolutions are strictly forward-progressing with no cycles (DAG), allowing stages (Baby &rarr; Basic &rarr; Stage 1 &rarr; Stage 2) to be topologically sorted.
+
+---
+
+### 6.3 Summary Mapping Table
+
+| PokéAPI Concept | DSA Equivalent | Description |
+| :--- | :--- | :--- |
+| `chain` | **Root Node** | The origin species of the evolutionary family. |
+| `evolves_to` | **Adjacency List / Child Pointers** | Outgoing directed branches to next evolutionary stages. |
+| `evolution_details` | **Edge Weights / Predicates** | Guard conditions (level, item, RPN expression) required to traverse the edge. |
+| Multiple details on 1 link | **Multi-Graph (Parallel Edges)** | Multiple valid methods to evolve between the same source and target. |
+| `required_pokemon_form` | **Vertex Splitting / Forest Projection** | Decomposes a single species tree into distinct form lineages. |
+
+---
+
+## Next Steps
+
+<CardGrid>
+  <LinkCard
+    title="Evolution API Reference"
+    description="Inspect the OpenAPI specifications for PokéAPI evolution endpoints."
+    href="../../v2/openapi/operations/evolution_chain_retrieve/"
+  />
+  <LinkCard
+    title="Getting Started with pokedex-promise-v2"
+    description="Learn how to fetch Pokémon data in Node.js using pokedex-promise-v2."
+    href="../pokedex-promise-v2/"
+  />
+</CardGrid>

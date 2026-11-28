@@ -5,6 +5,9 @@ sidebar:
   order: 3
 publishDate: 2026-07-18
 keywords: [client, pokedex-promise-v2, node.js, javascript, caching]
+authors:
+  - https://github.com/Naramsim
+  - https://github.com/FallenDeity
 ---
 
 import "../../../components/markdown/guides.css";
@@ -70,12 +73,22 @@ Follow these steps to integrate `pokedex-promise-v2` into your Node.js applicati
 
    ```js title="app.js" {3}
    import Pokedex from 'pokedex-promise-v2';
+
    const P = new Pokedex();
    const pikachu = await P.getPokemonByName("pikachu");
-   console.log(`Pokedex ID: ${pikachu.id}`); // 25
+
+   console.log(`Pokedex ID: ${pikachu.id}`);
+   console.log(`Base Experience: ${pikachu.base_experience}`);
+   console.log(`Primary Type: ${pikachu.types[0].type.name}`);
    ```
 
-   To run this file, open your terminal and press <kbd>node app.js</kbd> followed by <kbd>Enter</kbd>.
+   Run the file with Node:
+
+   ```text frame="none" showLineNumbers=false
+   Pokedex ID: 25
+   Base Experience: 112
+   Primary Type: electric
+   ```
 
 </Steps>
 
@@ -87,10 +100,8 @@ Follow these steps to integrate `pokedex-promise-v2` into your Node.js applicati
 
 ### 1. Main Fetching Methods
 
-* **`getPokemonByName(nameOrId)`** <Badge text="Async/Await" variant="note" /><Badge text="Promise" /><Badge text="Callback" variant="success" />
-  Fetch Pokemon data by string name or integer ID.
-* **`getPokemonSpeciesByName(nameOrId)`** <Badge text="Async/Await" variant="note" /><Badge text="Promise" /><Badge text="Callback" variant="success" />
-  Fetch species data (including language translations, evolution chains, and descriptions).
+* **`getPokemonByName(nameOrId)`**: Fetch complete Pokémon data (stats, abilities, types, sprites) by name string (e.g. `'pikachu'`) or integer ID (e.g. `25`).
+* **`getPokemonSpeciesByName(nameOrId)`**: Fetch species-level data (flavor text descriptions, evolution chain URLs, multilingual name translations, generation info).
 
 ### 2. Implementation Patterns
 
@@ -108,6 +119,10 @@ Follow these steps to integrate `pokedex-promise-v2` into your Node.js applicati
       console.error("Failed to fetch Pokémon species data:", error);
     }
     ```
+
+    ```text frame="none" showLineNumbers=false
+    French name of Golduck: Akwakwak
+    ```
   </TabItem>
   <TabItem label="Promises">
     ```js title="promises.js" {4-10}
@@ -116,12 +131,19 @@ Follow these steps to integrate `pokedex-promise-v2` into your Node.js applicati
 
     // Passing an array fetches multiple records simultaneously
     P.getPokemonByName(['eevee', 'ditto'])
-      .then((response) => {
-        console.log(response); // Array containing Eevee and Ditto data
+      .then((results) => {
+        results.forEach((poke) => {
+          console.log(`${poke.name} (ID: ${poke.id}) - Weight: ${poke.weight}`);
+        });
       })
       .catch((error) => {
         console.error('Error fetching Pokémon:', error);
       });
+    ```
+
+    ```text frame="none" showLineNumbers=false
+    eevee (ID: 133) - Weight: 65
+    ditto (ID: 132) - Weight: 40
     ```
   </TabItem>
   <TabItem label="Callbacks">
@@ -129,52 +151,96 @@ Follow these steps to integrate `pokedex-promise-v2` into your Node.js applicati
     import Pokedex from 'pokedex-promise-v2';
     const P = new Pokedex();
 
-    // You can pass an integer ID instead of a string name
+    // You can pass an integer ID or name, followed by a (response, error) callback
     P.getPokemonByName(34, (response, error) => {
       if (!error) {
-        console.log(`Pokémon Name: ${response.name}`); // nidoking
+        console.log(`Pokémon Name: ${response.name} (Height: ${response.height})`);
       } else {
         console.error(error);
       }
     });
     ```
+
+    ```text frame="none" showLineNumbers=false
+    Pokémon Name: nidoking (Height: 14)
+    ```
   </TabItem>
 </Tabs>
 
-<details>
-  <summary>View Pikachu Query JSON Response Payload Structure</summary>
-  <div class="content">
+### 3. Pagination & Resource Lists
 
-    ```json title="pikachu-response.json"
-    {
-      "id": 25,
-      "name": "pikachu",
-      "base_experience": 112,
-      "height": 4,
-      "is_default": true,
-      "order": 35,
-      "weight": 60,
-      "abilities": [
-        {
-          "is_hidden": false,
-          "slot": 1,
-          "ability": {
-            "name": "static",
-            "url": "https://pokeapi.co/api/v2/ability/9/"
-          }
-        }
-      ],
-      "forms": [
-        {
-          "name": "pikachu",
-          "url": "https://pokeapi.co/api/v2/pokemon-form/25/"
-        }
-      ]
-    }
-    ```
+Root resource list endpoints (such as `getPokemonsList`, `getBerriesList`, and `getItemsList`) accept an optional interval object to paginate through results using `limit` and `offset`:
 
-  </div>
-</details>
+```javascript title="pagination.js"
+import Pokedex from 'pokedex-promise-v2';
+const P = new Pokedex();
+
+const interval = {
+  limit: 5,   // Number of items to retrieve
+  offset: 33, // Starting index (0-indexed)
+};
+
+const pokemonList = await P.getPokemonsList(interval);
+console.log(`Total Pokemon: ${pokemonList.count}`);
+console.log(`Results:`);
+pokemonList.results.forEach((pokemon) => {
+  console.log(`  - ${pokemon.name} (${pokemon.url})`);
+});
+```
+
+```text frame="none" showLineNumbers=false
+Total Pokemon: 1302
+Results:
+  - nidoking (https://pokeapi.co/api/v2/pokemon/34/)
+  - clefairy (https://pokeapi.co/api/v2/pokemon/35/)
+  - clefable (https://pokeapi.co/api/v2/pokemon/36/)
+  - vulpix (https://pokeapi.co/api/v2/pokemon/37/)
+  - ninetales (https://pokeapi.co/api/v2/pokemon/38/)
+```
+
+:::warning[Always specify limit and offset]
+By default, if you call list endpoints without passing an interval object, `pokedex-promise-v2` attempts to fetch **every single item** in the database and cache the entire dataset into your application's RAM. Always provide an explicit `{ limit, offset }` when querying large resource collections!
+:::
+
+---
+
+## TypeScript Support
+
+`pokedex-promise-v2` ships with built-in TypeScript type definitions out of the box no separate `@types/*` package is required.
+
+When working in TypeScript, method responses are fully typed according to the official PokéAPI schemas:
+
+```typescript title="example.ts"
+import Pokedex from 'pokedex-promise-v2';
+
+const P = new Pokedex();
+
+// Return values are fully typed
+const pokemon = await P.getPokemonByName('pikachu');
+console.log(pokemon.name);  // string
+console.log(pokemon.weight); // number
+
+// Access specific return types using TypeScript utility types
+type PokemonData = Awaited<ReturnType<Pokedex['getPokemonByName']>>;
+
+function logPokemonAbilities(data: PokemonData) {
+  for (const item of data.abilities) {
+    console.log(`Ability: ${item.ability.name} (Hidden: ${item.is_hidden})`);
+  }
+}
+
+logPokemonAbilities(pokemon);
+```
+
+```text frame="none" showLineNumbers=false
+pikachu (Weight: 60)
+Ability: static (Hidden: false)
+Ability: lightning-rod (Hidden: true)
+```
+
+:::note[TypeScript ESM Configuration]
+Ensure your `tsconfig.json` uses `"moduleResolution": "NodeNext"` (or `"Bundler"`) to align with the package's pure ES module exports.
+:::
 
 ---
 

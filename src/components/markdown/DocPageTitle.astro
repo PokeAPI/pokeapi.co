@@ -2,19 +2,66 @@
 import Default from "@astrojs/starlight/components/PageTitle.astro";
 import {Pencil} from "@lucide/astro";
 
-const {editUrl, lastUpdated, lang, id} = Astro.locals.starlightRoute;
+const {editUrl, lastUpdated, lang, id, entry} = Astro.locals.starlightRoute;
 const isGuide = id === "how-tos" || id.startsWith("how-tos/");
+
+interface Author {
+  name: string;
+  url: string;
+  avatar: string;
+}
+
+const rawAuthors = (entry as any)?.data?.authors;
+const authorList: Author[] = (Array.isArray(rawAuthors) ? rawAuthors : rawAuthors ? [rawAuthors] : []).map(
+  (item: any) => {
+    if (typeof item === "string") {
+      const username = item.replace(/^https?:\/\/github\.com\//, "").replace(/\/+$/, "");
+      return {
+        name: `@${username}`,
+        url: `https://github.com/${username}`,
+        avatar: `https://github.com/${username}.png?size=64`,
+      };
+    }
+    const username = item.username || item.name || "";
+    return {
+      name: item.name || (username ? `@${username}` : "Author"),
+      url: item.url || (username ? `https://github.com/${username}` : "#"),
+      avatar: item.avatar || (username ? `https://github.com/${username}.png?size=64` : ""),
+    };
+  }
+);
 ---
 
-<Default {...Astro.props}><slot /></Default>
-{
-  isGuide && (editUrl || lastUpdated) && (
-    <div class="doc-metadata">
-      {editUrl && (
-        <a href={editUrl} target="_blank" rel="noopener noreferrer">
-          <Pencil size={14} aria-hidden="true" />
-          Edit this page on GitHub
-        </a>
+<Default {...Astro.props}>
+  <slot />
+</Default>
+{isGuide && (editUrl || lastUpdated || authorList.length > 0) && (
+  <div class="doc-metadata">
+    <div class="flex items-center gap-3 sm:gap-4 flex-wrap">
+      {authorList.length > 0 && (
+        <div class="inline-flex items-center pl-0.5" aria-label="Authors">
+          {authorList.map((author) => (
+            <a
+              href={author.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative inline-block -ml-2 first:ml-0 rounded-full transition-transform hover:-translate-y-0.5 hover:scale-110 hover:z-10 focus-visible:z-10"
+              title={author.name}
+            >
+              <img
+                src={author.avatar}
+                alt={author.name}
+                width="28"
+                height="28"
+                class="w-7 h-7 shrink-0 rounded-full border-2 border-(--sl-color-bg) object-cover bg-(--sl-color-gray-6) block"
+                loading="lazy"
+                decoding="async"
+                referrerpolicy="no-referrer"
+                onerror="this.onerror=null; this.src='https://github.com/ghost.png';"
+              />
+            </a>
+          ))}
+        </div>
       )}
       {lastUpdated && (
         <span>
@@ -25,8 +72,14 @@ const isGuide = id === "how-tos" || id.startsWith("how-tos/");
         </span>
       )}
     </div>
-  )
-}
+    {editUrl && (
+      <a href={editUrl} target="_blank" rel="noopener noreferrer">
+        <Pencil size={14} aria-hidden="true" />
+        Edit this page on GitHub
+      </a>
+    )}
+  </div>
+)}
 
 <style>
   .doc-metadata {

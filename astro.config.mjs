@@ -5,34 +5,29 @@ import tailwindcss from "@tailwindcss/vite";
 import {stringify} from "yaml";
 import {bundle} from "@readme/openapi-parser";
 import {mkdir, writeFile} from "node:fs/promises";
+import {existsSync} from "node:fs";
 import {resolve} from "node:path";
 import {injectOpenAPIExamples} from "./src/utils/openapi-schema.mjs";
 import {editorThemeCss} from "./src/utils/editor-theme.mjs";
 
 async function processOpenAPISchema(schemaUrl) {
-  const schema = await bundle(schemaUrl);
-  await injectOpenAPIExamples(schema);
-
   const publicDir = resolve("./public");
-  await mkdir(publicDir, {recursive: true});
-  await writeFile(resolve(publicDir, "openapi.yml"), stringify(schema), "utf-8");
+  const localSchemaPath = resolve(publicDir, "openapi.yml");
+  try {
+    const schema = await bundle(schemaUrl);
+    await injectOpenAPIExamples(schema);
+
+    await mkdir(publicDir, {recursive: true});
+    await writeFile(localSchemaPath, stringify(schema), "utf-8");
+  } catch (err) {
+    if (existsSync(localSchemaPath)) {
+      return "./public/openapi.yml";
+    }
+    throw err;
+  }
 
   return "./public/openapi.yml";
 }
-
-const LOGO_URL = "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png";
-
-async function fetchRemoteAssets() {
-  const publicDir = resolve("./public");
-  await mkdir(publicDir, {recursive: true});
-
-  const logoRes = await fetch(LOGO_URL);
-  if (logoRes.ok) {
-    await writeFile(resolve(publicDir, "pokeapi_256.png"), Buffer.from(await logoRes.arrayBuffer()));
-  }
-}
-
-await fetchRemoteAssets();
 
 console.log("SITE_URL:", process.env.SITE_URL);
 console.log("BASE_URL:", process.env.BASE_URL);
@@ -64,22 +59,22 @@ export default defineConfig({
       },
       head: [
         {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'preload',
-            href: '/Inter.woff2',
-            as: 'font',
-            type: 'font/woff2',
+            rel: "preload",
+            href: "/Inter.woff2",
+            as: "font",
+            type: "font/woff2",
             crossorigin: true,
           },
         },
         {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'preload',
-            href: '/pokemon-solid-subset.woff2',
-            as: 'font',
-            type: 'font/woff2',
+            rel: "preload",
+            href: "/pokemon-solid-subset.woff2",
+            as: "font",
+            type: "font/woff2",
             crossorigin: true,
           },
         },

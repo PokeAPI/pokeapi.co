@@ -1,0 +1,61 @@
+---
+import { marked } from 'marked';
+
+const { url, from = '', to = '' } = Astro.props;
+
+const response = await fetch(url);
+const rawMarkdown = await response.text();
+
+// Split into lines and normalize Windows (\r\n) line endings
+const lines = rawMarkdown.replace(/\r\n/g, '\n').split('\n');
+
+// Find exact line matches (trimmed)
+const startIndex = from
+  ? lines.findIndex((line) => line.trim() === from.trim())
+  : 0;
+
+const endIndex = to
+  ? lines.findIndex((line, idx) => idx > startIndex && line.trim() === to.trim())
+  : -1;
+
+// Slice from the matched `from` line up to (but excluding) the `to` line
+const slicedLines = lines.slice(
+  startIndex !== -1 ? startIndex : 0,
+  endIndex !== -1 ? endIndex : lines.length
+);
+
+let finalMarkdown = slicedLines.join('\n');
+
+// Rewrite relative image paths (e.g., src="sprites/...") to the raw GitHub repo root
+const repoBaseUrl = url.substring(0, url.lastIndexOf('/') + 1);
+finalMarkdown = finalMarkdown.replace(
+  /src=["'](?!https?:\/\/|\/)([^"']+)["']/g,
+  `src="${repoBaseUrl}$1"`
+);
+
+// Rewrite relative markdown links (e.g., ./CONTRIBUTING_SPRITES.md) to GitHub blob URLs
+const blobBaseUrl = url
+  .replace('raw.githubusercontent.com', 'github.com')
+  .replace('/refs/heads/', '/blob/')
+  .replace(/\/[^/]+$/, '/');
+finalMarkdown = finalMarkdown.replace(
+  /\]\(\.\/([^)]+)\)/g,
+  `](${blobBaseUrl}$1)`
+);
+
+const htmlContent = await marked.parse(finalMarkdown);
+---
+
+<div class="github-readme" set:html={htmlContent} />
+
+<style>
+  .github-readme :global(img) {
+    max-width: 100px;
+    max-height: 100px;
+    display: inline-block;
+  }
+  .github-readme :global(table) {
+    display: block;
+    overflow-x: auto;
+  }
+</style>

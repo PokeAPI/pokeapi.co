@@ -164,3 +164,15 @@
     color: var(--sl-color-white) !important;
   }
 }
+
+@media (max-width: 640px) {
+  .guide-page .sl-markdown-content table {
+    display: block;
+    overflow-x: auto;
+    font-size: 0.8rem;
+  }
+
+  .guide-page .sl-markdown-content :is(th, td) {
+    padding: 0.45rem 0.6rem;
+  }
+}

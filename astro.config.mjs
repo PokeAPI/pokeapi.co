@@ -152,6 +152,10 @@ export default defineConfig({
           badge: {text: "v1beta", variant: "default", class: "api-version-badge"},
         },
         {
+          label: "Sprites",
+          link: "sprites",
+        },
+        {
           label: "How-To Guides",
           collapsed: true,
           items: [{autogenerate: {directory: "how-tos"}}],
